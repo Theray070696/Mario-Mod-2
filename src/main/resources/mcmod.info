@@ -1,0 +1,16 @@
+[
+{
+  "modid": "mariodeath",
+  "name": "Mario Death",
+  "description": "Game over!",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authors": ["Theray070696"],
+  "credits": "Theray070696 - Programmer.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

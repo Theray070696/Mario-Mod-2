@@ -1,0 +1,278 @@
+{
+    "player.death1":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "player/death1"
+        ]
+    },
+    "player.death2":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "player/death2"
+        ]
+    },
+    "player.death3":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "player/death3"
+        ]
+    },
+    "player.death4":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "player/death4"
+        ]
+    },
+    "player.death5":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "player/death5"
+        ]
+    },
+    "item.starman":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "item/starman"
+        ]
+    },
+    "item.fireball":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "item/fireball"
+        ]
+    },
+    "item.spiceman":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "item/spiceman"
+        ]
+    },
+    "item.1up":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "item/1up"
+        ]
+    },
+    "item.mushroom":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "item/mushroom"
+        ]
+    },
+    "item.smw1up":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "item/smw1up"
+        ]
+    },
+    "item.smwMushroom":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "item/smwMushroom"
+        ]
+    },
+    "item.cape":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "item/cape"
+        ]
+    },
+    "player.rayJoin":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "player/rayJoin"
+        ]
+    },
+    "player.rayLeave":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "player/rayLeave"
+        ]
+    },
+    "player.rayDeath1":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "player/rayDeath1"
+        ]
+    },
+    "player.rayDeath2":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "player/rayDeath2"
+        ]
+    },
+    "player.jasterJoin":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "player/jasterJoin"
+        ]
+    },
+    "player.jasterJoin2":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "player/jasterJoin2"
+        ]
+    },
+    "player.jasterJoin3":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "player/jasterJoin3"
+        ]
+    },
+    "player.jasterJoin4":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "player/jasterJoin4"
+        ]
+    },
+    "player.jasterJoin5":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "player/jasterJoin5"
+        ]
+    },
+    "player.jasterLeave":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "player/jasterLeave"
+        ]
+    },
+    "player.jasterLeave2":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "player/jasterLeave2"
+        ]
+    },
+    "player.jasterDeath1":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "player/jasterDeath1"
+        ]
+    },
+    "player.jasterDeath2":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "player/jasterDeath2"
+        ]
+    },
+    "item.jasterStarman":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "item/jasterStarman"
+        ]
+    },
+    "player.ghostDeath1":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "player/ghostDeath1"
+        ]
+    },
+    "player.join":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "player/join"
+        ]
+    },
+    "player.leave":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "player/leave"
+        ]
+    },
+    "block.note":
+    {
+        "category": "block",
+        "sounds":
+        [
+            "block/spring"
+        ]
+    },
+    "block.spring":
+    {
+        "category": "block",
+        "sounds":
+        [
+            "block/spring"
+        ]
+    },
+    "records.smbUnderwater":
+    {
+        "category": "record",
+        "sounds": [
+            {
+                "name": "records/smbUnderwater",
+                "stream": true
+            }
+        ]
+    },
+    "records.spiceman":
+    {
+        "category": "record",
+        "sounds": [
+            {
+                "name": "item/spiceman",
+                "stream": true
+            }
+        ]
+    }
+}
