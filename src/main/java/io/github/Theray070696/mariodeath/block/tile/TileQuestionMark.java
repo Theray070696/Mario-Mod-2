@@ -5,7 +5,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
 /**
- * Created by Theray on 8/27/2015.
+ * Created by Theray070696 on 8/27/2015.
  */
 public class TileQuestionMark extends TileEntity
 {
@@ -18,11 +18,13 @@ public class TileQuestionMark extends TileEntity
         this.itemInBlock = nbtTagCompound.getInteger("itemInBlock");
     }
 
-    public void writeToNBT(NBTTagCompound nbtTagCompound)
+    public NBTTagCompound writeToNBT(NBTTagCompound nbtTagCompound)
     {
         super.writeToNBT(nbtTagCompound);
 
         nbtTagCompound.setInteger("itemInBlock", this.itemInBlock);
+
+        return nbtTagCompound;
     }
 
     public void setItemInBlock(int itemInBlock)

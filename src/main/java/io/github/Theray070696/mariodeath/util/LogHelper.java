@@ -1,11 +1,11 @@
 package io.github.Theray070696.mariodeath.util;
 
-import cpw.mods.fml.common.FMLLog;
 import io.github.Theray070696.mariodeath.lib.ModInfo;
+import net.minecraftforge.fml.common.FMLLog;
 import org.apache.logging.log4j.Level;
 
 /**
- * Created by Theray on 8/25/15.
+ * Created by Theray070696 on 8/25/15.
  */
 public class LogHelper
 {

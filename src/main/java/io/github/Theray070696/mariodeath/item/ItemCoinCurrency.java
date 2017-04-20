@@ -1,18 +1,17 @@
 package io.github.Theray070696.mariodeath.item;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import io.github.Theray070696.mariodeath.lib.ModInfo;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import io.github.Theray070696.raycore.RayCore;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
 /**
- * Created by Theray on 1/7/2017.
+ * Created by Theray070696 on 1/7/2017.
  */
 public class ItemCoinCurrency extends ItemMario
 {
@@ -21,41 +20,14 @@ public class ItemCoinCurrency extends ItemMario
         super();
 
         this.setHasSubtypes(true);
-    }
-
-    @SideOnly(Side.CLIENT)
-    public IIcon[] icons;
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister reg)
-    {
-        icons = new IIcon[5];
-
-        icons[0] = reg.registerIcon(ModInfo.MOD_ID + ":itemCoinGreen"); // Green, blue, red, purple coin, black coin.
-        icons[1] = reg.registerIcon(ModInfo.MOD_ID + ":itemCoinBlue");
-        icons[2] = reg.registerIcon(ModInfo.MOD_ID + ":itemCoinRed");
-        icons[3] = reg.registerIcon(ModInfo.MOD_ID + ":itemCoinPurple");
-        icons[4] = reg.registerIcon(ModInfo.MOD_ID + ":itemCoinBlack");
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public IIcon getIconFromDamage(int meta)
-    {
-        if(meta > icons.length)
-        {
-            meta = 0;
-        }
-
-        return this.icons[meta];
+        this.setUnlocalizedName("itemCoinCurrency");
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List list)
     {
-        for(int i = 0; i < icons.length; i++)
+        for(int i = 0; i < 5; i++)
         {
             list.add(new ItemStack(item, 1, i));
         }
@@ -64,25 +36,45 @@ public class ItemCoinCurrency extends ItemMario
     @Override
     public String getUnlocalizedName(ItemStack stack)
     {
-        int damage = stack.getItemDamage();
+        return "item." + ModInfo.MOD_ID.toLowerCase() + ":" + CoinType.getTypeNameByMeta(stack.getMetadata());
+    }
 
-        if(damage == 0)
+    private static enum CoinType
+    {
+        COIN_GREEN(0, "itemCoinGreen"),
+        COIN_BLUE(1, "itemCoinBlue"),
+        COIN_RED(2, "itemCoinRed"),
+        COIN_PURPLE(3, "itemCoinPurple"),
+        COIN_BLACK(4, "itemCoinBlack");
+
+        private final int meta;
+        private final String typeName;
+
+        private CoinType(int meta, String name)
         {
-            return String.format("item.%s", ModInfo.MOD_ID.toLowerCase() + ":itemCoinGreen");
-        } else if(damage == 1)
-        {
-            return String.format("item.%s", ModInfo.MOD_ID.toLowerCase() + ":itemCoinBlue");
-        } else if(damage == 2)
-        {
-            return String.format("item.%s", ModInfo.MOD_ID.toLowerCase() + ":itemCoinRed");
-        } else if(damage == 3)
-        {
-            return String.format("item.%s", ModInfo.MOD_ID.toLowerCase() + ":itemCoinPurple");
-        } else if(damage == 4)
-        {
-            return String.format("item.%s", ModInfo.MOD_ID.toLowerCase() + ":itemCoinBlack");
+            this.meta = meta;
+            typeName = name;
         }
 
-        return "item.mariodeath:errorname";
+        public static String getTypeNameByMeta(int meta)
+        {
+            for (CoinType type : CoinType.values())
+            {
+                if (type.meta == meta)
+                    return type.typeName;
+            }
+
+            return "errorname";
+        }
+    }
+
+    @Override
+    public void registerItemModel(Item item)
+    {
+        RayCore.proxy.registerItemRenderer(this, 0, ModInfo.MOD_ID, getUnwrappedUnlocalizedName() + "_0");
+        RayCore.proxy.registerItemRenderer(this, 1, ModInfo.MOD_ID, getUnwrappedUnlocalizedName() + "_1");
+        RayCore.proxy.registerItemRenderer(this, 2, ModInfo.MOD_ID, getUnwrappedUnlocalizedName() + "_2");
+        RayCore.proxy.registerItemRenderer(this, 3, ModInfo.MOD_ID, getUnwrappedUnlocalizedName() + "_3");
+        RayCore.proxy.registerItemRenderer(this, 4, ModInfo.MOD_ID, getUnwrappedUnlocalizedName() + "_4");
     }
 }

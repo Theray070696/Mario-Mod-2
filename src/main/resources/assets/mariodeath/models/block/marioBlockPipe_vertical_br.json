@@ -1,0 +1,11 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "mariodeath:blocks/pipeTop1",
+    "up": "mariodeath:blocks/pipeTop1",
+    "east": "mariodeath:blocks/pipeUL",
+    "west": "mariodeath:blocks/pipeUL",
+    "north": "mariodeath:blocks/pipeUR",
+    "south": "mariodeath:blocks/pipeUR"
+  }
+}

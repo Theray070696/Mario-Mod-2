@@ -4,7 +4,7 @@ import io.github.Theray070696.mariodeath.lib.ModInfo;
 import io.github.Theray070696.raycore.item.ItemRay;
 
 /**
- * Created by Theray on 1/22/2017.
+ * Created by Theray070696 on 1/22/2017.
  */
 public class ItemMario extends ItemRay
 {

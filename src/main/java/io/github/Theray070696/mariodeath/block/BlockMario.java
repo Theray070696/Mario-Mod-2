@@ -2,9 +2,10 @@ package io.github.Theray070696.mariodeath.block;
 
 import io.github.Theray070696.mariodeath.lib.ModInfo;
 import io.github.Theray070696.raycore.block.BlockRay;
+import net.minecraft.block.material.Material;
 
 /**
- * Created by Theray on 1/22/2017.
+ * Created by Theray070696 on 1/22/2017.
  */
 public class BlockMario extends BlockRay
 {
@@ -12,9 +13,19 @@ public class BlockMario extends BlockRay
     {
         this(true);
     }
-    
+
     public BlockMario(boolean addToCreativeTab)
     {
-        super(addToCreativeTab, ModInfo.MOD_ID);
+        this(Material.ROCK, addToCreativeTab);
+    }
+
+    public BlockMario(Material material)
+    {
+        this(material, true);
+    }
+    
+    public BlockMario(Material material, boolean addToCreativeTab)
+    {
+        super(material, addToCreativeTab, ModInfo.MOD_ID);
     }
 }

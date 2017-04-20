@@ -1,15 +1,15 @@
 package io.github.Theray070696.mariodeath.block;
 
 /**
- * Created by Theray on 1/5/2017.
+ * Created by Theray070696 on 1/5/2017.
  */
-public class BlockQuestionMarkSMB extends BlockQuestionMarkBase implements SMBQBlock
+public class BlockQuestionMarkSMB extends BlockQuestionMarkBase implements SMBQBlock, IFilledQBlock
 {
     public BlockQuestionMarkSMB()
     {
         super(false);
 
-        this.setBlockName("marioBlockQuestionMarkSMB");
+        this.setUnlocalizedName("marioBlockQuestionMarkSMB");
     }
 
     @Override

@@ -1,14 +1,13 @@
 package io.github.Theray070696.mariodeath.plugins;
 
-import cpw.mods.fml.common.Loader;
-import io.github.Theray070696.mariodeath.plugins.nei.NotEnoughItems;
 import io.github.Theray070696.mariodeath.util.LogHelper;
+import net.minecraftforge.fml.common.Loader;
 
 import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by Theray on 3/31/2016.
+ * Created by Theray070696 on 3/31/2016.
  */
 public class PluginHandler
 {
@@ -82,6 +81,6 @@ public class PluginHandler
 
     public void registerBuiltInPlugins()
     {
-        registerPlugin(new NotEnoughItems());
+        //registerPlugin(new NotEnoughItems());
     }
 }

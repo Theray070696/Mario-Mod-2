@@ -1,7 +1,7 @@
 package io.github.Theray070696.mariodeath.block;
 
 /**
- * Created by Theray on 3/31/2016.
+ * Created by Theray070696 on 3/31/2016.
  */
 public class BlockInvisibleBlockEmpty extends BlockQuestionMarkBase implements SMWQBlock
 {
@@ -9,6 +9,6 @@ public class BlockInvisibleBlockEmpty extends BlockQuestionMarkBase implements S
     {
         super();
 
-        this.setBlockName("marioBlockInvisibleBlockEmpty");
+        this.setUnlocalizedName("marioBlockInvisibleBlockEmpty");
     }
 }

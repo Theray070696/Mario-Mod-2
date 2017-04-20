@@ -1,14 +1,23 @@
 package io.github.Theray070696.mariodeath.item;
 
+import io.github.Theray070696.mariodeath.audio.SoundHandler;
+import io.github.Theray070696.mariodeath.potion.PotionEffectsMario;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
 
+import javax.annotation.Nullable;
+
 /**
- * Created by Theray on 9/15/2015.
+ * Created by Theray070696 on 9/15/2015.
  */
 public class ItemStarMan extends ItemMario
 {
@@ -20,23 +29,23 @@ public class ItemStarMan extends ItemMario
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
+    public ActionResult<ItemStack> onItemRightClick(@Nullable ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
     {
         if(itemStack != null && world != null && player != null && !(player instanceof FakePlayer))
         {
-            player.addPotionEffect(new PotionEffect(Potion.resistance.getId(), 258, 10));
-            player.addPotionEffect(new PotionEffect(Potion.moveSpeed.getId(), 258, 3));
+            player.addPotionEffect(new PotionEffect(PotionEffectsMario.potionStarman, 258, 10));
+            player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 258, 5));
 
-            if(player.getDisplayName().equalsIgnoreCase("JasterMK3"))
+            if(player.getDisplayName().getUnformattedComponentText().equalsIgnoreCase("JasterMK3"))
             {
-                world.playSoundAtEntity(player, "mariodeath:item.jasterStarman", 1.0f, 1.0f);
+                world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler.jasterStarMan, SoundCategory.PLAYERS, 1.0F, 1.0F);
             }
 
-            world.playSoundAtEntity(player, "mariodeath:item.starman", 1.0F, 1.0F);
+            world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler.starMan, SoundCategory.PLAYERS, 1.0F, 1.0F);
 
             itemStack.stackSize--;
         }
 
-        return itemStack;
+        return new ActionResult<>(EnumActionResult.PASS, itemStack);
     }
 }

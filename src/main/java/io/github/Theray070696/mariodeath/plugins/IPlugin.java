@@ -1,7 +1,7 @@
 package io.github.Theray070696.mariodeath.plugins;
 
 /**
- * Created by Theray on 3/31/2016.
+ * Created by Theray070696 on 3/31/2016.
  */
 public interface IPlugin
 {

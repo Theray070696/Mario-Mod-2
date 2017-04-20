@@ -6,10 +6,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 /**
- * Created by Theray on 3/31/2016.
+ * Created by Theray070696 on 3/31/2016.
  */
 public class ContainerMarioMaker extends Container
 {
@@ -17,17 +18,14 @@ public class ContainerMarioMaker extends Container
     public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
     public IInventory craftResult = new InventoryCraftResult();
     private World worldObj;
-    private int posX;
-    private int posY;
-    private int posZ;
+    /** Position of the mario maker */
+    private final BlockPos pos;
 
-    public ContainerMarioMaker(InventoryPlayer inventoryPlayer, World world, int x, int y, int z)
+    public ContainerMarioMaker(InventoryPlayer inventoryPlayer, World world, BlockPos pos)
     {
         this.worldObj = world;
-        this.posX = x;
-        this.posY = y;
-        this.posZ = z;
-        this.addSlotToContainer(new SlotCrafting(inventoryPlayer.player, this.craftMatrix, this.craftResult, 0, 124, 35));
+        this.pos = pos;
+        this.addSlotToContainer(new SlotCraftingMario(inventoryPlayer.player, this.craftMatrix, this.craftResult, 0, 124, 35));
         int l;
         int i1;
 
@@ -74,19 +72,22 @@ public class ContainerMarioMaker extends Container
         {
             for (int i = 0; i < 9; ++i)
             {
-                ItemStack itemstack = this.craftMatrix.getStackInSlotOnClosing(i);
+                ItemStack itemstack = this.craftMatrix.removeStackFromSlot(i);
 
                 if (itemstack != null)
                 {
-                    entityPlayer.dropPlayerItemWithRandomChoice(itemstack, false);
+                    entityPlayer.dropItem(itemstack, false);
                 }
             }
         }
     }
 
+    /**
+     * Determines whether supplied player can use this container
+     */
     public boolean canInteractWith(EntityPlayer entityPlayer)
     {
-        return this.worldObj.getBlock(this.posX, this.posY, this.posZ) == ModBlocks.blockMarioMaker && entityPlayer.getDistanceSq((double) this.posX + 0.5D, (double) this.posY + 0.5D, (double) this.posZ + 0.5D) <= 64.0D;
+        return this.worldObj.getBlockState(this.pos).getBlock() == ModBlocks.blockMarioMaker && entityPlayer.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
     }
 
     /**
@@ -150,8 +151,12 @@ public class ContainerMarioMaker extends Container
         return itemstack;
     }
 
-    public boolean func_94530_a(ItemStack itemStack, Slot p_9slot530_2_)
+    /**
+     * Called to determine if the current slot is valid for the stack merging (double-click) code. The stack passed in
+     * is null for the initial slot that was double-clicked.
+     */
+    public boolean canMergeSlot(ItemStack stack, Slot slotIn)
     {
-        return p_9slot530_2_.inventory != this.craftResult && super.func_94530_a(itemStack, p_9slot530_2_);
+        return slotIn.inventory != this.craftResult && super.canMergeSlot(stack, slotIn);
     }
 }

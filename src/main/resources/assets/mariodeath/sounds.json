@@ -4,7 +4,7 @@
         "category": "neutral",
         "sounds":
         [
-            "player/death1"
+            "mariodeath:player/death1"
         ]
     },
     "player.death2":
@@ -12,7 +12,7 @@
         "category": "neutral",
         "sounds":
         [
-            "player/death2"
+            "mariodeath:player/death2"
         ]
     },
     "player.death3":
@@ -20,7 +20,7 @@
         "category": "neutral",
         "sounds":
         [
-            "player/death3"
+            "mariodeath:player/death3"
         ]
     },
     "player.death4":
@@ -28,7 +28,7 @@
         "category": "neutral",
         "sounds":
         [
-            "player/death4"
+            "mariodeath:player/death4"
         ]
     },
     "player.death5":
@@ -36,7 +36,15 @@
         "category": "neutral",
         "sounds":
         [
-            "player/death5"
+            "mariodeath:player/death5"
+        ]
+    },
+    "player.diamonds":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "mariodeath:player/diamonds"
         ]
     },
     "item.starman":
@@ -44,7 +52,7 @@
         "category": "neutral",
         "sounds":
         [
-            "item/starman"
+            "mariodeath:item/starman"
         ]
     },
     "item.fireball":
@@ -52,15 +60,17 @@
         "category": "neutral",
         "sounds":
         [
-            "item/fireball"
+            "mariodeath:item/fireball"
         ]
     },
     "item.spiceman":
     {
         "category": "neutral",
-        "sounds":
-        [
-            "item/spiceman"
+        "sounds": [
+            {
+                "name": "mariodeath:item/spiceman",
+                "stream": true
+            }
         ]
     },
     "item.1up":
@@ -68,7 +78,7 @@
         "category": "neutral",
         "sounds":
         [
-            "item/1up"
+            "mariodeath:item/1up"
         ]
     },
     "item.mushroom":
@@ -76,7 +86,7 @@
         "category": "neutral",
         "sounds":
         [
-            "item/mushroom"
+            "mariodeath:item/mushroom"
         ]
     },
     "item.smw1up":
@@ -84,7 +94,7 @@
         "category": "neutral",
         "sounds":
         [
-            "item/smw1up"
+            "mariodeath:item/smw1up"
         ]
     },
     "item.smwMushroom":
@@ -92,7 +102,23 @@
         "category": "neutral",
         "sounds":
         [
-            "item/smwMushroom"
+            "mariodeath:item/smwMushroom"
+        ]
+    },
+    "item.smbCoin":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "mariodeath:item/smbCoin"
+        ]
+    },
+    "item.smwCoin":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "mariodeath:item/smwCoin"
         ]
     },
     "item.cape":
@@ -100,7 +126,7 @@
         "category": "neutral",
         "sounds":
         [
-            "item/cape"
+            "mariodeath:item/cape"
         ]
     },
     "player.rayJoin":
@@ -108,7 +134,7 @@
         "category": "neutral",
         "sounds":
         [
-            "player/rayJoin"
+            "mariodeath:player/rayJoin"
         ]
     },
     "player.rayLeave":
@@ -116,7 +142,7 @@
         "category": "neutral",
         "sounds":
         [
-            "player/rayLeave"
+            "mariodeath:player/rayLeave"
         ]
     },
     "player.rayDeath1":
@@ -124,7 +150,7 @@
         "category": "neutral",
         "sounds":
         [
-            "player/rayDeath1"
+            "mariodeath:player/rayDeath1"
         ]
     },
     "player.rayDeath2":
@@ -132,15 +158,15 @@
         "category": "neutral",
         "sounds":
         [
-            "player/rayDeath2"
+            "mariodeath:player/rayDeath2"
         ]
     },
-    "player.jasterJoin":
+    "player.jasterJoin1":
     {
         "category": "neutral",
         "sounds":
         [
-            "player/jasterJoin"
+            "mariodeath:player/jasterJoin"
         ]
     },
     "player.jasterJoin2":
@@ -148,7 +174,7 @@
         "category": "neutral",
         "sounds":
         [
-            "player/jasterJoin2"
+            "mariodeath:player/jasterJoin2"
         ]
     },
     "player.jasterJoin3":
@@ -156,7 +182,7 @@
         "category": "neutral",
         "sounds":
         [
-            "player/jasterJoin3"
+            "mariodeath:player/jasterJoin3"
         ]
     },
     "player.jasterJoin4":
@@ -164,7 +190,7 @@
         "category": "neutral",
         "sounds":
         [
-            "player/jasterJoin4"
+            "mariodeath:player/jasterJoin4"
         ]
     },
     "player.jasterJoin5":
@@ -172,15 +198,15 @@
         "category": "neutral",
         "sounds":
         [
-            "player/jasterJoin5"
+            "mariodeath:player/jasterJoin5"
         ]
     },
-    "player.jasterLeave":
+    "player.jasterLeave1":
     {
         "category": "neutral",
         "sounds":
         [
-            "player/jasterLeave"
+            "mariodeath:player/jasterLeave"
         ]
     },
     "player.jasterLeave2":
@@ -188,7 +214,7 @@
         "category": "neutral",
         "sounds":
         [
-            "player/jasterLeave2"
+            "mariodeath:player/jasterLeave2"
         ]
     },
     "player.jasterDeath1":
@@ -196,7 +222,7 @@
         "category": "neutral",
         "sounds":
         [
-            "player/jasterDeath1"
+            "mariodeath:player/jasterDeath1"
         ]
     },
     "player.jasterDeath2":
@@ -204,7 +230,7 @@
         "category": "neutral",
         "sounds":
         [
-            "player/jasterDeath2"
+            "mariodeath:player/jasterDeath2"
         ]
     },
     "item.jasterStarman":
@@ -212,7 +238,7 @@
         "category": "neutral",
         "sounds":
         [
-            "item/jasterStarman"
+            "mariodeath:item/jasterStarman"
         ]
     },
     "player.ghostDeath1":
@@ -220,7 +246,17 @@
         "category": "neutral",
         "sounds":
         [
-            "player/ghostDeath1"
+            "mariodeath:player/ghostDeath1"
+        ]
+    },
+    "player.rareDeath1":
+    {
+        "category": "neutral",
+        "sounds": [
+            {
+                "name": "mariodeath:player/rareDeath1",
+                "stream": true
+            }
         ]
     },
     "player.join":
@@ -228,7 +264,7 @@
         "category": "neutral",
         "sounds":
         [
-            "player/join"
+            "mariodeath:player/join"
         ]
     },
     "player.leave":
@@ -236,7 +272,7 @@
         "category": "neutral",
         "sounds":
         [
-            "player/leave"
+            "mariodeath:player/leave"
         ]
     },
     "block.note":
@@ -244,7 +280,7 @@
         "category": "block",
         "sounds":
         [
-            "block/spring"
+            "mariodeath:block/spring"
         ]
     },
     "block.spring":
@@ -252,7 +288,225 @@
         "category": "block",
         "sounds":
         [
-            "block/spring"
+            "mariodeath:block/spring"
+        ]
+    },
+    "block.smbEmptyBlockHit":
+    {
+        "category": "block",
+        "sounds":
+        [
+            "mariodeath:block/smbEmptyBlockHit"
+        ]
+    },
+    "block.smbBlockHitPowerup":
+    {
+        "category": "block",
+        "sounds":
+        [
+            "mariodeath:block/smbBlockHitPowerup"
+        ]
+    },
+    "block.smwEmptyBlockHit":
+    {
+        "category": "block",
+        "sounds":
+        [
+            "mariodeath:block/smwEmptyBlockHit"
+        ]
+    },
+    "block.smwBlockHitPowerup":
+    {
+        "category": "block",
+        "sounds":
+        [
+            "mariodeath:block/smwBlockHitPowerup"
+        ]
+    },
+    "player.spicemanBlock1":
+    {
+        "category": "block",
+        "sounds":
+        [
+            "mariodeath:player/spicemanBlock1"
+        ]
+    },
+    "player.spicemanBlock2":
+    {
+        "category": "block",
+        "sounds":
+        [
+            "mariodeath:player/spicemanBlock2"
+        ]
+    },
+    "player.spicemanBlock3":
+    {
+        "category": "block",
+        "sounds":
+        [
+            "mariodeath:player/spicemanBlock3"
+        ]
+    },
+    "player.spicemanBlock4":
+    {
+        "category": "block",
+        "sounds":
+        [
+            "mariodeath:player/spicemanBlock4"
+        ]
+    },
+    "player.spicemanBlock5":
+    {
+        "category": "block",
+        "sounds":
+        [
+            "mariodeath:player/spicemanBlock5"
+        ]
+    },
+    "player.spicemanBlock6":
+    {
+        "category": "block",
+        "sounds":
+        [
+            "mariodeath:player/spicemanBlock6"
+        ]
+    },
+    "player.spicemanBlock7":
+    {
+        "category": "block",
+        "sounds":
+        [
+            "mariodeath:player/spicemanBlock7"
+        ]
+    },
+    "player.spicemanBlock8":
+    {
+        "category": "block",
+        "sounds":
+        [
+            "mariodeath:player/spicemanBlock8"
+        ]
+    },
+    "player.spicemanBlock9":
+    {
+        "category": "block",
+        "sounds":
+        [
+            "mariodeath:player/spicemanBlock9"
+        ]
+    },
+    "player.spicemanBlock10":
+    {
+        "category": "block",
+        "sounds":
+        [
+            "mariodeath:player/spicemanBlock10"
+        ]
+    },
+    "player.spicemanBlock11":
+    {
+        "category": "block",
+        "sounds":
+        [
+            "mariodeath:player/spicemanBlock11"
+        ]
+    },
+    "player.spicemanBlock12":
+    {
+        "category": "block",
+        "sounds":
+        [
+            "mariodeath:player/spicemanBlock12"
+        ]
+    },
+    "block.terry1":
+    {
+        "category": "block",
+        "sounds": [
+			{
+				"name": "mariodeath:block/terry1",
+				"stream": true
+			}
+        ]
+    },
+    "block.terry2":
+    {
+        "category": "block",
+        "sounds": [
+			{
+				"name": "mariodeath:block/terry2",
+				"stream": true
+			}
+        ]
+    },
+    "block.terry3":
+    {
+        "category": "block",
+        "sounds": [
+			{
+				"name": "mariodeath:block/terry3",
+				"stream": true
+			}
+        ]
+    },
+    "block.terry4":
+    {
+        "category": "block",
+        "sounds": [
+			{
+				"name": "mariodeath:block/terry4",
+				"stream": true
+			}
+        ]
+    },
+    "block.terry5":
+    {
+        "category": "block",
+        "sounds": [
+			{
+				"name": "mariodeath:block/terry5",
+				"stream": true
+			}
+        ]
+    },
+    "block.terry6":
+    {
+        "category": "block",
+        "sounds": [
+			{
+				"name": "mariodeath:block/terry6",
+				"stream": true
+			}
+        ]
+    },
+    "block.terry7":
+    {
+        "category": "block",
+        "sounds": [
+			{
+				"name": "mariodeath:block/terry7",
+				"stream": true
+			}
+        ]
+    },
+    "block.terry8":
+    {
+        "category": "block",
+        "sounds": [
+			{
+				"name": "mariodeath:block/terry8",
+				"stream": true
+			}
+		]
+    },
+    "block.terry9":
+    {
+        "category": "block",
+        "sounds": [
+			{
+				"name": "mariodeath:block/terry9",
+				"stream": true
+			}
         ]
     },
     "records.smbUnderwater":
@@ -260,7 +514,7 @@
         "category": "record",
         "sounds": [
             {
-                "name": "records/smbUnderwater",
+                "name": "mariodeath:records/smbUnderwater",
                 "stream": true
             }
         ]
@@ -270,7 +524,17 @@
         "category": "record",
         "sounds": [
             {
-                "name": "item/spiceman",
+                "name": "mariodeath:item/spiceman",
+                "stream": true
+            }
+        ]
+    },
+    "records.rareDeath1":
+    {
+        "category": "record",
+        "sounds": [
+            {
+                "name": "mariodeath:player/rareDeath1",
                 "stream": true
             }
         ]

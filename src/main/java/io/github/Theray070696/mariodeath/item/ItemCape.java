@@ -2,16 +2,22 @@ package io.github.Theray070696.mariodeath.item;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
+import io.github.Theray070696.mariodeath.audio.SoundHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
 
+import javax.annotation.Nullable;
+
 /**
- * Created by Theray on 9/15/2015.
+ * Created by Theray070696 on 9/15/2015.
  */
 public class ItemCape extends ItemMario implements IBauble
 {
@@ -28,7 +34,7 @@ public class ItemCape extends ItemMario implements IBauble
     {
         if(!world.isRemote)
         {
-            if(entity != null && entity instanceof EntityPlayer && !(entity instanceof FakePlayer))
+            if(entity != null && entity instanceof EntityPlayer && !(entity instanceof FakePlayer) && entity.motionY < 0.0f)
             {
                 EntityPlayer player = (EntityPlayer) entity;
 
@@ -47,16 +53,16 @@ public class ItemCape extends ItemMario implements IBauble
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
+    public ActionResult<ItemStack> onItemRightClick(@Nullable ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
     {
         if(!world.isRemote && itemStack != null && player != null && !(player instanceof FakePlayer))
         {
             player.fallDistance = 0.0F;
 
-            world.playSoundAtEntity(player, "mariodeath:item.cape", 1.0F, 1.0F);
+            world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler.cape, SoundCategory.PLAYERS, 1.0F, 1.0F);
         }
 
-        return itemStack;
+        return new ActionResult<>(EnumActionResult.PASS, itemStack);
     }
 
     @Override
@@ -68,7 +74,7 @@ public class ItemCape extends ItemMario implements IBauble
     @Override
     public void onWornTick(ItemStack itemStack, EntityLivingBase player)
     {
-        if(itemStack != null && player != null && !(player instanceof FakePlayer))
+        if(itemStack != null && player != null && !(player instanceof FakePlayer) && player.motionY < 0.0f)
         {
             player.fallDistance = 0.0F;
         }

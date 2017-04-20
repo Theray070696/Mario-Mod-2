@@ -1,0 +1,17 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "all": "mariodeath:blocks/marioBlockInvisibleBlockEmpty"
+    },
+    "ambientocclusion": false
+  },
+  "variants": {
+    "inventory": {
+      "model": "cube_all"
+    },
+    "normal": {
+      "model": "cube_all"
+    }
+  }
+}

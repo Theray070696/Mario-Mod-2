@@ -1,22 +1,26 @@
 package io.github.Theray070696.mariodeath.item;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import io.github.Theray070696.mariodeath.audio.SoundHandler;
 import io.github.Theray070696.mariodeath.lib.ModInfo;
-import io.github.Theray070696.raycore.item.ItemRay;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import io.github.Theray070696.raycore.RayCore;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 /**
- * Created by Theray on 9/15/2015.
+ * Created by Theray070696 on 9/15/2015.
  */
 public class Item1Up extends ItemMario
 {
@@ -28,43 +32,18 @@ public class Item1Up extends ItemMario
         this.setUnlocalizedName("item1Up");
     }
 
-    @SideOnly(Side.CLIENT)
-    public IIcon[] icons;
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister reg)
-    {
-        icons = new IIcon[2];
-
-        icons[0] = reg.registerIcon(ModInfo.MOD_ID + ":itemSMB11Up");
-        icons[1] = reg.registerIcon(ModInfo.MOD_ID + ":itemSMW1Up");
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public IIcon getIconFromDamage(int meta)
-    {
-        if(meta > 1)
-        {
-            meta = 0;
-        }
-
-        return this.icons[meta];
-    }
-
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List list)
     {
-        for(int i = 0; i < 2; i++)
+        for(int i = 0; i < 3; i++)
         {
             list.add(new ItemStack(item, 1, i));
         }
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
+    public ActionResult<ItemStack> onItemRightClick(@Nullable ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
     {
         if(!world.isRemote && itemStack != null && player != null && !(player instanceof FakePlayer))
         {
@@ -79,21 +58,26 @@ public class Item1Up extends ItemMario
                 }
 
                 int meta = itemStack.getItemDamage();
-                if(meta == 0)
+                if(meta == 0 || meta == 2)
                 {
-                    world.playSoundAtEntity(player, "mariodeath:item.1up", 1.0F, 1.0F);
+                    world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler.oneUpSMB, SoundCategory.PLAYERS, 1.0F, 1.0F);
                 } else if(meta == 1)
                 {
-                    world.playSoundAtEntity(player, "mariodeath:item.smw1up", 1.0F, 1.0F);
-                } else if(meta == 2)
-                {
-                    world.playSoundAtEntity(player, "mariodeath:item.smb31up", 1.0F, 1.0F);
+                    world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler.oneUp, SoundCategory.PLAYERS, 1.0F, 1.0F);
                 }
 
                 itemStack.stackSize--;
             }
         }
 
-        return itemStack;
+        return new ActionResult<>(EnumActionResult.PASS, itemStack);
+    }
+
+    @Override
+    public void registerItemModel(Item item)
+    {
+        RayCore.proxy.registerItemRenderer(this, 0, ModInfo.MOD_ID, getUnwrappedUnlocalizedName() + "_0");
+        RayCore.proxy.registerItemRenderer(this, 1, ModInfo.MOD_ID, getUnwrappedUnlocalizedName() + "_1");
+        RayCore.proxy.registerItemRenderer(this, 2, ModInfo.MOD_ID, getUnwrappedUnlocalizedName() + "_2");
     }
 }

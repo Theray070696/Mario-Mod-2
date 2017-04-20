@@ -1,33 +1,35 @@
 package io.github.Theray070696.mariodeath;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerAboutToStartEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
+import io.github.Theray070696.mariodeath.audio.SoundHandler;
 import io.github.Theray070696.mariodeath.block.ModBlocks;
+import io.github.Theray070696.mariodeath.capability.*;
 import io.github.Theray070696.mariodeath.configuration.ConfigHandler;
 import io.github.Theray070696.mariodeath.core.CraftingHandler;
-import io.github.Theray070696.mariodeath.core.FMLEventHandler;
-import io.github.Theray070696.mariodeath.core.ForgeEventHandler;
+import io.github.Theray070696.mariodeath.core.EventHandler;
 import io.github.Theray070696.mariodeath.core.GuiHandler;
 import io.github.Theray070696.mariodeath.item.ModItems;
 import io.github.Theray070696.mariodeath.lib.ModInfo;
+import io.github.Theray070696.mariodeath.network.PacketGetCoins;
+import io.github.Theray070696.mariodeath.network.PacketSyncCoinCounter;
 import io.github.Theray070696.mariodeath.plugins.PluginHandler;
 import io.github.Theray070696.mariodeath.proxy.IProxy;
 import io.github.Theray070696.mariodeath.util.LogHelper;
 import io.github.Theray070696.mariodeath.world.WorldGenMario;
-import io.github.Theray070696.mariodeath.world.WorldProviderMario;
-import io.github.Theray070696.mariodeath.world.biomes.ModBiomes;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 
 /**
- * Created by Theray on 8/25/15.
+ * Created by Theray070696 on 8/25/15.
  */
 @SuppressWarnings("unused")
 @Mod(modid = ModInfo.MOD_ID, name = ModInfo.MOD_NAME, version = ModInfo.MOD_VERSION, dependencies = ModInfo.DEPENDENCIES)
@@ -38,7 +40,7 @@ public class MarioDeath
     @SidedProxy(clientSide = ModInfo.CLIENT_PROXY, serverSide = ModInfo.SERVER_PROXY)
     public static IProxy proxy;
 
-    ForgeEventHandler forgeEventHandler;
+    public static SimpleNetworkWrapper network;
 
     public MarioDeath()
     {
@@ -52,10 +54,16 @@ public class MarioDeath
 
         ConfigHandler.loadConfig(event);
 
+        SoundHandler.init();
+
         ModBlocks.initBlocks();
         ModItems.initItems();
 
         proxy.preInit(event);
+
+        network = NetworkRegistry.INSTANCE.newSimpleChannel(ModInfo.CHANNEL);
+        network.registerMessage(PacketSyncCoinCounter.Handler.class, PacketSyncCoinCounter.class, 0, Side.CLIENT);
+        network.registerMessage(PacketGetCoins.Handler.class, PacketGetCoins.class, 1, Side.SERVER);
 
         PluginHandler.getInstance().preInit();
 
@@ -69,10 +77,10 @@ public class MarioDeath
 
         NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new GuiHandler());
 
-        forgeEventHandler = new ForgeEventHandler();
+        CapabilityManager.INSTANCE.register(ICoinCount.class, new CoinCountStorage(), CoinCount.class);
+        MinecraftForge.EVENT_BUS.register(new CapabilityHandler());
 
-        MinecraftForge.EVENT_BUS.register(forgeEventHandler);
-        FMLCommonHandler.instance().bus().register(new FMLEventHandler());
+        MinecraftForge.EVENT_BUS.register(new EventHandler());
 
         LogHelper.info("Loading Crafting Recipes");
         CraftingHandler.initCraftingRecipes();
@@ -83,10 +91,11 @@ public class MarioDeath
         LogHelper.info("Registering World Generation");
         GameRegistry.registerWorldGenerator(new WorldGenMario(), 0);
 
-        DimensionManager.registerProviderType(ConfigHandler.marioDimensionID, WorldProviderMario.class, false);
-        DimensionManager.registerDimension(ConfigHandler.marioDimensionID, ConfigHandler.marioDimensionID);
-        ModBiomes.registerWithBiomeDictionary();
+        //DimensionManager.registerDimension(ConfigHandler.marioDimensionID, DimensionType.register("Marios World", "_mario", ConfigHandler.marioDimensionID, WorldProviderMario.class, false));
+        //ModBiomes.registerWithBiomeDictionary();
         LogHelper.info("World Generation Registered");
+
+        proxy.init(event);
 
         PluginHandler.getInstance().init();
 
@@ -101,11 +110,5 @@ public class MarioDeath
         PluginHandler.getInstance().postInit();
 
         LogHelper.info("Post-Init Complete");
-    }
-
-    @Mod.EventHandler
-    public void serverAboutToStart(FMLServerAboutToStartEvent event)
-    {
-        forgeEventHandler.serverAboutToStart(event);
     }
 }

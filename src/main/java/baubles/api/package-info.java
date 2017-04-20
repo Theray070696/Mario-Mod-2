@@ -1,5 +1,5 @@
-@API(owner = "Baubles", apiVersion = "1.0.1.10", provides = "Baubles|API")
+@API(owner = "Baubles", apiVersion = "1.3.1.3", provides = "Baubles|API")
 package baubles.api;
 
-import cpw.mods.fml.common.API;
+import net.minecraftforge.fml.common.API;
 

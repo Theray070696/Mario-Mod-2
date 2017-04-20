@@ -1,0 +1,11 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "mariodeath:blocks/pipeLR",
+    "up": "mariodeath:blocks/pipeLR",
+    "east": "mariodeath:blocks/pipeLL3",
+    "west": "mariodeath:blocks/pipeLL3",
+    "north": "mariodeath:blocks/pipeLL3",
+    "south": "mariodeath:blocks/pipeLL3"
+  }
+}

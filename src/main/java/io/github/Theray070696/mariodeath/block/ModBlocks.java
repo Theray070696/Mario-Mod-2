@@ -1,82 +1,102 @@
 package io.github.Theray070696.mariodeath.block;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import io.github.Theray070696.mariodeath.block.tile.TilePipe;
 import io.github.Theray070696.mariodeath.block.tile.TileQuestionMark;
 import io.github.Theray070696.mariodeath.util.LogHelper;
-import io.github.Theray070696.raycore.block.BlockRayContainer;
+import io.github.Theray070696.raycore.api.block.RayBlockRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
 /**
- * Created by Theray on 8/27/2015.
+ * Created by Theray070696 on 8/27/2015.
  */
 public class ModBlocks
 {
-    public static final BlockMario blockMarioMaker = new BlockMarioMaker();
+    public static BlockMario blockMarioMaker;
     
-    public static final BlockMario blockNoteBlock = new BlockNoteBlock();
-    public static final BlockMario blockEmptyQuestionMark = new BlockQuestionMarkEmpty();
-    public static final BlockMario blockQuestionMark = new BlockQuestionMark();
-    public static final BlockMario blockEmptyQuestionMarkSMB = new BlockQuestionMarkEmptySMB();
-    public static final BlockMario blockQuestionMarkSMB = new BlockQuestionMarkSMB();
+    public static BlockMario blockNoteBlock;
+    public static BlockMario blockEmptyQuestionMark;
+    public static BlockMario blockQuestionMark;
+    public static BlockMario blockEmptyQuestionMarkSMB;
+    public static BlockMario blockQuestionMarkSMB;
+    public static BlockMario blockEmptyQuestionMarkSMB3;
+    public static BlockMario blockQuestionMarkSMB3;
 
-    public static final BlockMario blockEmptyInvisibleBlock = new BlockInvisibleBlockEmpty();
-    public static final BlockMario blockInvisibleBlock = new BlockInvisibleBlock();
-    public static final BlockMario blockEmptyInvisibleBlockSMB = new BlockInvisibleBlockEmptySMB();
-    public static final BlockMario blockInvisibleBlockSMB = new BlockInvisibleBlockSMB();
+    public static BlockMario blockEmptyInvisibleBlock;
+    public static BlockMario blockInvisibleBlock;
+    public static BlockMario blockEmptyInvisibleBlockSMB;
+    public static BlockMario blockInvisibleBlockSMB;
+    public static BlockMario blockEmptyInvisibleBlockSMB3;
+    public static BlockMario blockInvisibleBlockSMB3;
     
-    public static final BlockMario blockEmptyQuestionMarkUndergroundSMB = new BlockQuestionMarkEmptyUndergroundSMB();
-    public static final BlockMario blockQuestionMarkUndergroundSMB = new BlockQuestionMarkUndergroundSMB();
+    public static BlockMario blockEmptyQuestionMarkUndergroundSMB;
+    public static BlockMario blockQuestionMarkUndergroundSMB;
     
-    public static final Block blockGround = new BlockMario().setBlockName("marioBlockGround");
-    public static final Block blockMarioBrick = new BlockMario().setBlockName("marioBlockBrick");
-    public static final Block blockGroundUnderground = new BlockMario().setBlockName("marioBlockGroundUnderground");
-    public static final Block blockMarioBrickUnderground = new BlockMario().setBlockName("marioBlockBrickUnderground");
-    public static final Block blockGroundUnderwater = new BlockMario().setBlockName("marioBlockGroundUnderwater");
+    public static Block blockGround;
+    public static Block blockMarioBrick;
+    public static Block blockGroundUnderground;
+    public static Block blockMarioBrickUnderground;
+    public static Block blockGroundUnderwater;
+
+    public static Block blockGroundSMW;
     
-    public static final BlockMario blockPipeBase = new BlockPipeBase();
-    public static final BlockRayContainer blockPipeEntrance = new BlockPipeEntrance();
+    public static BlockMario blockPipeBase;
+    public static BlockPipe blockPipe;
+
+    public static BlockMario blockTerry;
 
     public static void initBlocks()
     {
         LogHelper.info("Loading Blocks");
 
-        GameRegistry.registerBlock(blockMarioMaker, "marioBlockMarioMaker");
+        blockMarioMaker = RayBlockRegistry.register(new BlockMarioMaker());
 
-        GameRegistry.registerBlock(blockGround, "marioBlockGround");
-        GameRegistry.registerBlock(blockMarioBrick, "marioBlockBrick");
-        GameRegistry.registerBlock(blockNoteBlock, "marioBlockNoteBlock");
-        GameRegistry.registerBlock(blockEmptyQuestionMark, "marioBlockEmptyQuestionMark");
-        GameRegistry.registerBlock(blockQuestionMark, "marioBlockQuestionMark");
-        GameRegistry.registerBlock(blockEmptyQuestionMarkSMB, "marioBlockEmptyQuestionMarkSMB");
-        GameRegistry.registerBlock(blockQuestionMarkSMB, "marioBlockQuestionMarkSMB");
+        blockGround = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockGround"));
+        blockMarioBrick = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockBrick"));
+        blockNoteBlock = RayBlockRegistry.register(new BlockNoteBlock());
 
-        GameRegistry.registerBlock(blockEmptyInvisibleBlock, "marioBlockInvisibleBlockEmpty");
-        GameRegistry.registerBlock(blockInvisibleBlock, "marioBlockInvisibleBlock");
-        GameRegistry.registerBlock(blockEmptyInvisibleBlockSMB, "marioBlockInvisibleBlockEmptySMB");
-        GameRegistry.registerBlock(blockInvisibleBlockSMB, "marioBlockInvisibleBlockSMB");
+        blockGroundSMW = RayBlockRegistry.register(new BlockMarioConnectedTexture(Material.GRASS).setUnlocalizedName("marioBlockGroundSMW"));
 
-        GameRegistry.registerBlock(blockGroundUnderground, "marioBlockGroundUnderground");
-        GameRegistry.registerBlock(blockMarioBrickUnderground, "marioBlockBrickUnderground");
-        GameRegistry.registerBlock(blockEmptyQuestionMarkUndergroundSMB, "marioBlockEmptyQuestionMarkUndergroundSMB");
-        GameRegistry.registerBlock(blockQuestionMarkUndergroundSMB, "marioBlockQuestionMarkUndergroundSMB");
-    
-        GameRegistry.registerBlock(blockGroundUnderwater, "marioBlockGroundUnderwater");
-        
-        GameRegistry.registerBlock(blockPipeBase, "blockPipeBase");
-        GameRegistry.registerBlock(blockPipeEntrance, "blockPipeEntrance");
-    
-        GameRegistry.registerTileEntity(TileQuestionMark.class, "tileMarioQuestionMark");
-        
+        blockEmptyQuestionMark = RayBlockRegistry.register(new BlockQuestionMarkEmpty());
+        blockQuestionMark = RayBlockRegistry.register(new BlockQuestionMark());
+        blockEmptyQuestionMarkSMB = RayBlockRegistry.register(new BlockQuestionMarkEmptySMB());
+        blockQuestionMarkSMB = RayBlockRegistry.register(new BlockQuestionMarkSMB());
+        blockEmptyQuestionMarkSMB3 = RayBlockRegistry.register(new BlockQuestionMarkEmptySMB3());
+        blockQuestionMarkSMB3 = RayBlockRegistry.register(new BlockQuestionMarkSMB3());
+
+        blockEmptyInvisibleBlock = RayBlockRegistry.register(new BlockInvisibleBlockEmpty());
+        blockInvisibleBlock = RayBlockRegistry.register(new BlockInvisibleBlock());
+        blockEmptyInvisibleBlockSMB = RayBlockRegistry.register(new BlockInvisibleBlockEmptySMB());
+        blockInvisibleBlockSMB = RayBlockRegistry.register(new BlockInvisibleBlockSMB());
+        blockEmptyInvisibleBlockSMB3 = RayBlockRegistry.register(new BlockInvisibleBlockEmptySMB3());
+        blockInvisibleBlockSMB3 = RayBlockRegistry.register(new BlockInvisibleBlockSMB3());
+
+        blockGroundUnderground = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockGroundUnderground"));
+        blockMarioBrickUnderground = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockBrickUnderground"));
+        blockEmptyQuestionMarkUndergroundSMB = RayBlockRegistry.register(new BlockQuestionMarkEmptyUndergroundSMB());
+        blockQuestionMarkUndergroundSMB = RayBlockRegistry.register(new BlockQuestionMarkUndergroundSMB());
+
+        blockGroundUnderwater = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockGroundUnderwater"));
+
+        blockTerry = RayBlockRegistry.register(new BlockTerry());
+
+        blockPipeBase = RayBlockRegistry.register(new BlockPipeBase());
+        blockPipe = RayBlockRegistry.register(new BlockPipe());
+
         GameRegistry.registerTileEntity(TilePipe.class, "tileMarioPipe");
+
+        GameRegistry.registerTileEntity(TileQuestionMark.class, "tileMarioQuestionMark");
 
         OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyQuestionMark);
         OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyInvisibleBlock);
 
         OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyQuestionMarkSMB);
+        OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyQuestionMarkSMB3);
         OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyQuestionMarkUndergroundSMB);
         OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyInvisibleBlockSMB);
+        OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyInvisibleBlockSMB3);
 
         LogHelper.info("Block Loading Complete");
     }
