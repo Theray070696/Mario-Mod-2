@@ -25,6 +25,7 @@ public class WorldGenMario implements IWorldGenerator
 {
     private WorldGenerator questionMarkSMB;
     private WorldGenerator questionMarkUndergroundSMB;
+    private WorldGenerator questionMarkUndergroundRareSMB;
     private WorldGenerator invisibleBlockSMB;
 
     private WorldGenerator questionMarkSMB3;
@@ -41,6 +42,7 @@ public class WorldGenMario implements IWorldGenerator
     {
         this.questionMarkSMB = new WorldGenMinableSingle(ModBlocks.blockQuestionMarkSMB, Blocks.AIR, true);
         this.questionMarkUndergroundSMB = new WorldGenMinableSingle(ModBlocks.blockQuestionMarkUndergroundSMB, Blocks.AIR, false);
+        this.questionMarkUndergroundRareSMB = new WorldGenMinableSingle(ModBlocks.blockQuestionMarkUndergroundSMB, Blocks.AIR, true);
         this.invisibleBlockSMB = new WorldGenMinableSingle(ModBlocks.blockInvisibleBlockSMB, Blocks.AIR, true);
 
         this.questionMarkSMB3 = new WorldGenMinableSingle(ModBlocks.blockQuestionMarkSMB3, Blocks.AIR, true);
@@ -61,11 +63,11 @@ public class WorldGenMario implements IWorldGenerator
         {
             // Nether or Hellish dimensions
 
-            this.runGenerator(this.questionMarkUndergroundSMB, world, random, chunkX, chunkZ, random.nextInt(2), 3, 100);
+            this.runGenerator(this.questionMarkUndergroundRareSMB, world, random, chunkX, chunkZ, random.nextInt(4), 3, 100);
 
-            this.runGenerator(this.questionMarkNotRareSMB3, world, random, chunkX, chunkZ, random.nextInt(2), 3, 100);
+            this.runGenerator(this.questionMarkSMB3, world, random, chunkX, chunkZ, random.nextInt(4), 3, 100);
 
-            this.runGenerator(this.questionMarkNotRare, world, random, chunkX, chunkZ, random.nextInt(2), 3, 100);
+            this.runGenerator(this.questionMark, world, random, chunkX, chunkZ, random.nextInt(4), 3, 100);
         } else if(world.provider instanceof WorldProviderEnd)
         {
             // End or End-like dimensions
@@ -81,6 +83,10 @@ public class WorldGenMario implements IWorldGenerator
             this.runGenerator(this.questionMarkSMB, world, random, chunkX, chunkZ, random.nextInt(6), 50, 85);
             this.runGenerator(this.questionMarkUndergroundSMB, world, random, chunkX, chunkZ, random.nextInt(6), 3, 45);
             this.runGenerator(this.invisibleBlockSMB, world, random, chunkX, chunkZ, random.nextInt(10), 3, 85);
+
+            this.runGenerator(this.questionMarkSMB3, world, random, chunkX, chunkZ, random.nextInt(6), 50, 85);
+            this.runGenerator(this.questionMarkNotRareSMB3, world, random, chunkX, chunkZ, random.nextInt(6), 3, 45);
+            this.runGenerator(this.invisibleBlockSMB3, world, random, chunkX, chunkZ, random.nextInt(10), 3, 85);
 
             this.runGenerator(this.questionMark, world, random, chunkX, chunkZ, random.nextInt(6), 50, 85);
             this.runGenerator(this.questionMarkNotRare, world, random, chunkX, chunkZ, random.nextInt(6), 3, 45);
