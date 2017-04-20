@@ -29,6 +29,8 @@ public class CraftingHandler
     {
         addRecipe(new ShapelessOreRecipeMario(goldIngot, "itemMarioCoin", "itemMarioCoin"));
 
+        addShapeless(new ItemStack(ModItems.itemMarioCoin, 2), goldIngot);
+
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockGround, 8), "sss", "sss", "sss", 's', "stone"));
         addShaped(new ItemStack(ModBlocks.blockMarioBrick, 16), "bb", "bb", 'b', new ItemStack(Blocks.BRICK_BLOCK));
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockEmptyQuestionMarkSMB, 4), " g ", "gbg", " g ", 'g', "ingotGold", 'b', new ItemStack(ModBlocks.blockMarioBrick)));
@@ -54,8 +56,6 @@ public class CraftingHandler
 
     public static void initSmeltingRecipes()
     {
-        GameRegistry.addSmelting(goldIngot, new ItemStack(ModItems.itemMarioCoin, 2), 0.0f);
-
         GameRegistry.addSmelting(new ItemStack(ModBlocks.blockGround), new ItemStack(ModBlocks.blockGroundUnderground), 0.3f);
         GameRegistry.addSmelting(new ItemStack(ModBlocks.blockMarioBrick), new ItemStack(ModBlocks.blockMarioBrickUnderground), 0.3f);
     }

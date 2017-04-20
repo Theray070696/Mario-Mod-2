@@ -49,6 +49,8 @@ public class BlockQuestionMarkBase extends BlockMario implements ITileEntityProv
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos blockPos, IBlockState blockState, Entity entity)
     {
+        entity.motionY = -0.25f;
+
         if(entity instanceof EntityPlayer)
         {
             if(this instanceof IFilledQBlock)

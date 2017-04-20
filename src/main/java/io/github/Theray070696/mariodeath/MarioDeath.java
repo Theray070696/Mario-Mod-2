@@ -15,9 +15,11 @@ import io.github.Theray070696.mariodeath.plugins.PluginHandler;
 import io.github.Theray070696.mariodeath.proxy.IProxy;
 import io.github.Theray070696.mariodeath.util.LogHelper;
 import io.github.Theray070696.mariodeath.world.WorldGenMario;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -27,6 +29,9 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
 
 /**
  * Created by Theray070696 on 8/25/15.
@@ -39,6 +44,51 @@ public class MarioDeath
     public static MarioDeath INSTANCE;
     @SidedProxy(clientSide = ModInfo.CLIENT_PROXY, serverSide = ModInfo.SERVER_PROXY)
     public static IProxy proxy;
+
+    public static CreativeTabs tabMarioItems = new CreativeTabs("tabMarioItems")
+    {
+        @Nonnull
+        @SideOnly(Side.CLIENT)
+        @Override
+        public ItemStack getIconItemStack()
+        {
+            return new ItemStack(ModItems.itemMarioMushroom, 1, 1);
+        }
+
+        @SideOnly(Side.CLIENT)
+        @Override
+        public int getIconItemDamage()
+        {
+            return 1;
+        }
+
+        @Nonnull
+        @SideOnly(Side.CLIENT)
+        @Override
+        public Item getTabIconItem()
+        {
+            return new ItemStack(ModItems.itemMarioMushroom, 1, 1).getItem();
+        }
+    };
+
+    public static CreativeTabs tabMarioBlocks = new CreativeTabs("tabMarioBlocks")
+    {
+        @Nonnull
+        @SideOnly(Side.CLIENT)
+        @Override
+        public ItemStack getIconItemStack()
+        {
+            return new ItemStack(ModBlocks.blockMarioMaker);
+        }
+
+        @Nonnull
+        @SideOnly(Side.CLIENT)
+        @Override
+        public Item getTabIconItem()
+        {
+            return new ItemStack(ModBlocks.blockMarioMaker).getItem();
+        }
+    };
 
     public static SimpleNetworkWrapper network;
 
