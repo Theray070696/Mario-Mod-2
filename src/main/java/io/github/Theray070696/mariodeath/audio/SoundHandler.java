@@ -81,6 +81,8 @@ public class SoundHandler
     public static SoundEvent death4;
     public static SoundEvent death5;
 
+    public static SoundEvent fiftyDeaths;
+
     // BLOCK!
 
     public static SoundEvent spicemanBlock1;
@@ -177,6 +179,8 @@ public class SoundHandler
         death3 = register("player.death3");
         death4 = register("player.death4");
         death5 = register("player.death5");
+
+        fiftyDeaths = register("player.fiftyDeaths");
 
         // BLOCK!
 

@@ -39,6 +39,14 @@
             "mariodeath:player/death5"
         ]
     },
+    "player.fiftyDeaths":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "mariodeath:player/fiftyDeaths"
+        ]
+    },
     "player.diamonds":
     {
         "category": "neutral",

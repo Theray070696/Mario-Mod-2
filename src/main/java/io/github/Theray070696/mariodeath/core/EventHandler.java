@@ -15,6 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.AchievementList;
+import net.minecraft.stats.StatList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootEntryItem;
@@ -49,14 +50,18 @@ public class EventHandler
     @SubscribeEvent
     public void onEntityKilled(LivingDeathEvent event)
     {
-        if(event.getEntityLiving() != null && event.getEntityLiving() instanceof EntityPlayer)
+        if(event.getEntityLiving() != null && event.getEntityLiving() instanceof EntityPlayerMP)
         {
-            EntityPlayer entityPlayer = (EntityPlayer) event.getEntityLiving();
+            EntityPlayerMP entityPlayer = (EntityPlayerMP) event.getEntityLiving();
+
+            if(entityPlayer.getStatFile().readStat(StatList.DEATHS) % 50 == 0)
+            {
+                entityPlayer.worldObj.playSound((EntityPlayer) null, entityPlayer.getPosition(), SoundHandler.fiftyDeaths, SoundCategory.PLAYERS, 1.0f, 1.0f);
+                return;
+            }
+
             String playerName = entityPlayer.getName();
-
             Random rand = new Random();
-            int soundID;
-
             int rare = rand.nextInt(100);
 
             if(rare < 5)
@@ -69,10 +74,10 @@ public class EventHandler
                 return;
             }
 
+            int soundID;
+
             if(playerName.equalsIgnoreCase("JasterMK3"))
             {
-                // It's Jaster screaming :P
-
                 if(rare < 25)
                 {
                     soundID = rand.nextInt(2) + 1;
