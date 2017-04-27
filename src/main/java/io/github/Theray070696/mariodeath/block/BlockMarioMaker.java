@@ -27,11 +27,17 @@ public class BlockMarioMaker extends BlockMario
     @Override
     public boolean onBlockActivated(World world, BlockPos blockPos, IBlockState blockState, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        if(!world.isRemote)
+        if(player.isSneaking())
         {
-            player.openGui(MarioDeath.INSTANCE, GuiIds.MARIO_MAKER_GUI_ID, world, blockPos.getX(), blockPos.getY(), blockPos.getZ());
-        }
+            return false;
+        } else
+        {
+            if(!world.isRemote)
+            {
+                player.openGui(MarioDeath.INSTANCE, GuiIds.MARIO_MAKER_GUI_ID, world, blockPos.getX(), blockPos.getY(), blockPos.getZ());
+            }
 
-        return true;
+            return true;
+        }
     }
 }
