@@ -4,7 +4,6 @@ import io.github.Theray070696.mariodeath.audio.SoundHandler;
 import io.github.Theray070696.mariodeath.capability.CoinCountProvider;
 import io.github.Theray070696.mariodeath.item.ModItems;
 import io.github.Theray070696.mariodeath.potion.PotionEffectsMario;
-import io.github.Theray070696.mariodeath.util.LogHelper;
 import io.github.Theray070696.raycore.api.RayCoreAPI;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.EntityDragon;
@@ -29,13 +28,11 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AchievementEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 /**
