@@ -70,6 +70,8 @@ public class GuiMarioMaker extends GuiContainer
     {
         super.initGui();
 
+        this.buttonList.clear();
+
         this.buttonList.add(new GuiButton(0, this.guiLeft + 183, this.guiTop + 7, 20, 20, "--"));
         this.buttonList.add(new GuiButton(1, this.guiLeft + 205, this.guiTop + 7, 20, 20, "-"));
         this.buttonList.add(new GuiButton(2, this.guiLeft + 243, this.guiTop + 7, 20, 20, "+"));
