@@ -34,6 +34,8 @@ public class SoundHandler
 
     public static SoundEvent noteBlock;
 
+    public static SoundEvent pipe;
+
     public static SoundEvent smbEmptyBlockHit;
     public static SoundEvent smbBlockHitPowerup;
 
@@ -132,6 +134,8 @@ public class SoundHandler
         recordUnderwaterSMB = register("records.smbUnderwater");
 
         noteBlock = register("block.note");
+
+        pipe = register("block.pipe");
 
         smbEmptyBlockHit = register("block.smbEmptyBlockHit");
         smbBlockHitPowerup = register("block.smbBlockHitPowerup");

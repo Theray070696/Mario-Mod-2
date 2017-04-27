@@ -7,10 +7,12 @@ import io.github.Theray070696.mariodeath.configuration.ConfigHandler;
 import io.github.Theray070696.mariodeath.core.CraftingHandler;
 import io.github.Theray070696.mariodeath.core.EventHandler;
 import io.github.Theray070696.mariodeath.core.GuiHandler;
+import io.github.Theray070696.mariodeath.core.PipeIDHandler;
 import io.github.Theray070696.mariodeath.item.ModItems;
 import io.github.Theray070696.mariodeath.lib.ModInfo;
 import io.github.Theray070696.mariodeath.network.PacketGetCoins;
 import io.github.Theray070696.mariodeath.network.PacketSyncCoinCounter;
+import io.github.Theray070696.mariodeath.network.PacketSyncPipeID;
 import io.github.Theray070696.mariodeath.plugins.PluginHandler;
 import io.github.Theray070696.mariodeath.proxy.IProxy;
 import io.github.Theray070696.mariodeath.util.LogHelper;
@@ -25,6 +27,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -114,6 +117,7 @@ public class MarioDeath
         network = NetworkRegistry.INSTANCE.newSimpleChannel(ModInfo.CHANNEL);
         network.registerMessage(PacketSyncCoinCounter.Handler.class, PacketSyncCoinCounter.class, 0, Side.CLIENT);
         network.registerMessage(PacketGetCoins.Handler.class, PacketGetCoins.class, 1, Side.SERVER);
+        network.registerMessage(PacketSyncPipeID.Handler.class, PacketSyncPipeID.class, 2, Side.SERVER);
 
         PluginHandler.getInstance().preInit();
 
@@ -130,6 +134,7 @@ public class MarioDeath
         CapabilityManager.INSTANCE.register(ICoinCount.class, new CoinCountStorage(), CoinCount.class);
         MinecraftForge.EVENT_BUS.register(new CapabilityHandler());
 
+        MinecraftForge.EVENT_BUS.register(new PipeIDHandler.PipeIDSaveHandler());
         MinecraftForge.EVENT_BUS.register(new EventHandler());
 
         LogHelper.info("Loading Crafting Recipes");
@@ -160,5 +165,11 @@ public class MarioDeath
         PluginHandler.getInstance().postInit();
 
         LogHelper.info("Post-Init Complete");
+    }
+
+    @Mod.EventHandler
+    public void preServerStart(FMLServerStartedEvent event)
+    {
+        PipeIDHandler.reloadHandler(false);
     }
 }

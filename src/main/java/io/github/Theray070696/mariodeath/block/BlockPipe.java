@@ -1,6 +1,12 @@
 package io.github.Theray070696.mariodeath.block;
 
+import io.github.Theray070696.mariodeath.MarioDeath;
+import io.github.Theray070696.mariodeath.audio.SoundHandler;
 import io.github.Theray070696.mariodeath.block.tile.TilePipe;
+import io.github.Theray070696.mariodeath.core.PipeIDHandler;
+import io.github.Theray070696.mariodeath.lib.BlockPosPair;
+import io.github.Theray070696.mariodeath.lib.GuiIds;
+import io.github.Theray070696.mariodeath.util.LogHelper;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.properties.IProperty;
@@ -14,6 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ChunkCache;
@@ -41,7 +48,7 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
         super();
 
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ISMULTIBLOCK, false).withProperty(CONNECTEDRIGHT, false).withProperty(CONNECTEDDOWN, false).withProperty(REARBLOCK, false));
-        
+
         this.setUnlocalizedName("marioBlockPipe");
     }
 
@@ -91,51 +98,132 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
     {
         if(world.getTileEntity(blockPos) instanceof TilePipe)
         {
-            TilePipe tilePipe = (TilePipe) world.getTileEntity(blockPos);
-
-            if(tilePipe.hasMaster())
+            if((blockState.getValue(FACING) == EnumFacing.UP && ((entity instanceof EntityPlayer && entity.isSneaking()) || !(entity instanceof EntityPlayer))) || blockState.getValue(FACING) != EnumFacing.UP)
             {
-                if(tilePipe.isMaster())
+                TilePipe tilePipe = (TilePipe) world.getTileEntity(blockPos);
+
+                if(tilePipe.hasMaster())
                 {
-                    // Get warp id
-                    int warpID = tilePipe.getWarpID();
-
-
-
-                    // Make sure there is another pipe with this ID.
-                    // Play sound
-                    // Then teleport the player
-
-                } else
-                {
-                    // Get master coord position
-                    int x = tilePipe.getMasterX();
-                    int y = tilePipe.getMasterY();
-                    int z = tilePipe.getMasterZ();
-
-                    BlockPos pos = new BlockPos(x, y, z);
-                    if(world.getTileEntity(pos) instanceof TilePipe)
+                    if(tilePipe.isMaster())
                     {
-                        // Get master tile
-                        tilePipe = (TilePipe) world.getTileEntity(pos);
-                        if(tilePipe.hasMaster() && tilePipe.isMaster()) // This shouldn't not be the case, but better to be safe than sorry.
+                        PipeIDHandler handler = PipeIDHandler.instance(false);
+
+                        // Get warp id
+                        int warpID = tilePipe.getWarpID();
+
+                        // Make sure there is another pipe with this ID.
+                        if(handler.getPosPair(warpID) != null && handler.getPosPair(warpID).getPos1() != null && handler.getPosPair(warpID).getPos2() != null)
                         {
-                            // Get warp id
-                            int warpID = tilePipe.getWarpID();
+                            BlockPosPair posPair = handler.getPosPair(warpID);
 
+                            // Make sure both positions are in the same dimension.
+                            // This is temporary, will add cross-dimension after initial testing.
+                            if(posPair.getDim1() != posPair.getDim2())
+                            {
+                                return;
+                            }
 
+                            BlockPos teleportDestination = null;
 
-                            // Make sure there is another pipe with this ID.
-                            // Play sound
-                            // Then teleport the player
+                            // Grab the destination pos
+                            if(posPair.getPos1() == blockPos)
+                            {
+                                // Set destination to pos2
+                                teleportDestination = posPair.getPos2();
+                            } else if(posPair.getPos2() == blockPos)
+                            {
+                                // Set destination to pos1
+                                teleportDestination = posPair.getPos1();
+                            }
 
+                            // If we have a destination
+                            if(teleportDestination != null)
+                            {
+                                if(world.getBlockState(teleportDestination).getBlock() instanceof BlockPipe)
+                                {
+                                    // Offset teleport to prevent infinite loop
+                                    teleportDestination.offset(world.getBlockState(teleportDestination).getValue(FACING));
+
+                                    // Play sound
+                                    world.playSound(null, posPair.getPos1().getX(), posPair.getPos1().getY(), posPair.getPos1().getZ(), SoundHandler.pipe, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                                    world.playSound(null, posPair.getPos2().getX(), posPair.getPos2().getY(), posPair.getPos2().getZ(), SoundHandler.pipe, SoundCategory.BLOCKS, 1.0F, 1.0F);
+
+                                    // Then teleport the entity
+                                    entity.posX = teleportDestination.getX();
+                                    entity.posY = teleportDestination.getY();
+                                    entity.posZ = teleportDestination.getZ();
+                                }
+                            }
+                        }
+                    } else
+                    {
+                        // Get master coord position
+                        int x = tilePipe.getMasterX();
+                        int y = tilePipe.getMasterY();
+                        int z = tilePipe.getMasterZ();
+
+                        BlockPos pos = new BlockPos(x, y, z);
+                        if(world.getTileEntity(pos) instanceof TilePipe)
+                        {
+                            // Get master tile
+                            tilePipe = (TilePipe) world.getTileEntity(pos);
+                            if(tilePipe.hasMaster() && tilePipe.isMaster()) // This shouldn't not be the case, but better to be safe than sorry.
+                            {
+                                PipeIDHandler handler = PipeIDHandler.instance(false);
+
+                                // Get warp id
+                                int warpID = tilePipe.getWarpID();
+
+                                // Make sure there is another pipe with this ID.
+                                if(handler.getPosPair(warpID) != null && handler.getPosPair(warpID).getPos1() != null && handler.getPosPair(warpID).getPos2() != null)
+                                {
+                                    BlockPosPair posPair = handler.getPosPair(warpID);
+
+                                    // Make sure both positions are in the same dimension.
+                                    // This is temporary, will add cross-dimension after initial testing.
+                                    if(posPair.getDim1() != posPair.getDim2())
+                                    {
+                                        return;
+                                    }
+
+                                    BlockPos teleportDestination = null;
+
+                                    // Grab the destination pos
+                                    if(posPair.getPos1() == pos)
+                                    {
+                                        // Set destination to pos2
+                                        teleportDestination = posPair.getPos2();
+                                    } else if(posPair.getPos2() == pos)
+                                    {
+                                        // Set destination to pos1
+                                        teleportDestination = posPair.getPos1();
+                                    }
+
+                                    // If we have a destination
+                                    if(teleportDestination != null)
+                                    {
+                                        if(world.getBlockState(teleportDestination).getBlock() instanceof BlockPipe)
+                                        {
+                                            // Offset teleport to prevent infinite loop
+                                            teleportDestination.offset(world.getBlockState(teleportDestination).getValue(FACING));
+
+                                            // Play sound
+                                            world.playSound(null, posPair.getPos1().getX(), posPair.getPos1().getY(), posPair.getPos1().getZ(), SoundHandler.pipe, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                                            world.playSound(null, posPair.getPos2().getX(), posPair.getPos2().getY(), posPair.getPos2().getZ(), SoundHandler.pipe, SoundCategory.BLOCKS, 1.0F, 1.0F);
+
+                                            // Then teleport the entity
+                                            entity.posX = teleportDestination.getX();
+                                            entity.posY = teleportDestination.getY();
+                                            entity.posZ = teleportDestination.getZ();
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
             }
         }
-
-        //world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.noteBlock, SoundCategory.BLOCKS, 1.0F, 1.0F);
     }
 
     private void setMultiBlockFacing(World world, int x, int y, int z, EnumFacing side, boolean isMultiBlock)
@@ -477,7 +565,7 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
             world.setTileEntity(pos, tilePipe);
         }
     }
-    
+
     public static boolean isMultiBlock(World world, int x, int y, int z, int xMod, int yMod, int zMod)
     {
         if(world.getBlockState(new BlockPos(x, y, z)).getBlock() instanceof BlockPipe && world.getBlockState(new BlockPos(x, y + yMod, z)).getBlock() instanceof BlockPipe && world.getBlockState(new BlockPos(x + xMod, y, z)).getBlock() instanceof BlockPipe && world.getBlockState(new BlockPos(x + xMod, y + yMod, z)).getBlock() instanceof BlockPipe
@@ -488,28 +576,39 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
 
         return false;
     }
-    
+
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        if(!world.isRemote)
+        if(player.isSneaking())
         {
-            if(side == state.getValue(FACING) && state.getValue(ISMULTIBLOCK))
-            {
-                return false;
-            }
-
+            return false;
+        } else
+        {
             BlockPos modPos = getPositionModifiers(side);
             int xMod = modPos.getX(), yMod = modPos.getY(), zMod = modPos.getZ();
 
-            if(isMultiBlock(world, pos.getX(), pos.getY(), pos.getZ(), xMod, yMod, zMod))
+            if(!world.isRemote)
             {
-                setMultiBlockFacing(world, pos.getX(), pos.getY(), pos.getZ(), side, true);
-                return true;
+                if(side == state.getValue(FACING) && state.getValue(ISMULTIBLOCK))
+                {
+                    return false;
+                }
+
+                if(isMultiBlock(world, pos.getX(), pos.getY(), pos.getZ(), xMod, yMod, zMod))
+                {
+                    setMultiBlockFacing(world, pos.getX(), pos.getY(), pos.getZ(), side, true);
+                }
+            } else
+            {
+                if(isMultiBlock(world, pos.getX(), pos.getY(), pos.getZ(), xMod, yMod, zMod))
+                {
+                    player.openGui(MarioDeath.INSTANCE, GuiIds.PIPE_GUI_ID, world, pos.getX(), pos.getY(), pos.getZ());
+                }
             }
         }
-        
-        return false;
+
+        return true;
     }
 
     @Override

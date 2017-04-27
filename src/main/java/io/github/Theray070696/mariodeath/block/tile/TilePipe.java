@@ -1,6 +1,7 @@
 package io.github.Theray070696.mariodeath.block.tile;
 
 import io.github.Theray070696.mariodeath.block.BlockPipe;
+import io.github.Theray070696.mariodeath.util.LogHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -124,20 +125,19 @@ public class TilePipe extends TileEntity
 
     public int getWarpID()
     {
+        LogHelper.info(this.warpID);
         return this.warpID;
     }
 
     public void setHasMaster(boolean bool)
     {
         hasMaster = bool;
-        this.updateContainingBlockInfo();
         this.markDirty();
     }
 
     public void setIsMaster(boolean bool)
     {
         isMaster = bool;
-        this.updateContainingBlockInfo();
         this.markDirty();
     }
 
@@ -146,36 +146,32 @@ public class TilePipe extends TileEntity
         masterX = x;
         masterY = y;
         masterZ = z;
-        this.updateContainingBlockInfo();
         this.markDirty();
     }
 
     public void setConnectedRight(boolean connectedRight)
     {
         this.connectedRight = connectedRight;
-        this.updateContainingBlockInfo();
         this.markDirty();
     }
 
     public void setConnectedDown(boolean connectedDown)
     {
         this.connectedDown = connectedDown;
-        this.updateContainingBlockInfo();
         this.markDirty();
     }
 
     public void setRearBlock(boolean rearBlock)
     {
         this.rearBlock = rearBlock;
-        this.updateContainingBlockInfo();
         this.markDirty();
     }
 
     public void setWarpID(int warpID)
     {
         this.warpID = warpID;
-        this.updateContainingBlockInfo();
         this.markDirty();
+        LogHelper.info(this.getWarpID());
     }
 
     @Nullable

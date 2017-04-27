@@ -1,9 +1,13 @@
 package io.github.Theray070696.mariodeath.core;
 
 import io.github.Theray070696.mariodeath.block.BlockMarioMaker;
+import io.github.Theray070696.mariodeath.block.BlockPipe;
+import io.github.Theray070696.mariodeath.block.tile.TilePipe;
 import io.github.Theray070696.mariodeath.client.gui.GuiMarioMaker;
+import io.github.Theray070696.mariodeath.client.gui.GuiPipe;
 import io.github.Theray070696.mariodeath.container.ContainerMarioMaker;
 import io.github.Theray070696.mariodeath.lib.GuiIds;
+import io.github.Theray070696.mariodeath.util.LogHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
@@ -24,6 +28,9 @@ public class GuiHandler implements IGuiHandler
         if(ID == GuiIds.MARIO_MAKER_GUI_ID && blockState.getBlock() instanceof BlockMarioMaker)
         {
             return new ContainerMarioMaker(player.inventory, world, pos);
+        } else if(ID == GuiIds.PIPE_GUI_ID && blockState.getBlock() instanceof BlockPipe)
+        {
+            return null;
         }
 
         return null;
@@ -38,6 +45,14 @@ public class GuiHandler implements IGuiHandler
         if(ID == GuiIds.MARIO_MAKER_GUI_ID && blockState.getBlock() instanceof BlockMarioMaker)
         {
             return new GuiMarioMaker(player.inventory, world, pos);
+        } else if(ID == GuiIds.PIPE_GUI_ID && blockState.getBlock() instanceof BlockPipe)
+        {
+            if(world.getTileEntity(pos) instanceof TilePipe && ((TilePipe) world.getTileEntity(pos)).isMaster())
+            {
+                LogHelper.info(((TilePipe) world.getTileEntity(pos)).getWarpID());
+
+                return new GuiPipe(world.provider.getDimension(), pos, ((TilePipe) world.getTileEntity(pos)).getWarpID());
+            }
         }
 
         return null;

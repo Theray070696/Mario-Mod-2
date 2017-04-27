@@ -58,9 +58,11 @@
     "item.starman":
     {
         "category": "neutral",
-        "sounds":
-        [
-            "mariodeath:item/starman"
+        "sounds": [
+            {
+                "name": "mariodeath:item/starman",
+                "stream": true
+            }
         ]
     },
     "item.fireball":
@@ -511,10 +513,20 @@
     {
         "category": "block",
         "sounds": [
-			{
-				"name": "mariodeath:block/terry9",
-				"stream": true
-			}
+            {
+                "name": "mariodeath:block/terry9",
+                "stream": true
+            }
+        ]
+    },
+    "block.pipe":
+    {
+        "category": "block",
+        "sounds": [
+            {
+                "name": "mariodeath:block/pipe",
+                "stream": true
+            }
         ]
     },
     "records.smbUnderwater":
