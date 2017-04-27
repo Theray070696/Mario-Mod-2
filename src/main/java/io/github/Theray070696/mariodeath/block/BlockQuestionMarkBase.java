@@ -304,10 +304,7 @@ public class BlockQuestionMarkBase extends BlockMario implements ITileEntityProv
                 {
                     TileQuestionMark tileQuestionMark = (TileQuestionMark) world.getTileEntity(pos);
 
-                    if(heldItem == null && tileQuestionMark.getItemInBlock() != ItemsInQuestionMarks.ITEM_NOTHING)
-                    {
-                        takeItemOutOfQBlock(world, pos, player);
-                    } else if(heldItem != null && tileQuestionMark.getItemInBlock() == ItemsInQuestionMarks.ITEM_NOTHING)
+                    if(heldItem != null && tileQuestionMark.getItemInBlock() == ItemsInQuestionMarks.ITEM_NOTHING)
                     {
                         Item item = heldItem.getItem();
                         int blockType = 0;
