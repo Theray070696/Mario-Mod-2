@@ -134,7 +134,11 @@ public class MarioDeath
         CapabilityManager.INSTANCE.register(ICoinCount.class, new CoinCountStorage(), CoinCount.class);
         MinecraftForge.EVENT_BUS.register(new CapabilityHandler());
 
-        MinecraftForge.EVENT_BUS.register(new PipeIDHandler.PipeIDSaveHandler());
+        if(ConfigHandler.debugModeEnabled)
+        {
+            MinecraftForge.EVENT_BUS.register(new PipeIDHandler.PipeIDSaveHandler());
+        }
+
         MinecraftForge.EVENT_BUS.register(new EventHandler());
 
         LogHelper.info("Loading Crafting Recipes");
