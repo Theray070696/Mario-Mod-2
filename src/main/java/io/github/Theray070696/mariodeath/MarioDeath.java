@@ -174,6 +174,9 @@ public class MarioDeath
     @Mod.EventHandler
     public void preServerStart(FMLServerStartedEvent event)
     {
-        PipeIDHandler.reloadHandler(false);
+        if(ConfigHandler.debugModeEnabled)
+        {
+            PipeIDHandler.reloadHandler(false);
+        }
     }
 }
