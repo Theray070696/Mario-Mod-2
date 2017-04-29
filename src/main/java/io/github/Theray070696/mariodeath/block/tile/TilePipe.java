@@ -1,7 +1,6 @@
 package io.github.Theray070696.mariodeath.block.tile;
 
 import io.github.Theray070696.mariodeath.block.BlockPipe;
-import io.github.Theray070696.mariodeath.util.LogHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -125,7 +124,6 @@ public class TilePipe extends TileEntity
 
     public int getWarpID()
     {
-        LogHelper.info(this.warpID);
         return this.warpID;
     }
 
@@ -171,7 +169,6 @@ public class TilePipe extends TileEntity
     {
         this.warpID = warpID;
         this.markDirty();
-        LogHelper.info(this.getWarpID());
     }
 
     @Nullable
