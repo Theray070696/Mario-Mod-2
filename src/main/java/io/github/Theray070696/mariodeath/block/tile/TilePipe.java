@@ -33,7 +33,6 @@ public class TilePipe extends TileEntity
         isMaster = false;
         warpID = 0;
 
-        this.updateContainingBlockInfo();
         this.markDirty();
     }
 
@@ -167,8 +166,24 @@ public class TilePipe extends TileEntity
 
     public void setWarpID(int warpID)
     {
-        this.warpID = warpID;
-        this.markDirty();
+        if(!this.isMaster())
+        {
+            TileEntity tile = this.worldObj.getTileEntity(new BlockPos(this.getMasterX(), this.getMasterY(), this.getMasterZ()));
+            if(tile instanceof TilePipe)
+            {
+                TilePipe tilePipe = (TilePipe) tile;
+
+                if(tilePipe.isMaster())
+                {
+                    tilePipe.setWarpID(warpID);
+                    tilePipe.markDirty();
+                }
+            }
+        } else
+        {
+            this.warpID = warpID;
+            this.markDirty();
+        }
     }
 
     @Nullable

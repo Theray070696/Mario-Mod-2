@@ -88,7 +88,7 @@ public class GuiPipe extends GuiScreen
             }
         }
 
-        MarioDeath.network.sendToServer(new PacketSyncPipeID(this.id, this.pos, this.dimension, oldID));
+        MarioDeath.network.sendToServer(new PacketSyncPipeID(this.id, this.pos, this.dimension, this.oldID));
     }
 
     protected void keyTyped(char typedChar, int keyCode) throws IOException

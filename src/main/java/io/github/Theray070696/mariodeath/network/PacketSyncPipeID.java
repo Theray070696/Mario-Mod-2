@@ -31,6 +31,7 @@ public class PacketSyncPipeID implements IMessage
         this.newID = newID;
         this.pos = pos;
         this.dimension = dimension;
+        this.oldID = oldID;
     }
 
     @Override
@@ -70,14 +71,14 @@ public class PacketSyncPipeID implements IMessage
 
                         if(posPair.getPos1() != null && posPair.getPos2() != null)
                         {
-                            if(posPair.getPos1() == message.pos && posPair.getDim1() == message.dimension)
+                            if(posPair.getPos1().equals(message.pos) && posPair.getDim1() == message.dimension)
                             {
                                 PipeIDHandler.instance(false).setPosPair(message.oldID, new BlockPosPair(posPair.getPos2(), posPair.getDim2(), null, 0));
-                            } else if(posPair.getPos2() == message.pos && posPair.getDim2() == message.dimension)
+                            } else if(posPair.getPos2().equals(message.pos) && posPair.getDim2() == message.dimension)
                             {
                                 PipeIDHandler.instance(false).setPosPair(message.oldID, new BlockPosPair(posPair.getPos1(), posPair.getDim1(), null, 0));
                             }
-                        } else if(posPair.getPos1() != null && posPair.getPos2() == null && posPair.getPos1() == message.pos && posPair.getDim1() == message.dimension)
+                        } else if(posPair.getPos1() != null && posPair.getPos2() == null && posPair.getPos1().equals(message.pos) && posPair.getDim1() == message.dimension)
                         {
                             PipeIDHandler.instance(false).setPosPair(message.oldID, new BlockPosPair(null, 0, null, 0));
                         }
