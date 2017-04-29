@@ -49,8 +49,6 @@ public class GuiHandler implements IGuiHandler
         {
             if(world.getTileEntity(pos) instanceof TilePipe && ((TilePipe) world.getTileEntity(pos)).isMaster())
             {
-                LogHelper.info(((TilePipe) world.getTileEntity(pos)).getWarpID());
-
                 return new GuiPipe(world.provider.getDimension(), pos, ((TilePipe) world.getTileEntity(pos)).getWarpID());
             }
         }
