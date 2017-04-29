@@ -11,6 +11,4 @@ public class PotionMario extends Potion
     {
         super(isBadEffectIn, liquidColorIn);
     }
-
-
 }
