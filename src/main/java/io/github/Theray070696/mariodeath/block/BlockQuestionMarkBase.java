@@ -235,15 +235,12 @@ public class BlockQuestionMarkBase extends BlockMario implements ITileEntityProv
                 newItemStack = new ItemStack(ModItems.itemCape);
             } else if(itemInBlock == ItemsInQuestionMarks.ITEM_FIRE_FLOWER)
             {
-                if(this instanceof SMBQBlock)
+                if(this instanceof SMBQBlock || this instanceof SMB3QBlock)
                 {
                     world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbBlockHitPowerup, SoundCategory.BLOCKS, 1.0F, 1.0F);
                 } else if(this instanceof SMWQBlock)
                 {
                     world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smwBlockHitPowerup, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                } else if(this instanceof SMB3QBlock)
-                {
-                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbBlockHitPowerup, SoundCategory.BLOCKS, 1.0F, 1.0F);
                 }
 
                 newItemStack = new ItemStack(ModItems.itemFireFlower);
@@ -251,15 +248,12 @@ public class BlockQuestionMarkBase extends BlockMario implements ITileEntityProv
             {
                 newItemStack = new ItemStack(ModItems.itemStarMan);
 
-                if(this instanceof SMBQBlock)
+                if(this instanceof SMBQBlock || this instanceof SMB3QBlock)
                 {
                     world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbBlockHitPowerup, SoundCategory.BLOCKS, 1.0F, 1.0F);
                 } else if(this instanceof SMWQBlock)
                 {
                     world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smwBlockHitPowerup, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                } else if(this instanceof SMB3QBlock)
-                {
-                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbBlockHitPowerup, SoundCategory.BLOCKS, 1.0F, 1.0F);
                 }
             }
 
@@ -358,7 +352,7 @@ public class BlockQuestionMarkBase extends BlockMario implements ITileEntityProv
                 }
             }
 
-            return true;
+            return false;
         }
     }
 
