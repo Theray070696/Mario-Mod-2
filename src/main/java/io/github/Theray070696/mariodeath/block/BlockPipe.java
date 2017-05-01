@@ -140,15 +140,18 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
                             {
                                 if(world.getBlockState(teleportDestination).getBlock() instanceof BlockPipe)
                                 {
-                                    // Offset teleport to prevent infinite loop
-                                    teleportDestination = teleportDestination.offset(world.getBlockState(teleportDestination).getValue(FACING), 2);
+                                    if(world.getTileEntity(teleportDestination) instanceof TilePipe && ((TilePipe)world.getTileEntity(teleportDestination)).getWarpID() == warpID)
+                                    {
+                                        // Offset teleport to prevent infinite loop
+                                        teleportDestination = teleportDestination.offset(world.getBlockState(teleportDestination).getValue(FACING), 2);
 
-                                    // Play sound
-                                    world.playSound(null, posPair.getPos1().getX(), posPair.getPos1().getY(), posPair.getPos1().getZ(), SoundHandler.pipe, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                                    world.playSound(null, posPair.getPos2().getX(), posPair.getPos2().getY(), posPair.getPos2().getZ(), SoundHandler.pipe, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                                        // Play sound
+                                        world.playSound(null, posPair.getPos1().getX(), posPair.getPos1().getY(), posPair.getPos1().getZ(), SoundHandler.pipe, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                                        world.playSound(null, posPair.getPos2().getX(), posPair.getPos2().getY(), posPair.getPos2().getZ(), SoundHandler.pipe, SoundCategory.BLOCKS, 1.0F, 1.0F);
 
-                                    // Then teleport the entity
-                                    entity.setPosition(teleportDestination.getX(), teleportDestination.getY(), teleportDestination.getZ());
+                                        // Then teleport the entity
+                                        entity.setPositionAndUpdate(teleportDestination.getX(), teleportDestination.getY(), teleportDestination.getZ());
+                                    }
                                 }
                             }
                         }
@@ -197,15 +200,18 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
                                     {
                                         if(world.getBlockState(teleportDestination).getBlock() instanceof BlockPipe)
                                         {
-                                            // Offset teleport to prevent infinite loop
-                                            teleportDestination = teleportDestination.offset(world.getBlockState(teleportDestination).getValue(FACING), 2);
+                                            if(world.getTileEntity(teleportDestination) instanceof TilePipe && ((TilePipe)world.getTileEntity(teleportDestination)).getWarpID() == warpID)
+                                            {
+                                                // Offset teleport to prevent infinite loop
+                                                teleportDestination = teleportDestination.offset(world.getBlockState(teleportDestination).getValue(FACING), 2);
 
-                                            // Play sound
-                                            world.playSound(null, posPair.getPos1().getX(), posPair.getPos1().getY(), posPair.getPos1().getZ(), SoundHandler.pipe, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                                            world.playSound(null, posPair.getPos2().getX(), posPair.getPos2().getY(), posPair.getPos2().getZ(), SoundHandler.pipe, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                                                // Play sound
+                                                world.playSound(null, posPair.getPos1().getX(), posPair.getPos1().getY(), posPair.getPos1().getZ(), SoundHandler.pipe, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                                                world.playSound(null, posPair.getPos2().getX(), posPair.getPos2().getY(), posPair.getPos2().getZ(), SoundHandler.pipe, SoundCategory.BLOCKS, 1.0F, 1.0F);
 
-                                            // Then teleport the entity
-                                            entity.setPosition(teleportDestination.getX(), teleportDestination.getY(), teleportDestination.getZ());
+                                                // Then teleport the entity
+                                                entity.setPositionAndUpdate(teleportDestination.getX(), teleportDestination.getY(), teleportDestination.getZ());
+                                            }
                                         }
                                     }
                                 }
@@ -588,6 +594,35 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
 
                 if(isMultiBlock(world, pos.getX(), pos.getY(), pos.getZ(), xMod, yMod, zMod))
                 {
+                    TilePipe tilePipe = (TilePipe) world.getTileEntity(pos);
+
+                    if(PipeIDHandler.instance(false).getPosPair(tilePipe.getWarpID()) != null)
+                    {
+                        BlockPosPair posPair = PipeIDHandler.instance(false).getPosPair(tilePipe.getWarpID());
+
+                        if(posPair.getPos1() != null && !posPair.getPos1().equals(new BlockPos(0, 0, 0)) && posPair.getPos2() != null && !posPair.getPos2().equals(new BlockPos(0, 0, 0)))
+                        {
+                            if(posPair.getPos1().equals(pos) && posPair.getDim1() == world.provider.getDimension())
+                            {
+                                PipeIDHandler.instance(false).clearPosPair(tilePipe.getWarpID());
+                                PipeIDHandler.instance(false).setPosPair(tilePipe.getWarpID(), new BlockPosPair(posPair.getPos2(), posPair.getDim2(), null, 0));
+                            } else if(posPair.getPos2().equals(pos) && posPair.getDim2() == world.provider.getDimension())
+                            {
+                                PipeIDHandler.instance(false).clearPosPair(tilePipe.getWarpID());
+                                PipeIDHandler.instance(false).setPosPair(tilePipe.getWarpID(), new BlockPosPair(posPair.getPos1(), posPair.getDim1(), null, 0));
+                            } else
+                            {
+                                PipeIDHandler.instance(false).clearPosPair(tilePipe.getWarpID());
+                            }
+                        } else
+                        {
+                            PipeIDHandler.instance(false).clearPosPair(tilePipe.getWarpID());
+                        }
+                    } else
+                    {
+                        PipeIDHandler.instance(false).clearPosPair(tilePipe.getWarpID());
+                    }
+
                     setMultiBlockFacing(world, pos.getX(), pos.getY(), pos.getZ(), side, true);
                 }
             } else
@@ -605,10 +640,10 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState blockState)
     {
-        EnumFacing side = blockState.getValue(FACING);
-
         if(world.getTileEntity(pos) != null && world.getTileEntity(pos) instanceof TilePipe)
         {
+            EnumFacing side = blockState.getValue(FACING);
+
             BlockPos modPos = getPositionModifiers(side);
             int xMod = modPos.getX(), yMod = modPos.getY(), zMod = modPos.getZ();
 
@@ -621,19 +656,27 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
                 {
                     BlockPosPair posPair = PipeIDHandler.instance(false).getPosPair(pipe.getWarpID());
 
-                    if(posPair.getPos1() != null && posPair.getPos2() != null)
+                    if(posPair.getPos1() != null && !posPair.getPos1().equals(new BlockPos(0, 0, 0)) && posPair.getPos2() != null && !posPair.getPos2().equals(new BlockPos(0, 0, 0)))
                     {
                         if(posPair.getPos1().equals(pos) && posPair.getDim1() == world.provider.getDimension())
                         {
+                            PipeIDHandler.instance(false).clearPosPair(pipe.getWarpID());
                             PipeIDHandler.instance(false).setPosPair(pipe.getWarpID(), new BlockPosPair(posPair.getPos2(), posPair.getDim2(), null, 0));
                         } else if(posPair.getPos2().equals(pos) && posPair.getDim2() == world.provider.getDimension())
                         {
+                            PipeIDHandler.instance(false).clearPosPair(pipe.getWarpID());
                             PipeIDHandler.instance(false).setPosPair(pipe.getWarpID(), new BlockPosPair(posPair.getPos1(), posPair.getDim1(), null, 0));
+                        } else
+                        {
+                            PipeIDHandler.instance(false).clearPosPair(pipe.getWarpID());
                         }
-                    } else if(posPair.getPos1() != null && posPair.getPos2() == null && posPair.getPos1().equals(pos) && posPair.getDim1() == world.provider.getDimension())
+                    } else
                     {
-                        PipeIDHandler.instance(false).setPosPair(pipe.getWarpID(), new BlockPosPair(null, 0, null, 0));
+                        PipeIDHandler.instance(false).clearPosPair(pipe.getWarpID());
                     }
+                } else
+                {
+                    PipeIDHandler.instance(false).clearPosPair(pipe.getWarpID());
                 }
             } else if(pipe.hasMaster())
             {
@@ -648,19 +691,27 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
 
                         BlockPosPair posPair = PipeIDHandler.instance(false).getPosPair(pipe.getWarpID());
 
-                        if(posPair.getPos1() != null && posPair.getPos2() != null)
+                        if(posPair.getPos1() != null && !posPair.getPos1().equals(new BlockPos(0, 0, 0)) && posPair.getPos2() != null && !posPair.getPos2().equals(new BlockPos(0, 0, 0)))
                         {
                             if(posPair.getPos1().equals(pos) && posPair.getDim1() == world.provider.getDimension())
                             {
+                                PipeIDHandler.instance(false).clearPosPair(pipe.getWarpID());
                                 PipeIDHandler.instance(false).setPosPair(pipe.getWarpID(), new BlockPosPair(posPair.getPos2(), posPair.getDim2(), null, 0));
                             } else if(posPair.getPos2().equals(pos) && posPair.getDim2() == world.provider.getDimension())
                             {
+                                PipeIDHandler.instance(false).clearPosPair(pipe.getWarpID());
                                 PipeIDHandler.instance(false).setPosPair(pipe.getWarpID(), new BlockPosPair(posPair.getPos1(), posPair.getDim1(), null, 0));
+                            } else
+                            {
+                                PipeIDHandler.instance(false).clearPosPair(pipe.getWarpID());
                             }
-                        } else if(posPair.getPos1() != null && posPair.getPos2() == null && posPair.getPos1().equals(pos) && posPair.getDim1() == world.provider.getDimension())
+                        } else
                         {
-                            PipeIDHandler.instance(false).setPosPair(pipe.getWarpID(), new BlockPosPair(null, 0, null, 0));
+                            PipeIDHandler.instance(false).clearPosPair(pipe.getWarpID());
                         }
+                    } else
+                    {
+                        PipeIDHandler.instance(false).clearPosPair(pipe.getWarpID());
                     }
                 }
             }

@@ -1,6 +1,7 @@
 package io.github.Theray070696.mariodeath.core;
 
 import io.github.Theray070696.mariodeath.lib.BlockPosPair;
+import io.github.Theray070696.mariodeath.util.LogHelper;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagIntArray;
@@ -200,6 +201,17 @@ public class PipeIDHandler
         }
 
         idMap.put(id, posPair);
+        requestSave(id);
+    }
+
+    public void clearPosPair(int id)
+    {
+        if(idMap.containsKey(id))
+        {
+            idMap.remove(id);
+        }
+
+        idMap.put(id, new BlockPosPair(new BlockPos(0, 0, 0), 0, new BlockPos(0, 0, 0), 0));
         requestSave(id);
     }
 }

@@ -69,34 +69,53 @@ public class PacketSyncPipeID implements IMessage
                     {
                         BlockPosPair posPair = PipeIDHandler.instance(false).getPosPair(message.oldID);
 
-                        if(posPair.getPos1() != null && posPair.getPos2() != null)
+                        if(posPair.getPos1() != null && !posPair.getPos1().equals(new BlockPos(0, 0, 0)) && posPair.getPos2() != null && !posPair.getPos2().equals(new BlockPos(0, 0, 0)))
                         {
                             if(posPair.getPos1().equals(message.pos) && posPair.getDim1() == message.dimension)
                             {
+                                PipeIDHandler.instance(false).clearPosPair(message.oldID);
                                 PipeIDHandler.instance(false).setPosPair(message.oldID, new BlockPosPair(posPair.getPos2(), posPair.getDim2(), null, 0));
                             } else if(posPair.getPos2().equals(message.pos) && posPair.getDim2() == message.dimension)
                             {
+                                PipeIDHandler.instance(false).clearPosPair(message.oldID);
                                 PipeIDHandler.instance(false).setPosPair(message.oldID, new BlockPosPair(posPair.getPos1(), posPair.getDim1(), null, 0));
+                            } else
+                            {
+                                PipeIDHandler.instance(false).clearPosPair(message.oldID);
                             }
-                        } else if(posPair.getPos1() != null && posPair.getPos2() == null && posPair.getPos1().equals(message.pos) && posPair.getDim1() == message.dimension)
+                        } else
                         {
-                            PipeIDHandler.instance(false).setPosPair(message.oldID, new BlockPosPair(null, 0, null, 0));
+                            PipeIDHandler.instance(false).clearPosPair(message.oldID);
                         }
+                    } else
+                    {
+                        PipeIDHandler.instance(false).clearPosPair(message.oldID);
                     }
 
                     if(PipeIDHandler.instance(false).getPosPair(message.newID) != null)
                     {
                         BlockPosPair posPair = PipeIDHandler.instance(false).getPosPair(message.newID);
 
-                        if(posPair.getPos1() != null && posPair.getPos2() == null)
+                        if(posPair.getPos1() != null && (posPair.getPos2() == null || posPair.getPos2().equals(new BlockPos(0, 0, 0))))
                         {
+                            PipeIDHandler.instance(false).clearPosPair(message.newID);
                             PipeIDHandler.instance(false).setPosPair(message.newID, new BlockPosPair(posPair.getPos1(), posPair.getDim1(), message.pos, message.dimension));
-                        } else if(posPair.getPos1() == null)
+                        } else if((posPair.getPos1() == null || posPair.getPos1().equals(new BlockPos(0, 0, 0))) && (posPair.getPos2() == null || posPair.getPos2().equals(new BlockPos(0, 0, 0))))
                         {
+                            PipeIDHandler.instance(false).clearPosPair(message.newID);
                             PipeIDHandler.instance(false).setPosPair(message.newID, new BlockPosPair(message.pos, message.dimension, null, 0));
+                        } else if((posPair.getPos1() == null || posPair.getPos1().equals(new BlockPos(0, 0, 0))) && posPair.getPos2() != null)
+                        {
+                            PipeIDHandler.instance(false).clearPosPair(message.newID);
+                            PipeIDHandler.instance(false).setPosPair(message.newID, new BlockPosPair(message.pos, message.dimension, null, 0));
+                        } else if(posPair.getPos2() != null && (posPair.getPos1() == null || posPair.getPos1().equals(new BlockPos(0, 0, 0))))
+                        {
+                            PipeIDHandler.instance(false).clearPosPair(message.newID);
+                            PipeIDHandler.instance(false).setPosPair(message.newID, new BlockPosPair(posPair.getPos2(), posPair.getDim2(), message.pos, message.dimension));
                         }
                     } else
                     {
+                        PipeIDHandler.instance(false).clearPosPair(message.newID);
                         PipeIDHandler.instance(false).setPosPair(message.newID, new BlockPosPair(message.pos, message.dimension, null, 0));
                     }
 

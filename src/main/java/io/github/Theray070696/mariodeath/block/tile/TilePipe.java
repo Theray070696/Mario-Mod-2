@@ -123,6 +123,20 @@ public class TilePipe extends TileEntity
 
     public int getWarpID()
     {
+        if(this.hasMaster() && !this.isMaster())
+        {
+            TileEntity tile = this.worldObj.getTileEntity(new BlockPos(this.getMasterX(), this.getMasterY(), this.getMasterZ()));
+            if(tile instanceof TilePipe)
+            {
+                TilePipe tilePipe = (TilePipe) tile;
+
+                if(tilePipe.isMaster())
+                {
+                    return this.warpID;
+                }
+            }
+        }
+
         return this.warpID;
     }
 
@@ -166,7 +180,7 @@ public class TilePipe extends TileEntity
 
     public void setWarpID(int warpID)
     {
-        if(!this.isMaster())
+        if(this.hasMaster() && !this.isMaster())
         {
             TileEntity tile = this.worldObj.getTileEntity(new BlockPos(this.getMasterX(), this.getMasterY(), this.getMasterZ()));
             if(tile instanceof TilePipe)
@@ -179,7 +193,7 @@ public class TilePipe extends TileEntity
                     tilePipe.markDirty();
                 }
             }
-        } else
+        } else if(this.isMaster())
         {
             this.warpID = warpID;
             this.markDirty();
