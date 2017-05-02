@@ -44,6 +44,14 @@ public class JEIPlugin extends BlankModPlugin
         registry.addRecipes(MarioMakerCraftingManager.getInstance().getRecipeList());
 
         registry.addAdvancedGuiHandlers(new MarioMakerAdvancedGuiHandler());
+
+        registry.getJeiHelpers().getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModBlocks.blockInvisibleBlock));
+        registry.getJeiHelpers().getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModBlocks.blockInvisibleBlockSMB));
+        registry.getJeiHelpers().getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModBlocks.blockInvisibleBlockSMB3));
+        registry.getJeiHelpers().getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModBlocks.blockQuestionMark));
+        registry.getJeiHelpers().getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModBlocks.blockQuestionMarkSMB));
+        registry.getJeiHelpers().getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModBlocks.blockQuestionMarkSMB3));
+        registry.getJeiHelpers().getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModBlocks.blockQuestionMarkUndergroundSMB));
     }
 
     private static class MarioMakerAdvancedGuiHandler  extends BlankAdvancedGuiHandler<GuiMarioMaker>
