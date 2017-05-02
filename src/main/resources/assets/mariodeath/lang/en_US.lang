@@ -1,5 +1,6 @@
 itemGroup.tabMarioBlocks=Super Mario Blocks
 itemGroup.tabMarioItems=Super Mario Items
+
 entity.Goomba.name=Goomba
 entity.Koopa.name=Koopa
 entity.Boo.name=Boo
@@ -14,6 +15,7 @@ entity.Yoshi.name=Yoshi
 entity.Spiny.name=Spiny
 entity.Lakitu.name=Lakitu
 entity.mario.ShellEntity.name=Shell
+
 tile.mariodeath:marioBlockPipeBase.name=Pipe Base
 tile.mariodeath:marioBlockPipe.name=Pipe
 tile.mariodeath:marioBlockQuestionMark.name=?-Block
@@ -44,6 +46,7 @@ tile.mariodeath:marioBlockInvisibleBlockEmptySMB.name=Empty Invisible Block
 tile.mariodeath:Castle Brick Block.name=Castle Brick Block
 tile.mariodeath:Castle Wall Block.name=Castle Wall Block
 tile.mariodeath:Castle Entry Block.name=Castle Entry Block
+
 item.mariodeath:Flagpole.name=Flagpole
 item.mariodeath:itemMushroom.name=Mushroom
 item.mariodeath:item1Up.name=1-Up Mushroom
@@ -82,6 +85,7 @@ item.mariodeath:itemCoinPurple.name=Dragon Coin
 item.mariodeath:itemCoinBlack.name=Wither Coin
 
 item.mariodeath:itemSpiceMan.name=Spiceman
+item.mariodeath:itemPipeLink.name=Pipe Link
 
 tile.mariodeath:marioBlockMarioMaker.name=Mario Maker
 tile.mariodeath:marioBlockGroundSMW.name=Ground Block

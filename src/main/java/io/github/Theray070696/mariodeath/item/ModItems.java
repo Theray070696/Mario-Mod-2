@@ -34,6 +34,8 @@ public class ModItems
 
     public static ItemRay itemOldSpice;
 
+    public static ItemRay itemPipeLink;
+
     public static void initItems()
     {
         LogHelper.info("Loading Items");
@@ -46,6 +48,7 @@ public class ModItems
         itemStarMan = RayItemRegistry.registerItem(new ItemStarMan());
         itemSpiceMan = RayItemRegistry.registerItem(new ItemSpiceMan());
         itemOldSpice = RayItemRegistry.registerItem(new ItemOldSpice());
+        itemPipeLink = RayItemRegistry.registerItem(new ItemPipeLink());
 
         itemCoinCurrency = RayItemRegistry.registerItem(new ItemCoinCurrency());
 
