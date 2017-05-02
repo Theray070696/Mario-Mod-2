@@ -68,7 +68,7 @@ public class ItemPipeLink extends ItemMario
                 if(otherPipeWorld.getTileEntity(new BlockPos(posDim[0], posDim[1], posDim[2])) != null && otherPipeWorld.getTileEntity(new BlockPos(posDim[0], posDim[1], posDim[2])) instanceof TilePipe)
                 {
                     // Make sure the Player is not trying to link a Pipe to itself
-                    if(!(new BlockPos(posDim[0], posDim[1], posDim[2]).equals(pos)))
+                    if(new BlockPos(posDim[0], posDim[1], posDim[2]).equals(pos))
                     {
                         return EnumActionResult.PASS;
                     }
