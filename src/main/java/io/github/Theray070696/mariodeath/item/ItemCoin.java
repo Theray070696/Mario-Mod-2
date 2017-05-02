@@ -75,4 +75,13 @@ public class ItemCoin extends ItemMario
         RayCore.proxy.registerItemRenderer(this, 1, ModInfo.MOD_ID, getUnwrappedUnlocalizedName() + "_1");
         RayCore.proxy.registerItemRenderer(this, 2, ModInfo.MOD_ID, getUnwrappedUnlocalizedName() + "_2");
     }
+
+    @Override
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean advanced)
+    {
+        super.addInformation(itemStack, player, list, advanced);
+
+        list.add("Right click to add to your coin counter");
+        list.add("You can get coins out of your counter in the Mario Maker");
+    }
 }

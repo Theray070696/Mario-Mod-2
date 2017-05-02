@@ -13,8 +13,12 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.input.Keyboard;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * Created by Theray070696 on 12/19/2016.
@@ -40,5 +44,18 @@ public class ItemSpiceMan extends ItemMario
         }
 
         return new ActionResult<>(EnumActionResult.PASS, itemStack);
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean advanced)
+    {
+        super.addInformation(itemStack, player, list, advanced);
+
+        list.add("Gives 56 seconds if invincibility and speed boost");
+        if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
+        {
+            list.add("POOOOOOWWWWWWWEEERRRRR");
+        }
     }
 }

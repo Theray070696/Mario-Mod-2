@@ -13,8 +13,11 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * Created by Theray070696 on 9/15/2015.
@@ -63,6 +66,15 @@ public class ItemCape extends ItemMario implements IBauble
         }
 
         return new ActionResult<>(EnumActionResult.PASS, itemStack);
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean advanced)
+    {
+        super.addInformation(itemStack, player, list, advanced);
+
+        list.add("Negates fall damage");
     }
 
     @Override

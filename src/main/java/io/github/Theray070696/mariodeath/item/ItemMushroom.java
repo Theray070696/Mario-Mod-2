@@ -80,4 +80,13 @@ public class ItemMushroom extends ItemMario
         RayCore.proxy.registerItemRenderer(this, 1, ModInfo.MOD_ID, getUnwrappedUnlocalizedName() + "_1");
         RayCore.proxy.registerItemRenderer(this, 2, ModInfo.MOD_ID, getUnwrappedUnlocalizedName() + "_2");
     }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean advanced)
+    {
+        super.addInformation(itemStack, player, list, advanced);
+
+        list.add("Restores 2.5 hearts");
+    }
 }
