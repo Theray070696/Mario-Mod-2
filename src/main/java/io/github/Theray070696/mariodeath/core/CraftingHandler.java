@@ -15,11 +15,8 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 /**
  * Created by Theray070696 on 8/27/2015.
  */
-@SuppressWarnings("unchecked")
 public class CraftingHandler
 {
-    private static ItemStack goldIngot = new ItemStack(Items.GOLD_INGOT);
-
     public static void initCraftingRecipes()
     {
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockMarioMaker), "bgb", "gbg", "bgb", 'b', "emptyQuestionMarkBlock", 'g', "itemMarioCoin"));
@@ -27,9 +24,8 @@ public class CraftingHandler
 
     public static void initMarioMakerRecipes()
     {
-        addRecipe(new ShapelessOreRecipeMario(goldIngot, "itemMarioCoin", "itemMarioCoin"));
-
-        addShapeless(new ItemStack(ModItems.itemMarioCoin, 2), goldIngot);
+        addRecipe(new ShapelessOreRecipeMario(new ItemStack(Items.GOLD_NUGGET), "itemMarioCoin"));
+        addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModItems.itemMarioCoin, 2), "ingotGold"));
 
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockGround, 8), "sss", "sss", "sss", 's', "stone"));
         addShaped(new ItemStack(ModBlocks.blockMarioBrick, 16), "bb", "bb", 'b', new ItemStack(Blocks.BRICK_BLOCK));
