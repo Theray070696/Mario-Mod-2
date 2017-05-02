@@ -2,7 +2,6 @@ package io.github.Theray070696.mariodeath.block;
 
 import io.github.Theray070696.mariodeath.block.tile.TilePipe;
 import io.github.Theray070696.mariodeath.block.tile.TileQuestionMark;
-import io.github.Theray070696.mariodeath.configuration.ConfigHandler;
 import io.github.Theray070696.mariodeath.util.LogHelper;
 import io.github.Theray070696.raycore.api.block.RayBlockRegistry;
 import net.minecraft.block.Block;
@@ -84,13 +83,9 @@ public class ModBlocks
         blockTerry = RayBlockRegistry.register(new BlockTerry());
 
         blockPipeBase = RayBlockRegistry.register(new BlockPipeBase());
+        blockPipe = RayBlockRegistry.register(new BlockPipe());
 
-        if(ConfigHandler.debugModeEnabled)
-        {
-            blockPipe = RayBlockRegistry.register(new BlockPipe());
-
-            GameRegistry.registerTileEntity(TilePipe.class, "tileMarioPipe");
-        }
+        GameRegistry.registerTileEntity(TilePipe.class, "tileMarioPipe");
 
         GameRegistry.registerTileEntity(TileQuestionMark.class, "tileMarioQuestionMark");
 
