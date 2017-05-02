@@ -2,6 +2,7 @@ package io.github.Theray070696.mariodeath.core;
 
 import io.github.Theray070696.mariodeath.audio.SoundHandler;
 import io.github.Theray070696.mariodeath.capability.CoinCountProvider;
+import io.github.Theray070696.mariodeath.entity.EntityGoomba;
 import io.github.Theray070696.mariodeath.item.ModItems;
 import io.github.Theray070696.mariodeath.potion.PotionEffectsMario;
 import io.github.Theray070696.raycore.api.RayCoreAPI;
@@ -252,7 +253,7 @@ public class EventHandler
                 {
                     entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, 1, 4), 0.0f); // Wither Coin
                 }
-            } else if(entity instanceof EntityMob)
+            } else if(entity instanceof EntityMob && !(entity instanceof EntityGoomba))
             {
                 int randInt = rand.nextInt(100);
 
@@ -265,9 +266,9 @@ public class EventHandler
                 } else if(randInt >= 20 && randInt < 45)
                 {
                     entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, rand.nextInt(4), 2), 0.0f); // Red Coin
-                } else if(randInt >= 45 && randInt < 95)
+                } else if(randInt >= 45 && randInt < 90)
                 {
-                    entity.entityDropItem(new ItemStack(ModItems.itemMarioCoin, rand.nextInt(4) + 1, rand.nextInt(2)), 0.0f); // Normal Coin
+                    entity.entityDropItem(new ItemStack(ModItems.itemMarioCoin, rand.nextInt(4) + 1, rand.nextInt(3)), 0.0f); // Normal Coin
                 }
             }
         }

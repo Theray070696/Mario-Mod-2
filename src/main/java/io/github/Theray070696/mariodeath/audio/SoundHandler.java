@@ -112,6 +112,10 @@ public class SoundHandler
     public static SoundEvent terry8;
     public static SoundEvent terry9;
 
+    // Entities
+
+    public static SoundEvent goombaDeath;
+
     public static void init()
     {
         mushroom = register("item.smwMushroom");
@@ -201,6 +205,8 @@ public class SoundHandler
         spicemanBlock11 = register("player.spicemanBlock11");
         spicemanBlock12 = register("player.spicemanBlock12");
 
+        // Terry Block
+
         terry1 = register("block.terry1");
         terry2 = register("block.terry2");
         terry3 = register("block.terry3");
@@ -210,6 +216,10 @@ public class SoundHandler
         terry7 = register("block.terry7");
         terry8 = register("block.terry8");
         terry9 = register("block.terry9");
+
+        // Entities
+
+        goombaDeath = register("entity.goomba.death");
     }
 
     public static SoundEvent register(String name)

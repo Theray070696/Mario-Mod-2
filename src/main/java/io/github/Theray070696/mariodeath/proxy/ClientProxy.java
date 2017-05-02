@@ -1,9 +1,15 @@
 package io.github.Theray070696.mariodeath.proxy;
 
 import io.github.Theray070696.mariodeath.capability.CoinCountProvider;
+import io.github.Theray070696.mariodeath.client.render.RenderGoomba;
 import io.github.Theray070696.mariodeath.core.ClientEventHandler;
+import io.github.Theray070696.mariodeath.entity.EntityGoomba;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -24,6 +30,15 @@ public class ClientProxy extends CommonProxy
     public void preInit(FMLPreInitializationEvent event)
     {
         super.preInit(event);
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityGoomba.class, new IRenderFactory<EntityGoomba>()
+        {
+            @Override
+            public Render<? super EntityGoomba> createRenderFor(RenderManager manager)
+            {
+                return new RenderGoomba(manager);
+            }
+        });
     }
 
     @Override
