@@ -52,7 +52,7 @@ public class ItemSpiceMan extends ItemMario
     {
         super.addInformation(itemStack, player, list, advanced);
 
-        list.add("Gives 55 seconds if invincibility and speed boost");
+        list.add("Gives 55 seconds of invincibility and speed boost");
         if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
         {
             list.add("POOOOOOWWWWWWWEEERRRRR");

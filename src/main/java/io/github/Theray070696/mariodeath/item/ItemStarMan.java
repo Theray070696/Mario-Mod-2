@@ -58,6 +58,6 @@ public class ItemStarMan extends ItemMario
     {
         super.addInformation(itemStack, player, list, advanced);
 
-        list.add("Gives 12 seconds if invincibility and speed boost");
+        list.add("Gives 12 seconds of invincibility and speed boost");
     }
 }
