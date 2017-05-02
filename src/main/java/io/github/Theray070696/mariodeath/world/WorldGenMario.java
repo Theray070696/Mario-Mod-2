@@ -63,11 +63,11 @@ public class WorldGenMario implements IWorldGenerator
         {
             // Nether or Hellish dimensions
 
-            this.runGenerator(this.questionMarkUndergroundRareSMB, world, random, chunkX, chunkZ, random.nextInt(4), 3, 100);
+            this.runGenerator(this.questionMarkUndergroundRareSMB, world, random, chunkX, chunkZ, random.nextInt(5), 3, 100);
 
-            this.runGenerator(this.questionMarkSMB3, world, random, chunkX, chunkZ, random.nextInt(4), 3, 100);
+            this.runGenerator(this.questionMarkSMB3, world, random, chunkX, chunkZ, random.nextInt(5), 3, 100);
 
-            this.runGenerator(this.questionMark, world, random, chunkX, chunkZ, random.nextInt(4), 3, 100);
+            this.runGenerator(this.questionMark, world, random, chunkX, chunkZ, random.nextInt(5), 3, 100);
         } else if(world.provider instanceof WorldProviderEnd)
         {
             // End or End-like dimensions
