@@ -100,7 +100,7 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos blockPos, IBlockState blockState, Entity entity)
     {
-        // Items are kinda buggy atm. Will fix later
+        // Items are kinda buggy atm. Will fix later.
         if(!(entity instanceof EntityItem) && world.getTileEntity(blockPos) instanceof TilePipe)
         {
             if((blockState.getValue(FACING) == EnumFacing.UP && ((entity instanceof EntityPlayer && entity.isSneaking()) || !(entity instanceof EntityPlayer))) || blockState.getValue(FACING) != EnumFacing.UP)
