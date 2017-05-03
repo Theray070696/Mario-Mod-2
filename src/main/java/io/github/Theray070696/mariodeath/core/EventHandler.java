@@ -52,7 +52,7 @@ public class EventHandler
         {
             EntityPlayerMP entityPlayer = (EntityPlayerMP) event.getEntityLiving();
 
-            if(entityPlayer.getStatFile().readStat(StatList.DEATHS) % 50 == 0)
+            if(entityPlayer.getStatFile().readStat(StatList.DEATHS) != 0 && entityPlayer.getStatFile().readStat(StatList.DEATHS) % 50 == 0)
             {
                 entityPlayer.worldObj.playSound((EntityPlayer) null, entityPlayer.getPosition(), SoundHandler.fiftyDeaths, SoundCategory.PLAYERS, 1.0f, 1.0f);
                 return;
@@ -68,7 +68,6 @@ public class EventHandler
 
                 // Set the player up to get the record on respawn
                 playersToGiveRecordTo.add(playerName);
-
                 return;
             }
 
