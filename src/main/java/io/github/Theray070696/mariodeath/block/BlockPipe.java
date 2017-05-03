@@ -104,7 +104,7 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
     {
         inPipeTime++;
 
-        if(inPipeTime >= 20)
+        if(inPipeTime >= 40)
         {
             // Items are kinda buggy atm. Will fix later.
             if(!(entity instanceof EntityItem) && world.getTileEntity(blockPos) instanceof TilePipe)
@@ -127,10 +127,6 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
                                 // Offset teleport to prevent infinite loop
                                 teleportDestinationPos = teleportDestinationPos.offset(otherWorld.getBlockState(teleportDestinationPos).getValue(FACING), 2);
 
-                                // Play sound
-                                world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.pipe, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                                otherWorld.playSound(null, teleportDestinationPos.getX(), teleportDestinationPos.getY(), teleportDestinationPos.getZ(), SoundHandler.pipe, SoundCategory.BLOCKS, 1.0F, 1.0F);
-
                                 // Are the Pipes in different Dimensions?
                                 if(teleportDestinationDimension != world.provider.getDimension())
                                 {
@@ -149,6 +145,10 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
 
                                 // Move the Entity to the correct coordinates
                                 entity.setPositionAndUpdate(teleportDestinationPos.getX(), teleportDestinationPos.getY(), teleportDestinationPos.getZ());
+
+                                // Play sound
+                                world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.pipe, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                                otherWorld.playSound(null, teleportDestinationPos.getX(), teleportDestinationPos.getY(), teleportDestinationPos.getZ(), SoundHandler.pipe, SoundCategory.BLOCKS, 1.0F, 1.0F);
                             }
                         }
                     }
