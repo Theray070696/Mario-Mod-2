@@ -237,6 +237,43 @@ public class TilePipe extends TileEntity
         }
     }
 
+    public BlockPos getMasterPos()
+    {
+        return new BlockPos(this.masterX, this.masterY, this.masterZ);
+    }
+
+    public TilePipe getMasterTile()
+    {
+        if(this.isMaster())
+        {
+            return this;
+        } else if(this.hasMaster())
+        {
+            if(worldObj.getTileEntity(new BlockPos(this.masterX, this.masterY, this.masterZ)) instanceof TilePipe)
+            {
+                return (TilePipe) worldObj.getTileEntity(new BlockPos(this.masterX, this.masterY, this.masterZ));
+            }
+        }
+
+        return null;
+    }
+
+    public BlockPipe getMasterBlock()
+    {
+        if(this.isMaster())
+        {
+            return (BlockPipe) worldObj.getBlockState(pos).getBlock();
+        } else if(this.hasMaster())
+        {
+            if(worldObj.getBlockState(new BlockPos(this.masterX, this.masterY, this.masterZ)).getBlock() instanceof BlockPipe)
+            {
+                return (BlockPipe) worldObj.getBlockState(new BlockPos(this.masterX, this.masterY, this.masterZ)).getBlock();
+            }
+        }
+
+        return null;
+    }
+
     @Nullable
     @Override
     public SPacketUpdateTileEntity getUpdatePacket()
