@@ -160,25 +160,52 @@ public class WorldGenMario implements IWorldGenerator
             if(tileEntity instanceof TileQuestionMark && block instanceof SMWQBlock)
             {
                 TileQuestionMark questionMark = (TileQuestionMark) tileEntity;
-                int item = 1 + rand.nextInt(6);
+                int item;
+                int chance = rand.nextInt(100);
 
-                if(item == ItemsInQuestionMarks.ITEM_CAPE)
+                if(chance < 5)
                 {
-                    if(rand.nextInt(100) < 50)
-                    {
-                        questionMark.setItemInBlock(ItemsInQuestionMarks.ITEM_CAPE);
-                    } else
-                    {
-                        questionMark.setItemInBlock(1 + rand.nextInt(5)); // Will make everything except capes more common, but coins a bit rarer than previous versions.
-                    }
+                    item = ItemsInQuestionMarks.ITEM_CAPE;
+                } else if(chance >= 5 && chance < 15)
+                {
+                    item = ItemsInQuestionMarks.ITEM_STAR_MAN;
+                } else if(chance >= 15 && chance < 25)
+                {
+                    item = ItemsInQuestionMarks.ITEM_1UP;
+                } else if(chance >= 25 && chance < 45)
+                {
+                    item = ItemsInQuestionMarks.ITEM_FIRE_FLOWER;
+                } else if(chance >= 45 && chance < 70)
+                {
+                    item = ItemsInQuestionMarks.ITEM_MUSHROOM;
                 } else
                 {
-                    questionMark.setItemInBlock(item);
+                    item = ItemsInQuestionMarks.ITEM_COIN;
                 }
+
+                questionMark.setItemInBlock(item);
             } else if(tileEntity instanceof TileQuestionMark && (block instanceof SMBQBlock || block instanceof SMB3QBlock))
             {
                 TileQuestionMark questionMark = (TileQuestionMark) tileEntity;
-                int item = 1 + rand.nextInt(5); // There should never be a cape in this type of block.
+                int item;
+                int chance = rand.nextInt(100);
+
+                if(chance < 10)
+                {
+                    item = ItemsInQuestionMarks.ITEM_STAR_MAN;
+                } else if(chance >= 10 && chance < 20)
+                {
+                    item = ItemsInQuestionMarks.ITEM_1UP;
+                } else if(chance >= 20 && chance < 40)
+                {
+                    item = ItemsInQuestionMarks.ITEM_FIRE_FLOWER;
+                } else if(chance >= 40 && chance < 65)
+                {
+                    item = ItemsInQuestionMarks.ITEM_MUSHROOM;
+                } else
+                {
+                    item = ItemsInQuestionMarks.ITEM_COIN;
+                }
 
                 questionMark.setItemInBlock(item);
             }
