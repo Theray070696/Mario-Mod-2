@@ -233,11 +233,16 @@ public class SoundHandler
 
     public static void playSoundName(String soundName, World world, SoundCategory category, BlockPos pos)
     {
+        playSoundName(soundName, world, category, pos, 1.0F, 1.0F);
+    }
+
+    public static void playSoundName(String soundName, World world, SoundCategory category, BlockPos pos, float volume, float pitch)
+    {
         SoundEvent sound = SoundEvent.REGISTRY.getObject(new ResourceLocation(soundName));
 
         if(sound != null)
         {
-            world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), sound, category, 1.0F, 1.0F);
+            world.playSound(null, pos, sound, category, volume, pitch);
         }
     }
 }
