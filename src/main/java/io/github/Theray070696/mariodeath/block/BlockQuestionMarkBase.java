@@ -475,6 +475,7 @@ public class BlockQuestionMarkBase extends BlockMario implements ITileEntityProv
             entityItem.motionY = rand.nextGaussian() * factor + 0.2F;
             entityItem.motionZ = rand.nextGaussian() * factor;
             world.spawnEntityInWorld(entityItem);
+            questionMark.setItemInBlock(ItemsInQuestionMarks.ITEM_NOTHING);
         }
     }
 }
