@@ -31,6 +31,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AchievementEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -149,11 +150,8 @@ public class EventHandler
             // Remove them from the list
             playersToGiveRecordTo.remove(event.player.getName());
 
-            // Spawn the item
-            EntityItem entityItem = event.player.entityDropItem(new ItemStack(ModItems.itemRecordLOLUDied), 0.0f);
-
-            // Pick it up immediately
-            entityItem.setNoPickupDelay();
+            // Give the item
+            ItemHandlerHelper.giveItemToPlayer(event.player, new ItemStack(ModItems.itemRecordLOLUDied));
         }
     }
 
