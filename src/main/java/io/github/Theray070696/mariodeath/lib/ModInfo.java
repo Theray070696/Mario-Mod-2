@@ -6,7 +6,7 @@ package io.github.Theray070696.mariodeath.lib;
 public class ModInfo
 {
 
-    public static final String MOD_ID = "mariodeath";
+    public static final String MOD_ID = "mario2";
     public static final String CHANNEL = MOD_ID;
     public static final String MOD_NAME = "Mario Mod 2";
     public static final String MOD_VERSION = "version";
