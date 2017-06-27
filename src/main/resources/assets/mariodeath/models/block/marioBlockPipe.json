@@ -1,8 +1,0 @@
-{
-  "parent": "block/orientable",
-  "textures": {
-    "top": "mariodeath:blocks/marioBlockPipe",
-    "front": "mariodeath:blocks/pipeTop1",
-    "side": "mariodeath:blocks/marioBlockPipe"
-  }
-}
