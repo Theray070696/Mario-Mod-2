@@ -93,21 +93,36 @@ public class WorldGenMario implements IWorldGenerator
             this.runGenerator(this.invisibleBlock, world, random, chunkX, chunkZ, random.nextInt(10), 3, 85);
 
             this.runGenerator(this.noteBlock, world, random, chunkX, chunkZ, random.nextInt(20), 25, 100);
-        } */else if(!world.provider.getDimensionType().getName().equalsIgnoreCase("CompactMachinesWorld") && !world.provider.getDimensionType().getName().contains("Tardis"))
+        } */else if(world.getWorldType().getWorldTypeName().equalsIgnoreCase("atg"))
+        {
+            this.runGenerator(this.questionMarkSMB, world, random, chunkX, chunkZ, random.nextInt(2), 50, 128);
+            this.runGenerator(this.questionMarkUndergroundSMB, world, random, chunkX, chunkZ, random.nextInt(2), 3, 50);
+            this.runGenerator(this.invisibleBlockSMB, world, random, chunkX, chunkZ, random.nextInt(5), 3, 128);
+
+            this.runGenerator(this.questionMarkSMB3, world, random, chunkX, chunkZ, random.nextInt(2), 50, 128);
+            this.runGenerator(this.questionMarkNotRareSMB3, world, random, chunkX, chunkZ, random.nextInt(2), 3, 50);
+            this.runGenerator(this.invisibleBlockSMB3, world, random, chunkX, chunkZ, random.nextInt(5), 3, 128);
+
+            this.runGenerator(this.questionMark, world, random, chunkX, chunkZ, random.nextInt(2), 50, 128);
+            this.runGenerator(this.questionMarkNotRare, world, random, chunkX, chunkZ, random.nextInt(2), 3, 50);
+            this.runGenerator(this.invisibleBlock, world, random, chunkX, chunkZ, random.nextInt(5), 3, 128);
+
+            this.runGenerator(this.noteBlock, world, random, chunkX, chunkZ, random.nextInt(15), 25, 128);
+        } else if(!world.provider.getDimensionType().getName().equalsIgnoreCase("CompactMachinesWorld") && !world.provider.getDimensionType().getName().contains("Tardis"))
         {
             // Overworld or some mod dimension
 
             this.runGenerator(this.questionMarkSMB, world, random, chunkX, chunkZ, random.nextInt(2), 50, 85);
             this.runGenerator(this.questionMarkUndergroundSMB, world, random, chunkX, chunkZ, random.nextInt(2), 3, 45);
-            this.runGenerator(this.invisibleBlockSMB, world, random, chunkX, chunkZ, random.nextInt(6), 3, 85);
+            this.runGenerator(this.invisibleBlockSMB, world, random, chunkX, chunkZ, random.nextInt(5), 3, 85);
 
             this.runGenerator(this.questionMarkSMB3, world, random, chunkX, chunkZ, random.nextInt(2), 50, 85);
             this.runGenerator(this.questionMarkNotRareSMB3, world, random, chunkX, chunkZ, random.nextInt(2), 3, 45);
-            this.runGenerator(this.invisibleBlockSMB3, world, random, chunkX, chunkZ, random.nextInt(6), 3, 85);
+            this.runGenerator(this.invisibleBlockSMB3, world, random, chunkX, chunkZ, random.nextInt(5), 3, 85);
 
             this.runGenerator(this.questionMark, world, random, chunkX, chunkZ, random.nextInt(2), 50, 85);
             this.runGenerator(this.questionMarkNotRare, world, random, chunkX, chunkZ, random.nextInt(2), 3, 45);
-            this.runGenerator(this.invisibleBlock, world, random, chunkX, chunkZ, random.nextInt(6), 3, 85);
+            this.runGenerator(this.invisibleBlock, world, random, chunkX, chunkZ, random.nextInt(5), 3, 85);
 
             this.runGenerator(this.noteBlock, world, random, chunkX, chunkZ, random.nextInt(15), 25, 100);
         }
@@ -172,10 +187,10 @@ public class WorldGenMario implements IWorldGenerator
                 } else if(chance >= 15 && chance < 25)
                 {
                     item = ItemsInQuestionMarks.ITEM_1UP;
-                } else if(chance >= 25 && chance < 45)
+                } else if(chance >= 25 && chance < 40)
                 {
                     item = ItemsInQuestionMarks.ITEM_FIRE_FLOWER;
-                } else if(chance >= 45 && chance < 70)
+                } else if(chance >= 40 && chance < 60)
                 {
                     item = ItemsInQuestionMarks.ITEM_MUSHROOM;
                 } else
@@ -196,10 +211,10 @@ public class WorldGenMario implements IWorldGenerator
                 } else if(chance >= 10 && chance < 20)
                 {
                     item = ItemsInQuestionMarks.ITEM_1UP;
-                } else if(chance >= 20 && chance < 40)
+                } else if(chance >= 20 && chance < 35)
                 {
                     item = ItemsInQuestionMarks.ITEM_FIRE_FLOWER;
-                } else if(chance >= 40 && chance < 65)
+                } else if(chance >= 35 && chance < 55)
                 {
                     item = ItemsInQuestionMarks.ITEM_MUSHROOM;
                 } else
