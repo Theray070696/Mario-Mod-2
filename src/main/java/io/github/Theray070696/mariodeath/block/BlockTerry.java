@@ -33,7 +33,7 @@ public class BlockTerry extends BlockMario
         {
             int randSound = new Random().nextInt(9) + 1;
 
-            SoundHandler.playSoundName("mariodeath:block.terry" + randSound, world, SoundCategory.BLOCKS, blockPos);
+            SoundHandler.playSoundName("mario2:block.terry" + randSound, world, SoundCategory.BLOCKS, blockPos);
         }
 
         return true;

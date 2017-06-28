@@ -1,0 +1,110 @@
+itemGroup.tabMarioBlocks=Super Mario Blocks
+itemGroup.tabMarioItems=Super Mario Items
+
+entity.Goomba.name=Goomba
+entity.Koopa.name=Koopa
+entity.Boo.name=Boo
+entity.BobOmb.name=BobOmb
+entity.BulletBill.name=Bullet Bill
+entity.Cheep-Cheep.name=Cheep-Cheep
+entity.HammerBro.name=Hammer Bro
+entity.Toad.name=Toad
+entity.Bowser.name=Bowser
+entity.Beetle.name=Beetle
+entity.Yoshi.name=Yoshi
+entity.Spiny.name=Spiny
+entity.Lakitu.name=Lakitu
+entity.mario.ShellEntity.name=Shell
+
+tile.mario2:marioBlockPipeBase.name=Pipe Base
+tile.mario2:marioBlockPipe.name=Pipe
+tile.mario2:marioBlockQuestionMark.name=?-Block
+tile.mario2:marioBlockQuestionMarkSMB.name=?-Block
+tile.mario2:marioBlockQuestionMarkUndergroundSMB.name=Underground ?-Block
+tile.mario2:Castle ?-Block.name=Castle ?-Block
+tile.mario2:marioBlockEmptyQuestionMark.name=Empty ?-Block
+tile.mario2:marioBlockEmptyQuestionMarkSMB.name=Empty ?-Block
+tile.mario2:marioBlockEmptyQuestionMarkUndergroundSMB.name=Empty Underground ?-Block
+tile.mario2:Empty Castle ?-Block.name=Empty Castle ?-Block
+tile.mario2:marioBlockBrick.name=Brick Block
+tile.mario2:marioBlockGround.name=Ground Block
+tile.mario2:Decoration Block.name=Decoration Block
+tile.mario2:marioBlockBrickUnderground.name=Underground Brick Block
+tile.mario2:marioBlockGroundUnderground.name=Underground Ground Block
+tile.mario2:marioBlockNoteBlock.name=Note Block
+tile.mario2:Underground Decoration Block.name=Underground Decoration Block
+tile.mario2:Snow Ground Block.name=Snow Ground Block
+tile.mario2:Cloud Block.name=Cloud Block
+tile.mario2:Trampoline.name=Trampoline
+tile.mario2:Underwater Plant.name=Underwater Plant
+tile.mario2:Beanstalk.name=Beanstalk
+tile.mario2:marioBlockGroundUnderwater.name=Underwater Ground Block
+tile.mario2:marioBlockInvisibleBlock.name=Invisible Block
+tile.mario2:marioBlockInvisibleBlockEmpty.name=Empty Invisible Block
+tile.mario2:marioBlockInvisibleBlockSMB.name=Invisible Block
+tile.mario2:marioBlockInvisibleBlockEmptySMB.name=Empty Invisible Block
+tile.mario2:Castle Brick Block.name=Castle Brick Block
+tile.mario2:Castle Wall Block.name=Castle Wall Block
+tile.mario2:Castle Entry Block.name=Castle Entry Block
+
+item.mario2:Flagpole.name=Flagpole
+item.mario2:itemMushroom.name=Mushroom
+item.mario2:item1Up.name=1-Up Mushroom
+item.mario2:itemFireFlower.name=Fire Flower
+item.mario2:itemGalaxyFireFlower.name=Fire Flower
+item.mario2:itemStarMan.name=Starman
+item.mario2:Bob-Omb.name=Bob-Omb
+item.mario2:Green Shell.name=Shell
+item.mario2:Shell Helmet.name=Shell Helmet
+item.mario2:Shell Chestplate.name=Shell Chestplate
+item.mario2:Shell Leggings.name=Shell Leggings
+item.mario2:Shell Boots.name=Shell Boots
+item.mario2:Marios Cap.name=Mario's Cap
+item.mario2:itemCape.name=Mario's Cape
+item.mario2:Marios Jumpsuit.name=Mario's Jumpsuit
+item.mario2:Marios Boots.name=Mario's Boots
+item.mario2:POW Block.name=POW Block
+item.mario2:Goomba Fangs.name=Goomba Fangs
+item.mario2:Ivory.name=Ivory
+item.mario2:Ivory Spade.name=Ivory Spade
+item.mario2:Ivory Hammer.name=Ivory Hammer
+item.mario2:Ivory Pickaxe.name=Ivory Pickaxe
+item.mario2:Ivory Axe.name=Ivory Axe
+item.mario2:Ivory Sword.name=Ivory Sword
+item.mario2:Ivory Hoe.name=Ivory Hoe
+item.mario2:itemCoin.name=Coin
+item.mario2:Pipe Base.name=Pipe Base
+item.mario2:Pipe Entrance.name=Pipe Entrance
+item.mario2:Fireball.name=Fireball
+item.mario2:Fire Spit.name=Fire Spit
+
+item.mario2:itemCoinGreen.name=Green Coin
+item.mario2:itemCoinBlue.name=Blue Coin
+item.mario2:itemCoinRed.name=Red Coin
+item.mario2:itemCoinPurple.name=Dragon Coin
+item.mario2:itemCoinBlack.name=Wither Coin
+
+item.mario2:itemSpiceMan.name=Spiceman
+item.mario2:itemPipeLink.name=Pipe Link
+
+tile.mario2:marioBlockMarioMaker.name=Mario Maker
+tile.mario2:marioBlockGroundSMW.name=Ground Block
+
+tile.mario2:marioBlockQuestionMarkSMB3.name=?-Block
+tile.mario2:marioBlockEmptyQuestionMarkSMB3.name=Empty ?-Block
+tile.mario2:marioBlockInvisibleBlockSMB3.name=Invisible Block
+tile.mario2:marioBlockInvisibleBlockEmptySMB3.name=Empty Invisible Block
+
+item.mario2:records.spiceman.name=Music Disc
+item.mario2:records.smbUnderwater.name=Music Disc
+item.mario2:records.rareDeath1.name=Music Disc
+item.record.mario2:spiceman.desc=Super Spice Bros. 2 - MowtenDoo
+item.record.mario2:smbUnderwater.desc=Super Mario Bros. - Underwater
+item.record.mario2:lolUDied.desc=Lol U Died - Diabolo-ical
+
+item.mario2:errorname=HOW DID YOU MANAGE THIS?! REPORT THIS TO THE MOD AUTHOR!
+
+item.mario2:itemOldSpice.name=Old Spice
+tile.mario2:marioBlockTerryBlock.name=Terry Block
+
+gui.mario2:marioMaker=Mario Maker

@@ -39,7 +39,7 @@ public class GuiMarioMaker extends GuiContainer
      */
     protected void drawGuiContainerForegroundLayer(int p_146979_1_, int p_146979_2_)
     {
-        this.fontRendererObj.drawString(I18n.format("gui.mariodeath:marioMaker"), 28, 6, 4210752);
+        this.fontRendererObj.drawString(I18n.format("gui.mario2:marioMaker"), 28, 6, 4210752);
     }
 
     protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_)

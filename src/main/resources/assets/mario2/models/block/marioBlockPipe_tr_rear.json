@@ -1,0 +1,11 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "mario2:blocks/pipeLL",
+    "up": "mario2:blocks/pipeLL",
+    "east": "mario2:blocks/pipeLL3",
+    "west": "mario2:blocks/pipeLL3",
+    "north": "mario2:blocks/pipeLL3",
+    "south": "mario2:blocks/pipeLL3"
+  }
+}

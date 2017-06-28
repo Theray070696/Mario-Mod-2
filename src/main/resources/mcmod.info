@@ -1,8 +1,8 @@
 [
 {
-  "modid": "mariodeath",
-  "name": "Mario Death",
-  "description": "Game over!",
+  "modid": "mario2",
+  "name": "Mario Mod 2",
+  "description": "Adds a bunch of items and blocks from various Mario games!",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",

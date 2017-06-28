@@ -37,7 +37,7 @@ public class MarioMakerRecipeCategory extends BlankRecipeCategory<IRecipeWrapper
     {
         ResourceLocation location = new ResourceLocation(ModInfo.MOD_ID, "textures/gui/marioMakerGUI.png");
         background = guiHelper.createDrawable(location, 29, 16, width, height);
-        localizedName = I18n.format("gui.mariodeath:marioMaker");
+        localizedName = I18n.format("gui.mario2:marioMaker");
         craftingGridHelper = guiHelper.createCraftingGridHelper(craftInputSlot1, craftOutputSlot);
     }
 

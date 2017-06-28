@@ -1,0 +1,22 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "down": "mario2:blocks/marioBlockGround",
+      "up": "mario2:blocks/marioMaker_top",
+      "east": "mario2:blocks/marioMaker_side",
+      "west": "mario2:blocks/marioMaker_side",
+      "north": "mario2:blocks/marioMaker_side",
+      "south": "mario2:blocks/marioMaker_side"
+    },
+    "ambientocclusion": false
+  },
+  "variants": {
+    "normal": {
+      "model": "cube"
+    },
+    "inventory": {
+      "model": "cube"
+    }
+  }
+}
