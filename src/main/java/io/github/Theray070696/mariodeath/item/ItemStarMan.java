@@ -39,11 +39,6 @@ public class ItemStarMan extends ItemMario
             player.addPotionEffect(new PotionEffect(PotionEffectsMario.potionStarman, 258, 10));
             player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 258, 5));
 
-            if(player.getDisplayName().getUnformattedComponentText().equalsIgnoreCase("JasterMK3"))
-            {
-                world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler.jasterStarMan, SoundCategory.PLAYERS, 1.0F, 1.0F);
-            }
-
             world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler.starMan, SoundCategory.PLAYERS, 1.0F, 1.0F);
 
             itemStack.stackSize--;

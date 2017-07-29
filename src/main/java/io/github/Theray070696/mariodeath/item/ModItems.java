@@ -22,17 +22,12 @@ public class ModItems
     public static ItemRay itemCape;
     public static ItemRay itemFireFlower;
     public static ItemRay itemStarMan;
-    public static ItemRay itemSpiceMan;
 
-    public static Item itemRecordSuperSpiceBros;
     public static Item itemRecordSMBUnderwater;
-    public static Item itemRecordLOLUDied;
 
     public static ItemRay itemGalaxyFireFlower;
 
     public static ItemRay itemCoinCurrency;
-
-    public static ItemRay itemOldSpice;
 
     public static ItemRay itemPipeLink;
 
@@ -46,15 +41,13 @@ public class ModItems
         itemCape = RayItemRegistry.registerItem(new ItemCape());
         itemFireFlower = RayItemRegistry.registerItem(new ItemFireFlower());
         itemStarMan = RayItemRegistry.registerItem(new ItemStarMan());
-        itemSpiceMan = RayItemRegistry.registerItem(new ItemSpiceMan());
-        itemOldSpice = RayItemRegistry.registerItem(new ItemOldSpice());
         itemPipeLink = RayItemRegistry.registerItem(new ItemPipeLink());
 
         itemCoinCurrency = RayItemRegistry.registerItem(new ItemCoinCurrency());
 
-        itemRecordSuperSpiceBros = RayItemRegistry.registerItem(new ItemRayRecord(ModInfo.MOD_ID, "spiceman", 1121, SoundHandler.recordSpiceman).setUnlocalizedName("records.spiceman"));
+        //itemRecordSuperSpiceBros = RayItemRegistry.registerItem(new ItemRayRecord(ModInfo.MOD_ID, "spiceman", 1121, SoundHandler.recordSpiceman).setUnlocalizedName("records.spiceman"));
         itemRecordSMBUnderwater = RayItemRegistry.registerItem(new ItemRayRecord(ModInfo.MOD_ID, "smbUnderwater", 513, SoundHandler.recordUnderwaterSMB).setUnlocalizedName("records.smbUnderwater"));
-        itemRecordLOLUDied = RayItemRegistry.registerItem(new ItemRayRecord(ModInfo.MOD_ID, "lolUDied", 1619, SoundHandler.rareDeath1).setUnlocalizedName("records.rareDeath1"));
+        //itemRecordLOLUDied = RayItemRegistry.registerItem(new ItemRayRecord(ModInfo.MOD_ID, "lolUDied", 1619, SoundHandler.rareDeath1).setUnlocalizedName("records.rareDeath1"));
 
         if(ConfigHandler.debugModeEnabled)
         {
@@ -65,9 +58,7 @@ public class ModItems
         OreDictionary.registerOre("itemMarioCoin", new ItemStack(itemMarioCoin, 1, 1));
         OreDictionary.registerOre("itemMarioCoin", new ItemStack(itemMarioCoin, 1, 2));
 
-        OreDictionary.registerOre("record", itemRecordSuperSpiceBros);
         OreDictionary.registerOre("record", itemRecordSMBUnderwater);
-        OreDictionary.registerOre("record", itemRecordLOLUDied);
 
         LogHelper.info("Item Loading Complete");
     }

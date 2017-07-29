@@ -12,7 +12,7 @@ public class LogHelper
 
     public static void log(Level logLevel, Object object)
     {
-        FMLLog.log(ModInfo.MOD_NAME, logLevel, "[Mario Death] " + String.valueOf(object));
+        FMLLog.log(ModInfo.MOD_NAME, logLevel, "[" + ModInfo.MOD_NAME + "] " + String.valueOf(object));
     }
 
     public static void all(Object object)

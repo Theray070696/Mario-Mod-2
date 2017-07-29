@@ -58,9 +58,9 @@ public class CraftingHandler
         addShapeless(new ItemStack(ModBlocks.blockEmptyInvisibleBlockSMB3), new ItemStack(ModBlocks.blockEmptyInvisibleBlock), new ItemStack(ModItems.itemMarioCoin, 1, 2));
         addShapeless(new ItemStack(ModBlocks.blockEmptyInvisibleBlockSMB3), new ItemStack(ModBlocks.blockEmptyInvisibleBlockSMB), new ItemStack(ModItems.itemMarioCoin, 1, 2));
 
-        addShaped(new ItemStack(ModItems.itemOldSpice), "ccc", "csc", "ccc", 'c', new ItemStack(ModItems.itemCoinCurrency, 1, 2), 's', ModItems.itemStarMan);
-        addShaped(new ItemStack(ModBlocks.blockTerry), "ccc", "csc", "ccc", 'c', new ItemStack(ModItems.itemCoinCurrency, 1, 1), 's', ModItems.itemOldSpice);
-        addShaped(new ItemStack(ModItems.itemSpiceMan), "ccc", "csc", "ccc", 'c', new ItemStack(ModItems.itemCoinCurrency, 1, 3), 's', ModItems.itemOldSpice);
+        //addShaped(new ItemStack(ModItems.itemOldSpice), "ccc", "csc", "ccc", 'c', new ItemStack(ModItems.itemCoinCurrency, 1, 2), 's', ModItems.itemStarMan);
+        //addShaped(new ItemStack(ModBlocks.blockTerry), "ccc", "csc", "ccc", 'c', new ItemStack(ModItems.itemCoinCurrency, 1, 1), 's', ModItems.itemOldSpice);
+        //addShaped(new ItemStack(ModItems.itemSpiceMan), "ccc", "csc", "ccc", 'c', new ItemStack(ModItems.itemCoinCurrency, 1, 3), 's', ModItems.itemOldSpice);
     }
 
     public static void initSmeltingRecipes()

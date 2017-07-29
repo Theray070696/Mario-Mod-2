@@ -43,69 +43,15 @@ import java.util.Random;
 @SuppressWarnings("unused")
 public class EventHandler
 {
-    // Yes, this is sloppy. No, I couldn't think of a better way to do it for now
-    private List<String> playersToGiveRecordTo = new ArrayList<String>();
-
     @SubscribeEvent
     public void onEntityKilled(LivingDeathEvent event)
     {
         if(event.getEntityLiving() != null && event.getEntityLiving() instanceof EntityPlayerMP)
         {
             EntityPlayerMP entityPlayer = (EntityPlayerMP) event.getEntityLiving();
-
-            if(entityPlayer.getStatFile().readStat(StatList.DEATHS) != 0 && entityPlayer.getStatFile().readStat(StatList.DEATHS) % 50 == 0)
-            {
-                entityPlayer.worldObj.playSound((EntityPlayer) null, entityPlayer.getPosition(), SoundHandler.fiftyDeaths, SoundCategory.PLAYERS, 1.0f, 1.0f);
-                return;
-            }
-
-            String playerName = entityPlayer.getName();
             Random rand = new Random();
-            int rare = rand.nextInt(100);
 
-            if(rare < 5)
-            {
-                entityPlayer.worldObj.playSound((EntityPlayer) null, entityPlayer.getPosition(), SoundHandler.rareDeath1, SoundCategory.PLAYERS, 1.0f, 1.0f);
-
-                // Set the player up to get the record on respawn
-                playersToGiveRecordTo.add(playerName);
-                return;
-            }
-
-            int soundID;
-
-            if(playerName.equalsIgnoreCase("JasterMK3"))
-            {
-                if(rare < 25)
-                {
-                    soundID = rand.nextInt(2) + 1;
-
-                    SoundHandler.playSoundName("mario2:player.jasterDeath" + soundID, entityPlayer.worldObj, SoundCategory.PLAYERS, entityPlayer.getPosition());
-                    return;
-                }
-            } else if(playerName.equalsIgnoreCase("Theray070696"))
-            {
-                if(rare < 25)
-                {
-                    soundID = rand.nextInt(2) + 1;
-
-                    SoundHandler.playSoundName("mario2:player.rayDeath" + soundID, entityPlayer.worldObj, SoundCategory.PLAYERS, entityPlayer.getPosition());
-                    return;
-                }
-            } else if(playerName.equalsIgnoreCase("Ghostkirby0319"))
-            {
-                if(rare < 25)
-                {
-                    soundID = /*rand.nextInt(2) +*/ 1;
-
-                    SoundHandler.playSoundName("mario2:player.ghostDeath" + soundID, entityPlayer.worldObj, SoundCategory.PLAYERS, entityPlayer.getPosition());
-                    return;
-                }
-            }
-
-            soundID = rand.nextInt(5) + 1;
-
-            SoundHandler.playSoundName("mario2:player.death" + soundID, entityPlayer.worldObj, SoundCategory.PLAYERS, entityPlayer.getPosition());
+            SoundHandler.playSoundName("mario2:player.death" + (rand.nextInt(5) + 1), entityPlayer.worldObj, SoundCategory.PLAYERS, entityPlayer.getPosition());
         }
     }
 
@@ -114,20 +60,8 @@ public class EventHandler
     {
         EntityPlayerMP player = (EntityPlayerMP) event.player;
 
-        if(player.getName().equalsIgnoreCase("Theray070696"))
-        {
-            // Play Terry Crews "IT'S ME!" sound to everyone.
-            RayCoreAPI.playSoundToAll("mario2:player.rayJoin");
-        } else if(player.getName().equalsIgnoreCase("JasterMK3"))
-        {
-            int randInt = new Random().nextInt(5) + 1;
-
-            RayCoreAPI.playSoundToAll("mario2:player.jasterJoin" + randInt);
-        } else
-        {
-            // Play Mario "It's a me!" sound to everyone.
-            RayCoreAPI.playSoundToAll("mario2:player.join");
-        }
+        // Play Mario "It's a me!" sound to everyone.
+        RayCoreAPI.playSoundToAll("mario2:player.join");
 
         player.getCapability(CoinCountProvider.COIN_COUNT, null).sync(player);
     }
@@ -143,16 +77,6 @@ public class EventHandler
     public void respawnEvent(PlayerEvent.PlayerRespawnEvent event)
     {
         event.player.getCapability(CoinCountProvider.COIN_COUNT, null).sync(event.player);
-
-        // Check if the player should get the record
-        if(playersToGiveRecordTo.contains(event.player.getName()))
-        {
-            // Remove them from the list
-            playersToGiveRecordTo.remove(event.player.getName());
-
-            // Give the item
-            ItemHandlerHelper.giveItemToPlayer(event.player, new ItemStack(ModItems.itemRecordLOLUDied));
-        }
     }
 
     @SubscribeEvent
@@ -164,20 +88,8 @@ public class EventHandler
     @SubscribeEvent
     public void playerLeaveEvent(PlayerEvent.PlayerLoggedOutEvent event)
     {
-        if(event.player.getName().equalsIgnoreCase("Theray070696"))
-        {
-            // Play Terry Crews "GOODBYE!" sound to everyone.
-            RayCoreAPI.playSoundToAll("mario2:player.rayLeave");
-        } else if(event.player.getName().equalsIgnoreCase("JasterMK3"))
-        {
-            int randInt = new Random().nextInt(2) + 1;
-
-            RayCoreAPI.playSoundToAll("mario2:player.jasterLeave" + randInt);
-        } else
-        {
-            // Play Mario "See you next time!" sound to everyone.
-            RayCoreAPI.playSoundToAll("mario2:player.leave");
-        }
+        // Play Mario "See you next time!" sound to everyone.
+        RayCoreAPI.playSoundToAll("mario2:player.leave");
     }
 
     @SubscribeEvent
@@ -187,16 +99,9 @@ public class EventHandler
         {
             EntityPlayer player = (EntityPlayer) event.getEntityLiving();
 
-            if(player.isPotionActive(PotionEffectsMario.potionStarman) || player.isPotionActive(PotionEffectsMario.potionSpiceman))
+            if(player.isPotionActive(PotionEffectsMario.potionStarman))
             {
                 event.setCanceled(true);
-                if(player.isPotionActive(PotionEffectsMario.potionSpiceman))
-                {
-                    // Play "BLOCK!" sound effect
-                    int soundID = new Random().nextInt(12) + 1;
-
-                    SoundHandler.playSoundName("mario2:player.spicemanBlock" + soundID, player.worldObj, SoundCategory.PLAYERS, player.getPosition());
-                }
             }
         }
     }
@@ -212,8 +117,8 @@ public class EventHandler
                 if(main != null)
                 {
                     main.addEntry(new LootEntryItem(ModItems.itemRecordSMBUnderwater, 15, 1, new LootFunction[0], new LootCondition[0], "mario2:records.smbUnderwater"));
-                    main.addEntry(new LootEntryItem(ModItems.itemRecordSuperSpiceBros, 15, 1, new LootFunction[0], new LootCondition[0], "mario2:records.spiceman"));
-                    main.addEntry(new LootEntryItem(ModItems.itemRecordLOLUDied, 15, 1, new LootFunction[0], new LootCondition[0], "mario2:records.lolUDied"));
+                    //main.addEntry(new LootEntryItem(ModItems.itemRecordSuperSpiceBros, 15, 1, new LootFunction[0], new LootCondition[0], "mario2:records.spiceman"));
+                    //main.addEntry(new LootEntryItem(ModItems.itemRecordLOLUDied, 15, 1, new LootFunction[0], new LootCondition[0], "mario2:records.lolUDied"));
                 }
             }
         }

@@ -10,14 +10,11 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class PotionEffectsMario
 {
     public static Potion potionStarman = new PotionMario(false, 16776960).setPotionName("effect.starman").setBeneficial();
-    public static Potion potionSpiceman = new PotionMario(false, 16711680).setPotionName("effect.spiceman").setBeneficial();
 
     public static void init()
     {
-        potionSpiceman.setRegistryName(ModInfo.MOD_ID, "potionSpiceman");
         potionStarman.setRegistryName(ModInfo.MOD_ID, "potionStarman");
 
-        GameRegistry.register(potionSpiceman);
         GameRegistry.register(potionStarman);
     }
 }

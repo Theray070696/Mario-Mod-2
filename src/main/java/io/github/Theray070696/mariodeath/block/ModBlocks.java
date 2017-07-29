@@ -45,8 +45,6 @@ public class ModBlocks
     public static BlockMario blockPipeBase;
     public static BlockPipe blockPipe;
 
-    public static BlockMario blockTerry;
-
     public static void initBlocks()
     {
         LogHelper.info("Loading Blocks");
@@ -79,8 +77,6 @@ public class ModBlocks
         blockQuestionMarkUndergroundSMB = RayBlockRegistry.register(new BlockQuestionMarkUndergroundSMB());
 
         blockGroundUnderwater = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockGroundUnderwater"));
-
-        blockTerry = RayBlockRegistry.register(new BlockTerry());
 
         blockPipeBase = RayBlockRegistry.register(new BlockPipeBase());
         blockPipe = RayBlockRegistry.register(new BlockPipe());
