@@ -31,12 +31,60 @@
             "mario2:player/death4"
         ]
     },
-    "player.death5":
+    "player.jasterDeath1":
     {
         "category": "neutral",
         "sounds":
         [
-            "mario2:player/death5"
+            "mario2:player/jasterDeath1"
+        ]
+    },
+    "player.jasterDeath2":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "mario2:player/jasterDeath2"
+        ]
+    },
+    "player.rayDeath1":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "mario2:player/rayDeath1"
+        ]
+    },
+    "player.rayDeath2":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "mario2:player/rayDeath2"
+        ]
+    },
+    "player.rayDeath3":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "mario2:player/rayDeath3"
+        ]
+    },
+    "player.rayDeath4":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "mario2:player/rayDeath4"
+        ]
+    },
+    "player.rayDeath5":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "mario2:player/rayDeath5"
         ]
     },
     "player.diamonds":
@@ -55,6 +103,14 @@
                 "name": "mario2:item/starman",
                 "stream": true
             }
+        ]
+    },
+    "item.jasterStarman":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "mario2:item/jasterStarman"
         ]
     },
     "item.fireball":
@@ -135,6 +191,78 @@
         "sounds":
         [
             "mario2:player/leave"
+        ]
+    },
+    "player.rayJoin":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "mario2:player/rayJoin"
+        ]
+    },
+    "player.rayLeave":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "mario2:player/rayLeave"
+        ]
+    },
+    "player.jasterJoin1":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "mario2:player/jasterJoin1"
+        ]
+    },
+    "player.jasterJoin2":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "mario2:player/jasterJoin2"
+        ]
+    },
+    "player.jasterJoin3":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "mario2:player/jasterJoin3"
+        ]
+    },
+    "player.jasterJoin4":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "mario2:player/jasterJoin4"
+        ]
+    },
+    "player.jasterJoin5":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "mario2:player/jasterJoin5"
+        ]
+    },
+    "player.jasterLeave1":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "mario2:player/jasterLeave"
+        ]
+    },
+    "player.jasterLeave2":
+    {
+        "category": "neutral",
+        "sounds":
+        [
+            "mario2:player/jasterLeave2"
         ]
     },
     "block.note":

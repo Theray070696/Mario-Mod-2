@@ -45,9 +45,7 @@ public class ModItems
 
         itemCoinCurrency = RayItemRegistry.registerItem(new ItemCoinCurrency());
 
-        //itemRecordSuperSpiceBros = RayItemRegistry.registerItem(new ItemRayRecord(ModInfo.MOD_ID, "spiceman", 1121, SoundHandler.recordSpiceman).setUnlocalizedName("records.spiceman"));
         itemRecordSMBUnderwater = RayItemRegistry.registerItem(new ItemRayRecord(ModInfo.MOD_ID, "smbUnderwater", 513, SoundHandler.recordUnderwaterSMB).setUnlocalizedName("records.smbUnderwater"));
-        //itemRecordLOLUDied = RayItemRegistry.registerItem(new ItemRayRecord(ModInfo.MOD_ID, "lolUDied", 1619, SoundHandler.rareDeath1).setUnlocalizedName("records.rareDeath1"));
 
         if(ConfigHandler.debugModeEnabled)
         {

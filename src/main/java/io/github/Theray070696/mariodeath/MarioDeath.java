@@ -12,6 +12,7 @@ import io.github.Theray070696.mariodeath.lib.ModInfo;
 import io.github.Theray070696.mariodeath.network.PacketGetCoins;
 import io.github.Theray070696.mariodeath.network.PacketSyncCoinCounter;
 import io.github.Theray070696.mariodeath.plugins.PluginHandler;
+import io.github.Theray070696.mariodeath.potion.PotionEffectsMario;
 import io.github.Theray070696.mariodeath.proxy.IProxy;
 import io.github.Theray070696.mariodeath.util.LogHelper;
 import io.github.Theray070696.mariodeath.world.WorldGenMario;
@@ -25,7 +26,6 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -109,6 +109,7 @@ public class MarioDeath
 
         ModBlocks.initBlocks();
         ModItems.initItems();
+        PotionEffectsMario.init();
 
         proxy.preInit(event);
 

@@ -84,7 +84,6 @@ item.mario2:itemCoinRed.name=Red Coin
 item.mario2:itemCoinPurple.name=Dragon Coin
 item.mario2:itemCoinBlack.name=Wither Coin
 
-item.mario2:itemSpiceMan.name=Spiceman
 item.mario2:itemPipeLink.name=Pipe Link
 
 tile.mario2:marioBlockMarioMaker.name=Mario Maker
@@ -95,16 +94,9 @@ tile.mario2:marioBlockEmptyQuestionMarkSMB3.name=Empty ?-Block
 tile.mario2:marioBlockInvisibleBlockSMB3.name=Invisible Block
 tile.mario2:marioBlockInvisibleBlockEmptySMB3.name=Empty Invisible Block
 
-item.mario2:records.spiceman.name=Music Disc
 item.mario2:records.smbUnderwater.name=Music Disc
-item.mario2:records.rareDeath1.name=Music Disc
-item.record.mario2:spiceman.desc=Super Spice Bros. 2 - MowtenDoo
 item.record.mario2:smbUnderwater.desc=Super Mario Bros. - Underwater
-item.record.mario2:lolUDied.desc=Lol U Died - Diabolo-ical
 
 item.mario2:errorname=HOW DID YOU MANAGE THIS?! REPORT THIS TO THE MOD AUTHOR!
-
-item.mario2:itemOldSpice.name=Old Spice
-tile.mario2:marioBlockTerryBlock.name=Terry Block
 
 gui.mario2:marioMaker=Mario Maker
