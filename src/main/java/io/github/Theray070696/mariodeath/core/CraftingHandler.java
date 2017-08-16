@@ -29,6 +29,7 @@ public class CraftingHandler
 
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockGround, 8), "sss", "sss", "sss", 's', "stone"));
         addShaped(new ItemStack(ModBlocks.blockMarioBrick, 16), "bb", "bb", 'b', new ItemStack(Blocks.BRICK_BLOCK));
+        addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockDecoration, 4), "www", "www", "www", 'w', "plankWood"));
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockNoteBlock, 8), " n ", "ncn", " n ", 'n', new ItemStack(Blocks.NOTEBLOCK), 'c', "itemMarioCoin"));
         addShaped(new ItemStack(ModBlocks.blockGroundUnderwater), "ggg", "gwg", "ggg", 'g', new ItemStack(ModBlocks.blockGround), 'w', Items.WATER_BUCKET);
         addShapeless(new ItemStack(ModBlocks.blockGroundSnow), new ItemStack(ModBlocks.blockGround), new ItemStack(Items.SNOWBALL));
@@ -65,6 +66,7 @@ public class CraftingHandler
     {
         GameRegistry.addSmelting(new ItemStack(ModBlocks.blockGround), new ItemStack(ModBlocks.blockGroundUnderground), 0.3f);
         GameRegistry.addSmelting(new ItemStack(ModBlocks.blockMarioBrick), new ItemStack(ModBlocks.blockMarioBrickUnderground), 0.3f);
+        GameRegistry.addSmelting(new ItemStack(ModBlocks.blockDecoration), new ItemStack(ModBlocks.blockUndergroundDecoration), 0.3f);
     }
 
     private static void addShaped(ItemStack output, Object ... inputs)
