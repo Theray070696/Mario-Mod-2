@@ -31,18 +31,20 @@ public class CraftingHandler
         addShaped(new ItemStack(ModBlocks.blockMarioBrick, 16), "bb", "bb", 'b', new ItemStack(Blocks.BRICK_BLOCK));
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockNoteBlock, 8), " n ", "ncn", " n ", 'n', new ItemStack(Blocks.NOTEBLOCK), 'c', "itemMarioCoin"));
         addShaped(new ItemStack(ModBlocks.blockGroundUnderwater), "ggg", "gwg", "ggg", 'g', new ItemStack(ModBlocks.blockGround), 'w', Items.WATER_BUCKET);
+        addShapeless(new ItemStack(ModBlocks.blockGroundSnow), new ItemStack(ModBlocks.blockGround), new ItemStack(Items.SNOWBALL));
 
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockEmptyQuestionMarkSMB, 4), " g ", "gbg", " g ", 'g', "ingotGold", 'b', new ItemStack(ModBlocks.blockMarioBrick)));
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockEmptyInvisibleBlockSMB, 4), "bgb", "gbg", "bgb", 'g', "ingotGold", 'b', "blockGlass"));
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockEmptyQuestionMarkUndergroundSMB, 4), " g ", "gbg", " g ", 'g', "ingotGold", 'b', new ItemStack(ModBlocks.blockMarioBrickUnderground)));
 
-        addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModBlocks.blockGroundSMW), new ItemStack(ModBlocks.blockGround), new ItemStack(ModItems.itemMarioCoin, 1, 1)));
-        addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModBlocks.blockGround), new ItemStack(ModBlocks.blockGroundSMW), new ItemStack(ModItems.itemMarioCoin)));
-
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModItems.itemPipeLink), " p", "s ", 'p', new ItemStack(ModBlocks.blockPipe), 's', "stickWood"));
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockPipe), "i i", "iei", "iii", 'i', "ingotIron", 'e', "enderpearl"));
 
         // Block converting
+
+        addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModBlocks.blockGroundSMW), new ItemStack(ModBlocks.blockGround), new ItemStack(ModItems.itemMarioCoin, 1, 1)));
+        addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModBlocks.blockGround), new ItemStack(ModBlocks.blockGroundSMW), new ItemStack(ModItems.itemMarioCoin)));
+
         addShapeless(new ItemStack(ModBlocks.blockEmptyQuestionMarkSMB), new ItemStack(ModBlocks.blockEmptyQuestionMark), new ItemStack(ModItems.itemMarioCoin));
         addShapeless(new ItemStack(ModBlocks.blockEmptyQuestionMarkSMB), new ItemStack(ModBlocks.blockEmptyQuestionMarkSMB3), new ItemStack(ModItems.itemMarioCoin));
         addShapeless(new ItemStack(ModBlocks.blockEmptyInvisibleBlockSMB), new ItemStack(ModBlocks.blockEmptyInvisibleBlock), new ItemStack(ModItems.itemMarioCoin));
