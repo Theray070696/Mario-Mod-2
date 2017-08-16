@@ -35,20 +35,20 @@ public class ItemCape extends ItemMario implements IBauble
     @Override
     public void onUpdate(ItemStack stack, World world, Entity entity, int p_77663_4_, boolean p_77663_5_)
     {
-        if(!world.isRemote)
+        if(!world.isRemote) // If we're on the server side...
         {
-            if(entity != null && entity instanceof EntityPlayer && !(entity instanceof FakePlayer) && entity.motionY < 0.0f)
+            if(entity != null && entity instanceof EntityPlayer && !(entity instanceof FakePlayer) && entity.motionY < 0.0f) // If the entity is not null, is a player, is not a fake player, and is falling...
             {
-                EntityPlayer player = (EntityPlayer) entity;
+                EntityPlayer player = (EntityPlayer) entity; // Save the player entity.
 
-                for(int i = 0; i < 9; i++)
+                for(int i = 0; i < 9; i++) // Loop from one to nine.
                 {
-                    ItemStack itemStack = player.inventory.mainInventory[i];
+                    ItemStack itemStack = player.inventory.mainInventory[i]; // Get the item in this hotbar slot.
 
-                    if(itemStack != null && itemStack.isItemEqual(stack))
+                    if(itemStack != null && itemStack.isItemEqual(stack)) // If it's not null and is a cape...
                     {
-                        player.fallDistance = 0.0F;
-                        return;
+                        player.fallDistance = 0.0F; // Cancel fall damage.
+                        return; // Exit out of the function.
                     }
                 }
             }
@@ -58,11 +58,11 @@ public class ItemCape extends ItemMario implements IBauble
     @Override
     public ActionResult<ItemStack> onItemRightClick(@Nullable ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
     {
-        if(!world.isRemote && itemStack != null && player != null && !(player instanceof FakePlayer))
+        if(!world.isRemote && itemStack != null && player != null && !(player instanceof FakePlayer)) // If we're on the server side, the ItemStack is not null, the player is not null, and the player is not a fake player...
         {
-            player.fallDistance = 0.0F;
+            player.fallDistance = 0.0F; // Cancel fall damage.
 
-            world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler.cape, SoundCategory.PLAYERS, 1.0F, 1.0F);
+            world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler.cape, SoundCategory.PLAYERS, 1.0F, 1.0F); // Play a sound.
         }
 
         return new ActionResult<>(EnumActionResult.PASS, itemStack);
@@ -74,7 +74,7 @@ public class ItemCape extends ItemMario implements IBauble
     {
         super.addInformation(itemStack, player, list, advanced);
 
-        list.add("Negates fall damage");
+        list.add("Negates fall damage"); // Add helpful tooltip.
     }
 
     @Override
@@ -86,9 +86,9 @@ public class ItemCape extends ItemMario implements IBauble
     @Override
     public void onWornTick(ItemStack itemStack, EntityLivingBase player)
     {
-        if(itemStack != null && player != null && !(player instanceof FakePlayer) && player.motionY < 0.0f)
+        if(itemStack != null && player != null && !(player instanceof FakePlayer) && player.motionY < 0.0f) // If the ItemStack is not null, the player is not null, and the player is not a fake player...
         {
-            player.fallDistance = 0.0F;
+            player.fallDistance = 0.0F; // Cancel fall damage.
         }
     }
 

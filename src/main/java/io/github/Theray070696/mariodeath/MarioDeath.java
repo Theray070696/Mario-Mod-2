@@ -19,6 +19,8 @@ import io.github.Theray070696.mariodeath.world.WorldGenMario;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.Mod;
@@ -110,6 +112,8 @@ public class MarioDeath
         ModBlocks.initBlocks();
         ModItems.initItems();
         PotionEffectsMario.init();
+		
+		LootTableList.register(new ResourceLocation(ModInfo.MOD_ID, "inject/disks"));
 
         proxy.preInit(event);
 
@@ -143,6 +147,7 @@ public class MarioDeath
         LogHelper.info("Registering World Generation");
         GameRegistry.registerWorldGenerator(new WorldGenMario(), 0);
 
+		// These two will come back as soon an I can make them interesting and not just "Overworld with Mario blocks".
         //DimensionManager.registerDimension(ConfigHandler.marioDimensionID, DimensionType.register("Marios World", "_mario", ConfigHandler.marioDimensionID, WorldProviderMario.class, false));
         //ModBiomes.registerWithBiomeDictionary();
         LogHelper.info("World Generation Registered");
