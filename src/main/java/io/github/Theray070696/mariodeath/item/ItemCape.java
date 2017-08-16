@@ -41,7 +41,7 @@ public class ItemCape extends ItemMario implements IBauble
             {
                 EntityPlayer player = (EntityPlayer) entity; // Save the player entity.
 
-                for(int i = 0; i < 9; i++) // Loop from one to nine.
+                for(int i = 0; i < 9; i++) // Loop from zero to nine.
                 {
                     ItemStack itemStack = player.inventory.mainInventory[i]; // Get the item in this hotbar slot.
 
