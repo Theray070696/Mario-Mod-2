@@ -20,13 +20,7 @@ public class BlockInvisibleBlock extends BlockQuestionMarkBase implements SMWQBl
     @Override
     public boolean renderAsNormalBlock()
     {
-        if(ConfigHandler.debugModeEnabled)
-        {
-            return true;
-        } else
-        {
-            return false;
-        }
+        return false;
     }
 
     @Override
@@ -39,26 +33,14 @@ public class BlockInvisibleBlock extends BlockQuestionMarkBase implements SMWQBl
     @Override
     public boolean isOpaqueCube()
     {
-        if(ConfigHandler.debugModeEnabled)
-        {
-            return true;
-        } else
-        {
-            return false;
-        }
+        return false;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockAccess p_149646_1_, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_)
     {
-        if(ConfigHandler.debugModeEnabled)
-        {
-            return true;
-        } else
-        {
-            return false;
-        }
+        return false;
     }
 
     @Override
