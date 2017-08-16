@@ -43,3 +43,5 @@ options.txt
 /design
 #photoshop
 /*.psd
+#jar files
+/*.jar
