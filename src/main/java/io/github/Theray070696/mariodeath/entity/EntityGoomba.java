@@ -22,7 +22,7 @@ public class EntityGoomba extends EntityMob
     public EntityGoomba(World world)
     {
         super(world);
-        this.setSize(1.0F, 1.0F);
+        this.setSize(0.9F, 0.8F);
     }
 
     protected void initEntityAI()
@@ -44,9 +44,9 @@ public class EntityGoomba extends EntityMob
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(15.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3D);
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.4D);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
     }
 
     protected SoundEvent getDeathSound()
@@ -54,9 +54,8 @@ public class EntityGoomba extends EntityMob
         return SoundHandler.goombaDeath;
     }
 
-    public float getEyeHeight()
-    {
-        return 0.5F;
+    protected float getSoundVolume() {
+        return 0.4F;
     }
 
     public void onDeath(DamageSource cause)

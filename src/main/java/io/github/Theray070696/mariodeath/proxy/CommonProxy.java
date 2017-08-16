@@ -22,8 +22,8 @@ public abstract class CommonProxy implements IProxy
     @Override
     public void preInit(FMLPreInitializationEvent event)
     {
-        EntityRegistry.registerModEntity(EntityGoomba.class, ModInfo.MOD_ID + ":goomba", 0, MarioDeath.INSTANCE, 64, 1, true);
-        EntityRegistry.registerModEntity(EntityKoopa.class, ModInfo.MOD_ID + ":koopa", 1, MarioDeath.INSTANCE, 64, 1, true);
+        EntityRegistry.registerModEntity(EntityGoomba.class, ModInfo.MOD_ID + ":goomba", 0, MarioDeath.INSTANCE, 128, 1, false);
+        EntityRegistry.registerModEntity(EntityKoopa.class, ModInfo.MOD_ID + ":koopa", 1, MarioDeath.INSTANCE, 128, 1, false);
 
         List<BiomeManager.BiomeEntry> biomeEntries = new ArrayList<BiomeManager.BiomeEntry>();
         biomeEntries.addAll(BiomeManager.getBiomes(BiomeManager.BiomeType.COOL));
