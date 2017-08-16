@@ -10,6 +10,7 @@ import java.util.List;
 
 /**
  * Created by Theray070696 on 4/13/2017.
+ * Code from vanilla.
  */
 public class ShapelessRecipeMario implements IMarioRecipe
 {
@@ -33,7 +34,7 @@ public class ShapelessRecipeMario implements IMarioRecipe
     {
         ItemStack[] aitemstack = new ItemStack[inv.getSizeInventory()];
 
-        for (int i = 0; i < aitemstack.length; ++i)
+        for(int i = 0; i < aitemstack.length; ++i)
         {
             ItemStack itemstack = inv.getStackInSlot(i);
             aitemstack[i] = net.minecraftforge.common.ForgeHooks.getContainerItem(itemstack);
@@ -49,19 +50,19 @@ public class ShapelessRecipeMario implements IMarioRecipe
     {
         List<ItemStack> list = Lists.newArrayList(this.recipeItems);
 
-        for (int i = 0; i < inv.getHeight(); ++i)
+        for(int i = 0; i < inv.getHeight(); ++i)
         {
-            for (int j = 0; j < inv.getWidth(); ++j)
+            for(int j = 0; j < inv.getWidth(); ++j)
             {
                 ItemStack itemstack = inv.getStackInRowAndColumn(j, i);
 
-                if (itemstack != null)
+                if(itemstack != null)
                 {
                     boolean flag = false;
 
-                    for (ItemStack itemstack1 : list)
+                    for(ItemStack itemstack1 : list)
                     {
-                        if (itemstack.getItem() == itemstack1.getItem() && (itemstack1.getMetadata() == 32767 || itemstack.getMetadata() == itemstack1.getMetadata()))
+                        if(itemstack.getItem() == itemstack1.getItem() && (itemstack1.getMetadata() == 32767 || itemstack.getMetadata() == itemstack1.getMetadata()))
                         {
                             flag = true;
                             list.remove(itemstack1);
@@ -69,7 +70,7 @@ public class ShapelessRecipeMario implements IMarioRecipe
                         }
                     }
 
-                    if (!flag)
+                    if(!flag)
                     {
                         return false;
                     }
