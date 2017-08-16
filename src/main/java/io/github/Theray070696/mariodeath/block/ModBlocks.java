@@ -36,8 +36,10 @@ public class ModBlocks
     
     public static Block blockGround;
     public static Block blockMarioBrick;
+    public static Block blockDecoration;
     public static Block blockGroundUnderground;
     public static Block blockMarioBrickUnderground;
+    public static Block blockUndergroundDecoration;
     public static Block blockGroundUnderwater;
     public static Block blockGroundSnow;
 
@@ -54,6 +56,7 @@ public class ModBlocks
 
         blockGround = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockGround"));
         blockMarioBrick = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockBrick"));
+        blockDecoration = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockDecoration"));
         blockNoteBlock = RayBlockRegistry.register(new BlockNoteBlock());
 
         blockGroundSMW = RayBlockRegistry.register(new BlockMarioConnectedTexture(Material.GRASS).setUnlocalizedName("marioBlockGroundSMW"));
@@ -74,6 +77,7 @@ public class ModBlocks
 
         blockGroundUnderground = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockGroundUnderground"));
         blockMarioBrickUnderground = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockBrickUnderground"));
+        blockUndergroundDecoration = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockUndergroundDecoration"));
         blockEmptyQuestionMarkUndergroundSMB = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMarkUndergroundSMB", EnumBlockType.SMB_UNDERGROUND));
         blockQuestionMarkUndergroundSMB = RayBlockRegistry.register(new BlockQuestionMark("marioBlockQuestionMarkUndergroundSMB", EnumBlockType.SMB_UNDERGROUND));
 
