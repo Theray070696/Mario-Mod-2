@@ -63,16 +63,6 @@ public class WorldGenMario implements IWorldGenerator
 
             this.runGenerator(this.invisibleBlock, world, random, chunkX, chunkZ, random.nextInt(4), 15, 85);
 
-        } else if(world.provider instanceof WorldProviderMario)
-        {
-            this.runGenerator(this.questionMarkSMB, world, random, chunkX, chunkZ, random.nextInt(6), 50, 85);
-            this.runGenerator(this.questionMarkUndergroundSMB, world, random, chunkX, chunkZ, random.nextInt(6), 3, 45);
-            this.runGenerator(this.invisibleBlockSMB, world, random, chunkX, chunkZ, random.nextInt(10), 3, 85);
-
-            this.runGenerator(this.questionMark, world, random, chunkX, chunkZ, random.nextInt(6), 3, 85);
-            this.runGenerator(this.invisibleBlock, world, random, chunkX, chunkZ, random.nextInt(10), 3, 85);
-
-            this.runGenerator(this.noteBlock, world, random, chunkX, chunkZ, random.nextInt(20), 25, 100);
         } else if(!world.provider.getDimensionName().equalsIgnoreCase("CompactMachinesWorld") && !world.provider.getDimensionName().contains("Tardis"))
         {
             // Overworld or some mod dimension

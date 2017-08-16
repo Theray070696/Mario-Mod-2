@@ -1,10 +1,8 @@
 package io.github.Theray070696.mariodeath.block;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import io.github.Theray070696.mariodeath.block.tile.TilePipe;
 import io.github.Theray070696.mariodeath.block.tile.TileQuestionMark;
 import io.github.Theray070696.mariodeath.util.LogHelper;
-import io.github.Theray070696.raycore.block.BlockRayContainer;
 import net.minecraft.block.Block;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -34,9 +32,6 @@ public class ModBlocks
     public static final Block blockGroundUnderground = new BlockMario().setBlockName("marioBlockGroundUnderground");
     public static final Block blockMarioBrickUnderground = new BlockMario().setBlockName("marioBlockBrickUnderground");
     public static final Block blockGroundUnderwater = new BlockMario().setBlockName("marioBlockGroundUnderwater");
-    
-    public static final BlockMario blockPipeBase = new BlockPipeBase();
-    public static final BlockRayContainer blockPipeEntrance = new BlockPipeEntrance();
 
     public static void initBlocks()
     {
@@ -63,13 +58,8 @@ public class ModBlocks
         GameRegistry.registerBlock(blockQuestionMarkUndergroundSMB, "marioBlockQuestionMarkUndergroundSMB");
     
         GameRegistry.registerBlock(blockGroundUnderwater, "marioBlockGroundUnderwater");
-        
-        GameRegistry.registerBlock(blockPipeBase, "blockPipeBase");
-        GameRegistry.registerBlock(blockPipeEntrance, "blockPipeEntrance");
     
         GameRegistry.registerTileEntity(TileQuestionMark.class, "tileMarioQuestionMark");
-        
-        GameRegistry.registerTileEntity(TilePipe.class, "tileMarioPipe");
 
         OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyQuestionMark);
         OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyInvisibleBlock);

@@ -21,9 +21,6 @@ import io.github.Theray070696.mariodeath.plugins.PluginHandler;
 import io.github.Theray070696.mariodeath.proxy.IProxy;
 import io.github.Theray070696.mariodeath.util.LogHelper;
 import io.github.Theray070696.mariodeath.world.WorldGenMario;
-import io.github.Theray070696.mariodeath.world.WorldProviderMario;
-import io.github.Theray070696.mariodeath.world.biomes.ModBiomes;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 
 /**
@@ -75,17 +72,17 @@ public class MarioDeath
         FMLCommonHandler.instance().bus().register(new FMLEventHandler());
 
         LogHelper.info("Loading Crafting Recipes");
+
         CraftingHandler.initCraftingRecipes();
         CraftingHandler.initSmeltingRecipes();
         CraftingHandler.initMarioMakerRecipes();
+
         LogHelper.info("Crafting Recipes Loaded");
 
         LogHelper.info("Registering World Generation");
+
         GameRegistry.registerWorldGenerator(new WorldGenMario(), 0);
 
-        DimensionManager.registerProviderType(ConfigHandler.marioDimensionID, WorldProviderMario.class, false);
-        DimensionManager.registerDimension(ConfigHandler.marioDimensionID, ConfigHandler.marioDimensionID);
-        ModBiomes.registerWithBiomeDictionary();
         LogHelper.info("World Generation Registered");
 
         PluginHandler.getInstance().init();

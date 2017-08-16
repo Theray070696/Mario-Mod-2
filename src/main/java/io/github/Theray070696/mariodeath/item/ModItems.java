@@ -1,7 +1,6 @@
 package io.github.Theray070696.mariodeath.item;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import io.github.Theray070696.mariodeath.configuration.ConfigHandler;
 import io.github.Theray070696.mariodeath.lib.ModInfo;
 import io.github.Theray070696.mariodeath.util.LogHelper;
 import io.github.Theray070696.raycore.item.ItemRay;
@@ -26,9 +25,6 @@ public class ModItems
     public static final Item itemRecordSuperSpiceBros = new ItemRayRecord(ModInfo.MOD_ID, "spiceman", 1121).setUnlocalizedName("records.spiceman");
     public static final Item itemRecordSMBUnderwater = new ItemRayRecord(ModInfo.MOD_ID, "smbUnderwater", 513).setUnlocalizedName("records.smbUnderwater");
 
-    public static ItemRay itemGalaxyFireFlower;
-    public static ItemRay itemDebug;
-
     public static final ItemRay itemCoinCurrency = new ItemCoinCurrency();
 
     public static void initItems()
@@ -48,17 +44,14 @@ public class ModItems
         GameRegistry.registerItem(itemRecordSuperSpiceBros, "itemRecordSuperSpiceBros");
         GameRegistry.registerItem(itemRecordSMBUnderwater, "itemRecordSMBUnderwater");
 
-        if(ConfigHandler.debugModeEnabled)
-        {
-            itemGalaxyFireFlower = new ItemGalaxyFireFlower();
-            itemDebug = new ItemDebug();
-
-            GameRegistry.registerItem(itemGalaxyFireFlower, "itemGalaxyFireFlower");
-            GameRegistry.registerItem(itemDebug, "itemDebug");
-        }
-
         OreDictionary.registerOre("itemMarioCoin", new ItemStack(itemMarioCoin, 1, 0));
         OreDictionary.registerOre("itemMarioCoin", new ItemStack(itemMarioCoin, 1, 1));
+
+        OreDictionary.registerOre("itemMarioMushroom", new ItemStack(itemMarioMushroom, 1, 0));
+        OreDictionary.registerOre("itemMarioMushroom", new ItemStack(itemMarioMushroom, 1, 1));
+
+        OreDictionary.registerOre("itemMario1Up", new ItemStack(item1Up, 1, 0));
+        OreDictionary.registerOre("itemMario1Up", new ItemStack(item1Up, 1, 1));
 
         LogHelper.info("Item Loading Complete");
     }
