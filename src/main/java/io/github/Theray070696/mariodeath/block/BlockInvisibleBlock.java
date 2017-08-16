@@ -17,6 +17,8 @@ public class BlockInvisibleBlock extends BlockQuestionMark
     public BlockInvisibleBlock(String name, EnumBlockType blockType)
     {
         super(name, blockType);
+
+        this.setHardness(4.0F);
     }
 
     @Override
