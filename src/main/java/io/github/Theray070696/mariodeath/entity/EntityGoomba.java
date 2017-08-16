@@ -72,6 +72,17 @@ public class EntityGoomba extends EntityMob
                 {
                     this.entityDropItem(new ItemStack(ModItems.itemMarioCoin, rand.nextInt(3), rand.nextInt(3)), 0.0F);
                 }
+            } else
+            {
+                Random rand = new Random();
+                if(rand.nextInt(1000) == 0)
+                {
+                    int amount = rand.nextInt(3);
+                    if(amount > 0)
+                    {
+                        this.entityDropItem(new ItemStack(ModItems.itemMarioCoin, rand.nextInt(3), rand.nextInt(3)), 0.0F);
+                    }
+                }
             }
         }
     }
