@@ -45,28 +45,28 @@ public class ItemMushroom extends ItemMario
     @Override
     public ActionResult<ItemStack> onItemRightClick(@Nullable ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
     {
-        if(!world.isRemote && itemStack != null && player != null && !(player instanceof FakePlayer))
+        if(!world.isRemote && itemStack != null && player != null && !(player instanceof FakePlayer)) // If we're on the server side, the ItemStack is not null, the player is not null, AND this was not used by a fake player...
         {
-            if(player.getHealth() < player.getMaxHealth())
+            if(player.getHealth() < player.getMaxHealth()) // If the player needs healing...
             {
-                if(player.getHealth() + 5F >= player.getMaxHealth())
+                if(player.getHealth() + 5F >= player.getMaxHealth()) // If the mushroom would give the player more than their max health...
                 {
-                    player.setHealth(player.getMaxHealth());
-                } else
+                    player.setHealth(player.getMaxHealth()); // Set their health to their max health.
+                } else // Otherwise...
                 {
-                    player.setHealth(player.getHealth() + 5F);
+                    player.setHealth(player.getHealth() + 5F); // Set their health to their current health plus 5.
                 }
 
-                int meta = itemStack.getItemDamage();
-                if(meta == 0 || meta == 2)
+                int meta = itemStack.getItemDamage(); // Get the damage value of the item.
+                if(meta == 0 || meta == 2) // If it was from Mario 1 or Mario 3...
                 {
-                    world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler.mushroomSMB, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                } else if(meta == 1)
+                    world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler.mushroomSMB, SoundCategory.PLAYERS, 1.0F, 1.0F); // Play this sound.
+                } else if(meta == 1) // If it was from Mario World...
                 {
-                    world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler.mushroom, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                    world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler.mushroom, SoundCategory.PLAYERS, 1.0F, 1.0F); // Play this sound.
                 }
 
-                itemStack.stackSize--;
+                itemStack.stackSize--; // Decrease amount of items in stack by one.
             }
         }
 
@@ -87,6 +87,6 @@ public class ItemMushroom extends ItemMario
     {
         super.addInformation(itemStack, player, list, advanced);
 
-        list.add("Restores 2.5 hearts");
+        list.add("Restores 2.5 hearts"); // Add helpful tooltip.
     }
 }
