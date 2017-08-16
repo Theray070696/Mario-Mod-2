@@ -89,9 +89,10 @@ public class ModBlocks
         OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyInvisibleBlock);
 
         OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyQuestionMarkSMB);
-        OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyQuestionMarkSMB3);
         OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyQuestionMarkUndergroundSMB);
         OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyInvisibleBlockSMB);
+
+        OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyQuestionMarkSMB3);
         OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyInvisibleBlockSMB3);
 
         LogHelper.info("Block Loading Complete");
