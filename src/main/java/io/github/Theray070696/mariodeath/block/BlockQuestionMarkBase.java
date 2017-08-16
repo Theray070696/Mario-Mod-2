@@ -97,8 +97,6 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
 
     public void updateQuestionMarkState(int itemInBlock, World world, BlockPos pos, TileQuestionMark tileQuestionMark)
     {
-        IBlockState blockState = world.getBlockState(pos); // Get the block state.
-
         keepInventory = true; // Don't dropInventory.
 
         if(itemInBlock != ItemsInQuestionMarks.ITEM_NOTHING) // If we're putting something into the block...
