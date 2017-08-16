@@ -48,7 +48,7 @@ public class ModItems
 
         itemRecordSMBUnderwater = RayItemRegistry.registerItem(new ItemRayRecord(ModInfo.MOD_ID, "smbUnderwater", 513, SoundHandler.recordUnderwaterSMB).setUnlocalizedName("records.smbUnderwater"));
 
-        if(ConfigHandler.debugModeEnabled)
+        if(ConfigHandler.developerModeEnabled)
         {
             itemSuperLeaf = RayItemRegistry.registerItem(new ItemSuperLeaf());
 

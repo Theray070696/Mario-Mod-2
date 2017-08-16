@@ -10,9 +10,9 @@ public class ConfigHandler
 {
     private static Configuration config;
 
-    public static boolean debugModeEnabled;
+    public static boolean developerModeEnabled;
 
-    public static final boolean debugModeEnabledDefault = false;
+    public static final boolean developerModeEnabledDefault = false;
 
     public static void loadConfig(FMLPreInitializationEvent event)
     {
@@ -20,7 +20,7 @@ public class ConfigHandler
 
         config.load();
 
-        debugModeEnabled = config.getBoolean("Debug Mode Enabled", "Misc", debugModeEnabledDefault, "Whether or not to enable debug mode. Use this if you want to have items that are not complete or don't function at all.");
+        developerModeEnabled = config.getBoolean("Developer Mode Enabled", "Misc", developerModeEnabledDefault, "Whether or not to enable developer mode. Use this if you want to test items that are not complete or don't function at all.");
 
         saveConfig();
     }

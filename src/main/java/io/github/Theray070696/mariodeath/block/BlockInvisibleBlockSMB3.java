@@ -30,7 +30,7 @@ public class BlockInvisibleBlockSMB3 extends BlockQuestionMarkBase implements SM
     @Override
     public EnumBlockRenderType getRenderType(IBlockState state)
     {
-        if(ConfigHandler.debugModeEnabled)
+        if(ConfigHandler.developerModeEnabled)
         {
             return EnumBlockRenderType.MODEL;
         } else
@@ -42,7 +42,7 @@ public class BlockInvisibleBlockSMB3 extends BlockQuestionMarkBase implements SM
     @Override
     public boolean isOpaqueCube(IBlockState state)
     {
-        if(ConfigHandler.debugModeEnabled)
+        if(ConfigHandler.developerModeEnabled)
         {
             return true;
         } else
@@ -55,7 +55,7 @@ public class BlockInvisibleBlockSMB3 extends BlockQuestionMarkBase implements SM
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
     {
-        if(ConfigHandler.debugModeEnabled)
+        if(ConfigHandler.developerModeEnabled)
         {
             return true;
         } else
