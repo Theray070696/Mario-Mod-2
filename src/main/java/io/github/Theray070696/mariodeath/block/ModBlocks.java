@@ -49,6 +49,8 @@ public class ModBlocks
     public static Block blockCastleWall;
     public static Block blockMarioCastleBrick;
 
+    public static Block blockBeanstalk;
+
     public static Block blockGroundSMW;
     
     public static BlockMario blockPipeBase;
@@ -99,6 +101,8 @@ public class ModBlocks
         temp = new BlockMario().setUnlocalizedName("marioBlockGroundSnow").setHardness(4.0F);
         temp.slipperiness = 0.9f;
         blockGroundSnow = RayBlockRegistry.register(temp);
+
+        blockBeanstalk = RayBlockRegistry.register(new BlockBeanstalk());
 
         blockPipeBase = RayBlockRegistry.register(new BlockPipeBase());
         blockPipe = RayBlockRegistry.register(new BlockPipe());

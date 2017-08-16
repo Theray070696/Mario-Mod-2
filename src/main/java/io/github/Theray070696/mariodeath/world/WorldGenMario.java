@@ -6,6 +6,7 @@ import io.github.Theray070696.mariodeath.block.ModBlocks;
 import io.github.Theray070696.mariodeath.block.tile.TileQuestionMark;
 import io.github.Theray070696.mariodeath.lib.ItemsInQuestionMarks;
 import io.github.Theray070696.mariodeath.world.gen.WorldGenMinableSingle;
+import io.github.Theray070696.mariodeath.world.gen.WorldGenQuestionMark;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
@@ -42,18 +43,18 @@ public class WorldGenMario implements IWorldGenerator
 
     public WorldGenMario()
     {
-        this.questionMarkSMB = new WorldGenMinableSingle(ModBlocks.blockQuestionMarkSMB, Blocks.AIR, true);
+        this.questionMarkSMB = new WorldGenQuestionMark(ModBlocks.blockQuestionMarkSMB, true);
         this.questionMarkUndergroundSMB = new WorldGenMinableSingle(ModBlocks.blockQuestionMarkUndergroundSMB, Blocks.AIR, false);
         this.questionMarkUndergroundRareSMB = new WorldGenMinableSingle(ModBlocks.blockQuestionMarkUndergroundSMB, Blocks.AIR, true);
-        this.invisibleBlockSMB = new WorldGenMinableSingle(ModBlocks.blockInvisibleBlockSMB, Blocks.AIR, true);
+        this.invisibleBlockSMB = new WorldGenQuestionMark(ModBlocks.blockInvisibleBlockSMB, true);
 
-        this.questionMarkSMB3 = new WorldGenMinableSingle(ModBlocks.blockQuestionMarkSMB3, Blocks.AIR, true);
-        this.questionMarkNotRareSMB3 = new WorldGenMinableSingle(ModBlocks.blockQuestionMarkSMB3, Blocks.AIR, false);
-        this.invisibleBlockSMB3 = new WorldGenMinableSingle(ModBlocks.blockInvisibleBlockSMB3, Blocks.AIR, true);
+        this.questionMarkSMB3 = new WorldGenQuestionMark(ModBlocks.blockQuestionMarkSMB3, true);
+        this.questionMarkNotRareSMB3 = new WorldGenMinableSingle(ModBlocks.blockQuestionMarkSMB, Blocks.AIR, false);
+        this.invisibleBlockSMB3 = new WorldGenQuestionMark(ModBlocks.blockInvisibleBlockSMB3, true);
 
-        this.questionMark = new WorldGenMinableSingle(ModBlocks.blockQuestionMark, Blocks.AIR, true);
+        this.questionMark = new WorldGenQuestionMark(ModBlocks.blockQuestionMark, true);
         this.questionMarkNotRare = new WorldGenMinableSingle(ModBlocks.blockQuestionMark, Blocks.AIR, false);
-        this.invisibleBlock = new WorldGenMinableSingle(ModBlocks.blockInvisibleBlock, Blocks.AIR, true);
+        this.invisibleBlock = new WorldGenQuestionMark(ModBlocks.blockInvisibleBlock, true);
 
         this.noteBlock = new WorldGenMinableSingle(ModBlocks.blockNoteBlock, Blocks.AIR, false);
     }

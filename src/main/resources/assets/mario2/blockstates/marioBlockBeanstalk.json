@@ -1,0 +1,23 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "all": "mario2:blocks/beanstalk"
+    },
+    "ambientocclusion": false
+  },
+  "variants": {
+    "normal": {
+      "model": "cube_all"
+    },
+    "inventory": {
+      "model": "cube_all"
+    },
+    "istop=true": {
+      "model": "mario2:beanstalk_top"
+    },
+    "istop=false": {
+      "model": "mario2:beanstalk"
+    }
+  }
+}
