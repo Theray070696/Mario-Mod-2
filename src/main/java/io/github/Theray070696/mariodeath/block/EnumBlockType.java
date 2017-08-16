@@ -8,6 +8,7 @@ public enum EnumBlockType
     SMB,
     SMB_UNDERGROUND,
     SMB_INVISIBLE,
+    SMB_CASTLE,
     SMB3,
     SMB3_INVISIBLE,
     SMW,
