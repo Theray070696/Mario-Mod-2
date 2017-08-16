@@ -1,5 +1,6 @@
 itemGroup.tabMarioBlocks=Bloques de Mario
 itemGroup.tabMarioItems=Items de Mario
+
 entity.goomba.name=Goomba
 entity.koopa.name=Koopa
 entity.boo.name=Boo
@@ -12,18 +13,19 @@ entity.bowser.name=Bowser
 entity.beetle.name=Beetle
 entity.yoshi.name=Yoshi
 entity.mario.ShellEntity.name=Caparazón
+
 tile.mario2:marioBlockPipeBase.name=Base de Tubo
 tile.mario2:marioBlockPipe.name=Tubo
 tile.mario2:marioBlockQuestionMark.name=Bloque ?
 tile.mario2:marioBlockQuestionMarkSMB.name=Bloque ?
 tile.mario2:marioBlockQuestionMarkUndergroundSMB.name=Bloque ? (Subterráneo)
-tile.mario2:Castle ?-Block.name=Bloque ? (Castillo)
+tile.mario2:marioBlockQuestionMarkCastleSMB.name=Bloque ? (Castillo)
 tile.mario2:marioBlockEmptyQuestionMark.name=Bloque ? (Vacío)
 tile.mario2:marioBlockInvisibleBlockEmpty.name=Bloque Invisible Vacío
 tile.mario2:marioBlockEmptyQuestionMarkSMB.name=Bloque ? (Vacío)
 tile.mario2:marioBlockInvisibleBlockEmptySMB.name=Bloque Invisible Vacío
 tile.mario2:marioBlockEmptyQuestionMarkUndergroundSMB.name=Bloque ? (Subterráneo) (Vacío)
-tile.mario2:Empty Castle ?-Block.name=Bloque ? (Castillo) (Vacío)
+tile.mario2:marioBlockEmptyQuestionMarkCastleSMB.name=Bloque ? (Castillo) (Vacío)
 tile.mario2:marioBlockBrick.name=Bloque Ladrillo
 tile.mario2:marioBlockGround.name=Bloque de Suelo
 tile.mario2:marioBlockDecoration.name=Bloque de Meta
@@ -38,9 +40,10 @@ tile.mario2:Beanstalk.name=Enredadera
 tile.mario2:marioBlockGroundUnderwater.name=Bloque de Suelo (Acuático)
 tile.mario2:marioBlockInvisibleBlock.name=Bloque Invisible
 tile.mario2:marioBlockInvisibleBlockSMB.name=Bloque Invisible
-tile.mario2:Castle Brick Block.name=Ladrillo de Castillo
-tile.mario2:Castle Wall Block.name=Pared de Castillo
+tile.mario2:marioBlockCastleBrick.name=Ladrillo de Castillo
+tile.mario2:marioBlockCastleWall.name=Pared de Castillo
 tile.mario2:Castle Entry Block.name=Entrada de Castillo
+
 item.mario2:Flagpole.name=Bandera
 item.mario2:itemMushroom.name=Champiñón
 item.mario2:item1Up.name=Champiñón de Vida Extra

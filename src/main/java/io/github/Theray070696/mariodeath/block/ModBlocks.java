@@ -17,6 +17,7 @@ public class ModBlocks
     public static BlockMario blockMarioMaker;
     
     public static BlockMario blockNoteBlock;
+
     public static BlockMario blockEmptyQuestionMark;
     public static BlockMario blockQuestionMark;
     public static BlockMario blockEmptyQuestionMarkSMB;
@@ -33,7 +34,10 @@ public class ModBlocks
     
     public static BlockMario blockEmptyQuestionMarkUndergroundSMB;
     public static BlockMario blockQuestionMarkUndergroundSMB;
-    
+
+    public static BlockMario blockEmptyQuestionMarkCastleSMB;
+    public static BlockMario blockQuestionMarkCastleSMB;
+
     public static Block blockGround;
     public static Block blockMarioBrick;
     public static Block blockDecoration;
@@ -42,6 +46,8 @@ public class ModBlocks
     public static Block blockUndergroundDecoration;
     public static Block blockGroundUnderwater;
     public static Block blockGroundSnow;
+    public static Block blockCastleWall;
+    public static Block blockMarioCastleBrick;
 
     public static Block blockGroundSMW;
     
@@ -81,6 +87,11 @@ public class ModBlocks
         blockEmptyQuestionMarkUndergroundSMB = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMarkUndergroundSMB", EnumBlockType.SMB_UNDERGROUND));
         blockQuestionMarkUndergroundSMB = RayBlockRegistry.register(new BlockQuestionMark("marioBlockQuestionMarkUndergroundSMB", EnumBlockType.SMB_UNDERGROUND));
 
+        blockCastleWall = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockCastleWall"));
+        blockMarioCastleBrick = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockCastleBrick"));
+        blockEmptyQuestionMarkCastleSMB = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMarkCastleSMB", EnumBlockType.SMB_CASTLE));
+        blockQuestionMarkCastleSMB = RayBlockRegistry.register(new BlockQuestionMark("marioBlockQuestionMarkCastleSMB", EnumBlockType.SMB_CASTLE));
+
         blockGroundUnderwater = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockGroundUnderwater"));
 
         blockGroundSnow = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockGroundSnow"));
@@ -97,6 +108,7 @@ public class ModBlocks
 
         OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyQuestionMarkSMB);
         OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyQuestionMarkUndergroundSMB);
+        OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyQuestionMarkCastleSMB);
         OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyInvisibleBlockSMB);
 
         OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyQuestionMarkSMB3);
