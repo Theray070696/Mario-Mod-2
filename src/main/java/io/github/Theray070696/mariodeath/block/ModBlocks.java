@@ -39,6 +39,7 @@ public class ModBlocks
     public static Block blockGroundUnderground;
     public static Block blockMarioBrickUnderground;
     public static Block blockGroundUnderwater;
+    public static Block blockGroundSnow;
 
     public static Block blockGroundSMW;
     
@@ -77,6 +78,8 @@ public class ModBlocks
         blockQuestionMarkUndergroundSMB = RayBlockRegistry.register(new BlockQuestionMark("marioBlockQuestionMarkUndergroundSMB", EnumBlockType.SMB_UNDERGROUND));
 
         blockGroundUnderwater = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockGroundUnderwater"));
+
+        blockGroundSnow = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockGroundSnow"));
 
         blockPipeBase = RayBlockRegistry.register(new BlockPipeBase());
         blockPipe = RayBlockRegistry.register(new BlockPipe());
