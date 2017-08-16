@@ -38,7 +38,7 @@ public class CraftingHandler
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockEmptyQuestionMarkUndergroundSMB, 4), " g ", "gbg", " g ", 'g', "ingotGold", 'b', new ItemStack(ModBlocks.blockMarioBrickUnderground)));
 
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModItems.itemPipeLink), " p", "s ", 'p', new ItemStack(ModBlocks.blockPipe), 's', "stickWood"));
-        addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockPipe), "i i", "iei", "iii", 'i', "ingotIron", 'e', "enderpearl"));
+        addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockPipe, 2), "i i", "iei", "iii", 'i', "ingotIron", 'e', "enderpearl"));
 
         // Block converting
 
