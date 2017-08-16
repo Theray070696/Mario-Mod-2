@@ -22,6 +22,7 @@ public class ModItems
     public static ItemRay itemCape;
     public static ItemRay itemFireFlower;
     public static ItemRay itemStarMan;
+    public static ItemRay itemSuperLeaf;
 
     public static Item itemRecordSMBUnderwater;
 
@@ -49,8 +50,18 @@ public class ModItems
 
         if(ConfigHandler.debugModeEnabled)
         {
+            itemSuperLeaf = RayItemRegistry.registerItem(new ItemSuperLeaf());
+
             itemGalaxyFireFlower = RayItemRegistry.registerItem(new ItemGalaxyFireFlower());
         }
+
+        OreDictionary.registerOre("itemMarioMushroom", new ItemStack(itemMarioMushroom, 1, 0));
+        OreDictionary.registerOre("itemMarioMushroom", new ItemStack(itemMarioMushroom, 1, 1));
+        OreDictionary.registerOre("itemMarioMushroom", new ItemStack(itemMarioMushroom, 1, 2));
+
+        OreDictionary.registerOre("itemMario1Up", new ItemStack(item1Up, 1, 0));
+        OreDictionary.registerOre("itemMario1Up", new ItemStack(item1Up, 1, 1));
+        OreDictionary.registerOre("itemMario1Up", new ItemStack(item1Up, 1, 2));
 
         OreDictionary.registerOre("itemMarioCoin", new ItemStack(itemMarioCoin, 1, 0));
         OreDictionary.registerOre("itemMarioCoin", new ItemStack(itemMarioCoin, 1, 1));
