@@ -201,7 +201,7 @@ public class WorldGenMario implements IWorldGenerator
                 }
 
                 questionMark.setItemInBlock(item);
-            } else if(tileEntity instanceof TileQuestionMark && (((BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType.SMB) || ((BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType.SMB_INVISIBLE) || ((BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType.SMB_UNDERGROUND) || ((BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType.SMB3) || ((BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType.SMB3_INVISIBLE)))
+            } else if(tileEntity instanceof TileQuestionMark && (((BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType.SMB) || ((BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType.SMB_INVISIBLE) || ((BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType.SMB_UNDERGROUND) || ((BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType.SMB_CASTLE) || ((BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType.SMB3) || ((BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType.SMB3_INVISIBLE)))
             {
                 TileQuestionMark questionMark = (TileQuestionMark) tileEntity;
                 int item;

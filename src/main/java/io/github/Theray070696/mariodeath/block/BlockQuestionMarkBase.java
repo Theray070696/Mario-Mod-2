@@ -58,7 +58,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                 takeItemOutOfQBlock(world, blockPos, null); // Take the item out.
             } else // Otherwise...
             {
-                if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType.SMB_UNDERGROUND)) // If it is from Mario 1...
+                if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType.SMB_UNDERGROUND) || blockType.equals(EnumBlockType.SMB_CASTLE)) // If it is from Mario 1...
                 {
                     world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.smbEmptyBlockHit, SoundCategory.BLOCKS, 1.0F, 1.0F); // Play this sound.
                 } else if(blockType.equals(EnumBlockType.SMB3) || blockType.equals(EnumBlockType.SMB3_INVISIBLE)) // If it is from Mario 3...
@@ -98,7 +98,6 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
     public void updateQuestionMarkState(int itemInBlock, World world, BlockPos pos, TileQuestionMark tileQuestionMark)
     {
         IBlockState blockState = world.getBlockState(pos); // Get the block state.
-        Block block = blockState.getBlock(); // Get the block from the block state.
 
         keepInventory = true; // Don't dropInventory.
 
@@ -115,6 +114,9 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
             } else if(blockType.equals(EnumBlockType.SMB_UNDERGROUND))
             {
                 world.setBlockState(pos, ModBlocks.blockQuestionMarkUndergroundSMB.getDefaultState(), 3); // Change it to the filled block.
+            } else if(blockType.equals(EnumBlockType.SMB_CASTLE))
+            {
+
             } else if(blockType.equals(EnumBlockType.SMB3))
             {
                 world.setBlockState(pos, ModBlocks.blockQuestionMarkSMB3.getDefaultState(), 3); // Change it to the filled block.
@@ -149,6 +151,9 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
             } else if(blockType.equals(EnumBlockType.SMB_UNDERGROUND))
             {
                 world.setBlockState(pos, ModBlocks.blockEmptyQuestionMarkUndergroundSMB.getDefaultState(), 3); // Change it to the empty block.
+            } else if(blockType.equals(EnumBlockType.SMB_CASTLE))
+            {
+
             } else if(blockType.equals(EnumBlockType.SMB3))
             {
                 world.setBlockState(pos, ModBlocks.blockEmptyQuestionMarkSMB3.getDefaultState(), 3); // Change it to the empty block.
@@ -186,7 +191,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
 
             if(itemInBlock == ItemsInQuestionMarks.ITEM_COIN) // If the item was a Coin...
             {
-                if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType.SMB_UNDERGROUND)) // If it was from Mario 1...
+                if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType.SMB_UNDERGROUND) || blockType.equals(EnumBlockType.SMB_CASTLE)) // If it was from Mario 1...
                 {
                     world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbCoin, SoundCategory.BLOCKS, 1.0F, 1.0F); // Play this sound.
                     newItemStack = new ItemStack(ModItems.itemMarioCoin); // Set ItemStack to Mario 1 Coin.
@@ -201,7 +206,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                 }
             } else if(itemInBlock == ItemsInQuestionMarks.ITEM_MUSHROOM) // If the item was a Mushroom...
             {
-                if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType.SMB_UNDERGROUND)) // If it was from Mario 1...
+                if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType.SMB_UNDERGROUND) || blockType.equals(EnumBlockType.SMB_CASTLE)) // If it was from Mario 1...
                 {
                     world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbBlockHitPowerup, SoundCategory.BLOCKS, 1.0F, 1.0F); // Play this sound.
                     newItemStack = new ItemStack(ModItems.itemMarioMushroom); // Set ItemStack to Mario 1 Mushroom.
@@ -216,7 +221,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                 }
             } else if(itemInBlock == ItemsInQuestionMarks.ITEM_1UP) // If the item was a 1Up...
             {
-                if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType.SMB_UNDERGROUND)) // If it was from Mario 1...
+                if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType.SMB_UNDERGROUND) || blockType.equals(EnumBlockType.SMB_CASTLE)) // If it was from Mario 1...
                 {
                     world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbBlockHitPowerup, SoundCategory.BLOCKS, 1.0F, 1.0F); // Play this sound.
                     newItemStack = new ItemStack(ModItems.item1Up); // Set ItemStack to Mario 1 1Up.
@@ -235,7 +240,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                 newItemStack = new ItemStack(ModItems.itemCape); // Set ItemStack to Cape.
             } else if(itemInBlock == ItemsInQuestionMarks.ITEM_FIRE_FLOWER)
             {
-                if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType.SMB_UNDERGROUND) || blockType.equals(EnumBlockType.SMB3) || blockType.equals(EnumBlockType.SMB3_INVISIBLE)) // If it was from Mario 1 or Mario 3...
+                if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType.SMB_UNDERGROUND) || blockType.equals(EnumBlockType.SMB_CASTLE) || blockType.equals(EnumBlockType.SMB3) || blockType.equals(EnumBlockType.SMB3_INVISIBLE)) // If it was from Mario 1 or Mario 3...
                 {
                     world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbBlockHitPowerup, SoundCategory.BLOCKS, 1.0F, 1.0F); // Play this sound.
                 } else if(blockType.equals(EnumBlockType.SMW) || blockType.equals(EnumBlockType.SMW_INVISIBLE)) // If it was from Mario World...
@@ -248,7 +253,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
             {
                 newItemStack = new ItemStack(ModItems.itemStarMan); // Set ItemStack to Starman.
 
-                if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType.SMB_UNDERGROUND) || blockType.equals(EnumBlockType.SMB3) || blockType.equals(EnumBlockType.SMB3_INVISIBLE)) // If it was from Mario 1 or Mario 3...
+                if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType.SMB_UNDERGROUND) || blockType.equals(EnumBlockType.SMB_CASTLE) || blockType.equals(EnumBlockType.SMB3) || blockType.equals(EnumBlockType.SMB3_INVISIBLE)) // If it was from Mario 1 or Mario 3...
                 {
                     world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbBlockHitPowerup, SoundCategory.BLOCKS, 1.0F, 1.0F); // Play this sound.
                 } else if(blockType.equals(EnumBlockType.SMW) || blockType.equals(EnumBlockType.SMW_INVISIBLE)) // If it was from Mario World...
@@ -367,6 +372,9 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
         } else if(blockType.equals(EnumBlockType.SMB_UNDERGROUND))
         {
             return Item.getItemFromBlock(ModBlocks.blockEmptyQuestionMarkUndergroundSMB);
+        } else if(blockType.equals(EnumBlockType.SMB_CASTLE))
+        {
+            return null;
         } else if(blockType.equals(EnumBlockType.SMB3))
         {
             return Item.getItemFromBlock(ModBlocks.blockEmptyQuestionMarkSMB3);
@@ -414,7 +422,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
     
         if(itemInBlock == ItemsInQuestionMarks.ITEM_COIN)
         {
-            if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType.SMB_UNDERGROUND))
+            if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType.SMB_UNDERGROUND) || blockType.equals(EnumBlockType.SMB_CASTLE))
             {
                 itemStack = new ItemStack(ModItems.itemMarioCoin);
             } else if(blockType.equals(EnumBlockType.SMW) || blockType.equals(EnumBlockType.SMW_INVISIBLE))
@@ -426,7 +434,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
             }
         } else if(itemInBlock == ItemsInQuestionMarks.ITEM_MUSHROOM)
         {
-            if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType.SMB_UNDERGROUND))
+            if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType.SMB_UNDERGROUND) || blockType.equals(EnumBlockType.SMB_CASTLE))
             {
                 itemStack = new ItemStack(ModItems.itemMarioMushroom);
             } else if(blockType.equals(EnumBlockType.SMW) || blockType.equals(EnumBlockType.SMW_INVISIBLE))
@@ -438,7 +446,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
             }
         } else if(itemInBlock == ItemsInQuestionMarks.ITEM_1UP)
         {
-            if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType.SMB_UNDERGROUND))
+            if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType.SMB_UNDERGROUND) || blockType.equals(EnumBlockType.SMB_CASTLE))
             {
                 itemStack = new ItemStack(ModItems.item1Up);
             } else if(blockType.equals(EnumBlockType.SMW) || blockType.equals(EnumBlockType.SMW_INVISIBLE))
