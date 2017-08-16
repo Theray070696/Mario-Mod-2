@@ -6,6 +6,7 @@ import io.github.Theray070696.mariodeath.item.ItemPipeLink;
 import io.github.Theray070696.mariodeath.util.MarioTeleporter;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
@@ -45,7 +46,7 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
 
     public BlockPipe()
     {
-        super();
+        super(Material.IRON);
 
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ISMULTIBLOCK, false).withProperty(CONNECTEDRIGHT, false).withProperty(CONNECTEDDOWN, false).withProperty(REARBLOCK, false));
 
