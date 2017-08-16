@@ -3,6 +3,7 @@ package io.github.Theray070696.mariodeath.core;
 import io.github.Theray070696.mariodeath.audio.SoundHandler;
 import io.github.Theray070696.mariodeath.capability.CoinCountProvider;
 import io.github.Theray070696.mariodeath.entity.EntityGoomba;
+import io.github.Theray070696.mariodeath.entity.EntityKoopa;
 import io.github.Theray070696.mariodeath.item.ModItems;
 import io.github.Theray070696.mariodeath.lib.ModInfo;
 import io.github.Theray070696.mariodeath.potion.PotionEffectsMario;
@@ -197,7 +198,7 @@ public class EventHandler
                 {
                     entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, 1, 4), 0.0f); // Wither Coin
                 }
-            } else if(entity instanceof EntityMob && !(entity instanceof EntityGoomba)) // If the entity is any other mob besides a Goomba...
+            } else if(entity instanceof EntityMob && !(entity instanceof EntityGoomba || entity instanceof EntityKoopa)) // If the entity is any other mob besides a Goomba...
             {
                 int randInt = rand.nextInt(100); // Generate a number from 0 to 99 inclusive to determine what will be dropped.
 
