@@ -12,13 +12,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Created by Theray070696 on 3/31/2016.
  */
-public class BlockInvisibleBlock extends BlockQuestionMarkBase implements SMWQBlock, IFilledQBlock
+public class BlockInvisibleBlock extends BlockQuestionMark
 {
-    public BlockInvisibleBlock()
+    public BlockInvisibleBlock(String name, EnumBlockType blockType)
     {
-        super(false);
-
-        this.setUnlocalizedName("marioBlockInvisibleBlock");
+        super(name, blockType);
     }
 
     @Override

@@ -57,24 +57,24 @@ public class ModBlocks
 
         blockGroundSMW = RayBlockRegistry.register(new BlockMarioConnectedTexture(Material.GRASS).setUnlocalizedName("marioBlockGroundSMW"));
 
-        blockEmptyQuestionMark = RayBlockRegistry.register(new BlockQuestionMarkEmpty());
-        blockQuestionMark = RayBlockRegistry.register(new BlockQuestionMark());
-        blockEmptyQuestionMarkSMB = RayBlockRegistry.register(new BlockQuestionMarkEmptySMB());
-        blockQuestionMarkSMB = RayBlockRegistry.register(new BlockQuestionMarkSMB());
-        blockEmptyQuestionMarkSMB3 = RayBlockRegistry.register(new BlockQuestionMarkEmptySMB3());
-        blockQuestionMarkSMB3 = RayBlockRegistry.register(new BlockQuestionMarkSMB3());
+        blockEmptyQuestionMark = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMark", EnumBlockType.SMW));
+        blockQuestionMark = RayBlockRegistry.register(new BlockQuestionMark("marioBlockQuestionMark", EnumBlockType.SMW));
+        blockEmptyQuestionMarkSMB = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMarkSMB", EnumBlockType.SMB));
+        blockQuestionMarkSMB = RayBlockRegistry.register(new BlockQuestionMark("marioBlockQuestionMarkSMB", EnumBlockType.SMB));
+        blockEmptyQuestionMarkSMB3 = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMarkSMB3", EnumBlockType.SMB3));
+        blockQuestionMarkSMB3 = RayBlockRegistry.register(new BlockQuestionMark("marioBlockQuestionMarkSMB3", EnumBlockType.SMB3));
 
-        blockEmptyInvisibleBlock = RayBlockRegistry.register(new BlockInvisibleBlockEmpty());
-        blockInvisibleBlock = RayBlockRegistry.register(new BlockInvisibleBlock());
-        blockEmptyInvisibleBlockSMB = RayBlockRegistry.register(new BlockInvisibleBlockEmptySMB());
-        blockInvisibleBlockSMB = RayBlockRegistry.register(new BlockInvisibleBlockSMB());
-        blockEmptyInvisibleBlockSMB3 = RayBlockRegistry.register(new BlockInvisibleBlockEmptySMB3());
-        blockInvisibleBlockSMB3 = RayBlockRegistry.register(new BlockInvisibleBlockSMB3());
+        blockEmptyInvisibleBlock = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockInvisibleBlockEmpty", EnumBlockType.SMW_INVISIBLE));
+        blockInvisibleBlock = RayBlockRegistry.register(new BlockInvisibleBlock("marioBlockInvisibleBlock", EnumBlockType.SMW_INVISIBLE));
+        blockEmptyInvisibleBlockSMB = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockInvisibleBlockEmptySMB", EnumBlockType.SMB_INVISIBLE));
+        blockInvisibleBlockSMB = RayBlockRegistry.register(new BlockInvisibleBlock("marioBlockInvisibleBlockSMB", EnumBlockType.SMB_INVISIBLE));
+        blockEmptyInvisibleBlockSMB3 = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockInvisibleBlockEmptySMB3", EnumBlockType.SMB3_INVISIBLE));
+        blockInvisibleBlockSMB3 = RayBlockRegistry.register(new BlockInvisibleBlock("marioBlockInvisibleBlockSMB3", EnumBlockType.SMB3_INVISIBLE));
 
         blockGroundUnderground = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockGroundUnderground"));
         blockMarioBrickUnderground = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockBrickUnderground"));
-        blockEmptyQuestionMarkUndergroundSMB = RayBlockRegistry.register(new BlockQuestionMarkEmptyUndergroundSMB());
-        blockQuestionMarkUndergroundSMB = RayBlockRegistry.register(new BlockQuestionMarkUndergroundSMB());
+        blockEmptyQuestionMarkUndergroundSMB = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMarkUndergroundSMB", EnumBlockType.SMB_UNDERGROUND));
+        blockQuestionMarkUndergroundSMB = RayBlockRegistry.register(new BlockQuestionMark("marioBlockQuestionMarkUndergroundSMB", EnumBlockType.SMB_UNDERGROUND));
 
         blockGroundUnderwater = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockGroundUnderwater"));
 

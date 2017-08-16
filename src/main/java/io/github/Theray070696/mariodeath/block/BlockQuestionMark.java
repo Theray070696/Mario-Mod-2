@@ -3,13 +3,14 @@ package io.github.Theray070696.mariodeath.block;
 /**
  * Created by Theray070696 on 8/27/2015.
  */
-public class BlockQuestionMark extends BlockQuestionMarkBase implements SMWQBlock, IFilledQBlock
+public class BlockQuestionMark extends BlockQuestionMarkBase implements IFilledQBlock
 {
-    public BlockQuestionMark()
+    public BlockQuestionMark(String name, EnumBlockType blockType)
     {
-        super(false);
+        super(false, blockType);
 
-        this.setUnlocalizedName("marioBlockQuestionMark");
+        //this.setUnlocalizedName("marioBlockQuestionMark");
+        this.setUnlocalizedName(name);
     }
 
     @Override
