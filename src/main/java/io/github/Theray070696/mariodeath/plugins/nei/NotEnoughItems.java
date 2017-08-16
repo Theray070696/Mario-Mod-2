@@ -6,6 +6,7 @@ import io.github.Theray070696.mariodeath.MarioDeath;
 import io.github.Theray070696.mariodeath.plugins.IPlugin;
 import io.github.Theray070696.mariodeath.plugins.nei.helpers.MarioShapedRecipeHandler;
 import io.github.Theray070696.mariodeath.plugins.nei.helpers.MarioShapelessRecipeHandler;
+import io.github.Theray070696.mariodeath.plugins.nei.helpers.NEILoader;
 
 /**
  * Created by Theray on 3/31/2016.
@@ -25,16 +26,7 @@ public class NotEnoughItems implements IPlugin
     @Override
     public void init()
     {
-        if(MarioDeath.proxy.getSide().equals(Side.SERVER))
-        {
-            return;
-        }
-
-        API.registerRecipeHandler(new MarioShapedRecipeHandler());
-        API.registerUsageHandler(new MarioShapedRecipeHandler());
-
-        API.registerRecipeHandler(new MarioShapelessRecipeHandler());
-        API.registerUsageHandler(new MarioShapelessRecipeHandler());
+        NEILoader.init();
     }
 
     @Override
