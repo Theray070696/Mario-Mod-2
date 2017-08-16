@@ -26,8 +26,6 @@ public class ModItems
 
     public static Item itemRecordSMBUnderwater;
 
-    public static ItemRay itemGalaxyFireFlower;
-
     public static ItemRay itemCoinCurrency;
 
     public static ItemRay itemPipeLink;
@@ -51,8 +49,6 @@ public class ModItems
         if(ConfigHandler.developerModeEnabled)
         {
             itemSuperLeaf = RayItemRegistry.registerItem(new ItemSuperLeaf());
-
-            itemGalaxyFireFlower = RayItemRegistry.registerItem(new ItemGalaxyFireFlower());
         }
 
         OreDictionary.registerOre("itemMarioMushroom", new ItemStack(itemMarioMushroom, 1, 0));
