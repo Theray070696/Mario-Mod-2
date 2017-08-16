@@ -1,5 +1,6 @@
 package io.github.Theray070696.mariodeath.client.render;
 
+import io.github.Theray070696.mariodeath.client.model.ModelKoopa;
 import io.github.Theray070696.mariodeath.lib.ModInfo;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
