@@ -51,6 +51,7 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ISMULTIBLOCK, false).withProperty(CONNECTEDRIGHT, false).withProperty(CONNECTEDDOWN, false).withProperty(REARBLOCK, false));
 
         this.setUnlocalizedName("marioBlockPipe");
+        this.setHardness(1.5F);
     }
 
     @Override

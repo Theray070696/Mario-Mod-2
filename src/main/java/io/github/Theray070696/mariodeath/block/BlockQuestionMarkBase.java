@@ -42,6 +42,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
     {
         super(addToCreativeTab);
 
+        this.setHardness(1.5F);
         this.blockType = blockType;
     }
 

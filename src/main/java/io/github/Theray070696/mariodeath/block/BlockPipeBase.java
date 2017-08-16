@@ -12,5 +12,6 @@ public class BlockPipeBase extends BlockMario
         super(Material.IRON);
         
         this.setUnlocalizedName("marioBlockPipeBase");
+        this.setHardness(1.5F);
     }
 }
