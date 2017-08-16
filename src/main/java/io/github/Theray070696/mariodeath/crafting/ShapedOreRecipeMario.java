@@ -15,6 +15,7 @@ import java.util.Map;
 
 /**
  * Created by Theray070696 on 4/13/2017.
+ * Code from Forge.
  */
 public class ShapedOreRecipeMario implements IMarioRecipe
 {
@@ -36,32 +37,30 @@ public class ShapedOreRecipeMario implements IMarioRecipe
         String shape = "";
         int idx = 0;
 
-        if (recipe[idx] instanceof Boolean)
+        if(recipe[idx] instanceof Boolean)
         {
             mirrored = (Boolean)recipe[idx];
-            if (recipe[idx+1] instanceof Object[])
+            if(recipe[idx+1] instanceof Object[])
             {
                 recipe = (Object[])recipe[idx+1];
-            }
-            else
+            } else
             {
                 idx = 1;
             }
         }
 
-        if (recipe[idx] instanceof String[])
+        if(recipe[idx] instanceof String[])
         {
             String[] parts = ((String[])recipe[idx++]);
 
-            for (String s : parts)
+            for(String s : parts)
             {
                 width = s.length();
                 shape += s;
             }
 
             height = parts.length;
-        }
-        else
+        } else
         {
             while (recipe[idx] instanceof String)
             {
@@ -72,7 +71,7 @@ public class ShapedOreRecipeMario implements IMarioRecipe
             }
         }
 
-        if (width * height != shape.length())
+        if(width * height != shape.length())
         {
             String ret = "Invalid shaped ore recipe: ";
             for (Object tmp :  recipe)
@@ -85,31 +84,27 @@ public class ShapedOreRecipeMario implements IMarioRecipe
 
         HashMap<Character, Object> itemMap = new HashMap<Character, Object>();
 
-        for (; idx < recipe.length; idx += 2)
+        for(; idx < recipe.length; idx += 2)
         {
             Character chr = (Character)recipe[idx];
             Object in = recipe[idx + 1];
 
-            if (in instanceof ItemStack)
+            if(in instanceof ItemStack)
             {
                 itemMap.put(chr, ((ItemStack)in).copy());
-            }
-            else if (in instanceof Item)
+            } else if(in instanceof Item)
             {
                 itemMap.put(chr, new ItemStack((Item)in));
-            }
-            else if (in instanceof Block)
+            } else if(in instanceof Block)
             {
                 itemMap.put(chr, new ItemStack((Block)in, 1, OreDictionary.WILDCARD_VALUE));
-            }
-            else if (in instanceof String)
+            } else if(in instanceof String)
             {
                 itemMap.put(chr, OreDictionary.getOres((String)in));
-            }
-            else
+            } else
             {
                 String ret = "Invalid shaped ore recipe: ";
-                for (Object tmp :  recipe)
+                for(Object tmp :  recipe)
                 {
                     ret += tmp + ", ";
                 }
@@ -120,7 +115,7 @@ public class ShapedOreRecipeMario implements IMarioRecipe
 
         input = new Object[width * height];
         int x = 0;
-        for (char chr : shape.toCharArray())
+        for(char chr : shape.toCharArray())
         {
             input[x++] = itemMap.get(chr);
         }
@@ -174,16 +169,16 @@ public class ShapedOreRecipeMario implements IMarioRecipe
     @Override
     public boolean matches(InventoryCrafting inv, World world)
     {
-        for (int x = 0; x <= MAX_CRAFT_GRID_WIDTH - width; x++)
+        for(int x = 0; x <= MAX_CRAFT_GRID_WIDTH - width; x++)
         {
-            for (int y = 0; y <= MAX_CRAFT_GRID_HEIGHT - height; ++y)
+            for(int y = 0; y <= MAX_CRAFT_GRID_HEIGHT - height; ++y)
             {
-                if (checkMatch(inv, x, y, false))
+                if(checkMatch(inv, x, y, false))
                 {
                     return true;
                 }
 
-                if (mirrored && checkMatch(inv, x, y, true))
+                if(mirrored && checkMatch(inv, x, y, true))
                 {
                     return true;
                 }
@@ -196,21 +191,20 @@ public class ShapedOreRecipeMario implements IMarioRecipe
     @SuppressWarnings("unchecked")
     protected boolean checkMatch(InventoryCrafting inv, int startX, int startY, boolean mirror)
     {
-        for (int x = 0; x < MAX_CRAFT_GRID_WIDTH; x++)
+        for(int x = 0; x < MAX_CRAFT_GRID_WIDTH; x++)
         {
-            for (int y = 0; y < MAX_CRAFT_GRID_HEIGHT; y++)
+            for(int y = 0; y < MAX_CRAFT_GRID_HEIGHT; y++)
             {
                 int subX = x - startX;
                 int subY = y - startY;
                 Object target = null;
 
-                if (subX >= 0 && subY >= 0 && subX < width && subY < height)
+                if(subX >= 0 && subY >= 0 && subX < width && subY < height)
                 {
-                    if (mirror)
+                    if(mirror)
                     {
                         target = input[width - subX - 1 + subY * width];
-                    }
-                    else
+                    } else
                     {
                         target = input[subX + subY * width];
                     }
@@ -218,29 +212,27 @@ public class ShapedOreRecipeMario implements IMarioRecipe
 
                 ItemStack slot = inv.getStackInRowAndColumn(x, y);
 
-                if (target instanceof ItemStack)
+                if(target instanceof ItemStack)
                 {
-                    if (!OreDictionary.itemMatches((ItemStack)target, slot, false))
+                    if(!OreDictionary.itemMatches((ItemStack)target, slot, false))
                     {
                         return false;
                     }
-                }
-                else if (target instanceof List)
+                } else if(target instanceof List)
                 {
                     boolean matched = false;
 
                     Iterator<ItemStack> itr = ((List<ItemStack>)target).iterator();
-                    while (itr.hasNext() && !matched)
+                    while(itr.hasNext() && !matched)
                     {
                         matched = OreDictionary.itemMatches(itr.next(), slot, false);
                     }
 
-                    if (!matched)
+                    if(!matched)
                     {
                         return false;
                     }
-                }
-                else if (target == null && slot != null)
+                } else if(target == null && slot != null)
                 {
                     return false;
                 }

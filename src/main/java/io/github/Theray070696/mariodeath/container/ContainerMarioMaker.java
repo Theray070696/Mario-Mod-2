@@ -29,23 +29,23 @@ public class ContainerMarioMaker extends Container
         int l;
         int i1;
 
-        for (l = 0; l < 3; ++l)
+        for(l = 0; l < 3; ++l)
         {
-            for (i1 = 0; i1 < 3; ++i1)
+            for(i1 = 0; i1 < 3; ++i1)
             {
                 this.addSlotToContainer(new Slot(this.craftMatrix, i1 + l * 3, 30 + i1 * 18, 17 + l * 18));
             }
         }
 
-        for (l = 0; l < 3; ++l)
+        for(l = 0; l < 3; ++l)
         {
-            for (i1 = 0; i1 < 9; ++i1)
+            for(i1 = 0; i1 < 9; ++i1)
             {
                 this.addSlotToContainer(new Slot(inventoryPlayer, i1 + l * 9 + 9, 8 + i1 * 18, 84 + l * 18));
             }
         }
 
-        for (l = 0; l < 9; ++l)
+        for(l = 0; l < 9; ++l)
         {
             this.addSlotToContainer(new Slot(inventoryPlayer, l, 8 + l * 18, 142));
         }
@@ -68,13 +68,13 @@ public class ContainerMarioMaker extends Container
     {
         super.onContainerClosed(entityPlayer);
 
-        if (!this.worldObj.isRemote)
+        if(!this.worldObj.isRemote)
         {
-            for (int i = 0; i < 9; ++i)
+            for(int i = 0; i < 9; ++i)
             {
                 ItemStack itemstack = this.craftMatrix.removeStackFromSlot(i);
 
-                if (itemstack != null)
+                if(itemstack != null)
                 {
                     entityPlayer.dropItem(itemstack, false);
                 }
@@ -98,49 +98,45 @@ public class ContainerMarioMaker extends Container
         ItemStack itemstack = null;
         Slot slot = (Slot)this.inventorySlots.get(slotID);
 
-        if (slot != null && slot.getHasStack())
+        if(slot != null && slot.getHasStack())
         {
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
 
-            if (slotID == 0)
+            if(slotID == 0)
             {
-                if (!this.mergeItemStack(itemstack1, 10, 46, true))
+                if(!this.mergeItemStack(itemstack1, 10, 46, true))
                 {
                     return null;
                 }
 
                 slot.onSlotChange(itemstack1, itemstack);
-            }
-            else if (slotID >= 10 && slotID < 37)
+            } else if(slotID >= 10 && slotID < 37)
             {
-                if (!this.mergeItemStack(itemstack1, 37, 46, false))
+                if(!this.mergeItemStack(itemstack1, 37, 46, false))
                 {
                     return null;
                 }
-            }
-            else if (slotID >= 37 && slotID < 46)
+            } else if(slotID >= 37 && slotID < 46)
             {
-                if (!this.mergeItemStack(itemstack1, 10, 37, false))
+                if(!this.mergeItemStack(itemstack1, 10, 37, false))
                 {
                     return null;
                 }
-            }
-            else if (!this.mergeItemStack(itemstack1, 10, 46, false))
+            } else if(!this.mergeItemStack(itemstack1, 10, 46, false))
             {
                 return null;
             }
 
-            if (itemstack1.stackSize == 0)
+            if(itemstack1.stackSize == 0)
             {
                 slot.putStack(null);
-            }
-            else
+            } else
             {
                 slot.onSlotChanged();
             }
 
-            if (itemstack1.stackSize == itemstack.stackSize)
+            if(itemstack1.stackSize == itemstack.stackSize)
             {
                 return null;
             }

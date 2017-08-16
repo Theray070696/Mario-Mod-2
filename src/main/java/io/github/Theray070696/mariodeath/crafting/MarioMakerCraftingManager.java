@@ -13,6 +13,7 @@ import java.util.*;
 
 /**
  * Created by Theray070696 on 3/31/2016.
+ * Code from vanilla.
  */
 public class MarioMakerCraftingManager
 {
@@ -50,20 +51,19 @@ public class MarioMakerCraftingManager
         int j = 0;
         int k = 0;
 
-        if (recipeComponents[i] instanceof String[])
+        if(recipeComponents[i] instanceof String[])
         {
             String[] astring = (String[])((String[])recipeComponents[i++]);
 
-            for (String s2 : astring)
+            for(String s2 : astring)
             {
                 ++k;
                 j = s2.length();
                 s = s + s2;
             }
-        }
-        else
+        } else
         {
-            while (recipeComponents[i] instanceof String)
+            while(recipeComponents[i] instanceof String)
             {
                 String s1 = (String)recipeComponents[i++];
                 ++k;
@@ -74,20 +74,18 @@ public class MarioMakerCraftingManager
 
         Map<Character, ItemStack> map;
 
-        for (map = Maps.<Character, ItemStack>newHashMap(); i < recipeComponents.length; i += 2)
+        for(map = Maps.<Character, ItemStack>newHashMap(); i < recipeComponents.length; i += 2)
         {
             Character character = (Character)recipeComponents[i];
             ItemStack itemstack = null;
 
-            if (recipeComponents[i + 1] instanceof Item)
+            if(recipeComponents[i + 1] instanceof Item)
             {
                 itemstack = new ItemStack((Item)recipeComponents[i + 1]);
-            }
-            else if (recipeComponents[i + 1] instanceof Block)
+            } else if(recipeComponents[i + 1] instanceof Block)
             {
                 itemstack = new ItemStack((Block)recipeComponents[i + 1], 1, 32767);
-            }
-            else if (recipeComponents[i + 1] instanceof ItemStack)
+            } else if(recipeComponents[i + 1] instanceof ItemStack)
             {
                 itemstack = (ItemStack)recipeComponents[i + 1];
             }
@@ -97,15 +95,14 @@ public class MarioMakerCraftingManager
 
         ItemStack[] aitemstack = new ItemStack[j * k];
 
-        for (int l = 0; l < j * k; ++l)
+        for(int l = 0; l < j * k; ++l)
         {
             char c0 = s.charAt(l);
 
-            if (map.containsKey(Character.valueOf(c0)))
+            if(map.containsKey(Character.valueOf(c0)))
             {
                 aitemstack[l] = ((ItemStack)map.get(Character.valueOf(c0))).copy();
-            }
-            else
+            } else
             {
                 aitemstack[l] = null;
             }
@@ -123,19 +120,17 @@ public class MarioMakerCraftingManager
     {
         List<ItemStack> list = Lists.<ItemStack>newArrayList();
 
-        for (Object object : recipeComponents)
+        for(Object object : recipeComponents)
         {
-            if (object instanceof ItemStack)
+            if(object instanceof ItemStack)
             {
                 list.add(((ItemStack)object).copy());
-            }
-            else if (object instanceof Item)
+            } else if(object instanceof Item)
             {
                 list.add(new ItemStack((Item)object));
-            }
-            else
+            } else
             {
-                if (!(object instanceof Block))
+                if(!(object instanceof Block))
                 {
                     throw new IllegalArgumentException("Invalid shapeless recipe: unknown type " + object.getClass().getName() + "!");
                 }
@@ -161,9 +156,9 @@ public class MarioMakerCraftingManager
     @Nullable
     public ItemStack findMatchingRecipe(InventoryCrafting craftMatrix, World worldIn)
     {
-        for (IMarioRecipe irecipe : this.recipes)
+        for(IMarioRecipe irecipe : this.recipes)
         {
-            if (irecipe.matches(craftMatrix, worldIn))
+            if(irecipe.matches(craftMatrix, worldIn))
             {
                 return irecipe.getCraftingResult(craftMatrix);
             }
@@ -174,9 +169,9 @@ public class MarioMakerCraftingManager
 
     public ItemStack[] getRemainingItems(InventoryCrafting craftMatrix, World worldIn)
     {
-        for (IMarioRecipe irecipe : this.recipes)
+        for(IMarioRecipe irecipe : this.recipes)
         {
-            if (irecipe.matches(craftMatrix, worldIn))
+            if(irecipe.matches(craftMatrix, worldIn))
             {
                 return irecipe.getRemainingItems(craftMatrix);
             }
@@ -184,7 +179,7 @@ public class MarioMakerCraftingManager
 
         ItemStack[] aitemstack = new ItemStack[craftMatrix.getSizeInventory()];
 
-        for (int i = 0; i < aitemstack.length; ++i)
+        for(int i = 0; i < aitemstack.length; ++i)
         {
             aitemstack[i] = craftMatrix.getStackInSlot(i);
         }

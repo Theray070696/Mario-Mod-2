@@ -15,6 +15,7 @@ import java.util.Map;
 
 /**
  * Created by Theray070696 on 4/13/2017.
+ * Code from Forge.
  */
 public class ShapelessOreRecipeMario implements IMarioRecipe
 {
@@ -27,28 +28,24 @@ public class ShapelessOreRecipeMario implements IMarioRecipe
     public ShapelessOreRecipeMario(ItemStack result, Object... recipe)
     {
         output = result.copy();
-        for (Object in : recipe)
+        for(Object in : recipe)
         {
-            if (in instanceof ItemStack)
+            if(in instanceof ItemStack)
             {
                 input.add(((ItemStack)in).copy());
-            }
-            else if (in instanceof Item)
+            } else if(in instanceof Item)
             {
                 input.add(new ItemStack((Item)in));
-            }
-            else if (in instanceof Block)
+            } else if(in instanceof Block)
             {
                 input.add(new ItemStack((Block)in));
-            }
-            else if (in instanceof String)
+            } else if(in instanceof String)
             {
                 input.add(OreDictionary.getOres((String)in));
-            }
-            else
+            } else
             {
                 String ret = "Invalid shapeless ore recipe: ";
-                for (Object tmp :  recipe)
+                for(Object tmp :  recipe)
                 {
                     ret += tmp + ", ";
                 }
@@ -101,35 +98,34 @@ public class ShapelessOreRecipeMario implements IMarioRecipe
     {
         ArrayList<Object> required = new ArrayList<Object>(input);
 
-        for (int x = 0; x < var1.getSizeInventory(); x++)
+        for(int x = 0; x < var1.getSizeInventory(); x++)
         {
             ItemStack slot = var1.getStackInSlot(x);
 
-            if (slot != null)
+            if(slot != null)
             {
                 boolean inRecipe = false;
                 Iterator<Object> req = required.iterator();
 
-                while (req.hasNext())
+                while(req.hasNext())
                 {
                     boolean match = false;
 
                     Object next = req.next();
 
-                    if (next instanceof ItemStack)
+                    if(next instanceof ItemStack)
                     {
                         match = OreDictionary.itemMatches((ItemStack)next, slot, false);
-                    }
-                    else if (next instanceof List)
+                    } else if(next instanceof List)
                     {
                         Iterator<ItemStack> itr = ((List<ItemStack>)next).iterator();
-                        while (itr.hasNext() && !match)
+                        while(itr.hasNext() && !match)
                         {
                             match = OreDictionary.itemMatches(itr.next(), slot, false);
                         }
                     }
 
-                    if (match)
+                    if(match)
                     {
                         inRecipe = true;
                         required.remove(next);
@@ -137,7 +133,7 @@ public class ShapelessOreRecipeMario implements IMarioRecipe
                     }
                 }
 
-                if (!inRecipe)
+                if(!inRecipe)
                 {
                     return false;
                 }

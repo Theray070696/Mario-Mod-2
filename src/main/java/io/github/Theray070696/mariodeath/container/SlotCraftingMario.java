@@ -42,7 +42,7 @@ public class SlotCraftingMario extends Slot
      */
     public ItemStack decrStackSize(int amount)
     {
-        if (this.getHasStack())
+        if(this.getHasStack())
         {
             this.amountCrafted += Math.min(amount, this.getStack().stackSize);
         }
@@ -65,7 +65,7 @@ public class SlotCraftingMario extends Slot
      */
     protected void onCrafting(ItemStack stack)
     {
-        if (this.amountCrafted > 0)
+        if(this.amountCrafted > 0)
         {
             stack.onCrafting(this.thePlayer.worldObj, this.thePlayer, this.amountCrafted);
         }
@@ -85,29 +85,27 @@ public class SlotCraftingMario extends Slot
         this.onCrafting(stack);
         ItemStack[] aitemstack = MarioMakerCraftingManager.getInstance().getRemainingItems(this.craftMatrix, playerIn.worldObj);
 
-        for (int i = 0; i < aitemstack.length; ++i)
+        for(int i = 0; i < aitemstack.length; ++i)
         {
             ItemStack itemstack = this.craftMatrix.getStackInSlot(i);
             ItemStack itemstack1 = aitemstack[i];
 
-            if (itemstack != null)
+            if(itemstack != null)
             {
                 this.craftMatrix.decrStackSize(i, 1);
                 itemstack = this.craftMatrix.getStackInSlot(i);
             }
 
-            if (itemstack1 != null)
+            if(itemstack1 != null)
             {
-                if (itemstack == null)
+                if(itemstack == null)
                 {
                     this.craftMatrix.setInventorySlotContents(i, itemstack1);
-                }
-                else if (ItemStack.areItemsEqual(itemstack, itemstack1) && ItemStack.areItemStackTagsEqual(itemstack, itemstack1))
+                } else if(ItemStack.areItemsEqual(itemstack, itemstack1) && ItemStack.areItemStackTagsEqual(itemstack, itemstack1))
                 {
                     itemstack1.stackSize += itemstack.stackSize;
                     this.craftMatrix.setInventorySlotContents(i, itemstack1);
-                }
-                else if (!this.thePlayer.inventory.addItemStackToInventory(itemstack1))
+                } else if(!this.thePlayer.inventory.addItemStackToInventory(itemstack1))
                 {
                     this.thePlayer.dropItem(itemstack1, false);
                 }
