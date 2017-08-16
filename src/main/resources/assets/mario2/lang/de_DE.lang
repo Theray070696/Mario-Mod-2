@@ -1,5 +1,6 @@
 itemGroup.tabMarioBlocks=Super Mario Bloecke
 itemGroup.tabMarioItems=Super Mario Items
+
 entity.goomba.name=Gumba
 entity.koopa.name=Koopa
 entity.boo.name=Buu Huu
@@ -11,18 +12,19 @@ entity.toad.name=Toad
 entity.bowser.name=Bowser
 entity.beetle.name=Beetle
 entity.yoshi.name=Yoshi
+
 tile.mario2:marioBlockPipeBase.name=Roehre
 tile.mario2:marioBlockPipe.name=Roehre
 tile.mario2:marioBlockQuestionMark.name=?-Block
 tile.mario2:marioBlockQuestionMarkSMB.name=?-Block
 tile.mario2:marioBlockQuestionMarkUndergroundSMB.name=Untergrund ?-Block
-tile.mario2:Castle ?-Block.name=Schloss ?-Block
+tile.mario2:marioBlockQuestionMarkCastleSMB.name=Schloss ?-Block
 tile.mario2:marioBlockEmptyQuestionMark.name=Leerer ?-Block
 tile.mario2:marioBlockInvisibleBlockEmpty.name=Leerer Unsichtbarer Block
 tile.mario2:marioBlockEmptyQuestionMarkSMB.name=Leerer ?-Block
 tile.mario2:marioBlockInvisibleBlockEmptySMB.name=Leerer Unsichtbarer Block
 tile.mario2:marioBlockEmptyQuestionMarkUndergroundSMB.name=Leerer Untergrund ?-Block
-tile.mario2:Empty Castle ?-Block.name=Leerer Schloss ?-Block
+tile.mario2:marioBlockEmptyQuestionMarkCastleSMB.name=Leerer Schloss ?-Block
 tile.mario2:marioBlockBrick.name=Backstein Block
 tile.mario2:marioBlockGround.name=Boden Block
 tile.mario2:marioBlockDecoration.name=Dekorations Block
@@ -37,9 +39,10 @@ tile.mario2:Beanstalk.name=Bohnenstange
 tile.mario2:marioBlockGroundUnderwater.name=Unterwasser Boden Block
 tile.mario2:marioBlockInvisibleBlock.name=Unsichtbarer Block
 tile.mario2:marioBlockInvisibleBlockSMB.name=Unsichtbarer Block
-tile.mario2:Castle Brick Block.name=Schloss Backstein Block
-tile.mario2:Castle Wall Block.name=Schloss Wand Block
+tile.mario2:marioBlockCastleBrick.name=Schloss Backstein Block
+tile.mario2:marioBlockCastleWall.name=Schloss Wand Block
 tile.mario2:Castle Entry Block.name=Schloss Eingangs Block
+
 item.mario2:Flagpole.name=Zielflagge
 item.mario2:itemMushroom.name=Pilz
 item.mario2:item1Up.name=1Up-Pilz

@@ -110,7 +110,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                 world.setBlockState(pos, ModBlocks.blockQuestionMarkUndergroundSMB.getDefaultState(), 3); // Change it to the filled block.
             } else if(blockType.equals(EnumBlockType.SMB_CASTLE))
             {
-
+                world.setBlockState(pos, ModBlocks.blockQuestionMarkCastleSMB.getDefaultState(), 3); // Change it to the filled block.
             } else if(blockType.equals(EnumBlockType.SMB3))
             {
                 world.setBlockState(pos, ModBlocks.blockQuestionMarkSMB3.getDefaultState(), 3); // Change it to the filled block.
@@ -147,7 +147,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                 world.setBlockState(pos, ModBlocks.blockEmptyQuestionMarkUndergroundSMB.getDefaultState(), 3); // Change it to the empty block.
             } else if(blockType.equals(EnumBlockType.SMB_CASTLE))
             {
-
+                world.setBlockState(pos, ModBlocks.blockEmptyQuestionMarkCastleSMB.getDefaultState(), 3); // Change it to the filled block.
             } else if(blockType.equals(EnumBlockType.SMB3))
             {
                 world.setBlockState(pos, ModBlocks.blockEmptyQuestionMarkSMB3.getDefaultState(), 3); // Change it to the empty block.
@@ -368,7 +368,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
             return Item.getItemFromBlock(ModBlocks.blockEmptyQuestionMarkUndergroundSMB);
         } else if(blockType.equals(EnumBlockType.SMB_CASTLE))
         {
-            return null;
+            return Item.getItemFromBlock(ModBlocks.blockQuestionMarkCastleSMB);
         } else if(blockType.equals(EnumBlockType.SMB3))
         {
             return Item.getItemFromBlock(ModBlocks.blockEmptyQuestionMarkSMB3);
