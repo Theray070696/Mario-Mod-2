@@ -49,12 +49,24 @@ public class ItemMushroom extends ItemMario
         {
             if(player.getHealth() < player.getMaxHealth()) // If the player needs healing...
             {
-                if(player.getHealth() + 5F >= player.getMaxHealth()) // If the mushroom would give the player more than their max health...
+                if(!world.getWorldInfo().isHardcoreModeEnabled()) // If we are not in hardcore mode...
                 {
-                    player.setHealth(player.getMaxHealth()); // Set their health to their max health.
+                    if(player.getHealth() + 5F >= player.getMaxHealth()) // If the mushroom would give the player more than their max health...
+                    {
+                        player.setHealth(player.getMaxHealth()); // Set their health to their max health.
+                    } else // Otherwise...
+                    {
+                        player.setHealth(player.getHealth() + 5F); // Set their health to their current health plus 5.
+                    }
                 } else // Otherwise...
                 {
-                    player.setHealth(player.getHealth() + 5F); // Set their health to their current health plus 5.
+                    if(player.getHealth() + 10F >= player.getMaxHealth()) // If the mushroom would give the player more than their max health...
+                    {
+                        player.setHealth(player.getMaxHealth()); // Set their health to their max health.
+                    } else // Otherwise...
+                    {
+                        player.setHealth(player.getHealth() + 10F); // Set their health to their current health plus 10.
+                    }
                 }
 
                 int meta = itemStack.getItemDamage(); // Get the damage value of the item.
@@ -87,6 +99,12 @@ public class ItemMushroom extends ItemMario
     {
         super.addInformation(itemStack, player, list, advanced);
 
-        list.add("Restores 2.5 hearts"); // Add helpful tooltip.
+        if(!player.getEntityWorld().getWorldInfo().isHardcoreModeEnabled())
+        {
+            list.add("Restores 2.5 hearts"); // Add a helpful tooltip.
+        } else
+        {
+            list.add("Restores 5 hearts"); // Add a helpful tooltip.
+        }
     }
 }
