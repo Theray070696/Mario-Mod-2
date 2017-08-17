@@ -14,7 +14,7 @@ public class RenderKoopa extends RenderLiving
 {
     public RenderKoopa(RenderManager manager)
     {
-        super(manager, new ModelKoopa(), 0);
+        super(manager, new ModelKoopa(), 0.4F);
     }
 
     @Override

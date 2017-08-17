@@ -14,7 +14,7 @@ public class RenderGoomba extends RenderLiving
 {
     public RenderGoomba(RenderManager manager)
     {
-        super(manager, new ModelGoomba(), 0);
+        super(manager, new ModelGoomba(), 0.3F);
     }
 
     @Override
