@@ -154,19 +154,15 @@ public class EventHandler
     {
 		if(event.getName().toString().equals("minecraft:chests/simple_dungeon"))
 		{
+		    // To test this, use the command on the next line.
+            // /setblock ~ ~1 ~ minecraft:chest 2 replace {LootTable:"chests/simple_dungeon"}
+            // It will place a chest above the command block with randomly generated dungeon chest loot in it.
+
 			LootEntry entry = new LootEntryTable(new ResourceLocation(ModInfo.MOD_ID, "inject/disks"), 15, 1, new LootCondition[0], "mario2_inject_entry");
 			
 			LootPool pool = new LootPool(new LootEntry[] {entry}, new LootCondition[0], new RandomValueRange(1), new RandomValueRange(0, 1), "mario2_inject_entry");
 			
 			event.getTable().addPool(pool);
-			
-			//LootPool main = event.getTable().getPool("main");
-			//if(main != null)
-			//{
-				//main.addEntry(new LootEntryItem(ModItems.itemRecordSMBUnderwater, 15, 1, new LootFunction[0], new LootCondition[0], "mario2:records.smbUnderwater"));
-				//main.addEntry(new LootEntryItem(ModItems.itemRecordSuperSpiceBros, 15, 1, new LootFunction[0], new LootCondition[0], "mario2:records.spiceman"));
-				//main.addEntry(new LootEntryItem(ModItems.itemRecordLOLUDied, 15, 1, new LootFunction[0], new LootCondition[0], "mario2:records.lolUDied"));
-			//}
 		}
     }
 
