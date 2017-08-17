@@ -53,7 +53,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
 
         if(entity instanceof EntityPlayer) // If the entity that hit the bottom was a player...
         {
-            if(this instanceof IFilledQBlock) // If the block has an item in it...
+            if(this instanceof BlockQuestionMark) // If the block has an item in it...
             {
                 takeItemOutOfQBlock(world, blockPos, null); // Take the item out.
             } else // Otherwise...
@@ -393,7 +393,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
     {
         if(!keepInventory)
         {
-            if(this instanceof IFilledQBlock)
+            if(this instanceof BlockQuestionMark)
             {
                 dropInventory(world, blockPos);
             }
