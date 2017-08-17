@@ -504,7 +504,7 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
     public static boolean isMultiBlock(World world, int x, int y, int z, int xMod, int yMod, int zMod)
     {
         if(world.getBlockState(new BlockPos(x, y, z)).getBlock() instanceof BlockPipe && world.getBlockState(new BlockPos(x, y + yMod, z)).getBlock() instanceof BlockPipe && world.getBlockState(new BlockPos(x + xMod, y, z)).getBlock() instanceof BlockPipe && world.getBlockState(new BlockPos(x + xMod, y + yMod, z)).getBlock() instanceof BlockPipe
-           && world.getBlockState(new BlockPos(x, y, z + zMod)).getBlock() instanceof BlockPipe && world.getBlockState(new BlockPos(x + xMod, y, z + zMod)).getBlock() instanceof BlockPipe && world.getBlockState(new BlockPos(x, y + yMod, z + zMod)).getBlock() instanceof BlockPipe && world.getBlockState(new BlockPos(x + xMod, y + yMod, z + zMod)).getBlock() instanceof BlockPipe)
+                && world.getBlockState(new BlockPos(x, y, z + zMod)).getBlock() instanceof BlockPipe && world.getBlockState(new BlockPos(x + xMod, y, z + zMod)).getBlock() instanceof BlockPipe && world.getBlockState(new BlockPos(x, y + yMod, z + zMod)).getBlock() instanceof BlockPipe && world.getBlockState(new BlockPos(x + xMod, y + yMod, z + zMod)).getBlock() instanceof BlockPipe)
         {
             return true;
         }
@@ -677,7 +677,7 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
         int i = 0;
         i = i | state.getValue(FACING).getIndex();
 
-        if (state.getValue(ISMULTIBLOCK).booleanValue())
+        if(state.getValue(ISMULTIBLOCK).booleanValue())
         {
             i |= 8;
         }
@@ -693,7 +693,7 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        TileEntity tileentity = world instanceof ChunkCache ? ((ChunkCache)world).getTileEntity(pos, Chunk.EnumCreateEntityType.CHECK) : world.getTileEntity(pos);
+        TileEntity tileentity = world instanceof ChunkCache ? ((ChunkCache) world).getTileEntity(pos, Chunk.EnumCreateEntityType.CHECK) : world.getTileEntity(pos);
 
         if(tileentity instanceof TilePipe)
         {
