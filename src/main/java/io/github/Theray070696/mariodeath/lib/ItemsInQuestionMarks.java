@@ -12,4 +12,5 @@ public class ItemsInQuestionMarks
     public static final int ITEM_FIRE_FLOWER = 4;
     public static final int ITEM_STAR_MAN = 5;
     public static final int ITEM_CAPE = 6;
+    public static final int ITEM_BEANSTALK = 7;
 }

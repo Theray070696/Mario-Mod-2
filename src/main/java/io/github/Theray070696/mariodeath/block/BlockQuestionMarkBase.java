@@ -255,6 +255,16 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                 {
                     world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smwBlockHitPowerup, SoundCategory.BLOCKS, 1.0F, 1.0F); // Play this sound.
                 }
+            } else if(itemInBlock == ItemsInQuestionMarks.ITEM_BEANSTALK) // If the item was a Beanstalk...
+            {
+                world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.beanstalk, SoundCategory.BLOCKS, 1.0F, 1.0F); // Play this sound.
+
+                for(int i = 1; i < 10; i++) // Go from 1 to 9.
+                {
+                    world.setBlockState(pos.up(i), ModBlocks.blockBeanstalk.getDefaultState()); // Set the block to a beanstalk
+                }
+
+                world.setBlockState(pos.up(10), ModBlocks.blockBeanstalk.getDefaultState().withProperty(BlockBeanstalk.ISTOP, true), 2); // Set the top to the top of the beanstalk.
             }
 
             if(newItemStack != null) // If the ItemStack is not null...
@@ -346,6 +356,10 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                         {
                             heldItem.stackSize--; // Decrease amount of items in stack by one.
                             this.updateQuestionMarkState(ItemsInQuestionMarks.ITEM_STAR_MAN, world, pos, tileQuestionMark); // Update the state of the block.
+                        } else if(item == Item.getItemFromBlock(ModBlocks.blockBeanstalk)) // If the item is a beanstalk...
+                        {
+                            heldItem.stackSize--; // Decrease amount of items in stack by one.
+                            this.updateQuestionMarkState(ItemsInQuestionMarks.ITEM_BEANSTALK, world, pos, tileQuestionMark); // Update the state of the block.
                         }
                     }
                 }
@@ -460,6 +474,9 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
         } else if(itemInBlock == ItemsInQuestionMarks.ITEM_STAR_MAN)
         {
             itemStack = new ItemStack(ModItems.itemStarMan);
+        } else if(itemInBlock == ItemsInQuestionMarks.ITEM_BEANSTALK)
+        {
+            itemStack = new ItemStack(ModBlocks.blockBeanstalk);
         }
         
         if(itemStack != null && itemStack.stackSize > 0)
