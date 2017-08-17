@@ -1,12 +1,8 @@
 package io.github.Theray070696.mariodeath.network;
 
 import io.github.Theray070696.mariodeath.MarioDeath;
-import io.github.Theray070696.mariodeath.capability.CoinCountProvider;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fml.client.FMLClientHandler;
-import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;

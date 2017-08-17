@@ -1,6 +1,5 @@
 package io.github.Theray070696.mariodeath.network;
 
-import io.github.Theray070696.mariodeath.MarioDeath;
 import io.github.Theray070696.mariodeath.capability.CoinCountProvider;
 import io.github.Theray070696.mariodeath.item.ModItems;
 import io.netty.buffer.ByteBuf;

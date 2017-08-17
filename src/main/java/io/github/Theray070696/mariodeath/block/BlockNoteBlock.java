@@ -1,7 +1,6 @@
 package io.github.Theray070696.mariodeath.block;
 
 import io.github.Theray070696.mariodeath.audio.SoundHandler;
-import io.github.Theray070696.mariodeath.util.LogHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.SoundCategory;
