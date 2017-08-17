@@ -48,6 +48,7 @@ public class MarioDeath
 {
     @Mod.Instance(ModInfo.MOD_ID)
     public static MarioDeath INSTANCE;
+
     @SidedProxy(clientSide = ModInfo.CLIENT_PROXY, serverSide = ModInfo.SERVER_PROXY)
     public static IProxy proxy;
 
