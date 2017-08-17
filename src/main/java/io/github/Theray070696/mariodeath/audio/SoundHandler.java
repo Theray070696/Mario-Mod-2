@@ -15,6 +15,7 @@ public class SoundHandler
 {
     public static SoundEvent mushroom;
     public static SoundEvent mushroomSMB;
+
     public static SoundEvent oneUp;
     public static SoundEvent oneUpSMB;
 
@@ -32,6 +33,8 @@ public class SoundHandler
     public static SoundEvent noteBlock;
 
     public static SoundEvent pipe;
+
+    public static SoundEvent beanstalk;
 
     public static SoundEvent smbEmptyBlockHit;
     public static SoundEvent smbBlockHitPowerup;
@@ -103,6 +106,8 @@ public class SoundHandler
         noteBlock = register("block.note");
 
         pipe = register("block.pipe");
+
+        beanstalk = register("block.beanstalk");
 
         smbEmptyBlockHit = register("block.smbEmptyBlockHit");
         smbBlockHitPowerup = register("block.smbBlockHitPowerup");
