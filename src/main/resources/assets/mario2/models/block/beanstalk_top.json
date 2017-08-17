@@ -1,6 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "mario2:blocks/beanstalk_top"
-  }
-}
