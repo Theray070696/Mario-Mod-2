@@ -1,6 +1,7 @@
 package io.github.Theray070696.mariodeath.proxy;
 
 import io.github.Theray070696.mariodeath.MarioDeath;
+import io.github.Theray070696.mariodeath.entity.EntityFireball;
 import io.github.Theray070696.mariodeath.entity.EntityGoomba;
 import io.github.Theray070696.mariodeath.entity.EntityKoopa;
 import io.github.Theray070696.mariodeath.lib.ModInfo;
@@ -24,6 +25,7 @@ public abstract class CommonProxy implements IProxy
     {
         EntityRegistry.registerModEntity(EntityGoomba.class, ModInfo.MOD_ID + ":goomba", 0, MarioDeath.INSTANCE, 128, 1, false);
         EntityRegistry.registerModEntity(EntityKoopa.class, ModInfo.MOD_ID + ":koopa", 1, MarioDeath.INSTANCE, 128, 1, false);
+        EntityRegistry.registerModEntity(EntityFireball.class, ModInfo.MOD_ID + ":fireball", 2, MarioDeath.INSTANCE, 64, 1, true);
 
         List<BiomeManager.BiomeEntry> biomeEntries = new ArrayList<BiomeManager.BiomeEntry>();
         biomeEntries.addAll(BiomeManager.getBiomes(BiomeManager.BiomeType.COOL));
