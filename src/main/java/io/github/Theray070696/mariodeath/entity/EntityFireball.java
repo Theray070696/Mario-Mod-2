@@ -31,11 +31,11 @@ public class EntityFireball extends Entity
     {
         this(world);
         this.setRotation(yaw, 0.0F);
-        double xHeading = (double) (-MathHelper.sin(yaw * 3.1415927F / 180.0F));
-        double zHeading = (double) MathHelper.cos(yaw * 3.1415927F / 180.0F);
-        this.motionX = force * xHeading * MathHelper.cos(pitch / 180.0F * 3.1415927F);
-        this.motionY = -force * (double) MathHelper.sin(pitch / 180.0F * 3.1415927F);
-        this.motionZ = force * zHeading * MathHelper.cos(pitch / 180.0F * 3.1415927F);
+        double xHeading = (double) (-MathHelper.sin(yaw * (float) Math.PI / 180.0F));
+        double zHeading = (double) MathHelper.cos(yaw * (float) Math.PI / 180.0F);
+        this.motionX = force * xHeading * MathHelper.cos(pitch / 180.0F * (float) Math.PI);
+        this.motionY = -force * (double) MathHelper.sin(pitch / 180.0F * (float) Math.PI);
+        this.motionZ = force * zHeading * MathHelper.cos(pitch / 180.0F * (float) Math.PI);
         this.setPosition(x + xHeading, y, z + zHeading);
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;
@@ -46,11 +46,6 @@ public class EntityFireball extends Entity
     public EntityFireball(World world, Entity entity)
     {
         this(world, entity.posX, entity.posY + 1.5D, entity.posZ, entity.rotationYaw, 1.0F, 0.5D, 80);
-    }
-
-    public double getYOffset()
-    {
-        return 1.5D;
     }
 
     public void onUpdate()
@@ -139,7 +134,6 @@ public class EntityFireball extends Entity
                 {
                     this.motionY = 0.5D;
                 }
-
             }
         }
     }
