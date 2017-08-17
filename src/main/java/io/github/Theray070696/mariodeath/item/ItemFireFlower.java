@@ -33,7 +33,7 @@ public class ItemFireFlower extends ItemMario
         if(!world.isRemote && itemStack != null && player != null && !(player instanceof FakePlayer))
         {
             // Shoot a fireball
-            world.spawnEntityInWorld(new EntityFireball(world, player));
+            world.spawnEntityInWorld(new EntityFireball(world, player.posX, player.posY + 1.5D, player.posZ, player.rotationYaw, 1.0F, 0.5D, 160));
 
             world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler.fireball, SoundCategory.PLAYERS, 1.0F, 1.0F);
         }
