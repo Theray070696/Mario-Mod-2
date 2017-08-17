@@ -7,11 +7,11 @@
       {
         "type": "item",
         "name": "mario2:records.smbUnderwater",
-        "weight": 11
+        "weight": 15
       },
       {
         "type": "empty",
-        "weight": 89
+        "weight": 112
       }
     ]
   }]
