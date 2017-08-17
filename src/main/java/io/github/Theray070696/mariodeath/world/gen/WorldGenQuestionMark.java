@@ -1,10 +1,11 @@
 package io.github.Theray070696.mariodeath.world.gen;
 
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
+import net.minecraft.block.BlockLiquid;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.fluids.BlockFluidBase;
 
 import java.util.Random;
 
@@ -34,7 +35,7 @@ public class WorldGenQuestionMark extends WorldGenerator
             }
         }
 
-        if(world.getBlockState(new BlockPos(pos.getX(), y, pos.getZ())).getBlock() != Blocks.WATER && world.getBlockState(new BlockPos(pos.getX(), y, pos.getZ())).getBlock() != Blocks.FLOWING_WATER)
+        if(!(world.getBlockState(new BlockPos(pos.getX(), y, pos.getZ())).getBlock() instanceof BlockLiquid) && !(world.getBlockState(new BlockPos(pos.getX(), y, pos.getZ())).getBlock() instanceof BlockFluidBase))
         {
             if(!rare)
             {
