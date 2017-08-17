@@ -33,7 +33,7 @@ public class ItemCape extends ItemMario implements IBauble
     }
 
     @Override
-    public void onUpdate(ItemStack stack, World world, Entity entity, int p_77663_4_, boolean p_77663_5_)
+    public void onUpdate(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
     {
         if(!world.isRemote) // If we're on the server side...
         {
