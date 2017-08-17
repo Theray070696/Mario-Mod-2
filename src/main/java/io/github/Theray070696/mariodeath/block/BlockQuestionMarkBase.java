@@ -287,9 +287,9 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                     entityItem.motionZ = rand.nextGaussian() * factor; // Z motion.
                     world.spawnEntityInWorld(entityItem); // Spawn the item entity.
                 }
-
-                this.updateQuestionMarkState(ItemsInQuestionMarks.ITEM_NOTHING, world, pos, tileQuestionMark); // Update the state of the block.
             }
+
+            this.updateQuestionMarkState(ItemsInQuestionMarks.ITEM_NOTHING, world, pos, tileQuestionMark); // Update the state of the block.
         }
     }
 
