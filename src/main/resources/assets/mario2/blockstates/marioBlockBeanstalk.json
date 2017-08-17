@@ -14,10 +14,16 @@
       "model": "cube_all"
     },
     "istop=true": {
-      "model": "mario2:beanstalk_top"
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/beanstalk_top"
+      }
     },
     "istop=false": {
-      "model": "mario2:beanstalk"
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/beanstalk"
+      }
     }
   }
 }
