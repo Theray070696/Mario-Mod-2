@@ -1,15 +1,10 @@
 package io.github.Theray070696.mariodeath.world;
 
-import io.github.Theray070696.mariodeath.block.BlockQuestionMarkBase;
-import io.github.Theray070696.mariodeath.block.EnumBlockType;
 import io.github.Theray070696.mariodeath.block.ModBlocks;
-import io.github.Theray070696.mariodeath.block.tile.TileQuestionMark;
-import io.github.Theray070696.mariodeath.lib.ItemsInQuestionMarks;
 import io.github.Theray070696.mariodeath.world.gen.WorldGenMinableSingle;
 import io.github.Theray070696.mariodeath.world.gen.WorldGenQuestionMark;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProviderEnd;
