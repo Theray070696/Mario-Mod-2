@@ -49,12 +49,24 @@ public class Item1Up extends ItemMario
         {
             if(player.getHealth() < player.getMaxHealth())
             {
-                if(player.getHealth() + 10F >= player.getMaxHealth())
+                if(!world.getWorldInfo().isHardcoreModeEnabled())
                 {
-                    player.setHealth(player.getMaxHealth());
+                    if(player.getHealth() + 10F >= player.getMaxHealth())
+                    {
+                        player.setHealth(player.getMaxHealth());
+                    } else
+                    {
+                        player.setHealth(player.getHealth() + 10F);
+                    }
                 } else
                 {
-                    player.setHealth(player.getHealth() + 10F);
+                    if(player.getHealth() + 20F >= player.getMaxHealth())
+                    {
+                        player.setHealth(player.getMaxHealth());
+                    } else
+                    {
+                        player.setHealth(player.getHealth() + 20F);
+                    }
                 }
 
                 int meta = itemStack.getItemDamage();
@@ -87,6 +99,12 @@ public class Item1Up extends ItemMario
     {
         super.addInformation(itemStack, player, list, advanced);
 
-        list.add("Restores 5 hearts");
+        if(!player.getEntityWorld().getWorldInfo().isHardcoreModeEnabled())
+        {
+            list.add("Restores 5 hearts"); // Add a helpful tooltip.
+        } else
+        {
+            list.add("Restores 10 hearts"); // Add a helpful tooltip.
+        }
     }
 }
