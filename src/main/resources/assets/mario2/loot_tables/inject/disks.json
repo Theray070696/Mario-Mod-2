@@ -2,7 +2,10 @@
   "__comment": "This table is injected as its own pool into minecraft:chests/simple_dungeon",
   "pools": [{
     "name": "main",
-    "rolls": 1,
+    "rolls": {
+      "min": 1,
+      "max": 3
+    },
     "entries": [
       {
         "type": "item",
