@@ -2,7 +2,10 @@ package io.github.Theray070696.mariodeath;
 
 import io.github.Theray070696.mariodeath.audio.SoundHandler;
 import io.github.Theray070696.mariodeath.block.ModBlocks;
-import io.github.Theray070696.mariodeath.capability.*;
+import io.github.Theray070696.mariodeath.capability.CapabilityHandler;
+import io.github.Theray070696.mariodeath.capability.CoinCount;
+import io.github.Theray070696.mariodeath.capability.CoinCountStorage;
+import io.github.Theray070696.mariodeath.capability.ICoinCount;
 import io.github.Theray070696.mariodeath.configuration.ConfigHandler;
 import io.github.Theray070696.mariodeath.core.CraftingHandler;
 import io.github.Theray070696.mariodeath.core.EventHandler;
