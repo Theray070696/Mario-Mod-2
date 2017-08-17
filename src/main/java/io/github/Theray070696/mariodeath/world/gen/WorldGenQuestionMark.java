@@ -24,29 +24,26 @@ public class WorldGenQuestionMark extends WorldGenerator
 
     public boolean generate(World world, Random random, BlockPos pos)
     {
-        if(!world.isRemote)
+        int y = pos.getY();
+
+        for(int m = y; m <= 200; ++m)
         {
-            int y = pos.getY();
-
-            for(int m = y; m <= 200; ++m)
+            if(!world.isAirBlock(new BlockPos(pos.getX(), m, pos.getZ())))
             {
-                if(!world.isAirBlock(new BlockPos(pos.getX(), m, pos.getZ())))
-                {
-                    y = m;
-                }
+                y = m;
             }
+        }
 
-            if(world.getBlockState(new BlockPos(pos.getX(), y, pos.getZ())).getBlock() != Blocks.WATER && world.getBlockState(new BlockPos(pos.getX(), y, pos.getZ())).getBlock() != Blocks.FLOWING_WATER)
+        if(world.getBlockState(new BlockPos(pos.getX(), y, pos.getZ())).getBlock() != Blocks.WATER && world.getBlockState(new BlockPos(pos.getX(), y, pos.getZ())).getBlock() != Blocks.FLOWING_WATER)
+        {
+            if(!rare)
             {
-                if(!rare)
-                {
-                    world.setBlockState(new BlockPos(pos.getX(), y + 3 + random.nextInt(3), pos.getZ()), block.getDefaultState(), 2);
-                    return true;
-                } else if(random.nextInt(50) + 1 == 1)
-                {
-                    world.setBlockState(new BlockPos(pos.getX(), y + 3 + random.nextInt(3), pos.getZ()), this.block.getDefaultState(), 2);
-                    return true;
-                }
+                world.setBlockState(new BlockPos(pos.getX(), y + 3 + random.nextInt(3), pos.getZ()), block.getDefaultState(), 2);
+                return true;
+            } else if(random.nextInt(50) == 0)
+            {
+                world.setBlockState(new BlockPos(pos.getX(), y + 3 + random.nextInt(3), pos.getZ()), block.getDefaultState(), 2);
+                return true;
             }
         }
 
