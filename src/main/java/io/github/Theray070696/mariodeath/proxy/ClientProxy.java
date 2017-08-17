@@ -1,9 +1,11 @@
 package io.github.Theray070696.mariodeath.proxy;
 
 import io.github.Theray070696.mariodeath.capability.CoinCountProvider;
+import io.github.Theray070696.mariodeath.client.render.RenderFireball;
 import io.github.Theray070696.mariodeath.client.render.RenderGoomba;
 import io.github.Theray070696.mariodeath.client.render.RenderKoopa;
 import io.github.Theray070696.mariodeath.core.ClientEventHandler;
+import io.github.Theray070696.mariodeath.entity.EntityFireball;
 import io.github.Theray070696.mariodeath.entity.EntityGoomba;
 import io.github.Theray070696.mariodeath.entity.EntityKoopa;
 import net.minecraft.client.renderer.entity.Render;
@@ -48,6 +50,15 @@ public class ClientProxy extends CommonProxy
             public Render<? super EntityKoopa> createRenderFor(RenderManager manager)
             {
                 return new RenderKoopa(manager);
+            }
+        });
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityFireball.class, new IRenderFactory<EntityFireball>()
+        {
+            @Override
+            public Render<? super EntityFireball> createRenderFor(RenderManager manager)
+            {
+                return new RenderFireball(manager);
             }
         });
     }
