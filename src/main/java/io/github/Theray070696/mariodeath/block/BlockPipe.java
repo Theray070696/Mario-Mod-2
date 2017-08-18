@@ -7,7 +7,6 @@ import io.github.Theray070696.mariodeath.util.MarioTeleporter;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
@@ -107,10 +106,9 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
     {
         inPipeTime++;
 
-        if(inPipeTime >= 40)
+        if(inPipeTime >= 20)
         {
-            // Items are kinda buggy atm. Will fix later.
-            if(!(entity instanceof EntityItem) && world.getTileEntity(blockPos) instanceof TilePipe)
+            if(world.getTileEntity(blockPos) instanceof TilePipe)
             {
                 if((blockState.getValue(FACING) == EnumFacing.UP && ((entity instanceof EntityPlayer && entity.isSneaking()) || !(entity instanceof
                         EntityPlayer))) || blockState.getValue(FACING) != EnumFacing.UP)
@@ -143,6 +141,19 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
                                         world.getMinecraftServer().getPlayerList().transferPlayerToDimension((EntityPlayerMP) entity,
                                                 teleportDestinationDimension, new MarioTeleporter((WorldServer) otherWorld));
                                         entity.setSneaking(false);
+                                    } else if(entity instanceof EntityItem)
+                                    {
+                                        // Items
+                                        ItemStack stack = ((EntityItem) entity).getEntityItem().copy();
+
+                                        EntityItem entityItem = new EntityItem(otherWorld, teleportDestinationPos.getX(), teleportDestinationPos.getY(),
+                                                teleportDestinationPos.getZ(), stack);
+
+                                        otherWorld.spawnEntityInWorld(entityItem);
+                                        entity.setDead();
+
+                                        //world.getMinecraftServer().getPlayerList().transferEntityToWorld(entity, world.provider.getDimension(),
+                                        //(WorldServer) world, (WorldServer) otherWorld, new MarioTeleporter((WorldServer) otherWorld));
                                     } else
                                     {
                                         // Other Entities
@@ -151,9 +162,13 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
                                     }
                                 }
 
-                                // Move the Entity to the correct coordinates
-                                entity.setPositionAndUpdate(teleportDestinationPos.getX(), teleportDestinationPos.getY(), teleportDestinationPos
-                                        .getZ());
+                                if((!(entity instanceof EntityItem) && teleportDestinationDimension != world.provider.getDimension()) ||
+                                        teleportDestinationDimension == world.provider.getDimension())
+                                {
+                                    // Move the Entity to the correct coordinates
+                                    entity.setPositionAndUpdate(teleportDestinationPos.getX(), teleportDestinationPos.getY(), teleportDestinationPos
+                                            .getZ());
+                                }
 
                                 // Play sound
                                 world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.pipe, SoundCategory.BLOCKS,
@@ -702,7 +717,7 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
 
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(FACING, EnumFacing.getFront(meta & 7)).withProperty(ISMULTIBLOCK, Boolean.valueOf((meta & 8) > 0));
+        return this.getDefaultState().withProperty(FACING, EnumFacing.getFront(meta & 7)).withProperty(ISMULTIBLOCK, (meta & 8) > 0);
     }
 
     public int getMetaFromState(IBlockState state)
@@ -710,7 +725,7 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
         int i = 0;
         i = i | state.getValue(FACING).getIndex();
 
-        if(state.getValue(ISMULTIBLOCK).booleanValue())
+        if(state.getValue(ISMULTIBLOCK))
         {
             i |= 8;
         }
@@ -720,7 +735,7 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
 
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[]{FACING, ISMULTIBLOCK, CONNECTEDRIGHT, CONNECTEDDOWN, REARBLOCK});
+        return new BlockStateContainer(this, FACING, ISMULTIBLOCK, CONNECTEDRIGHT, CONNECTEDDOWN, REARBLOCK);
     }
 
     @Override
