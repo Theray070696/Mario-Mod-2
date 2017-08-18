@@ -1,9 +1,11 @@
 package io.github.Theray070696.mariodeath.world;
 
 import io.github.Theray070696.mariodeath.block.ModBlocks;
+import io.github.Theray070696.mariodeath.world.gen.WorldGenCastle;
 import io.github.Theray070696.mariodeath.world.gen.WorldGenMinableSingle;
 import io.github.Theray070696.mariodeath.world.gen.WorldGenQuestionMark;
-import net.minecraft.block.Block;
+import net.minecraft.block.*;
+import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -12,6 +14,7 @@ import net.minecraft.world.WorldProviderHell;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 import java.util.Random;
@@ -36,6 +39,8 @@ public class WorldGenMario implements IWorldGenerator
 
     private WorldGenerator noteBlock;
 
+    private WorldGenerator castle;
+
     public WorldGenMario()
     {
         this.questionMarkSMB = new WorldGenQuestionMark(ModBlocks.blockQuestionMarkSMB, true);
@@ -52,6 +57,8 @@ public class WorldGenMario implements IWorldGenerator
         this.invisibleBlock = new WorldGenMinableSingle(ModBlocks.blockInvisibleBlock, Blocks.AIR, true);
 
         this.noteBlock = new WorldGenMinableSingle(ModBlocks.blockNoteBlock, Blocks.AIR, false);
+
+        this.castle = new WorldGenCastle();
     }
 
     @Override
@@ -61,7 +68,8 @@ public class WorldGenMario implements IWorldGenerator
         {
             // Nether or Hellish dimensions
 
-            this.runGenerator(this.questionMarkUndergroundRareSMB, world, random, chunkX, chunkZ, random.nextInt(5), 3, 100);
+            this.runGenerator(this.questionMarkUndergroundRareSMB, world, random, chunkX, chunkZ, random.nextInt(5),
+                    3, 100);
 
             this.runGenerator(this.questionMarkSMB3, world, random, chunkX, chunkZ, random.nextInt(5), 3, 100);
 
@@ -91,7 +99,9 @@ public class WorldGenMario implements IWorldGenerator
             this.runGenerator(this.invisibleBlock, world, random, chunkX, chunkZ, random.nextInt(10), 3, 85);
 
             this.runGenerator(this.noteBlock, world, random, chunkX, chunkZ, random.nextInt(20), 25, 100);
-        } */else if(world.getWorldType().getWorldTypeName().equalsIgnoreCase("atg"))
+
+            this.runGenerator(this.castle, world, random, chunkX, chunkZ, 0, 0, 0);
+        } */ else if(world.getWorldType().getWorldTypeName().equalsIgnoreCase("atg"))
         {
             this.runGenerator(this.questionMarkSMB, world, random, chunkX, chunkZ, random.nextInt(2), 50, 128);
             this.runGenerator(this.questionMarkUndergroundSMB, world, random, chunkX, chunkZ, random.nextInt(2), 3, 50);
@@ -106,7 +116,8 @@ public class WorldGenMario implements IWorldGenerator
             this.runGenerator(this.invisibleBlock, world, random, chunkX, chunkZ, random.nextInt(5), 3, 128);
 
             this.runGenerator(this.noteBlock, world, random, chunkX, chunkZ, random.nextInt(15), 25, 128);
-        } else if(!world.provider.getDimensionType().getName().equalsIgnoreCase("CompactMachinesWorld") && !world.provider.getDimensionType().getName().contains("Tardis"))
+        } else if(!world.provider.getDimensionType().getName().equalsIgnoreCase("CompactMachinesWorld") && !world.provider.getDimensionType()
+                .getName().contains("Tardis"))
         {
             // Overworld or some mod dimension
 
@@ -123,10 +134,13 @@ public class WorldGenMario implements IWorldGenerator
             this.runGenerator(this.invisibleBlock, world, random, chunkX, chunkZ, random.nextInt(5), 3, 85);
 
             this.runGenerator(this.noteBlock, world, random, chunkX, chunkZ, random.nextInt(15), 25, 100);
+
+            this.runGenerator(this.castle, world, random, chunkX, chunkZ, 0, 0, 0);
         }
     }
 
-    private void runGenerator(WorldGenerator worldGenerator, World world, Random rand, int chunk_X, int chunk_Z, int chancesToSpawn, int minHeight, int maxHeight)
+    private void runGenerator(WorldGenerator worldGenerator, World world, Random rand, int chunk_X, int chunk_Z, int chancesToSpawn, int minHeight,
+                              int maxHeight)
     {
         if(minHeight < 0 || maxHeight > 256 || minHeight > maxHeight)
         {
@@ -142,9 +156,11 @@ public class WorldGenMario implements IWorldGenerator
                 int y = minHeight + rand.nextInt(heightDiff);
                 int z = chunk_Z * 16 + rand.nextInt(16);
 
-                Block block = world.getBlockState(new BlockPos(x, y-1, z)).getBlock();
+                Block block = world.getBlockState(new BlockPos(x, y - 1, z)).getBlock();
 
-                if(block == Blocks.GRASS || block == Blocks.DIRT || block == Blocks.STONE || block == Blocks.SAND || block == ModBlocks.blockGround || block == ModBlocks.blockGroundUnderground || block == ModBlocks.blockGroundUnderwater)
+                if(block == Blocks.GRASS || block == Blocks.DIRT || block == Blocks.STONE || block == Blocks.SAND || block == ModBlocks.blockGround
+                        || block == ModBlocks.blockGroundUnderground || block == ModBlocks.blockGroundUnderwater || block == ModBlocks
+                        .blockGroundSnow || block == ModBlocks.blockCastleWall || block == ModBlocks.blockGroundSMW)
                 {
                     worldGenerator.generate(world, rand, new BlockPos(x, y, z));
                 }
@@ -167,6 +183,27 @@ public class WorldGenMario implements IWorldGenerator
                 int x = chunk_X * 16 + rand.nextInt(16);
                 int z = chunk_Z * 16 + rand.nextInt(16);
                 worldGenerator.generate(world, rand, new BlockPos(x, minHeight, z));
+            }
+        } else if(worldGenerator == this.castle)
+        {
+            int x = chunk_X * 16 + rand.nextInt(16);
+            int z = chunk_Z * 16 + rand.nextInt(16);
+
+            if((!world.getBiomeForCoordsBody(new BlockPos(x, 50, z)).equals(Biomes.OCEAN) && !world.getBiomeForCoordsBody(new BlockPos(x, 50, z))
+                    .equals(Biomes.DEEP_OCEAN)) && !world.getBiomeForCoordsBody(new BlockPos(x, 50, z)).equals(Biomes.FROZEN_OCEAN) && rand.nextInt
+                    (70) == 0)
+                    //(1) == 0)
+            {
+                int y = 50;
+                BlockPos position = new BlockPos(x, y, z);
+
+                position = world.getTopSolidOrLiquidBlock(position);
+
+                if(!(world.getBlockState(world.getTopSolidOrLiquidBlock(position)).getBlock() instanceof BlockLiquid) && !(world.getBlockState
+                        (world.getTopSolidOrLiquidBlock(position)).getBlock() instanceof BlockFluidBase))
+                {
+                    this.castle.generate(world, rand, position);
+                }
             }
         }
     }
