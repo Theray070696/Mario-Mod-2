@@ -28,40 +28,6 @@ public class WorldGenQuestionMark extends WorldGenerator
         this.rare = rare;
     }
 
-    public boolean generate(World world, Random random, BlockPos pos)
-    {
-        int y = pos.getY();
-
-        for(int m = y; m <= 200; ++m)
-        {
-            if(!world.isAirBlock(new BlockPos(pos.getX(), m, pos.getZ())))
-            {
-                y = m;
-            }
-        }
-
-        if(!(world.getBlockState(new BlockPos(pos.getX(), y, pos.getZ())).getBlock() instanceof BlockLiquid) && !(world.getBlockState(new BlockPos(pos.getX(), y, pos.getZ())).getBlock() instanceof BlockFluidBase))
-        {
-            if(!rare)
-            {
-                y = y + 3 + random.nextInt(3);
-
-                world.setBlockState(new BlockPos(pos.getX(), y, pos.getZ()), block.getDefaultState(), 2);
-                onQuestionMarkGenerated(world, pos.getX(), y, pos.getZ(), random);
-                return true;
-            } else if(random.nextInt(50) == 0)
-            {
-                y = y + 3 + random.nextInt(3);
-
-                world.setBlockState(new BlockPos(pos.getX(), y, pos.getZ()), block.getDefaultState(), 2);
-                onQuestionMarkGenerated(world, pos.getX(), y, pos.getZ(), random);
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     public static void onQuestionMarkGenerated(World world, int x, int y, int z, Random rand)
     {
         Block block = world.getBlockState(new BlockPos(x, y, z)).getBlock();
@@ -69,7 +35,8 @@ public class WorldGenQuestionMark extends WorldGenerator
         if(block instanceof BlockQuestionMarkBase)
         {
             TileEntity tileEntity = world.getTileEntity(new BlockPos(x, y, z));
-            if(tileEntity instanceof TileQuestionMark && (((BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType.SMW) || ((BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType.SMW_INVISIBLE)))
+            if(tileEntity instanceof TileQuestionMark && (((BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType.SMW) || (
+                    (BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType.SMW_INVISIBLE)))
             {
                 TileQuestionMark questionMark = (TileQuestionMark) tileEntity;
                 int item;
@@ -96,7 +63,11 @@ public class WorldGenQuestionMark extends WorldGenerator
                 }
 
                 questionMark.setItemInBlock(item);
-            } else if(tileEntity instanceof TileQuestionMark && (((BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType.SMB) || ((BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType.SMB_INVISIBLE) || ((BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType.SMB_UNDERGROUND) || ((BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType.SMB_CASTLE) || ((BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType.SMB3) || ((BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType.SMB3_INVISIBLE)))
+            } else if(tileEntity instanceof TileQuestionMark && (((BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType.SMB) || (
+                    (BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType.SMB_INVISIBLE) || ((BlockQuestionMarkBase) block)
+                    .getBlockType().equals(EnumBlockType.SMB_UNDERGROUND) || ((BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType
+                    .SMB_CASTLE) || ((BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType.SMB3) || ((BlockQuestionMarkBase) block)
+                    .getBlockType().equals(EnumBlockType.SMB3_INVISIBLE)))
             {
                 TileQuestionMark questionMark = (TileQuestionMark) tileEntity;
                 int item;
@@ -122,5 +93,40 @@ public class WorldGenQuestionMark extends WorldGenerator
                 questionMark.setItemInBlock(item);
             }
         }
+    }
+
+    public boolean generate(World world, Random random, BlockPos pos)
+    {
+        int y = pos.getY();
+
+        for(int m = y; m <= 200; ++m)
+        {
+            if(!world.isAirBlock(new BlockPos(pos.getX(), m, pos.getZ())))
+            {
+                y = m;
+            }
+        }
+
+        if(!(world.getBlockState(new BlockPos(pos.getX(), y, pos.getZ())).getBlock() instanceof BlockLiquid) && !(world.getBlockState(new BlockPos
+                (pos.getX(), y, pos.getZ())).getBlock() instanceof BlockFluidBase))
+        {
+            if(!rare)
+            {
+                y = y + 3 + random.nextInt(3);
+
+                world.setBlockState(new BlockPos(pos.getX(), y, pos.getZ()), block.getDefaultState(), 2);
+                onQuestionMarkGenerated(world, pos.getX(), y, pos.getZ(), random);
+                return true;
+            } else if(random.nextInt(50) == 0)
+            {
+                y = y + 3 + random.nextInt(3);
+
+                world.setBlockState(new BlockPos(pos.getX(), y, pos.getZ()), block.getDefaultState(), 2);
+                onQuestionMarkGenerated(world, pos.getX(), y, pos.getZ(), random);
+                return true;
+            }
+        }
+
+        return false;
     }
 }

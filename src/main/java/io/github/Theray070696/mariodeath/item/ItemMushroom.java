@@ -45,7 +45,8 @@ public class ItemMushroom extends ItemMario
     @Override
     public ActionResult<ItemStack> onItemRightClick(@Nullable ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
     {
-        if(!world.isRemote && itemStack != null && player != null && !(player instanceof FakePlayer)) // If we're on the server side, the ItemStack is not null, the player is not null, AND this was not used by a fake player...
+        if(!world.isRemote && itemStack != null && player != null && !(player instanceof FakePlayer)) // If we're on the server side, the ItemStack
+            // is not null, the player is not null, AND this was not used by a fake player...
         {
             if(player.getHealth() < player.getMaxHealth()) // If the player needs healing...
             {
@@ -72,10 +73,12 @@ public class ItemMushroom extends ItemMario
                 int meta = itemStack.getItemDamage(); // Get the damage value of the item.
                 if(meta == 0 || meta == 2) // If it was from Mario 1 or Mario 3...
                 {
-                    world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler.mushroomSMB, SoundCategory.PLAYERS, 1.0F, 1.0F); // Play this sound.
+                    world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler
+                            .mushroomSMB, SoundCategory.PLAYERS, 1.0F, 1.0F); // Play this sound.
                 } else if(meta == 1) // If it was from Mario World...
                 {
-                    world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler.mushroom, SoundCategory.PLAYERS, 1.0F, 1.0F); // Play this sound.
+                    world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler
+                            .mushroom, SoundCategory.PLAYERS, 1.0F, 1.0F); // Play this sound.
                 }
 
                 itemStack.stackSize--; // Decrease amount of items in stack by one.

@@ -72,10 +72,12 @@ public class Item1Up extends ItemMario
                 int meta = itemStack.getItemDamage();
                 if(meta == 0 || meta == 2)
                 {
-                    world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler.oneUpSMB, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                    world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler
+                            .oneUpSMB, SoundCategory.PLAYERS, 1.0F, 1.0F);
                 } else if(meta == 1)
                 {
-                    world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler.oneUp, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                    world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler
+                            .oneUp, SoundCategory.PLAYERS, 1.0F, 1.0F);
                 }
 
                 itemStack.stackSize--;

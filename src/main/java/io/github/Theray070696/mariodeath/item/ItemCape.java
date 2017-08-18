@@ -37,7 +37,8 @@ public class ItemCape extends ItemMario implements IBauble
     {
         if(!world.isRemote) // If we're on the server side...
         {
-            if(entity != null && entity instanceof EntityPlayer && !(entity instanceof FakePlayer) && entity.motionY < 0.0f) // If the entity is not null, is a player, is not a fake player, and is falling...
+            if(entity != null && entity instanceof EntityPlayer && !(entity instanceof FakePlayer) && entity.motionY < 0.0f) // If the entity is
+                // not null, is a player, is not a fake player, and is falling...
             {
                 EntityPlayer player = (EntityPlayer) entity; // Save the player entity.
 
@@ -58,11 +59,13 @@ public class ItemCape extends ItemMario implements IBauble
     @Override
     public ActionResult<ItemStack> onItemRightClick(@Nullable ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
     {
-        if(!world.isRemote && itemStack != null && player != null && !(player instanceof FakePlayer)) // If we're on the server side, the ItemStack is not null, the player is not null, and the player is not a fake player...
+        if(!world.isRemote && itemStack != null && player != null && !(player instanceof FakePlayer)) // If we're on the server side, the ItemStack
+            // is not null, the player is not null, and the player is not a fake player...
         {
             player.fallDistance = 0.0F; // Cancel fall damage.
 
-            world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler.cape, SoundCategory.PLAYERS, 1.0F, 1.0F); // Play a sound.
+            world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler.cape,
+                    SoundCategory.PLAYERS, 1.0F, 1.0F); // Play a sound.
         }
 
         return new ActionResult<>(EnumActionResult.PASS, itemStack);
@@ -86,17 +89,22 @@ public class ItemCape extends ItemMario implements IBauble
     @Override
     public void onWornTick(ItemStack itemStack, EntityLivingBase player)
     {
-        if(itemStack != null && player != null && !(player instanceof FakePlayer) && player.motionY < 0.0f) // If the ItemStack is not null, the player is not null, and the player is not a fake player...
+        if(itemStack != null && player != null && !(player instanceof FakePlayer) && player.motionY < 0.0f) // If the ItemStack is not null, the
+            // player is not null, and the player is not a fake player...
         {
             player.fallDistance = 0.0F; // Cancel fall damage.
         }
     }
 
     @Override
-    public void onEquipped(ItemStack itemstack, EntityLivingBase player) {}
+    public void onEquipped(ItemStack itemstack, EntityLivingBase player)
+    {
+    }
 
     @Override
-    public void onUnequipped(ItemStack itemstack, EntityLivingBase player) {}
+    public void onUnequipped(ItemStack itemstack, EntityLivingBase player)
+    {
+    }
 
     @Override
     public boolean canEquip(ItemStack itemstack, EntityLivingBase player)

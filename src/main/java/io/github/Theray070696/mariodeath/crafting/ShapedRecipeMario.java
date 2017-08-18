@@ -12,13 +12,21 @@ import javax.annotation.Nullable;
  */
 public class ShapedRecipeMario implements IMarioRecipe
 {
-    /** How many horizontal slots this recipe is wide. */
+    /**
+     * How many horizontal slots this recipe is wide.
+     */
     public final int recipeWidth;
-    /** How many vertical slots this recipe uses. */
+    /**
+     * How many vertical slots this recipe uses.
+     */
     public final int recipeHeight;
-    /** Is a array of ItemStack that composes the recipe. */
+    /**
+     * Is a array of ItemStack that composes the recipe.
+     */
     public final ItemStack[] recipeItems;
-    /** Is the ItemStack that you get when craft the recipe. */
+    /**
+     * Is the ItemStack that you get when craft the recipe.
+     */
     private final ItemStack recipeOutput;
     private boolean copyIngredientNBT;
 

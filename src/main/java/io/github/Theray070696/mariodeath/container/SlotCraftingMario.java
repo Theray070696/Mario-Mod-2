@@ -14,14 +14,21 @@ import javax.annotation.Nullable;
  */
 public class SlotCraftingMario extends Slot
 {
-    /** The craft matrix inventory linked to this result slot. */
+    /**
+     * The craft matrix inventory linked to this result slot.
+     */
     private final InventoryCrafting craftMatrix;
-    /** The player that is using the GUI where this slot resides. */
+    /**
+     * The player that is using the GUI where this slot resides.
+     */
     private final EntityPlayer thePlayer;
-    /** The number of items that have been crafted so far. Gets passed to ItemStack.onCrafting before being reset. */
+    /**
+     * The number of items that have been crafted so far. Gets passed to ItemStack.onCrafting before being reset.
+     */
     private int amountCrafted;
 
-    public SlotCraftingMario(EntityPlayer player, InventoryCrafting craftingInventory, IInventory inventoryIn, int slotIndex, int xPosition, int yPosition)
+    public SlotCraftingMario(EntityPlayer player, InventoryCrafting craftingInventory, IInventory inventoryIn, int slotIndex, int xPosition, int
+            yPosition)
     {
         super(inventoryIn, slotIndex, xPosition, yPosition);
         this.thePlayer = player;

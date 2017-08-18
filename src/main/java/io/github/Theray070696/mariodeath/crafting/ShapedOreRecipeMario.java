@@ -28,8 +28,16 @@ public class ShapedOreRecipeMario implements IMarioRecipe
     protected int height = 0;
     protected boolean mirrored = true;
 
-    public ShapedOreRecipeMario(Block result, Object... recipe){ this(new ItemStack(result), recipe); }
-    public ShapedOreRecipeMario(Item result, Object... recipe){ this(new ItemStack(result), recipe); }
+    public ShapedOreRecipeMario(Block result, Object... recipe)
+    {
+        this(new ItemStack(result), recipe);
+    }
+
+    public ShapedOreRecipeMario(Item result, Object... recipe)
+    {
+        this(new ItemStack(result), recipe);
+    }
+
     public ShapedOreRecipeMario(ItemStack result, Object... recipe)
     {
         output = result.copy();
@@ -39,10 +47,10 @@ public class ShapedOreRecipeMario implements IMarioRecipe
 
         if(recipe[idx] instanceof Boolean)
         {
-            mirrored = (Boolean)recipe[idx];
-            if(recipe[idx+1] instanceof Object[])
+            mirrored = (Boolean) recipe[idx];
+            if(recipe[idx + 1] instanceof Object[])
             {
-                recipe = (Object[])recipe[idx+1];
+                recipe = (Object[]) recipe[idx + 1];
             } else
             {
                 idx = 1;
@@ -51,7 +59,7 @@ public class ShapedOreRecipeMario implements IMarioRecipe
 
         if(recipe[idx] instanceof String[])
         {
-            String[] parts = ((String[])recipe[idx++]);
+            String[] parts = ((String[]) recipe[idx++]);
 
             for(String s : parts)
             {
@@ -62,9 +70,9 @@ public class ShapedOreRecipeMario implements IMarioRecipe
             height = parts.length;
         } else
         {
-            while (recipe[idx] instanceof String)
+            while(recipe[idx] instanceof String)
             {
-                String s = (String)recipe[idx++];
+                String s = (String) recipe[idx++];
                 shape += s;
                 width = s.length();
                 height++;
@@ -74,7 +82,7 @@ public class ShapedOreRecipeMario implements IMarioRecipe
         if(width * height != shape.length())
         {
             String ret = "Invalid shaped ore recipe: ";
-            for (Object tmp :  recipe)
+            for(Object tmp : recipe)
             {
                 ret += tmp + ", ";
             }
@@ -86,25 +94,25 @@ public class ShapedOreRecipeMario implements IMarioRecipe
 
         for(; idx < recipe.length; idx += 2)
         {
-            Character chr = (Character)recipe[idx];
+            Character chr = (Character) recipe[idx];
             Object in = recipe[idx + 1];
 
             if(in instanceof ItemStack)
             {
-                itemMap.put(chr, ((ItemStack)in).copy());
+                itemMap.put(chr, ((ItemStack) in).copy());
             } else if(in instanceof Item)
             {
-                itemMap.put(chr, new ItemStack((Item)in));
+                itemMap.put(chr, new ItemStack((Item) in));
             } else if(in instanceof Block)
             {
-                itemMap.put(chr, new ItemStack((Block)in, 1, OreDictionary.WILDCARD_VALUE));
+                itemMap.put(chr, new ItemStack((Block) in, 1, OreDictionary.WILDCARD_VALUE));
             } else if(in instanceof String)
             {
-                itemMap.put(chr, OreDictionary.getOres((String)in));
+                itemMap.put(chr, OreDictionary.getOres((String) in));
             } else
             {
                 String ret = "Invalid shaped ore recipe: ";
-                for(Object tmp :  recipe)
+                for(Object tmp : recipe)
                 {
                     ret += tmp + ", ";
                 }
@@ -133,7 +141,10 @@ public class ShapedOreRecipeMario implements IMarioRecipe
         {
             ItemStack ingredient = recipe.recipeItems[i];
 
-            if(ingredient == null) continue;
+            if(ingredient == null)
+            {
+                continue;
+            }
 
             input[i] = recipe.recipeItems[i];
 
@@ -152,16 +163,25 @@ public class ShapedOreRecipeMario implements IMarioRecipe
      * Returns an Item that is the result of this recipe
      */
     @Override
-    public ItemStack getCraftingResult(InventoryCrafting var1){ return output.copy(); }
+    public ItemStack getCraftingResult(InventoryCrafting var1)
+    {
+        return output.copy();
+    }
 
     /**
      * Returns the size of the recipe area
      */
     @Override
-    public int getRecipeSize(){ return input.length; }
+    public int getRecipeSize()
+    {
+        return input.length;
+    }
 
     @Override
-    public ItemStack getRecipeOutput(){ return output; }
+    public ItemStack getRecipeOutput()
+    {
+        return output;
+    }
 
     /**
      * Used to check if a recipe matches current crafting inventory
@@ -214,7 +234,7 @@ public class ShapedOreRecipeMario implements IMarioRecipe
 
                 if(target instanceof ItemStack)
                 {
-                    if(!OreDictionary.itemMatches((ItemStack)target, slot, false))
+                    if(!OreDictionary.itemMatches((ItemStack) target, slot, false))
                     {
                         return false;
                     }
@@ -222,7 +242,7 @@ public class ShapedOreRecipeMario implements IMarioRecipe
                 {
                     boolean matched = false;
 
-                    Iterator<ItemStack> itr = ((List<ItemStack>)target).iterator();
+                    Iterator<ItemStack> itr = ((List<ItemStack>) target).iterator();
                     while(itr.hasNext() && !matched)
                     {
                         matched = OreDictionary.itemMatches(itr.next(), slot, false);
@@ -251,6 +271,7 @@ public class ShapedOreRecipeMario implements IMarioRecipe
     /**
      * Returns the input for this recipe, any mod accessing this value should never
      * manipulate the values in this array as it will effect the recipe itself.
+     *
      * @return The recipes input vales.
      */
     public Object[] getInput()

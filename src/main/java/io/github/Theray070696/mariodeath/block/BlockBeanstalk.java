@@ -114,7 +114,7 @@ public class BlockBeanstalk extends BlockMario
 
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] {ISTOP});
+        return new BlockStateContainer(this, new IProperty[]{ISTOP});
     }
 
     @Override

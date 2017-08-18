@@ -39,6 +39,16 @@ public class ItemCoinCurrency extends ItemMario
         return "item." + ModInfo.MOD_ID.toLowerCase() + ":" + CoinType.getTypeNameByMeta(stack.getMetadata());
     }
 
+    @Override
+    public void registerItemModel(Item item)
+    {
+        RayCore.proxy.registerItemRenderer(this, 0, ModInfo.MOD_ID, getUnwrappedUnlocalizedName() + "_0");
+        RayCore.proxy.registerItemRenderer(this, 1, ModInfo.MOD_ID, getUnwrappedUnlocalizedName() + "_1");
+        RayCore.proxy.registerItemRenderer(this, 2, ModInfo.MOD_ID, getUnwrappedUnlocalizedName() + "_2");
+        RayCore.proxy.registerItemRenderer(this, 3, ModInfo.MOD_ID, getUnwrappedUnlocalizedName() + "_3");
+        RayCore.proxy.registerItemRenderer(this, 4, ModInfo.MOD_ID, getUnwrappedUnlocalizedName() + "_4");
+    }
+
     private static enum CoinType
     {
         COIN_GREEN(0, "itemCoinGreen"),
@@ -58,23 +68,15 @@ public class ItemCoinCurrency extends ItemMario
 
         public static String getTypeNameByMeta(int meta)
         {
-            for (CoinType type : CoinType.values())
+            for(CoinType type : CoinType.values())
             {
-                if (type.meta == meta)
+                if(type.meta == meta)
+                {
                     return type.typeName;
+                }
             }
 
             return "errorname";
         }
-    }
-
-    @Override
-    public void registerItemModel(Item item)
-    {
-        RayCore.proxy.registerItemRenderer(this, 0, ModInfo.MOD_ID, getUnwrappedUnlocalizedName() + "_0");
-        RayCore.proxy.registerItemRenderer(this, 1, ModInfo.MOD_ID, getUnwrappedUnlocalizedName() + "_1");
-        RayCore.proxy.registerItemRenderer(this, 2, ModInfo.MOD_ID, getUnwrappedUnlocalizedName() + "_2");
-        RayCore.proxy.registerItemRenderer(this, 3, ModInfo.MOD_ID, getUnwrappedUnlocalizedName() + "_3");
-        RayCore.proxy.registerItemRenderer(this, 4, ModInfo.MOD_ID, getUnwrappedUnlocalizedName() + "_4");
     }
 }

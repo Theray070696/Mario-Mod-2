@@ -19,7 +19,9 @@ public class PacketGetCoins implements IMessage
     private int coinCount;
     private int coinType;
 
-    public PacketGetCoins() {}
+    public PacketGetCoins()
+    {
+    }
 
     public PacketGetCoins(int coinCount, int coinType)
     {
@@ -54,10 +56,13 @@ public class PacketGetCoins implements IMessage
                 {
                     if(message.coinCount <= ctx.getServerHandler().playerEntity.getCapability(CoinCountProvider.COIN_COUNT, null).getCoinCount())
                     {
-                        ctx.getServerHandler().playerEntity.getCapability(CoinCountProvider.COIN_COUNT, null).subtractFromCoinCount(message.coinCount);
-                        ctx.getServerHandler().playerEntity.getCapability(CoinCountProvider.COIN_COUNT, null).sync(ctx.getServerHandler().playerEntity);
+                        ctx.getServerHandler().playerEntity.getCapability(CoinCountProvider.COIN_COUNT, null).subtractFromCoinCount(message
+                                .coinCount);
+                        ctx.getServerHandler().playerEntity.getCapability(CoinCountProvider.COIN_COUNT, null).sync(ctx.getServerHandler()
+                                .playerEntity);
 
-                        EntityItem entityItem = ctx.getServerHandler().playerEntity.entityDropItem(new ItemStack(ModItems.itemMarioCoin, message.coinCount, message.coinType), 0.0f);
+                        EntityItem entityItem = ctx.getServerHandler().playerEntity.entityDropItem(new ItemStack(ModItems.itemMarioCoin, message
+                                .coinCount, message.coinType), 0.0f);
 
                         entityItem.setNoPickupDelay();
                     }

@@ -22,8 +22,15 @@ public class ShapelessOreRecipeMario implements IMarioRecipe
     protected ItemStack output = null;
     protected ArrayList<Object> input = new ArrayList<Object>();
 
-    public ShapelessOreRecipeMario(Block result, Object... recipe){ this(new ItemStack(result), recipe); }
-    public ShapelessOreRecipeMario(Item  result, Object... recipe){ this(new ItemStack(result), recipe); }
+    public ShapelessOreRecipeMario(Block result, Object... recipe)
+    {
+        this(new ItemStack(result), recipe);
+    }
+
+    public ShapelessOreRecipeMario(Item result, Object... recipe)
+    {
+        this(new ItemStack(result), recipe);
+    }
 
     public ShapelessOreRecipeMario(ItemStack result, Object... recipe)
     {
@@ -32,20 +39,20 @@ public class ShapelessOreRecipeMario implements IMarioRecipe
         {
             if(in instanceof ItemStack)
             {
-                input.add(((ItemStack)in).copy());
+                input.add(((ItemStack) in).copy());
             } else if(in instanceof Item)
             {
-                input.add(new ItemStack((Item)in));
+                input.add(new ItemStack((Item) in));
             } else if(in instanceof Block)
             {
-                input.add(new ItemStack((Block)in));
+                input.add(new ItemStack((Block) in));
             } else if(in instanceof String)
             {
-                input.add(OreDictionary.getOres((String)in));
+                input.add(OreDictionary.getOres((String) in));
             } else
             {
                 String ret = "Invalid shapeless ore recipe: ";
-                for(Object tmp :  recipe)
+                for(Object tmp : recipe)
                 {
                     ret += tmp + ", ";
                 }
@@ -78,16 +85,25 @@ public class ShapelessOreRecipeMario implements IMarioRecipe
      * Returns the size of the recipe area
      */
     @Override
-    public int getRecipeSize(){ return input.size(); }
+    public int getRecipeSize()
+    {
+        return input.size();
+    }
 
     @Override
-    public ItemStack getRecipeOutput(){ return output; }
+    public ItemStack getRecipeOutput()
+    {
+        return output;
+    }
 
     /**
      * Returns an Item that is the result of this recipe
      */
     @Override
-    public ItemStack getCraftingResult(InventoryCrafting var1){ return output.copy(); }
+    public ItemStack getCraftingResult(InventoryCrafting var1)
+    {
+        return output.copy();
+    }
 
     /**
      * Used to check if a recipe matches current crafting inventory
@@ -115,10 +131,10 @@ public class ShapelessOreRecipeMario implements IMarioRecipe
 
                     if(next instanceof ItemStack)
                     {
-                        match = OreDictionary.itemMatches((ItemStack)next, slot, false);
+                        match = OreDictionary.itemMatches((ItemStack) next, slot, false);
                     } else if(next instanceof List)
                     {
-                        Iterator<ItemStack> itr = ((List<ItemStack>)next).iterator();
+                        Iterator<ItemStack> itr = ((List<ItemStack>) next).iterator();
                         while(itr.hasNext() && !match)
                         {
                             match = OreDictionary.itemMatches(itr.next(), slot, false);
@@ -146,6 +162,7 @@ public class ShapelessOreRecipeMario implements IMarioRecipe
     /**
      * Returns the input for this recipe, any mod accessing this value should never
      * manipulate the values in this array as it will effect the recipe itself.
+     *
      * @return The recipes input vales.
      */
     public ArrayList<Object> getInput()

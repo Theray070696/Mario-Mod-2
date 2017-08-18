@@ -14,9 +14,11 @@ import java.util.List;
  */
 public class ShapelessRecipeMario implements IMarioRecipe
 {
-    /** Is the ItemStack that you get when craft the recipe. */
-    private final ItemStack recipeOutput;
     public final List<ItemStack> recipeItems;
+    /**
+     * Is the ItemStack that you get when craft the recipe.
+     */
+    private final ItemStack recipeOutput;
 
     public ShapelessRecipeMario(ItemStack output, List<ItemStack> inputList)
     {
@@ -62,7 +64,8 @@ public class ShapelessRecipeMario implements IMarioRecipe
 
                     for(ItemStack itemstack1 : list)
                     {
-                        if(itemstack.getItem() == itemstack1.getItem() && (itemstack1.getMetadata() == 32767 || itemstack.getMetadata() == itemstack1.getMetadata()))
+                        if(itemstack.getItem() == itemstack1.getItem() && (itemstack1.getMetadata() == 32767 || itemstack.getMetadata() ==
+                                itemstack1.getMetadata()))
                         {
                             flag = true;
                             list.remove(itemstack1);

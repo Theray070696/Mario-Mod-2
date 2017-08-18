@@ -19,5 +19,7 @@ public class MarioTeleporter extends Teleporter
      * Place an entity in a nearby portal, creating one if necessary.
      */
     @Override
-    public void placeInPortal(Entity entityIn, float rotationYaw) {}
+    public void placeInPortal(Entity entityIn, float rotationYaw)
+    {
+    }
 }

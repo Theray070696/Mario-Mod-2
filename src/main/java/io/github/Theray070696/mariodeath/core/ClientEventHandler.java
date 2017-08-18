@@ -20,7 +20,8 @@ public class ClientEventHandler
     {
         if(event.getType() == ElementType.ALL)
         {
-            new GuiCoinCountOverlay(Minecraft.getMinecraft()).renderCoinCount(event.getResolution().getScaledWidth(), event.getResolution().getScaledHeight());
+            new GuiCoinCountOverlay(Minecraft.getMinecraft()).renderCoinCount(event.getResolution().getScaledWidth(), event.getResolution()
+                    .getScaledHeight());
         }
     }
 }

@@ -23,12 +23,10 @@ import java.util.List;
  */
 public class MarioMakerRecipeCategory extends BlankRecipeCategory<IRecipeWrapper>
 {
-    private static final int craftOutputSlot = 0;
-    private static final int craftInputSlot1 = 1;
-
     public static final int width = 116;
     public static final int height = 54;
-
+    private static final int craftOutputSlot = 0;
+    private static final int craftInputSlot1 = 1;
     private final IDrawable background;
     private final String localizedName;
     private final ICraftingGridHelper craftingGridHelper;

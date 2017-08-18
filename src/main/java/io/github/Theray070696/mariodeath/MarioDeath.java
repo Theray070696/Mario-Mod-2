@@ -116,8 +116,8 @@ public class MarioDeath
         ModBlocks.initBlocks();
         ModItems.initItems();
         PotionEffectsMario.init();
-		
-		LootTableList.register(new ResourceLocation(ModInfo.MOD_ID, "inject/disks"));
+
+        LootTableList.register(new ResourceLocation(ModInfo.MOD_ID, "inject/disks"));
 
         proxy.preInit(event);
 
@@ -151,8 +151,9 @@ public class MarioDeath
         LogHelper.info("Registering World Generation");
         GameRegistry.registerWorldGenerator(new WorldGenMario(), 0);
 
-		// These two will come back as soon an I can make them interesting and not just "Overworld with Mario blocks".
-        //DimensionManager.registerDimension(ConfigHandler.marioDimensionID, DimensionType.register("Marios World", "_mario", ConfigHandler.marioDimensionID, WorldProviderMario.class, false));
+        // These two will come back as soon an I can make them interesting and not just "Overworld with Mario blocks".
+        //DimensionManager.registerDimension(ConfigHandler.marioDimensionID, DimensionType.register("Marios World", "_mario", ConfigHandler
+        // .marioDimensionID, WorldProviderMario.class, false));
         //ModBiomes.registerWithBiomeDictionary();
         LogHelper.info("World Generation Registered");
 

@@ -63,7 +63,8 @@ public class EntityFireball extends Entity
             }
 
             Entity entity = null;
-            List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+            List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY,
+                    this.motionZ).expand(1.0D, 1.0D, 1.0D));
             double d = 0.0D;
 
             for(int l = 0; l < list.size(); ++l)
@@ -91,7 +92,8 @@ public class EntityFireball extends Entity
                 movingobjectposition = new RayTraceResult(entity);
             }
 
-            if(movingobjectposition != null && movingobjectposition.entityHit != null && movingobjectposition.entityHit instanceof EntityLiving && !(movingobjectposition.entityHit instanceof EntityPlayer))
+            if(movingobjectposition != null && movingobjectposition.entityHit != null && movingobjectposition.entityHit instanceof EntityLiving &&
+                    !(movingobjectposition.entityHit instanceof EntityPlayer))
             {
                 movingobjectposition.entityHit.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this, this), 5.0F);
                 movingobjectposition.entityHit.setFire(20);
@@ -148,5 +150,7 @@ public class EntityFireball extends Entity
         this.fuse = nbttagcompound.getByte("Fuse");
     }
 
-    protected void entityInit() {}
+    protected void entityInit()
+    {
+    }
 }

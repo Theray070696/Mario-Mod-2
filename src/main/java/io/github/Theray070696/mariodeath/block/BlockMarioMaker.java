@@ -25,7 +25,8 @@ public class BlockMarioMaker extends BlockMario
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos blockPos, IBlockState blockState, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos blockPos, IBlockState blockState, EntityPlayer player, EnumHand hand, @Nullable ItemStack
+            heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if(player.isSneaking())
         {

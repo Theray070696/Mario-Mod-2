@@ -11,20 +11,19 @@ import java.util.List;
  */
 public class PluginHandler
 {
-    private enum Phase
-    {
-        PRELAUNCH, PREINIT, INIT, POSTINIT, DONE
-    }
-
     private static PluginHandler instance;
     private List<IPlugin> plugins = new LinkedList<IPlugin>();
     private Phase currentPhase = Phase.PRELAUNCH;
-
-    private PluginHandler() {}
+    private PluginHandler()
+    {
+    }
 
     public static PluginHandler getInstance()
     {
-        if(instance == null) instance = new PluginHandler();
+        if(instance == null)
+        {
+            instance = new PluginHandler();
+        }
         return instance;
     }
 
@@ -35,7 +34,10 @@ public class PluginHandler
 
     private void loadPlugin(IPlugin plugin)
     {
-        if(!Loader.isModLoaded(plugin.getModID())) return;
+        if(!Loader.isModLoaded(plugin.getModID()))
+        {
+            return;
+        }
 
         LogHelper.info("Registering plugin for " + plugin.getModID());
         plugins.add(plugin);
@@ -63,24 +65,38 @@ public class PluginHandler
     public void preInit()
     {
         currentPhase = Phase.PREINIT;
-        for(IPlugin plugin : plugins) plugin.preInit();
+        for(IPlugin plugin : plugins)
+        {
+            plugin.preInit();
+        }
     }
 
     public void init()
     {
         currentPhase = Phase.INIT;
-        for(IPlugin plugin : plugins) plugin.init();
+        for(IPlugin plugin : plugins)
+        {
+            plugin.init();
+        }
     }
 
     public void postInit()
     {
         currentPhase = Phase.POSTINIT;
-        for(IPlugin plugin : plugins) plugin.postInit();
+        for(IPlugin plugin : plugins)
+        {
+            plugin.postInit();
+        }
         currentPhase = Phase.DONE;
     }
 
     public void registerBuiltInPlugins()
     {
         //registerPlugin(new NotEnoughItems());
+    }
+
+    private enum Phase
+    {
+        PRELAUNCH, PREINIT, INIT, POSTINIT, DONE
     }
 }

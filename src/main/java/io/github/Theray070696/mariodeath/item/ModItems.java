@@ -44,7 +44,8 @@ public class ModItems
 
         itemCoinCurrency = RayItemRegistry.registerItem(new ItemCoinCurrency());
 
-        itemRecordSMBUnderwater = RayItemRegistry.registerItem(new ItemRayRecord(ModInfo.MOD_ID, "smbUnderwater", 513, SoundHandler.recordUnderwaterSMB).setUnlocalizedName("records.smbUnderwater"));
+        itemRecordSMBUnderwater = RayItemRegistry.registerItem(new ItemRayRecord(ModInfo.MOD_ID, "smbUnderwater", 513, SoundHandler
+                .recordUnderwaterSMB).setUnlocalizedName("records.smbUnderwater"));
 
         if(ConfigHandler.developerModeEnabled)
         {

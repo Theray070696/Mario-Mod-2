@@ -15,7 +15,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class ModBlocks
 {
     public static BlockMario blockMarioMaker;
-    
+
     public static BlockMario blockNoteBlock;
 
     public static BlockMario blockEmptyQuestionMark;
@@ -31,7 +31,7 @@ public class ModBlocks
     public static BlockMario blockInvisibleBlockSMB;
     public static BlockMario blockEmptyInvisibleBlockSMB3;
     public static BlockMario blockInvisibleBlockSMB3;
-    
+
     public static BlockMario blockEmptyQuestionMarkUndergroundSMB;
     public static BlockMario blockQuestionMarkUndergroundSMB;
 
@@ -52,7 +52,7 @@ public class ModBlocks
     public static Block blockBeanstalk;
 
     public static Block blockGroundSMW;
-    
+
     public static BlockMario blockPipeBase;
     public static BlockPipe blockPipe;
 
@@ -69,7 +69,8 @@ public class ModBlocks
         blockDecoration = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockDecoration").setHardness(5.0F));
         blockNoteBlock = RayBlockRegistry.register(new BlockNoteBlock());
 
-        blockGroundSMW = RayBlockRegistry.register(new BlockMarioConnectedTexture(Material.GRASS).setUnlocalizedName("marioBlockGroundSMW").setHardness(4.0F));
+        blockGroundSMW = RayBlockRegistry.register(new BlockMarioConnectedTexture(Material.GRASS).setUnlocalizedName("marioBlockGroundSMW")
+                .setHardness(4.0F));
 
         blockEmptyQuestionMark = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMark", EnumBlockType.SMW));
         blockQuestionMark = RayBlockRegistry.register(new BlockQuestionMark("marioBlockQuestionMark", EnumBlockType.SMW));
@@ -78,22 +79,29 @@ public class ModBlocks
         blockEmptyQuestionMarkSMB3 = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMarkSMB3", EnumBlockType.SMB3));
         blockQuestionMarkSMB3 = RayBlockRegistry.register(new BlockQuestionMark("marioBlockQuestionMarkSMB3", EnumBlockType.SMB3));
 
-        blockEmptyInvisibleBlock = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockInvisibleBlockEmpty", EnumBlockType.SMW_INVISIBLE));
+        blockEmptyInvisibleBlock = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockInvisibleBlockEmpty", EnumBlockType
+                .SMW_INVISIBLE));
         blockInvisibleBlock = RayBlockRegistry.register(new BlockInvisibleBlock("marioBlockInvisibleBlock", EnumBlockType.SMW_INVISIBLE));
-        blockEmptyInvisibleBlockSMB = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockInvisibleBlockEmptySMB", EnumBlockType.SMB_INVISIBLE));
+        blockEmptyInvisibleBlockSMB = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockInvisibleBlockEmptySMB", EnumBlockType
+                .SMB_INVISIBLE));
         blockInvisibleBlockSMB = RayBlockRegistry.register(new BlockInvisibleBlock("marioBlockInvisibleBlockSMB", EnumBlockType.SMB_INVISIBLE));
-        blockEmptyInvisibleBlockSMB3 = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockInvisibleBlockEmptySMB3", EnumBlockType.SMB3_INVISIBLE));
+        blockEmptyInvisibleBlockSMB3 = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockInvisibleBlockEmptySMB3", EnumBlockType
+                .SMB3_INVISIBLE));
         blockInvisibleBlockSMB3 = RayBlockRegistry.register(new BlockInvisibleBlock("marioBlockInvisibleBlockSMB3", EnumBlockType.SMB3_INVISIBLE));
 
         blockGroundUnderground = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockGroundUnderground").setHardness(4.0F));
         blockMarioBrickUnderground = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockBrickUnderground").setHardness(2.0F));
-        blockUndergroundDecoration = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockUndergroundDecoration").setHardness(5.0F));
-        blockEmptyQuestionMarkUndergroundSMB = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMarkUndergroundSMB", EnumBlockType.SMB_UNDERGROUND));
-        blockQuestionMarkUndergroundSMB = RayBlockRegistry.register(new BlockQuestionMark("marioBlockQuestionMarkUndergroundSMB", EnumBlockType.SMB_UNDERGROUND));
+        blockUndergroundDecoration = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockUndergroundDecoration").setHardness
+                (5.0F));
+        blockEmptyQuestionMarkUndergroundSMB = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMarkUndergroundSMB",
+                EnumBlockType.SMB_UNDERGROUND));
+        blockQuestionMarkUndergroundSMB = RayBlockRegistry.register(new BlockQuestionMark("marioBlockQuestionMarkUndergroundSMB", EnumBlockType
+                .SMB_UNDERGROUND));
 
         blockCastleWall = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockCastleWall").setHardness(6.0F));
         blockMarioCastleBrick = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockCastleBrick").setHardness(3.0F));
-        blockEmptyQuestionMarkCastleSMB = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMarkCastleSMB", EnumBlockType.SMB_CASTLE));
+        blockEmptyQuestionMarkCastleSMB = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMarkCastleSMB",
+                EnumBlockType.SMB_CASTLE));
         blockQuestionMarkCastleSMB = RayBlockRegistry.register(new BlockQuestionMark("marioBlockQuestionMarkCastleSMB", EnumBlockType.SMB_CASTLE));
 
         blockGroundUnderwater = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockGroundUnderwater").setHardness(4.0F));

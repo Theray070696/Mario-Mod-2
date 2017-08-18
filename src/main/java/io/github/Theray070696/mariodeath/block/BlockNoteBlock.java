@@ -35,6 +35,7 @@ public class BlockNoteBlock extends BlockMario
     @Override
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World world, BlockPos blockPos)
     {
-        return new AxisAlignedBB(blockPos.getX(), blockPos.getY(), blockPos.getZ(), (double) blockPos.getX() + 1.0D, (double) blockPos.getY() + 0.625D, (double) blockPos.getZ() + 1.0D);
+        return new AxisAlignedBB(blockPos.getX(), blockPos.getY(), blockPos.getZ(), (double) blockPos.getX() + 1.0D, (double) blockPos.getY() +
+                0.625D, (double) blockPos.getZ() + 1.0D);
     }
 }

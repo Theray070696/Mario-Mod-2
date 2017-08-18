@@ -63,7 +63,8 @@ public class EventHandler
                 {
                     soundID = rand.nextInt(2) + 1; // Get a random number for a sound.
 
-                    SoundHandler.playSoundName("mario2:player.jasterDeath" + soundID, entityPlayer.worldObj, SoundCategory.PLAYERS, entityPlayer.getPosition());
+                    SoundHandler.playSoundName("mario2:player.jasterDeath" + soundID, entityPlayer.worldObj, SoundCategory.PLAYERS, entityPlayer
+                            .getPosition());
                     return; // Exit out this function, as we don't want multiple sounds playing at once.
                 }
             } else if(playerName.equalsIgnoreCase("Theray070696")) // If it was me...
@@ -72,7 +73,8 @@ public class EventHandler
                 {
                     soundID = rand.nextInt(5) + 1; // Get a random number for a sound.
 
-                    SoundHandler.playSoundName("mario2:player.rayDeath" + soundID, entityPlayer.worldObj, SoundCategory.PLAYERS, entityPlayer.getPosition());
+                    SoundHandler.playSoundName("mario2:player.rayDeath" + soundID, entityPlayer.worldObj, SoundCategory.PLAYERS, entityPlayer
+                            .getPosition());
                     return; // Exit out this function, as we don't want multiple sounds playing at once.
                 }
             }
@@ -107,7 +109,8 @@ public class EventHandler
     @SubscribeEvent
     public void cloneEvent(net.minecraftforge.event.entity.player.PlayerEvent.Clone event)
     {
-        event.getEntityPlayer().getCapability(CoinCountProvider.COIN_COUNT, null).setCoinCount(event.getOriginal().getCapability(CoinCountProvider.COIN_COUNT, null).getCoinCount());
+        event.getEntityPlayer().getCapability(CoinCountProvider.COIN_COUNT, null).setCoinCount(event.getOriginal().getCapability(CoinCountProvider
+                .COIN_COUNT, null).getCoinCount());
         event.getEntityPlayer().getCapability(CoinCountProvider.COIN_COUNT, null).sync(event.getEntityPlayer()); // Resync coin counter.
     }
 
@@ -143,7 +146,8 @@ public class EventHandler
     @SubscribeEvent
     public void onEntityDamaged(LivingHurtEvent event)
     {
-        if(event.getEntityLiving().isPotionActive(PotionEffectsMario.potionStarman)) // If the entity that was hurt has the Starman potion effect active...
+        if(event.getEntityLiving().isPotionActive(PotionEffectsMario.potionStarman)) // If the entity that was hurt has the Starman potion effect
+            // active...
         {
             event.setCanceled(true); // Starman makes you literally immortal. Not even the Chaos Dragon from Draconic Evolution can hurt you.
         }
@@ -152,24 +156,27 @@ public class EventHandler
     @SubscribeEvent
     public void lootLoad(LootTableLoadEvent event)
     {
-		if(event.getName().toString().equals("minecraft:chests/simple_dungeon"))
-		{
-		    // To test this, use the command on the next line.
+        if(event.getName().toString().equals("minecraft:chests/simple_dungeon"))
+        {
+            // To test this, use the command on the next line.
             // /setblock ~ ~1 ~ minecraft:chest 2 replace {LootTable:"chests/simple_dungeon"}
             // It will place a chest above the command block with randomly generated dungeon chest loot in it.
 
-			LootEntry entry = new LootEntryTable(new ResourceLocation(ModInfo.MOD_ID, "inject/disks"), 15, 1, new LootCondition[0], "mario2_inject_entry");
-			
-			LootPool pool = new LootPool(new LootEntry[] {entry}, new LootCondition[0], new RandomValueRange(1), new RandomValueRange(0, 1), "mario2_inject_entry");
-			
-			event.getTable().addPool(pool);
-		}
+            LootEntry entry = new LootEntryTable(new ResourceLocation(ModInfo.MOD_ID, "inject/disks"), 15, 1, new LootCondition[0],
+                    "mario2_inject_entry");
+
+            LootPool pool = new LootPool(new LootEntry[]{entry}, new LootCondition[0], new RandomValueRange(1), new RandomValueRange(0, 1),
+                    "mario2_inject_entry");
+
+            event.getTable().addPool(pool);
+        }
     }
 
     @SubscribeEvent
     public void onLivingDropsEvent(LivingDropsEvent event)
     {
-        if(event.getSource().getSourceOfDamage() instanceof EntityPlayer && !(event.getSource().getSourceOfDamage() instanceof FakePlayer)) // If the cause of damage was a player, but NOT a fake player...
+        if(event.getSource().getSourceOfDamage() instanceof EntityPlayer && !(event.getSource().getSourceOfDamage() instanceof FakePlayer)) // If
+            // the cause of damage was a player, but NOT a fake player...
         {
             Entity entity = event.getEntity(); // Get entity that is dropping item(s).
             World world = entity.getEntityWorld(); // Get the world the entity is in.
@@ -189,13 +196,15 @@ public class EventHandler
                 {
                     entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, 1, 3), 0.0f); // Dragon Coin
                 }
-            } else if(entity instanceof EntitySkeleton && ((EntitySkeleton) entity).getSkeletonType() == SkeletonType.WITHER) // If the entity was a Wither Skeleton...
+            } else if(entity instanceof EntitySkeleton && ((EntitySkeleton) entity).getSkeletonType() == SkeletonType.WITHER) // If the entity was
+                // a Wither Skeleton...
             {
                 if(rand.nextInt(500) == 0) // Drop 1 Wither Coin as a very rare drop.
                 {
                     entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, 1, 4), 0.0f); // Wither Coin
                 }
-            } else if(entity instanceof EntityMob && !(entity instanceof EntityGoomba || entity instanceof EntityKoopa)) // If the entity is any other mob besides a Goomba...
+            } else if(entity instanceof EntityMob && !(entity instanceof EntityGoomba || entity instanceof EntityKoopa)) // If the entity is any
+                // other mob besides a Goomba...
             {
                 int randInt = rand.nextInt(100); // Generate a number from 0 to 99 inclusive to determine what will be dropped.
 
@@ -219,8 +228,9 @@ public class EventHandler
     @SubscribeEvent
     public void onAchievement(AchievementEvent event)
     {
-		// If the player would get the DIAMONDS! achievement, and the can unlock it, and they don't already have it...
-        if(event.getAchievement().equals(AchievementList.DIAMONDS) && !event.getEntityPlayer().hasAchievement(event.getAchievement()) && ((EntityPlayerMP) event.getEntityPlayer()).getStatFile().canUnlockAchievement(AchievementList.DIAMONDS))
+        // If the player would get the DIAMONDS! achievement, and the can unlock it, and they don't already have it...
+        if(event.getAchievement().equals(AchievementList.DIAMONDS) && !event.getEntityPlayer().hasAchievement(event.getAchievement()) && (
+                (EntityPlayerMP) event.getEntityPlayer()).getStatFile().canUnlockAchievement(AchievementList.DIAMONDS))
         {
             RayCoreAPI.playSoundToAll("mario2:player.diamonds"); // Play a sound to everybody on the server.
         }

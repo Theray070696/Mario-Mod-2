@@ -14,7 +14,9 @@ public class PacketSyncCoinCounter implements IMessage
 {
     private int newCoinCount;
 
-    public PacketSyncCoinCounter() {}
+    public PacketSyncCoinCounter()
+    {
+    }
 
     public PacketSyncCoinCounter(int newCoinCount)
     {

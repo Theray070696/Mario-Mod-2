@@ -9,7 +9,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Theray070696 on 3/31/2016.
@@ -17,9 +20,24 @@ import java.util.*;
  */
 public class MarioMakerCraftingManager
 {
-    /** The static instance of this class */
+    /**
+     * The static instance of this class
+     */
     private static final MarioMakerCraftingManager INSTANCE = new MarioMakerCraftingManager();
     private final List<IMarioRecipe> recipes = Lists.<IMarioRecipe>newArrayList();
+
+    private MarioMakerCraftingManager()
+    {
+        Collections.sort(this.recipes, new Comparator<IMarioRecipe>()
+        {
+            public int compare(IMarioRecipe p_compare_1_, IMarioRecipe p_compare_2_)
+            {
+                return p_compare_1_ instanceof ShapelessRecipeMario && p_compare_2_ instanceof ShapedRecipeMario ? 1 : (p_compare_2_ instanceof
+                        ShapelessRecipeMario && p_compare_1_ instanceof ShapedRecipeMario ? -1 : (p_compare_2_.getRecipeSize() < p_compare_1_
+                        .getRecipeSize() ? -1 : (p_compare_2_.getRecipeSize() > p_compare_1_.getRecipeSize() ? 1 : 0)));
+            }
+        });
+    }
 
     /**
      * Returns the static instance of this class
@@ -28,17 +46,6 @@ public class MarioMakerCraftingManager
     {
         /** The static instance of this class */
         return INSTANCE;
-    }
-
-    private MarioMakerCraftingManager()
-    {
-        Collections.sort(this.recipes, new Comparator<IMarioRecipe>()
-        {
-            public int compare(IMarioRecipe p_compare_1_, IMarioRecipe p_compare_2_)
-            {
-                return p_compare_1_ instanceof ShapelessRecipeMario && p_compare_2_ instanceof ShapedRecipeMario ? 1 : (p_compare_2_ instanceof ShapelessRecipeMario && p_compare_1_ instanceof ShapedRecipeMario ? -1 : (p_compare_2_.getRecipeSize() < p_compare_1_.getRecipeSize() ? -1 : (p_compare_2_.getRecipeSize() > p_compare_1_.getRecipeSize() ? 1 : 0)));
-            }
-        });
     }
 
     /**
@@ -53,7 +60,7 @@ public class MarioMakerCraftingManager
 
         if(recipeComponents[i] instanceof String[])
         {
-            String[] astring = (String[])((String[])recipeComponents[i++]);
+            String[] astring = (String[]) ((String[]) recipeComponents[i++]);
 
             for(String s2 : astring)
             {
@@ -65,7 +72,7 @@ public class MarioMakerCraftingManager
         {
             while(recipeComponents[i] instanceof String)
             {
-                String s1 = (String)recipeComponents[i++];
+                String s1 = (String) recipeComponents[i++];
                 ++k;
                 j = s1.length();
                 s = s + s1;
@@ -76,18 +83,18 @@ public class MarioMakerCraftingManager
 
         for(map = Maps.<Character, ItemStack>newHashMap(); i < recipeComponents.length; i += 2)
         {
-            Character character = (Character)recipeComponents[i];
+            Character character = (Character) recipeComponents[i];
             ItemStack itemstack = null;
 
             if(recipeComponents[i + 1] instanceof Item)
             {
-                itemstack = new ItemStack((Item)recipeComponents[i + 1]);
+                itemstack = new ItemStack((Item) recipeComponents[i + 1]);
             } else if(recipeComponents[i + 1] instanceof Block)
             {
-                itemstack = new ItemStack((Block)recipeComponents[i + 1], 1, 32767);
+                itemstack = new ItemStack((Block) recipeComponents[i + 1], 1, 32767);
             } else if(recipeComponents[i + 1] instanceof ItemStack)
             {
-                itemstack = (ItemStack)recipeComponents[i + 1];
+                itemstack = (ItemStack) recipeComponents[i + 1];
             }
 
             map.put(character, itemstack);
@@ -101,7 +108,7 @@ public class MarioMakerCraftingManager
 
             if(map.containsKey(Character.valueOf(c0)))
             {
-                aitemstack[l] = ((ItemStack)map.get(Character.valueOf(c0))).copy();
+                aitemstack[l] = ((ItemStack) map.get(Character.valueOf(c0))).copy();
             } else
             {
                 aitemstack[l] = null;
@@ -124,10 +131,10 @@ public class MarioMakerCraftingManager
         {
             if(object instanceof ItemStack)
             {
-                list.add(((ItemStack)object).copy());
+                list.add(((ItemStack) object).copy());
             } else if(object instanceof Item)
             {
-                list.add(new ItemStack((Item)object));
+                list.add(new ItemStack((Item) object));
             } else
             {
                 if(!(object instanceof Block))
@@ -135,7 +142,7 @@ public class MarioMakerCraftingManager
                     throw new IllegalArgumentException("Invalid shapeless recipe: unknown type " + object.getClass().getName() + "!");
                 }
 
-                list.add(new ItemStack((Block)object));
+                list.add(new ItemStack((Block) object));
             }
         }
 

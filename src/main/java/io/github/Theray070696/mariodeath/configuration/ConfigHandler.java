@@ -22,9 +22,11 @@ public class ConfigHandler
 
         config.load();
 
-        developerModeEnabled = config.getBoolean("Developer Mode Enabled", "Misc", developerModeEnabledDefault, "Whether or not to enable developer mode. Use this if you want to test items that are not complete or don't function at all.");
+        developerModeEnabled = config.getBoolean("Developer Mode Enabled", "Misc", developerModeEnabledDefault, "Whether or not to enable developer" +
+                " mode. Use this if you want to test items that are not complete or don't function at all.");
 
-        //questionMarkBlockRarity = config.getInt("Question Mark Block Rarity", "World Gen", questionMarkBlockRarityDefault, 0, 100, "How common (or rare) question mark blocks should be (lower is rarer)");
+        //questionMarkBlockRarity = config.getInt("Question Mark Block Rarity", "World Gen", questionMarkBlockRarityDefault, 0, 100, "How common
+        // (or rare) question mark blocks should be (lower is rarer)");
 
         saveConfig();
     }

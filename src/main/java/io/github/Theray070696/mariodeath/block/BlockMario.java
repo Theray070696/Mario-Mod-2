@@ -24,7 +24,7 @@ public class BlockMario extends BlockRay
     {
         this(material, true);
     }
-    
+
     public BlockMario(Material material, boolean addToCreativeTab)
     {
         super(material, false, ModInfo.MOD_ID);

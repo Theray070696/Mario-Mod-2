@@ -48,7 +48,8 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
     {
         super(Material.IRON);
 
-        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ISMULTIBLOCK, false).withProperty(CONNECTEDRIGHT, false).withProperty(CONNECTEDDOWN, false).withProperty(REARBLOCK, false));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ISMULTIBLOCK, false).withProperty
+                (CONNECTEDRIGHT, false).withProperty(CONNECTEDDOWN, false).withProperty(REARBLOCK, false));
 
         this.setUnlocalizedName("marioBlockPipe");
         this.setHardness(1.5F);
@@ -111,7 +112,8 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
             // Items are kinda buggy atm. Will fix later.
             if(!(entity instanceof EntityItem) && world.getTileEntity(blockPos) instanceof TilePipe)
             {
-                if((blockState.getValue(FACING) == EnumFacing.UP && ((entity instanceof EntityPlayer && entity.isSneaking()) || !(entity instanceof EntityPlayer))) || blockState.getValue(FACING) != EnumFacing.UP)
+                if((blockState.getValue(FACING) == EnumFacing.UP && ((entity instanceof EntityPlayer && entity.isSneaking()) || !(entity instanceof
+                        EntityPlayer))) || blockState.getValue(FACING) != EnumFacing.UP)
                 {
                     TilePipe tilePipe = (TilePipe) world.getTileEntity(blockPos);
 
@@ -124,10 +126,12 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
                         {
                             World otherWorld = world.getMinecraftServer().worldServerForDimension(teleportDestinationDimension);
 
-                            if(otherWorld.getBlockState(teleportDestinationPos).getBlock() instanceof BlockPipe && otherWorld.getTileEntity(teleportDestinationPos) instanceof TilePipe)
+                            if(otherWorld.getBlockState(teleportDestinationPos).getBlock() instanceof BlockPipe && otherWorld.getTileEntity
+                                    (teleportDestinationPos) instanceof TilePipe)
                             {
                                 // Offset teleport to prevent infinite loop
-                                teleportDestinationPos = teleportDestinationPos.offset(otherWorld.getBlockState(teleportDestinationPos).getValue(FACING), 2);
+                                teleportDestinationPos = teleportDestinationPos.offset(otherWorld.getBlockState(teleportDestinationPos).getValue
+                                        (FACING), 2);
 
                                 // Are the Pipes in different Dimensions?
                                 if(teleportDestinationDimension != world.provider.getDimension())
@@ -136,21 +140,26 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
                                     if(entity instanceof EntityPlayerMP)
                                     {
                                         // Players
-                                        world.getMinecraftServer().getPlayerList().transferPlayerToDimension((EntityPlayerMP) entity, teleportDestinationDimension, new MarioTeleporter((WorldServer) otherWorld));
+                                        world.getMinecraftServer().getPlayerList().transferPlayerToDimension((EntityPlayerMP) entity,
+                                                teleportDestinationDimension, new MarioTeleporter((WorldServer) otherWorld));
                                         entity.setSneaking(false);
                                     } else
                                     {
                                         // Other Entities
-                                        world.getMinecraftServer().getPlayerList().transferEntityToWorld(entity, world.provider.getDimension(), (WorldServer) world, (WorldServer) otherWorld, new MarioTeleporter((WorldServer) otherWorld));
+                                        world.getMinecraftServer().getPlayerList().transferEntityToWorld(entity, world.provider.getDimension(),
+                                                (WorldServer) world, (WorldServer) otherWorld, new MarioTeleporter((WorldServer) otherWorld));
                                     }
                                 }
 
                                 // Move the Entity to the correct coordinates
-                                entity.setPositionAndUpdate(teleportDestinationPos.getX(), teleportDestinationPos.getY(), teleportDestinationPos.getZ());
+                                entity.setPositionAndUpdate(teleportDestinationPos.getX(), teleportDestinationPos.getY(), teleportDestinationPos
+                                        .getZ());
 
                                 // Play sound
-                                world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.pipe, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                                otherWorld.playSound(null, teleportDestinationPos.getX(), teleportDestinationPos.getY(), teleportDestinationPos.getZ(), SoundHandler.pipe, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                                world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.pipe, SoundCategory.BLOCKS,
+                                        1.0F, 1.0F);
+                                otherWorld.playSound(null, teleportDestinationPos.getX(), teleportDestinationPos.getY(), teleportDestinationPos
+                                        .getZ(), SoundHandler.pipe, SoundCategory.BLOCKS, 1.0F, 1.0F);
                             }
                         }
                     }
@@ -173,7 +182,8 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
         {
             ((BlockPipe) world.getBlockState(pos).getBlock()).shouldBreakBlock = false;
 
-            world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty(CONNECTEDRIGHT, true).withProperty(CONNECTEDDOWN, true).withProperty(REARBLOCK, false), 2);
+            world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty
+                    (CONNECTEDRIGHT, true).withProperty(CONNECTEDDOWN, true).withProperty(REARBLOCK, false), 2);
 
             tilePipe = (TilePipe) world.getTileEntity(pos);
 
@@ -204,10 +214,12 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
 
             if(side == EnumFacing.NORTH || side == EnumFacing.WEST || side == EnumFacing.SOUTH || side == EnumFacing.EAST)
             {
-                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty(CONNECTEDRIGHT, true).withProperty(CONNECTEDDOWN, false).withProperty(REARBLOCK, false), 2);
+                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty
+                        (CONNECTEDRIGHT, true).withProperty(CONNECTEDDOWN, false).withProperty(REARBLOCK, false), 2);
             } else if(side == EnumFacing.UP || side == EnumFacing.DOWN)
             {
-                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty(CONNECTEDRIGHT, true).withProperty(CONNECTEDDOWN, true).withProperty(REARBLOCK, true), 2);
+                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty
+                        (CONNECTEDRIGHT, true).withProperty(CONNECTEDDOWN, true).withProperty(REARBLOCK, true), 2);
             }
 
             tilePipe = (TilePipe) world.getTileEntity(pos);
@@ -246,10 +258,12 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
 
             if(side == EnumFacing.UP || side == EnumFacing.NORTH || side == EnumFacing.SOUTH || side == EnumFacing.DOWN)
             {
-                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty(CONNECTEDRIGHT, false).withProperty(CONNECTEDDOWN, true).withProperty(REARBLOCK, false), 2);
+                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty
+                        (CONNECTEDRIGHT, false).withProperty(CONNECTEDDOWN, true).withProperty(REARBLOCK, false), 2);
             } else if(side == EnumFacing.EAST || side == EnumFacing.WEST)
             {
-                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty(CONNECTEDRIGHT, true).withProperty(CONNECTEDDOWN, true).withProperty(REARBLOCK, true), 2);
+                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty
+                        (CONNECTEDRIGHT, true).withProperty(CONNECTEDDOWN, true).withProperty(REARBLOCK, true), 2);
             }
 
             tilePipe = (TilePipe) world.getTileEntity(pos);
@@ -288,13 +302,16 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
 
             if(side == EnumFacing.EAST || side == EnumFacing.WEST)
             {
-                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty(CONNECTEDRIGHT, true).withProperty(CONNECTEDDOWN, false).withProperty(REARBLOCK, true), 2);
+                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty
+                        (CONNECTEDRIGHT, true).withProperty(CONNECTEDDOWN, false).withProperty(REARBLOCK, true), 2);
             } else if(side == EnumFacing.DOWN || side == EnumFacing.UP)
             {
-                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty(CONNECTEDRIGHT, false).withProperty(CONNECTEDDOWN, true).withProperty(REARBLOCK, true), 2);
+                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty
+                        (CONNECTEDRIGHT, false).withProperty(CONNECTEDDOWN, true).withProperty(REARBLOCK, true), 2);
             } else if(side == EnumFacing.SOUTH || side == EnumFacing.NORTH)
             {
-                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty(CONNECTEDRIGHT, false).withProperty(CONNECTEDDOWN, false).withProperty(REARBLOCK, false), 2);
+                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty
+                        (CONNECTEDRIGHT, false).withProperty(CONNECTEDDOWN, false).withProperty(REARBLOCK, false), 2);
             }
 
             tilePipe = (TilePipe) world.getTileEntity(pos);
@@ -338,13 +355,16 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
 
             if(side == EnumFacing.UP || side == EnumFacing.DOWN)
             {
-                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty(CONNECTEDRIGHT, true).withProperty(CONNECTEDDOWN, false).withProperty(REARBLOCK, false), 2);
+                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty
+                        (CONNECTEDRIGHT, true).withProperty(CONNECTEDDOWN, false).withProperty(REARBLOCK, false), 2);
             } else if(side == EnumFacing.WEST || side == EnumFacing.EAST)
             {
-                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty(CONNECTEDRIGHT, false).withProperty(CONNECTEDDOWN, true).withProperty(REARBLOCK, false), 2);
+                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty
+                        (CONNECTEDRIGHT, false).withProperty(CONNECTEDDOWN, true).withProperty(REARBLOCK, false), 2);
             } else if(side == EnumFacing.NORTH || side == EnumFacing.SOUTH)
             {
-                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty(CONNECTEDRIGHT, true).withProperty(CONNECTEDDOWN, true).withProperty(REARBLOCK, true), 2);
+                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty
+                        (CONNECTEDRIGHT, true).withProperty(CONNECTEDDOWN, true).withProperty(REARBLOCK, true), 2);
             }
 
             tilePipe = (TilePipe) world.getTileEntity(pos);
@@ -388,10 +408,12 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
 
             if(side == EnumFacing.UP || side == EnumFacing.DOWN)
             {
-                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty(CONNECTEDRIGHT, false).withProperty(CONNECTEDDOWN, false).withProperty(REARBLOCK, false), 2);
+                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty
+                        (CONNECTEDRIGHT, false).withProperty(CONNECTEDDOWN, false).withProperty(REARBLOCK, false), 2);
             } else if(side == EnumFacing.EAST || side == EnumFacing.WEST || side == EnumFacing.NORTH || side == EnumFacing.SOUTH)
             {
-                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty(CONNECTEDRIGHT, false).withProperty(CONNECTEDDOWN, true).withProperty(REARBLOCK, true), 2);
+                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty
+                        (CONNECTEDRIGHT, false).withProperty(CONNECTEDDOWN, true).withProperty(REARBLOCK, true), 2);
             }
 
             tilePipe = (TilePipe) world.getTileEntity(pos);
@@ -430,13 +452,16 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
 
             if(side == EnumFacing.NORTH || side == EnumFacing.SOUTH)
             {
-                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty(CONNECTEDRIGHT, true).withProperty(CONNECTEDDOWN, false).withProperty(REARBLOCK, true), 2);
+                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty
+                        (CONNECTEDRIGHT, true).withProperty(CONNECTEDDOWN, false).withProperty(REARBLOCK, true), 2);
             } else if(side == EnumFacing.UP || side == EnumFacing.DOWN)
             {
-                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty(CONNECTEDRIGHT, true).withProperty(CONNECTEDDOWN, false).withProperty(REARBLOCK, true), 2);
+                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty
+                        (CONNECTEDRIGHT, true).withProperty(CONNECTEDDOWN, false).withProperty(REARBLOCK, true), 2);
             } else if(side == EnumFacing.WEST || side == EnumFacing.EAST)
             {
-                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty(CONNECTEDRIGHT, false).withProperty(CONNECTEDDOWN, false).withProperty(REARBLOCK, false), 2);
+                world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty
+                        (CONNECTEDRIGHT, false).withProperty(CONNECTEDDOWN, false).withProperty(REARBLOCK, false), 2);
             }
 
             tilePipe = (TilePipe) world.getTileEntity(pos);
@@ -478,7 +503,8 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
         {
             ((BlockPipe) world.getBlockState(pos).getBlock()).shouldBreakBlock = false;
 
-            world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty(CONNECTEDRIGHT, false).withProperty(CONNECTEDDOWN, false).withProperty(REARBLOCK, true), 2);
+            world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, side).withProperty(ISMULTIBLOCK, isMultiBlock).withProperty
+                    (CONNECTEDRIGHT, false).withProperty(CONNECTEDDOWN, false).withProperty(REARBLOCK, true), 2);
 
             tilePipe = (TilePipe) world.getTileEntity(pos);
 
@@ -503,8 +529,12 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
 
     public static boolean isMultiBlock(World world, int x, int y, int z, int xMod, int yMod, int zMod)
     {
-        if(world.getBlockState(new BlockPos(x, y, z)).getBlock() instanceof BlockPipe && world.getBlockState(new BlockPos(x, y + yMod, z)).getBlock() instanceof BlockPipe && world.getBlockState(new BlockPos(x + xMod, y, z)).getBlock() instanceof BlockPipe && world.getBlockState(new BlockPos(x + xMod, y + yMod, z)).getBlock() instanceof BlockPipe
-                && world.getBlockState(new BlockPos(x, y, z + zMod)).getBlock() instanceof BlockPipe && world.getBlockState(new BlockPos(x + xMod, y, z + zMod)).getBlock() instanceof BlockPipe && world.getBlockState(new BlockPos(x, y + yMod, z + zMod)).getBlock() instanceof BlockPipe && world.getBlockState(new BlockPos(x + xMod, y + yMod, z + zMod)).getBlock() instanceof BlockPipe)
+        if(world.getBlockState(new BlockPos(x, y, z)).getBlock() instanceof BlockPipe && world.getBlockState(new BlockPos(x, y + yMod, z)).getBlock
+                () instanceof BlockPipe && world.getBlockState(new BlockPos(x + xMod, y, z)).getBlock() instanceof BlockPipe && world.getBlockState
+                (new BlockPos(x + xMod, y + yMod, z)).getBlock() instanceof BlockPipe
+                && world.getBlockState(new BlockPos(x, y, z + zMod)).getBlock() instanceof BlockPipe && world.getBlockState(new BlockPos(x + xMod,
+                y, z + zMod)).getBlock() instanceof BlockPipe && world.getBlockState(new BlockPos(x, y + yMod, z + zMod)).getBlock() instanceof
+                BlockPipe && world.getBlockState(new BlockPos(x + xMod, y + yMod, z + zMod)).getBlock() instanceof BlockPipe)
         {
             return true;
         }
@@ -513,9 +543,11 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem,
+                                    EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        if(player.isSneaking() || (!state.getValue(ISMULTIBLOCK) && heldItem != null) || (state.getValue(ISMULTIBLOCK) && heldItem != null && heldItem.getItem() instanceof ItemPipeLink))
+        if(player.isSneaking() || (!state.getValue(ISMULTIBLOCK) && heldItem != null) || (state.getValue(ISMULTIBLOCK) && heldItem != null &&
+                heldItem.getItem() instanceof ItemPipeLink))
         {
             return false;
         } else
@@ -597,7 +629,8 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
                                 if(world.getMinecraftServer() != null)
                                 {
                                     World otherPipeWorld = world.getMinecraftServer().worldServerForDimension(otherPipeDim);
-                                    if(otherPipeWorld.getTileEntity(otherPipePos) != null && otherPipeWorld.getTileEntity(otherPipePos) instanceof TilePipe)
+                                    if(otherPipeWorld.getTileEntity(otherPipePos) != null && otherPipeWorld.getTileEntity(otherPipePos) instanceof
+                                            TilePipe)
                                     {
                                         TilePipe otherPipe = (TilePipe) otherPipeWorld.getTileEntity(otherPipePos);
 
@@ -693,13 +726,15 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        TileEntity tileentity = world instanceof ChunkCache ? ((ChunkCache) world).getTileEntity(pos, Chunk.EnumCreateEntityType.CHECK) : world.getTileEntity(pos);
+        TileEntity tileentity = world instanceof ChunkCache ? ((ChunkCache) world).getTileEntity(pos, Chunk.EnumCreateEntityType.CHECK) : world
+                .getTileEntity(pos);
 
         if(tileentity instanceof TilePipe)
         {
             TilePipe tilePipe = (TilePipe) tileentity;
 
-            return state.withProperty(CONNECTEDRIGHT, tilePipe.isConnectedRight()).withProperty(CONNECTEDDOWN, tilePipe.isConnectedDown()).withProperty(REARBLOCK, tilePipe.isRearBlock());
+            return state.withProperty(CONNECTEDRIGHT, tilePipe.isConnectedRight()).withProperty(CONNECTEDDOWN, tilePipe.isConnectedDown())
+                    .withProperty(REARBLOCK, tilePipe.isRearBlock());
         }
 
         return state;

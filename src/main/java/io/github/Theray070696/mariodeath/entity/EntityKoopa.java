@@ -54,7 +54,8 @@ public class EntityKoopa extends EntityMob
         return SoundHandler.goombaDeath;
     }
 
-    protected float getSoundVolume() {
+    protected float getSoundVolume()
+    {
         return 0.4F;
     }
 

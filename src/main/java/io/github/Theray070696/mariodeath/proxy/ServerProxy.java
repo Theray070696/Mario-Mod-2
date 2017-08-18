@@ -28,5 +28,7 @@ public class ServerProxy extends CommonProxy
     }
 
     @Override
-    public void setClientCoinCount(int amount) {}
+    public void setClientCoinCount(int amount)
+    {
+    }
 }

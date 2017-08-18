@@ -33,30 +33,31 @@ public class BlockMarioConnectedTexture extends BlockMario
         super(material, addToCreativeTab);
 
         this.setDefaultState(this.blockState.getBaseState()
-                                            .withProperty(CONNECTED_DOWN, Boolean.FALSE)
-                                            .withProperty(CONNECTED_EAST, Boolean.FALSE)
-                                            .withProperty(CONNECTED_NORTH, Boolean.FALSE)
-                                            .withProperty(CONNECTED_SOUTH, Boolean.FALSE)
-                                            .withProperty(CONNECTED_UP, Boolean.FALSE)
-                                            .withProperty(CONNECTED_WEST, Boolean.FALSE));
+                .withProperty(CONNECTED_DOWN, Boolean.FALSE)
+                .withProperty(CONNECTED_EAST, Boolean.FALSE)
+                .withProperty(CONNECTED_NORTH, Boolean.FALSE)
+                .withProperty(CONNECTED_SOUTH, Boolean.FALSE)
+                .withProperty(CONNECTED_UP, Boolean.FALSE)
+                .withProperty(CONNECTED_WEST, Boolean.FALSE));
     }
 
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos position)
     {
-        return state.withProperty(CONNECTED_DOWN,  this.isSideConnectable(world, position, EnumFacing.DOWN))
-                    .withProperty(CONNECTED_EAST,  this.isSideConnectable(world, position, EnumFacing.EAST))
-                    .withProperty(CONNECTED_NORTH, this.isSideConnectable(world, position, EnumFacing.NORTH))
-                    .withProperty(CONNECTED_SOUTH, this.isSideConnectable(world, position, EnumFacing.SOUTH))
-                    .withProperty(CONNECTED_UP,    this.isSideConnectable(world, position, EnumFacing.UP))
-                    .withProperty(CONNECTED_WEST,  this.isSideConnectable(world, position, EnumFacing.WEST));
+        return state.withProperty(CONNECTED_DOWN, this.isSideConnectable(world, position, EnumFacing.DOWN))
+                .withProperty(CONNECTED_EAST, this.isSideConnectable(world, position, EnumFacing.EAST))
+                .withProperty(CONNECTED_NORTH, this.isSideConnectable(world, position, EnumFacing.NORTH))
+                .withProperty(CONNECTED_SOUTH, this.isSideConnectable(world, position, EnumFacing.SOUTH))
+                .withProperty(CONNECTED_UP, this.isSideConnectable(world, position, EnumFacing.UP))
+                .withProperty(CONNECTED_WEST, this.isSideConnectable(world, position, EnumFacing.WEST));
     }
 
     @Nonnull
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] {CONNECTED_DOWN, CONNECTED_UP, CONNECTED_NORTH, CONNECTED_SOUTH, CONNECTED_WEST, CONNECTED_EAST });
+        return new BlockStateContainer(this, new IProperty[]{CONNECTED_DOWN, CONNECTED_UP, CONNECTED_NORTH, CONNECTED_SOUTH, CONNECTED_WEST,
+                CONNECTED_EAST});
     }
 
     @Override

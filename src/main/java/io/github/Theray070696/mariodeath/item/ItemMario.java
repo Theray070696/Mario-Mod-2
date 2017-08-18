@@ -13,7 +13,7 @@ public class ItemMario extends ItemRay
     {
         this(true);
     }
-    
+
     public ItemMario(boolean addToCreativeTab)
     {
         super(false, ModInfo.MOD_ID);

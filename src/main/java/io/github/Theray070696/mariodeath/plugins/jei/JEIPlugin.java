@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.awt.Rectangle;
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -31,7 +31,8 @@ public class JEIPlugin extends BlankModPlugin
 
         registry.addRecipeCategories(new MarioMakerRecipeCategory(guiHelper));
 
-        registry.addRecipeHandlers(new ShapedOreRecipeHandler(jeiHelpers), new ShapedRecipesHandler(), new ShapelessOreRecipeHandler(jeiHelpers), new ShapelessRecipesHandler(guiHelper));
+        registry.addRecipeHandlers(new ShapedOreRecipeHandler(jeiHelpers), new ShapedRecipesHandler(), new ShapelessOreRecipeHandler(jeiHelpers),
+                new ShapelessRecipesHandler(guiHelper));
 
         registry.addRecipeClickArea(GuiMarioMaker.class, 88, 32, 28, 23, "Mario Maker");
 
@@ -54,7 +55,7 @@ public class JEIPlugin extends BlankModPlugin
         registry.getJeiHelpers().getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModBlocks.blockQuestionMarkUndergroundSMB));
     }
 
-    private static class MarioMakerAdvancedGuiHandler  extends BlankAdvancedGuiHandler<GuiMarioMaker>
+    private static class MarioMakerAdvancedGuiHandler extends BlankAdvancedGuiHandler<GuiMarioMaker>
     {
         @Nonnull
         @Override

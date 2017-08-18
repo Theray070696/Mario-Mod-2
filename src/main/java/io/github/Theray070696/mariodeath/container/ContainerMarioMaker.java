@@ -14,12 +14,16 @@ import net.minecraft.world.World;
  */
 public class ContainerMarioMaker extends Container
 {
-    /** The crafting matrix inventory (3x3). */
+    /**
+     * Position of the mario maker
+     */
+    private final BlockPos pos;
+    /**
+     * The crafting matrix inventory (3x3).
+     */
     public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
     public IInventory craftResult = new InventoryCraftResult();
     private World worldObj;
-    /** Position of the mario maker */
-    private final BlockPos pos;
 
     public ContainerMarioMaker(InventoryPlayer inventoryPlayer, World world, BlockPos pos)
     {
@@ -87,7 +91,8 @@ public class ContainerMarioMaker extends Container
      */
     public boolean canInteractWith(EntityPlayer entityPlayer)
     {
-        return this.worldObj.getBlockState(this.pos).getBlock() == ModBlocks.blockMarioMaker && entityPlayer.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
+        return this.worldObj.getBlockState(this.pos).getBlock() == ModBlocks.blockMarioMaker && entityPlayer.getDistanceSq((double) this.pos.getX()
+                + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
     }
 
     /**
@@ -96,7 +101,7 @@ public class ContainerMarioMaker extends Container
     public ItemStack transferStackInSlot(EntityPlayer entityPlayer, int slotID)
     {
         ItemStack itemstack = null;
-        Slot slot = (Slot)this.inventorySlots.get(slotID);
+        Slot slot = (Slot) this.inventorySlots.get(slotID);
 
         if(slot != null && slot.getHasStack())
         {

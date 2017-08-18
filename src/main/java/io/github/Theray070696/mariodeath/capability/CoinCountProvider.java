@@ -27,7 +27,7 @@ public class CoinCountProvider implements ICapabilitySerializable<NBTBase>
     @Override
     public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing)
     {
-        return capability == COIN_COUNT ? COIN_COUNT.<T> cast(this.instance) : null;
+        return capability == COIN_COUNT ? COIN_COUNT.<T>cast(this.instance) : null;
     }
 
     @Override
