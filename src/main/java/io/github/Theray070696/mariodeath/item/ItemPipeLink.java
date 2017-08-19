@@ -129,6 +129,8 @@ public class ItemPipeLink extends ItemMario
         // I'm not sure if this is needed, but better to be safe than sorry
         super.addInformation(itemStack, player, list, advanced);
 
+        list.add("Right click on two pipes to link them together.");
+
         // Game crashes without the hasTagCompound check
         if(itemStack.hasTagCompound() && itemStack.getTagCompound().getBoolean("linking"))
         {

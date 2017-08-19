@@ -27,8 +27,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.Chunk;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * Created by Theray070696 on 2/9/2017.
@@ -753,5 +756,14 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
         }
 
         return state;
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced)
+    {
+        super.addInformation(stack, player, tooltip, advanced);
+
+        tooltip.add("Place in a 2x2x2 structure, then right click on the top-right block to form a multiblock.");
     }
 }
