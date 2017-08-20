@@ -33,7 +33,7 @@ public class CraftingHandler
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockDecoration, 4), "www", "www", "www", 'w', "plankWood"));
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockNoteBlock, 8), " n ", "ncn", " n ", 'n', new ItemStack(Blocks.NOTEBLOCK),
                 'c', "itemMarioCoin"));
-        addShaped(new ItemStack(ModBlocks.blockGroundUnderwater), "ggg", "gwg", "ggg", 'g', new ItemStack(ModBlocks.blockGround), 'w', Items
+        addShaped(new ItemStack(ModBlocks.blockGroundUnderwater, 8), "ggg", "gwg", "ggg", 'g', new ItemStack(ModBlocks.blockGround), 'w', Items
                 .WATER_BUCKET);
         addShapeless(new ItemStack(ModBlocks.blockGroundSnow), new ItemStack(ModBlocks.blockGround), new ItemStack(Items.SNOWBALL));
         addShaped(new ItemStack(ModBlocks.blockCastleWall, 4), "bb", "bb", 'b', new ItemStack(ModBlocks.blockMarioCastleBrick));
