@@ -34,7 +34,7 @@ public class BlockNoteBlock extends BlockMario
                 {
                     world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.noteBlock, SoundCategory.BLOCKS, 1.0F,
                             1.0F);
-                    EventHandler.setSoundCooldown(player, 13);
+                    EventHandler.setSoundCooldown(player, 11);
                 }
             } else
             {

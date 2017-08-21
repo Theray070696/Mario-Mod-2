@@ -69,7 +69,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                     {
                         world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.smbEmptyBlockHit, SoundCategory
                                 .BLOCKS, 1.0F, 1.0F); // Play this sound.
-                        EventHandler.setSoundCooldown(player, 3); // Don't spam sounds.
+                        EventHandler.setSoundCooldown(player, 1); // Don't spam sounds.
                     } else if(blockType.equals(EnumBlockType.SMW) || blockType.equals(EnumBlockType.SMW_INVISIBLE)) // If it is from Mario World...
                     {
                         world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.smwEmptyBlockHit, SoundCategory
