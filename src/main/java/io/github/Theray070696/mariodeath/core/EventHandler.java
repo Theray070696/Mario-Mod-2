@@ -290,12 +290,16 @@ public class EventHandler
             }
         }
 
-        if(event.getEntityLiving().isPotionActive(PotionEffectsMario.potionStarman))
+        if(event.getEntityLiving().worldObj.isRemote)
         {
-            Random rand = new Random();
-            event.getEntityLiving().worldObj.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, event.getEntityLiving().posX - 0.1D + rand
-                    .nextGaussian() * 0.2D, event.getEntityLiving().posY - 0.4D - rand.nextGaussian() * 0.2D, event.getEntityLiving().posZ - 0.1D +
-                    rand.nextGaussian() * 0.2D, 0.0D, 0.0D, 0.0D);
+            if(event.getEntityLiving().isPotionActive(PotionEffectsMario.potionStarman))
+            {
+                Random rand = new Random();
+                event.getEntityLiving().worldObj.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, event.getEntityLiving().posX - 0.1D + rand
+                        .nextGaussian() * 0.2D, event.getEntityLiving().posY + 0.5D - rand.nextGaussian() * 0.2D, event.getEntityLiving().posZ -
+                        0.1D +
+                        rand.nextGaussian() * 0.2D, 0.0D, 0.0D, 0.0D);
+            }
         }
     }
 }
