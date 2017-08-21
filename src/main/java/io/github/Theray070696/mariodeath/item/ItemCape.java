@@ -3,6 +3,7 @@ package io.github.Theray070696.mariodeath.item;
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
 import io.github.Theray070696.mariodeath.audio.SoundHandler;
+import io.github.Theray070696.mariodeath.core.EventHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -38,7 +39,7 @@ public class ItemCape extends ItemMario implements IBauble
         if(!world.isRemote) // If we're on the server side...
         {
             if(entity != null && entity instanceof EntityPlayer && !(entity instanceof FakePlayer) && entity.motionY < 0.0f) // If the entity is
-                // not null, is a player, is not a fake player, and is falling...
+            // not null, is a player, is not a fake player, and is falling...
             {
                 EntityPlayer player = (EntityPlayer) entity; // Save the player entity.
 
@@ -60,12 +61,16 @@ public class ItemCape extends ItemMario implements IBauble
     public ActionResult<ItemStack> onItemRightClick(@Nullable ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
     {
         if(!world.isRemote && itemStack != null && player != null && !(player instanceof FakePlayer)) // If we're on the server side, the ItemStack
-            // is not null, the player is not null, and the player is not a fake player...
+        // is not null, the player is not null, and the player is not a fake player...
         {
             player.fallDistance = 0.0F; // Cancel fall damage.
 
-            world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler.cape,
-                    SoundCategory.PLAYERS, 1.0F, 1.0F); // Play a sound.
+            if(EventHandler.getSoundCooldown(player) == 0)
+            {
+                world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler.cape,
+                        SoundCategory.PLAYERS, 1.0F, 1.0F); // Play a sound.
+                EventHandler.setSoundCooldown(player, 21); // Don't spam sounds.
+            }
         }
 
         return new ActionResult<>(EnumActionResult.PASS, itemStack);
@@ -90,7 +95,7 @@ public class ItemCape extends ItemMario implements IBauble
     public void onWornTick(ItemStack itemStack, EntityLivingBase player)
     {
         if(itemStack != null && player != null && !(player instanceof FakePlayer) && player.motionY < 0.0f) // If the ItemStack is not null, the
-            // player is not null, and the player is not a fake player...
+        // player is not null, and the player is not a fake player...
         {
             player.fallDistance = 0.0F; // Cancel fall damage.
         }

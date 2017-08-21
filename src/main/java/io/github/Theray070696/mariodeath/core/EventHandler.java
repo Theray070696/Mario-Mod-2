@@ -19,6 +19,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.AchievementList;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
@@ -31,11 +32,14 @@ import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AchievementEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -143,15 +147,7 @@ public class EventHandler
         }
     }
 
-    @SubscribeEvent
-    public void onEntityDamaged(LivingHurtEvent event)
-    {
-        if(event.getEntityLiving().isPotionActive(PotionEffectsMario.potionStarman)) // If the entity that was hurt has the Starman potion effect
-            // active...
-        {
-            event.setCanceled(true); // Starman makes you literally immortal. Not even the Chaos Dragon from Draconic Evolution can hurt you.
-        }
-    }
+    private static Map<String, Integer> soundCooldown = new HashMap<>();
 
     @SubscribeEvent
     public void lootLoad(LootTableLoadEvent event)
@@ -172,11 +168,56 @@ public class EventHandler
         }
     }
 
+    public static int getSoundCooldown(EntityPlayer player)
+    {
+        if(soundCooldown.containsKey(player.getDisplayNameString()))
+        {
+            return soundCooldown.get(player.getDisplayNameString());
+        } else
+        {
+            soundCooldown.put(player.getDisplayNameString(), 0);
+            return 0;
+        }
+    }
+
+    @SubscribeEvent
+    public void onAchievement(AchievementEvent event)
+    {
+        // If the player would get the DIAMONDS! achievement, and the can unlock it, and they don't already have it...
+        if(event.getAchievement().equals(AchievementList.DIAMONDS) && !event.getEntityPlayer().hasAchievement(event.getAchievement()) && (
+                (EntityPlayerMP) event.getEntityPlayer()).getStatFile().canUnlockAchievement(AchievementList.DIAMONDS))
+        {
+            RayCoreAPI.playSoundToAll("mario2:player.diamonds"); // Play a sound to everybody on the server.
+        }
+    }
+
+    public static void setSoundCooldown(EntityPlayer player, int cooldown)
+    {
+        if(soundCooldown.containsKey(player.getDisplayNameString()))
+        {
+            soundCooldown.remove(player.getDisplayNameString());
+            soundCooldown.put(player.getDisplayNameString(), cooldown);
+        } else
+        {
+            soundCooldown.put(player.getDisplayNameString(), cooldown);
+        }
+    }
+
+    @SubscribeEvent
+    public void onEntityDamaged(LivingHurtEvent event)
+    {
+        if(event.getEntityLiving().isPotionActive(PotionEffectsMario.potionStarman)) // If the entity that was hurt has the Starman potion effect
+        // active...
+        {
+            event.setCanceled(true); // Starman makes you literally immortal. Not even the Chaos Dragon from Draconic Evolution can hurt you.
+        }
+    }
+
     @SubscribeEvent
     public void onLivingDropsEvent(LivingDropsEvent event)
     {
         if(event.getSource().getSourceOfDamage() instanceof EntityPlayer && !(event.getSource().getSourceOfDamage() instanceof FakePlayer)) // If
-            // the cause of damage was a player, but NOT a fake player...
+        // the cause of damage was a player, but NOT a fake player...
         {
             Entity entity = event.getEntity(); // Get entity that is dropping item(s).
             World world = entity.getEntityWorld(); // Get the world the entity is in.
@@ -197,14 +238,14 @@ public class EventHandler
                     entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, 1, 3), 0.0f); // Dragon Coin
                 }
             } else if(entity instanceof EntitySkeleton && ((EntitySkeleton) entity).getSkeletonType() == SkeletonType.WITHER) // If the entity was
-                // a Wither Skeleton...
+            // a Wither Skeleton...
             {
                 if(rand.nextInt(500) == 0) // Drop 1 Wither Coin as a very rare drop.
                 {
                     entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, 1, 4), 0.0f); // Wither Coin
                 }
             } else if(entity instanceof EntityMob && !(entity instanceof EntityGoomba || entity instanceof EntityKoopa)) // If the entity is any
-                // other mob besides a Goomba...
+            // other mob besides a Goomba...
             {
                 int randInt = rand.nextInt(100); // Generate a number from 0 to 99 inclusive to determine what will be dropped.
 
@@ -226,13 +267,35 @@ public class EventHandler
     }
 
     @SubscribeEvent
-    public void onAchievement(AchievementEvent event)
+    public void onEntityUpdate(LivingUpdateEvent event)
     {
-        // If the player would get the DIAMONDS! achievement, and the can unlock it, and they don't already have it...
-        if(event.getAchievement().equals(AchievementList.DIAMONDS) && !event.getEntityPlayer().hasAchievement(event.getAchievement()) && (
-                (EntityPlayerMP) event.getEntityPlayer()).getStatFile().canUnlockAchievement(AchievementList.DIAMONDS))
+        if(event.getEntityLiving() instanceof EntityPlayer)
         {
-            RayCoreAPI.playSoundToAll("mario2:player.diamonds"); // Play a sound to everybody on the server.
+            EntityPlayer player = (EntityPlayer) event.getEntityLiving();
+
+            if(!((EntityPlayer) event.getEntityLiving()).worldObj.isRemote)
+            {
+                if(soundCooldown.containsKey(player.getDisplayNameString()))
+                {
+                    if(soundCooldown.get(player.getDisplayNameString()) > 0)
+                    {
+                        int temp = soundCooldown.get(player.getDisplayNameString());
+                        soundCooldown.remove(player.getDisplayNameString());
+                        soundCooldown.put(player.getDisplayNameString(), temp);
+                    }
+                } else
+                {
+                    soundCooldown.put(player.getDisplayNameString(), 0);
+                }
+            }
+        }
+
+        if(event.getEntityLiving().isPotionActive(PotionEffectsMario.potionStarman))
+        {
+            Random rand = new Random();
+            event.getEntityLiving().worldObj.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, event.getEntityLiving().posX - 0.1D + rand
+                    .nextGaussian() * 0.2D, event.getEntityLiving().posY - 0.4D - rand.nextGaussian() * 0.2D, event.getEntityLiving().posZ - 0.1D +
+                    rand.nextGaussian() * 0.2D, 0.0D, 0.0D, 0.0D);
         }
     }
 }

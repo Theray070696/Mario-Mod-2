@@ -2,6 +2,7 @@ package io.github.Theray070696.mariodeath.block;
 
 import io.github.Theray070696.mariodeath.audio.SoundHandler;
 import io.github.Theray070696.mariodeath.block.tile.TileQuestionMark;
+import io.github.Theray070696.mariodeath.core.EventHandler;
 import io.github.Theray070696.mariodeath.item.*;
 import io.github.Theray070696.mariodeath.lib.ItemsInQuestionMarks;
 import net.minecraft.block.ITileEntityProvider;
@@ -58,16 +59,23 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                 takeItemOutOfQBlock(world, blockPos, null); // Take the item out.
             } else // Otherwise...
             {
-                if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType
-                        .SMB_UNDERGROUND) || blockType.equals(EnumBlockType.SMB_CASTLE) || blockType.equals(EnumBlockType.SMB3) || blockType.equals
-                        (EnumBlockType.SMB3_INVISIBLE)) // If it is from Mario 1 or Mario 3...
+                EntityPlayer player = (EntityPlayer) entity; // Get player for use in cooldown stuff.
+
+                if(EventHandler.getSoundCooldown(player) == 0) // Make sure it's been enough time to play sounds again.
                 {
-                    world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.smbEmptyBlockHit, SoundCategory.BLOCKS,
-                            1.0F, 1.0F); // Play this sound.
-                } else if(blockType.equals(EnumBlockType.SMW) || blockType.equals(EnumBlockType.SMW_INVISIBLE)) // If it is from Mario World...
-                {
-                    world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.smwEmptyBlockHit, SoundCategory.BLOCKS,
-                            1.0F, 1.0F); // Play this sound.
+                    if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType
+                            .SMB_UNDERGROUND) || blockType.equals(EnumBlockType.SMB_CASTLE) || blockType.equals(EnumBlockType.SMB3) || blockType
+                            .equals(EnumBlockType.SMB3_INVISIBLE)) // If it is from Mario 1 or Mario 3...
+                    {
+                        world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.smbEmptyBlockHit, SoundCategory
+                                .BLOCKS, 1.0F, 1.0F); // Play this sound.
+                        EventHandler.setSoundCooldown(player, 3); // Don't spam sounds.
+                    } else if(blockType.equals(EnumBlockType.SMW) || blockType.equals(EnumBlockType.SMW_INVISIBLE)) // If it is from Mario World...
+                    {
+                        world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.smwEmptyBlockHit, SoundCategory
+                                .BLOCKS, 1.0F, 1.0F); // Play this sound.
+                        EventHandler.setSoundCooldown(player, 1); // Don't spam sounds.
+                    }
                 }
             }
         }
@@ -182,7 +190,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
     private void takeItemOutOfQBlock(World world, BlockPos pos, EntityPlayer entityPlayer)
     {
         if(world.getTileEntity(pos) != null && world.getTileEntity(pos) instanceof TileQuestionMark) // If the tile is not null and it's a question
-            // mark...
+        // mark...
         {
             TileQuestionMark tileQuestionMark = (TileQuestionMark) world.getTileEntity(pos); // Store tile.
 
@@ -338,17 +346,17 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                     TileQuestionMark tileQuestionMark = (TileQuestionMark) world.getTileEntity(pos); // Store TileEntity for later use.
 
                     if(heldItem != null && tileQuestionMark.getItemInBlock() == ItemsInQuestionMarks.ITEM_NOTHING) // If the player is holding
-                        // something, and the question mark block is empty...
+                    // something, and the question mark block is empty...
                     {
                         Item item = heldItem.getItem(); // Get the held item.
                         int blockType = 0; // Used to compare against damage values.
 
                         if(this.blockType.equals(EnumBlockType.SMW) || this.blockType.equals(EnumBlockType.SMW_INVISIBLE)) // If the block is from
-                            // Mario World...
+                        // Mario World...
                         {
                             blockType = 1; // Set blockType to the same as the damage values for Mario World items.
                         } else if(this.blockType.equals(EnumBlockType.SMB3) || this.blockType.equals(EnumBlockType.SMB3_INVISIBLE)) // If the block
-                            // is from Mario World...
+                        // is from Mario World...
                         {
                             blockType = 2; // Set blockType to the same as the damage values for Mario 3 items.
                         }

@@ -1,8 +1,10 @@
 package io.github.Theray070696.mariodeath.block;
 
 import io.github.Theray070696.mariodeath.audio.SoundHandler;
+import io.github.Theray070696.mariodeath.core.EventHandler;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -25,7 +27,19 @@ public class BlockNoteBlock extends BlockMario
     {
         if(entity.motionY < -0.1D)
         {
-            world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.noteBlock, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            if(entity instanceof EntityPlayer)
+            {
+                EntityPlayer player = (EntityPlayer) entity;
+                if(EventHandler.getSoundCooldown(player) == 0)
+                {
+                    world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.noteBlock, SoundCategory.BLOCKS, 1.0F,
+                            1.0F);
+                    EventHandler.setSoundCooldown(player, 13);
+                }
+            } else
+            {
+                world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.noteBlock, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            }
 
             entity.motionY *= -2.0D;
         }
