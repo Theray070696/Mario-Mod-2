@@ -191,8 +191,7 @@ public class WorldGenMario implements IWorldGenerator
 
             if((!world.getBiomeForCoordsBody(new BlockPos(x, 50, z)).equals(Biomes.OCEAN) && !world.getBiomeForCoordsBody(new BlockPos(x, 50, z))
                     .equals(Biomes.DEEP_OCEAN)) && !world.getBiomeForCoordsBody(new BlockPos(x, 50, z)).equals(Biomes.FROZEN_OCEAN) && rand.nextInt
-                    (70) == 0)
-                    //(1) == 0)
+                    (100) == 0)
             {
                 int y = 50;
                 BlockPos position = new BlockPos(x, y, z);
