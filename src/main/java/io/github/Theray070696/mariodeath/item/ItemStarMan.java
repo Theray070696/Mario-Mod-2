@@ -2,6 +2,7 @@ package io.github.Theray070696.mariodeath.item;
 
 import io.github.Theray070696.mariodeath.audio.SoundHandler;
 import io.github.Theray070696.mariodeath.potion.PotionEffectsMario;
+import io.github.Theray070696.raycore.api.RayCoreAPI;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
@@ -44,8 +45,10 @@ public class ItemStarMan extends ItemMario
                         .jasterStarMan, SoundCategory.PLAYERS, 1.0F, 1.0F);
             }
 
-            world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler.starMan,
-                    SoundCategory.PLAYERS, 1.0F, 1.0F);
+            //world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler.starMan,
+            //SoundCategory.PLAYERS, 1.0F, 1.0F);
+
+            RayCoreAPI.playMovingSound(SoundHandler.starMan, SoundCategory.PLAYERS, world, player);
 
             itemStack.stackSize--;
         }
