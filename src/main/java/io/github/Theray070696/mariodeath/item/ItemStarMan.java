@@ -34,7 +34,8 @@ public class ItemStarMan extends ItemMario
     @Override
     public ActionResult<ItemStack> onItemRightClick(@Nullable ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
     {
-        if(itemStack != null && world != null && player != null && !(player instanceof FakePlayer))
+        if(itemStack != null && world != null && player != null && !(player instanceof FakePlayer) && !player.isPotionActive(PotionEffectsMario
+                .potionStarman))
         {
             player.addPotionEffect(new PotionEffect(PotionEffectsMario.potionStarman, 258, 10));
             player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 258, 5));
