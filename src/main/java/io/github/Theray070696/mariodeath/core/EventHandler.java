@@ -9,6 +9,7 @@ import io.github.Theray070696.mariodeath.lib.ModInfo;
 import io.github.Theray070696.mariodeath.potion.PotionEffectsMario;
 import io.github.Theray070696.raycore.api.RayCoreAPI;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.EntityEnderman;
@@ -48,6 +49,32 @@ import java.util.Random;
 @SuppressWarnings("unused")
 public class EventHandler
 {
+    private static Map<Integer, Integer> soundCooldown = new HashMap<>();
+
+    public static int getSoundCooldown(EntityLivingBase entity)
+    {
+        if(soundCooldown.containsKey(entity.getEntityId()))
+        {
+            return soundCooldown.get(entity.getEntityId());
+        } else
+        {
+            soundCooldown.put(entity.getEntityId(), 0);
+            return 0;
+        }
+    }
+
+    public static void setSoundCooldown(EntityLivingBase entity, int cooldown)
+    {
+        if(soundCooldown.containsKey(entity.getEntityId()))
+        {
+            soundCooldown.remove(entity.getEntityId());
+            soundCooldown.put(entity.getEntityId(), cooldown);
+        } else
+        {
+            soundCooldown.put(entity.getEntityId(), cooldown);
+        }
+    }
+
     @SubscribeEvent
     public void onEntityKilled(LivingDeathEvent event)
     {
@@ -147,8 +174,6 @@ public class EventHandler
         }
     }
 
-    private static Map<String, Integer> soundCooldown = new HashMap<>();
-
     @SubscribeEvent
     public void lootLoad(LootTableLoadEvent event)
     {
@@ -176,30 +201,6 @@ public class EventHandler
                 (EntityPlayerMP) event.getEntityPlayer()).getStatFile().canUnlockAchievement(AchievementList.DIAMONDS))
         {
             RayCoreAPI.playSoundToAll("mario2:player.diamonds"); // Play a sound to everybody on the server.
-        }
-    }
-
-    public static int getSoundCooldown(EntityPlayer player)
-    {
-        if(soundCooldown.containsKey(player.getDisplayNameString()))
-        {
-            return soundCooldown.get(player.getDisplayNameString());
-        } else
-        {
-            soundCooldown.put(player.getDisplayNameString(), 0);
-            return 0;
-        }
-    }
-
-    public static void setSoundCooldown(EntityPlayer player, int cooldown)
-    {
-        if(soundCooldown.containsKey(player.getDisplayNameString()))
-        {
-            soundCooldown.remove(player.getDisplayNameString());
-            soundCooldown.put(player.getDisplayNameString(), cooldown);
-        } else
-        {
-            soundCooldown.put(player.getDisplayNameString(), cooldown);
         }
     }
 
@@ -269,36 +270,23 @@ public class EventHandler
     @SubscribeEvent
     public void onEntityUpdate(LivingUpdateEvent event)
     {
-        if(event.getEntityLiving() instanceof EntityPlayer)
-        {
-            EntityPlayer player = (EntityPlayer) event.getEntityLiving();
+        EntityLivingBase entity = event.getEntityLiving();
 
-            if(!((EntityPlayer) event.getEntityLiving()).worldObj.isRemote)
+        if(!entity.worldObj.isRemote)
+        {
+            if(getSoundCooldown(entity) > 0)
             {
-                if(soundCooldown.containsKey(player.getDisplayNameString()))
-                {
-                    if(soundCooldown.get(player.getDisplayNameString()) > 0)
-                    {
-                        int temp = soundCooldown.get(player.getDisplayNameString()) - 1;
-                        soundCooldown.remove(player.getDisplayNameString());
-                        soundCooldown.put(player.getDisplayNameString(), temp);
-                    }
-                } else
-                {
-                    soundCooldown.put(player.getDisplayNameString(), 0);
-                }
+                setSoundCooldown(entity, getSoundCooldown(entity) - 1);
             }
         }
 
-        if(event.getEntityLiving().worldObj.isRemote)
+        if(entity.worldObj.isRemote)
         {
-            if(event.getEntityLiving().isPotionActive(PotionEffectsMario.potionStarman))
+            if(entity.isPotionActive(PotionEffectsMario.potionStarman))
             {
                 Random rand = new Random();
-                event.getEntityLiving().worldObj.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, event.getEntityLiving().posX - 0.1D + rand
-                        .nextGaussian() * 0.2D, event.getEntityLiving().posY + 0.5D - rand.nextGaussian() * 0.2D, event.getEntityLiving().posZ -
-                        0.1D +
-                        rand.nextGaussian() * 0.2D, 0.0D, 0.0D, 0.0D);
+                entity.worldObj.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, entity.posX - 0.1D + rand.nextGaussian() * 0.2D, entity.posY +
+                        0.5D - rand.nextGaussian() * 0.2D, entity.posZ - 0.1D + rand.nextGaussian() * 0.2D, 0.0D, 0.0D, 0.0D);
             }
         }
     }
