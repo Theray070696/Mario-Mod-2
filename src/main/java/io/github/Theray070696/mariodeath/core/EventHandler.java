@@ -168,6 +168,17 @@ public class EventHandler
         }
     }
 
+    @SubscribeEvent
+    public void onAchievement(AchievementEvent event)
+    {
+        // If the player would get the DIAMONDS! achievement, and the can unlock it, and they don't already have it...
+        if(event.getAchievement().equals(AchievementList.DIAMONDS) && !event.getEntityPlayer().hasAchievement(event.getAchievement()) && (
+                (EntityPlayerMP) event.getEntityPlayer()).getStatFile().canUnlockAchievement(AchievementList.DIAMONDS))
+        {
+            RayCoreAPI.playSoundToAll("mario2:player.diamonds"); // Play a sound to everybody on the server.
+        }
+    }
+
     public static int getSoundCooldown(EntityPlayer player)
     {
         if(soundCooldown.containsKey(player.getDisplayNameString()))
@@ -177,17 +188,6 @@ public class EventHandler
         {
             soundCooldown.put(player.getDisplayNameString(), 0);
             return 0;
-        }
-    }
-
-    @SubscribeEvent
-    public void onAchievement(AchievementEvent event)
-    {
-        // If the player would get the DIAMONDS! achievement, and the can unlock it, and they don't already have it...
-        if(event.getAchievement().equals(AchievementList.DIAMONDS) && !event.getEntityPlayer().hasAchievement(event.getAchievement()) && (
-                (EntityPlayerMP) event.getEntityPlayer()).getStatFile().canUnlockAchievement(AchievementList.DIAMONDS))
-        {
-            RayCoreAPI.playSoundToAll("mario2:player.diamonds"); // Play a sound to everybody on the server.
         }
     }
 
@@ -279,7 +279,7 @@ public class EventHandler
                 {
                     if(soundCooldown.get(player.getDisplayNameString()) > 0)
                     {
-                        int temp = soundCooldown.get(player.getDisplayNameString());
+                        int temp = soundCooldown.get(player.getDisplayNameString()) - 1;
                         soundCooldown.remove(player.getDisplayNameString());
                         soundCooldown.put(player.getDisplayNameString(), temp);
                     }
