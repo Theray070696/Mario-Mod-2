@@ -50,6 +50,7 @@ public class ModBlocks
     public static Block blockMarioCastleBrick;
     public static Block blockMarioLeaves;
     public static Block blockMarioLog;
+    public static Block blockMarioPlanks;
     public static BlockMarioSapling blockMarioSapling;
 
     public static Block blockBeanstalk;
@@ -73,6 +74,7 @@ public class ModBlocks
         blockNoteBlock = RayBlockRegistry.register(new BlockNoteBlock());
         blockMarioLeaves = RayBlockRegistry.register(new BlockMario(Material.LEAVES).setUnlocalizedName("marioBlockLeaves"));
         blockMarioLog = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockLog"));
+        blockMarioPlanks = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockPlanks"));
         blockMarioSapling = RayBlockRegistry.register(new BlockMarioSapling());
 
         blockGroundSMW = RayBlockRegistry.register(new BlockMarioConnectedTexture(Material.GRASS, true, true).setUnlocalizedName

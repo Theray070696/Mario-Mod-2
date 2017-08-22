@@ -1,0 +1,17 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "all": "mario2:blocks/marioBlockLeaves"
+    },
+    "ambientocclusion": false
+  },
+  "variants": {
+    "inventory": {
+      "model": "leaves"
+    },
+    "normal": {
+      "model": "leaves"
+    }
+  }
+}
