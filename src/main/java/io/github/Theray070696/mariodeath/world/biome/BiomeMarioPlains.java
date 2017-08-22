@@ -105,7 +105,7 @@ public class BiomeMarioPlains extends BiomePlains
                         }
                     } else
                     {
-                        // Replace all stone with Underground Ground Blocks
+                        // Replace all stone with Underground Ground Blocks. I hope.
                         chunkPrimerIn.setBlockState(localZ, y, localX, fillerBlockState);
                     }
                 }
