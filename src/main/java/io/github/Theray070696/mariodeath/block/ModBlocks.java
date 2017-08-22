@@ -48,6 +48,9 @@ public class ModBlocks
     public static Block blockGroundSnow;
     public static Block blockCastleWall;
     public static Block blockMarioCastleBrick;
+    public static Block blockMarioLeaves;
+    public static Block blockMarioLog;
+    public static BlockMarioSapling blockMarioSapling;
 
     public static Block blockBeanstalk;
 
@@ -64,12 +67,16 @@ public class ModBlocks
 
         blockMarioMaker = RayBlockRegistry.register(new BlockMarioMaker());
 
-        blockGround = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockGround").setHardness(4.0F));
+        blockGround = RayBlockRegistry.register(new BlockMario(Material.ROCK, true, true).setUnlocalizedName("marioBlockGround").setHardness(4.0F));
         blockMarioBrick = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockBrick").setHardness(2.0F));
         blockDecoration = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockDecoration").setHardness(5.0F));
         blockNoteBlock = RayBlockRegistry.register(new BlockNoteBlock());
+        blockMarioLeaves = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockLeaves"));
+        blockMarioLog = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockLog"));
+        blockMarioSapling = RayBlockRegistry.register(new BlockMarioSapling());
 
-        blockGroundSMW = RayBlockRegistry.register(new BlockMarioConnectedTexture(Material.GRASS).setUnlocalizedName("marioBlockGroundSMW")
+        blockGroundSMW = RayBlockRegistry.register(new BlockMarioConnectedTexture(Material.GRASS, true, true).setUnlocalizedName
+                ("marioBlockGroundSMW")
                 .setHardness(4.0F));
 
         blockEmptyQuestionMark = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMark", EnumBlockType.SMW));
@@ -89,7 +96,8 @@ public class ModBlocks
                 .SMB3_INVISIBLE));
         blockInvisibleBlockSMB3 = RayBlockRegistry.register(new BlockInvisibleBlock("marioBlockInvisibleBlockSMB3", EnumBlockType.SMB3_INVISIBLE));
 
-        blockGroundUnderground = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockGroundUnderground").setHardness(4.0F));
+        blockGroundUnderground = RayBlockRegistry.register(new BlockMario(Material.ROCK, true, true).setUnlocalizedName
+                ("marioBlockGroundUnderground").setHardness(4.0F));
         blockMarioBrickUnderground = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockBrickUnderground").setHardness(2.0F));
         blockUndergroundDecoration = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockUndergroundDecoration").setHardness
                 (5.0F));

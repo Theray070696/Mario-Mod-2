@@ -10,6 +10,8 @@ import net.minecraft.block.material.Material;
  */
 public class BlockMario extends BlockRay
 {
+    private boolean isGround = false;
+
     public BlockMario()
     {
         this(true);
@@ -17,15 +19,15 @@ public class BlockMario extends BlockRay
 
     public BlockMario(boolean addToCreativeTab)
     {
-        this(Material.ROCK, addToCreativeTab);
+        this(Material.ROCK, addToCreativeTab, false);
     }
 
     public BlockMario(Material material)
     {
-        this(material, true);
+        this(material, true, false);
     }
 
-    public BlockMario(Material material, boolean addToCreativeTab)
+    public BlockMario(Material material, boolean addToCreativeTab, boolean isGround)
     {
         super(material, false, ModInfo.MOD_ID);
 
@@ -33,5 +35,12 @@ public class BlockMario extends BlockRay
         {
             this.setCreativeTab(MarioDeath.tabMarioBlocks);
         }
+
+        this.isGround = isGround;
+    }
+
+    public boolean isGround()
+    {
+        return this.isGround;
     }
 }

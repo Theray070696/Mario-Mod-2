@@ -30,7 +30,12 @@ public class BlockMarioConnectedTexture extends BlockMario
 
     public BlockMarioConnectedTexture(Material material, boolean addToCreativeTab)
     {
-        super(material, addToCreativeTab);
+        this(material, addToCreativeTab, false);
+    }
+
+    public BlockMarioConnectedTexture(Material material, boolean addToCreativeTab, boolean isGround)
+    {
+        super(material, addToCreativeTab, isGround);
 
         this.setDefaultState(this.blockState.getBaseState()
                 .withProperty(CONNECTED_DOWN, Boolean.FALSE)
