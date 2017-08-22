@@ -71,13 +71,12 @@ public class ModBlocks
         blockMarioBrick = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockBrick").setHardness(2.0F));
         blockDecoration = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockDecoration").setHardness(5.0F));
         blockNoteBlock = RayBlockRegistry.register(new BlockNoteBlock());
-        blockMarioLeaves = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockLeaves"));
+        blockMarioLeaves = RayBlockRegistry.register(new BlockMario(Material.LEAVES).setUnlocalizedName("marioBlockLeaves"));
         blockMarioLog = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockLog"));
         blockMarioSapling = RayBlockRegistry.register(new BlockMarioSapling());
 
         blockGroundSMW = RayBlockRegistry.register(new BlockMarioConnectedTexture(Material.GRASS, true, true).setUnlocalizedName
-                ("marioBlockGroundSMW")
-                .setHardness(4.0F));
+                ("marioBlockGroundSMW").setHardness(4.0F));
 
         blockEmptyQuestionMark = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMark", EnumBlockType.SMW));
         blockQuestionMark = RayBlockRegistry.register(new BlockQuestionMark("marioBlockQuestionMark", EnumBlockType.SMW));
