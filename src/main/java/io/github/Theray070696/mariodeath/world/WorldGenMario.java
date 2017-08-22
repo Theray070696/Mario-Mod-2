@@ -4,7 +4,8 @@ import io.github.Theray070696.mariodeath.block.ModBlocks;
 import io.github.Theray070696.mariodeath.world.gen.WorldGenCastle;
 import io.github.Theray070696.mariodeath.world.gen.WorldGenMinableSingle;
 import io.github.Theray070696.mariodeath.world.gen.WorldGenQuestionMark;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockLiquid;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -158,9 +159,9 @@ public class WorldGenMario implements IWorldGenerator
 
                 Block block = world.getBlockState(new BlockPos(x, y - 1, z)).getBlock();
 
-                if(block == Blocks.GRASS || block == Blocks.DIRT || block == Blocks.STONE || block == Blocks.SAND || block == ModBlocks.blockGround
-                        || block == ModBlocks.blockGroundUnderground || block == ModBlocks.blockGroundUnderwater || block == ModBlocks
-                        .blockGroundSnow || block == ModBlocks.blockCastleWall || block == ModBlocks.blockGroundSMW)
+                if(block == Blocks.GRASS || block == Blocks.DIRT || block == Blocks.STONE || block == Blocks.SAND || block == Blocks.MYCELIUM ||
+                        block == ModBlocks.blockGround || block == ModBlocks.blockGroundUnderground || block == ModBlocks.blockGroundUnderwater ||
+                        block == ModBlocks.blockGroundSnow || block == ModBlocks.blockCastleWall || block == ModBlocks.blockGroundSMW)
                 {
                     worldGenerator.generate(world, rand, new BlockPos(x, y, z));
                 }
