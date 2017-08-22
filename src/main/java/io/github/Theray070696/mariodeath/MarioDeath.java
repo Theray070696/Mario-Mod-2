@@ -18,6 +18,7 @@ import io.github.Theray070696.mariodeath.plugins.PluginHandler;
 import io.github.Theray070696.mariodeath.potion.PotionEffectsMario;
 import io.github.Theray070696.mariodeath.proxy.IProxy;
 import io.github.Theray070696.mariodeath.util.LogHelper;
+import io.github.Theray070696.mariodeath.world.ModBiomes;
 import io.github.Theray070696.mariodeath.world.WorldGenMario;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -150,6 +151,8 @@ public class MarioDeath
 
         LogHelper.info("Registering World Generation");
         GameRegistry.registerWorldGenerator(new WorldGenMario(), 0);
+
+        ModBiomes.initBiomes();
 
         // These two will come back as soon an I can make them interesting and not just "Overworld with Mario blocks".
         //DimensionManager.registerDimension(ConfigHandler.marioDimensionID, DimensionType.register("Marios World", "_mario", ConfigHandler
