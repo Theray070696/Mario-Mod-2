@@ -22,6 +22,7 @@ Running changelog for next build.
 [*] Crafting Pipes now gives two pipes as output
 [*] Pipes now make metalic sounds
 [*] Pipes now properly work with items
+[*] Pipes are now slightly faster
 [*] Goombas will now drop coins for FakePlayers, but it's rare
 [*] Goombas now have shadows
 [*] Goombas size is now correct
