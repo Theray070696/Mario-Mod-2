@@ -46,6 +46,10 @@ tile.mario2:marioBlockInvisibleBlockEmptySMB.name=Empty Invisible Block
 tile.mario2:marioBlockCastleBrick.name=Castle Brick Block
 tile.mario2:marioBlockCastleWall.name=Castle Wall Block
 tile.mario2:Castle Entry Block.name=Castle Entry Block
+tile.mario2:marioBlockLog.name=Wood
+tile.mario2:marioBlockLeaves.name=Leaves
+tile.mario2:marioBlockPlanks.name=Wood Planks
+tile.mario2:marioBlockSapling.name=Sapling
 
 item.mario2:Flagpole.name=Flagpole
 item.mario2:itemMushroom.name=Mushroom
