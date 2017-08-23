@@ -11,15 +11,11 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the nessasary things for Forge to be setup.
 
 repositories {
-  maven {
-    // location of the maven that hosts JEI files
-    name = "Progwml6 maven"
-    url = "http://dvs1.progwml6.com/files/maven"
+  maven { // CTM
+    url "http://maven.tterrag.com/"
   }
-  maven {
-    // location of a maven mirror for JEI files, as a fallback
-    name = "ModMaven"
-    url = "modmaven.k-4u.nl"
+  maven { // JEI
+    url = "http://dvs1.progwml6.com/files/maven"
   }
 }
 

@@ -23,8 +23,8 @@ public class BiomeMarioPlains extends BiomePlains
     public BiomeMarioPlains()
     {
         super(false, new BiomeProperties("Mario Plains").setBaseBiome("Plains"));
-        this.topBlock = ModBlocks.blockGround.getDefaultState();
-        this.fillerBlock = ModBlocks.blockGround.getDefaultState();
+        this.topBlock = ModBlocks.blockGroundSMW.getDefaultState();
+        this.fillerBlock = ModBlocks.blockGroundSMW.getDefaultState();
         this.setRegistryName(ModInfo.MOD_ID, "biomeMarioPlains");
     }
 

@@ -1,5 +1,6 @@
 package io.github.Theray070696.mariodeath.block;
 
+import io.github.Theray070696.mariodeath.MarioDeath;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
@@ -22,6 +23,8 @@ public class BlockMarioConnectedTexture extends BlockMario
     public static final PropertyBool CONNECTED_WEST = PropertyBool.create("connected_west");
     public static final PropertyBool CONNECTED_EAST = PropertyBool.create("connected_east");
 
+    public static final PropertyBool CTM_LOADED = PropertyBool.create("ctm_loaded");
+
     public BlockMarioConnectedTexture(Material material)
     {
         this(material, true);
@@ -36,31 +39,53 @@ public class BlockMarioConnectedTexture extends BlockMario
     {
         super(material, addToCreativeTab, isGround);
 
-        this.setDefaultState(this.blockState.getBaseState()
-                .withProperty(CONNECTED_DOWN, false)
-                .withProperty(CONNECTED_EAST, false)
-                .withProperty(CONNECTED_NORTH, false)
-                .withProperty(CONNECTED_SOUTH, false)
-                .withProperty(CONNECTED_UP, false)
-                .withProperty(CONNECTED_WEST, false));
+        if(!MarioDeath.isCTMLoaded)
+        {
+            this.setDefaultState(this.blockState.getBaseState()
+                    .withProperty(CONNECTED_DOWN, false)
+                    .withProperty(CONNECTED_EAST, false)
+                    .withProperty(CONNECTED_NORTH, false)
+                    .withProperty(CONNECTED_SOUTH, false)
+                    .withProperty(CONNECTED_UP, false)
+                    .withProperty(CONNECTED_WEST, false)
+                    .withProperty(CTM_LOADED, false));
+        } else
+        {
+            this.setDefaultState(this.blockState.getBaseState()
+                    .withProperty(CONNECTED_DOWN, false)
+                    .withProperty(CONNECTED_EAST, false)
+                    .withProperty(CONNECTED_NORTH, false)
+                    .withProperty(CONNECTED_SOUTH, false)
+                    .withProperty(CONNECTED_UP, false)
+                    .withProperty(CONNECTED_WEST, false)
+                    .withProperty(CTM_LOADED, true));
+        }
     }
 
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return state.withProperty(CONNECTED_DOWN, this.isSideConnectable(world, pos, EnumFacing.DOWN))
-                .withProperty(CONNECTED_EAST, this.isSideConnectable(world, pos, EnumFacing.EAST))
-                .withProperty(CONNECTED_NORTH, this.isSideConnectable(world, pos, EnumFacing.NORTH))
-                .withProperty(CONNECTED_SOUTH, this.isSideConnectable(world, pos, EnumFacing.SOUTH))
-                .withProperty(CONNECTED_UP, this.isSideConnectable(world, pos, EnumFacing.UP))
-                .withProperty(CONNECTED_WEST, this.isSideConnectable(world, pos, EnumFacing.WEST));
+        if(!MarioDeath.isCTMLoaded)
+        {
+            return state.withProperty(CONNECTED_DOWN, this.isSideConnectable(world, pos, EnumFacing.DOWN))
+                    .withProperty(CONNECTED_EAST, this.isSideConnectable(world, pos, EnumFacing.EAST))
+                    .withProperty(CONNECTED_NORTH, this.isSideConnectable(world, pos, EnumFacing.NORTH))
+                    .withProperty(CONNECTED_SOUTH, this.isSideConnectable(world, pos, EnumFacing.SOUTH))
+                    .withProperty(CONNECTED_UP, this.isSideConnectable(world, pos, EnumFacing.UP))
+                    .withProperty(CONNECTED_WEST, this.isSideConnectable(world, pos, EnumFacing.WEST))
+                    .withProperty(CTM_LOADED, false);
+        } else
+        {
+            return state.withProperty(CTM_LOADED, true);
+        }
     }
 
     @Nonnull
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, CONNECTED_DOWN, CONNECTED_UP, CONNECTED_NORTH, CONNECTED_SOUTH, CONNECTED_WEST, CONNECTED_EAST);
+        return new BlockStateContainer(this, CONNECTED_DOWN, CONNECTED_UP, CONNECTED_NORTH, CONNECTED_SOUTH, CONNECTED_WEST, CONNECTED_EAST,
+                CTM_LOADED);
     }
 
     @Override
