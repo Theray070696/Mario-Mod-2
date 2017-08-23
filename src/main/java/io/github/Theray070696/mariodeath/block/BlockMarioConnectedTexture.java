@@ -46,22 +46,21 @@ public class BlockMarioConnectedTexture extends BlockMario
     }
 
     @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos position)
+    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return state.withProperty(CONNECTED_DOWN, this.isSideConnectable(world, position, EnumFacing.DOWN))
-                .withProperty(CONNECTED_EAST, this.isSideConnectable(world, position, EnumFacing.EAST))
-                .withProperty(CONNECTED_NORTH, this.isSideConnectable(world, position, EnumFacing.NORTH))
-                .withProperty(CONNECTED_SOUTH, this.isSideConnectable(world, position, EnumFacing.SOUTH))
-                .withProperty(CONNECTED_UP, this.isSideConnectable(world, position, EnumFacing.UP))
-                .withProperty(CONNECTED_WEST, this.isSideConnectable(world, position, EnumFacing.WEST));
+        return state.withProperty(CONNECTED_DOWN, this.isSideConnectable(world, pos, EnumFacing.DOWN))
+                .withProperty(CONNECTED_EAST, this.isSideConnectable(world, pos, EnumFacing.EAST))
+                .withProperty(CONNECTED_NORTH, this.isSideConnectable(world, pos, EnumFacing.NORTH))
+                .withProperty(CONNECTED_SOUTH, this.isSideConnectable(world, pos, EnumFacing.SOUTH))
+                .withProperty(CONNECTED_UP, this.isSideConnectable(world, pos, EnumFacing.UP))
+                .withProperty(CONNECTED_WEST, this.isSideConnectable(world, pos, EnumFacing.WEST));
     }
 
     @Nonnull
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, CONNECTED_DOWN, CONNECTED_UP, CONNECTED_NORTH, CONNECTED_SOUTH, CONNECTED_WEST,
-                CONNECTED_EAST);
+        return new BlockStateContainer(this, CONNECTED_DOWN, CONNECTED_UP, CONNECTED_NORTH, CONNECTED_SOUTH, CONNECTED_WEST, CONNECTED_EAST);
     }
 
     @Override
@@ -72,8 +71,8 @@ public class BlockMarioConnectedTexture extends BlockMario
 
     private boolean isSideConnectable(IBlockAccess world, BlockPos pos, EnumFacing side)
     {
-        final IBlockState original = world.getBlockState(pos);
-        final IBlockState connected = world.getBlockState(pos.offset(side));
+        IBlockState original = world.getBlockState(pos);
+        IBlockState connected = world.getBlockState(pos.offset(side));
 
         return canConnect(original, connected);
     }
