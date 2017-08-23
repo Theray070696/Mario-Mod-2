@@ -72,9 +72,11 @@ public class ModBlocks
         blockMarioBrick = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockBrick").setHardness(2.0F));
         blockDecoration = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockDecoration").setHardness(5.0F));
         blockNoteBlock = RayBlockRegistry.register(new BlockNoteBlock());
-        blockMarioLeaves = RayBlockRegistry.register(new BlockMario(Material.LEAVES).setUnlocalizedName("marioBlockLeaves"));
-        blockMarioLog = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockLog"));
-        blockMarioPlanks = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockPlanks"));
+
+        blockMarioLeaves = RayBlockRegistry.register(new BlockMarioLeaves());
+        blockMarioLog = RayBlockRegistry.register(new BlockMarioLog());
+        blockMarioPlanks = RayBlockRegistry.register(new BlockMario(Material.WOOD).setHardness(2.0F).setResistance(5.0F).setUnlocalizedName
+                ("marioBlockPlanks"));
         blockMarioSapling = RayBlockRegistry.register(new BlockMarioSapling());
 
         blockGroundSMW = RayBlockRegistry.register(new BlockMarioConnectedTexture(Material.GRASS, true, true).setUnlocalizedName
@@ -127,6 +129,11 @@ public class ModBlocks
         GameRegistry.registerTileEntity(TilePipe.class, "tileMarioPipe");
 
         GameRegistry.registerTileEntity(TileQuestionMark.class, "tileMarioQuestionMark");
+
+        OreDictionary.registerOre("logWood", blockMarioLog);
+        OreDictionary.registerOre("plankWood", blockMarioPlanks);
+        OreDictionary.registerOre("treeLeaves", blockMarioLeaves);
+        OreDictionary.registerOre("treeSapling", blockMarioSapling);
 
         OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyQuestionMark);
         OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyInvisibleBlock);

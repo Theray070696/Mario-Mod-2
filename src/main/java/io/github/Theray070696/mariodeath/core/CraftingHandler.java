@@ -21,6 +21,8 @@ public class CraftingHandler
     {
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockMarioMaker), "bgb", "gbg", "bgb", 'b', "emptyQuestionMarkBlock",
                 'g', "itemMarioCoin"));
+
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.blockMarioPlanks, 4), new ItemStack(ModBlocks.blockMarioLog));
     }
 
     public static void initMarioMakerRecipes()

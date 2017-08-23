@@ -38,10 +38,7 @@
       }
     },
     "axis=none": {
-      "model": "cube_all",
-      "textures": {
-        "all": "mario2:blocks/marioBlockLog"
-      }
+      "model": "cube_all"
     }
   }
 }

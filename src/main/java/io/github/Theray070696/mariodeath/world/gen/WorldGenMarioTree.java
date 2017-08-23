@@ -2,8 +2,10 @@ package io.github.Theray070696.mariodeath.world.gen;
 
 import io.github.Theray070696.mariodeath.block.BlockMario;
 import io.github.Theray070696.mariodeath.block.ModBlocks;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -46,10 +48,7 @@ public class WorldGenMarioTree extends WorldGenerator
                     {
                         if(j >= 0 && j < world.getHeight())
                         {
-                            IBlockState state = world.getBlockState(mutableBlockPos.setPos(l, j, i1));
-
-                            if(state.getBlock().isAir(state, world, pos) || state.getBlock().isLeaves(state, world, pos) || state.getBlock().isWood
-                                    (world, pos))
+                            if(!isReplaceable(world, mutableBlockPos.setPos(l, j, i1)))
                             {
                                 flag = false;
                             }
@@ -117,9 +116,23 @@ public class WorldGenMarioTree extends WorldGenerator
                 }
             }
         } else
-
         {
             return false;
         }
+    }
+
+    protected boolean canGrowInto(Block blockType)
+    {
+        Material material = blockType.getDefaultState().getMaterial();
+        return material == Material.AIR || material == Material.LEAVES || blockType == Blocks.GRASS || blockType == Blocks.DIRT || blockType ==
+                Blocks.LOG || blockType == Blocks.LOG2 || blockType == Blocks.SAPLING || blockType == Blocks.VINE || blockType == ModBlocks
+                .blockGround || blockType == ModBlocks.blockGroundUnderground || blockType == ModBlocks.blockMarioLog;
+    }
+
+    public boolean isReplaceable(World world, BlockPos pos)
+    {
+        net.minecraft.block.state.IBlockState state = world.getBlockState(pos);
+        return state.getBlock().isAir(state, world, pos) || state.getBlock().isLeaves(state, world, pos) || state.getBlock().isWood(world, pos) ||
+                canGrowInto(state.getBlock());
     }
 }

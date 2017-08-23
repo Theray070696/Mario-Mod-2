@@ -2,16 +2,16 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {
-      "cross": "mario2:blocks/blockMarioSapling"
+      "cross": "mario2:blocks/marioBlockSapling"
     },
     "ambientocclusion": false
   },
   "variants": {
     "inventory": {
-      "model": "cube_all"
+      "model": "cross"
     },
     "normal": {
-      "model": "cube_all"
+      "model": "cross"
     },
     "stage=0": {
       "model": "cross"

@@ -4,6 +4,7 @@
     "textures": {
       "all": "mario2:blocks/marioBlockLeaves"
     },
+    "model": "leaves",
     "ambientocclusion": false
   },
   "variants": {
@@ -11,6 +12,18 @@
       "model": "leaves"
     },
     "normal": {
+      "model": "leaves"
+    },
+    "check_decay=false,decayable=false": {
+      "model": "leaves"
+    },
+    "check_decay=true,decayable=false": {
+      "model": "leaves"
+    },
+    "check_decay=false,decayable=true": {
+      "model": "leaves"
+    },
+    "check_decay=true,decayable=true": {
       "model": "leaves"
     }
   }

@@ -1,16 +1,17 @@
 Running changelog for next build.
 
 [+] Added Mario Plains biome. More biomes will come in the future
+[+] Added trees for the new biome, along with related blocks
 [+] Added Snowy Ground Blocks
 [+] Added regular and Underground Decoration Blocks
 [+] Added Castle Blocks
 [+] Added Castles to world generation
 [+] Added hardness values to all blocks
 [+] Added Koopas
-[+] Added beanstalks
+[+] Added Beanstalks
 [+] New model and behavior for Fire Flower fireballs. They're ripped from the original Super Mario Mod
-[+] Add mushrooms and 1-Ups to Ore Dictionary
-[+] Pipes and Pipe Link now have tooltips that describe how they work
+[*] Add mushrooms and 1-Ups to Ore Dictionary
+[*] Pipes and Pipe Link now have tooltips that describe how they work
 [*] Music from the Starman now properly follows the player
 [*] Entities under the effects of a Starman now have particle effects around them
 [*] Player can no longer use a Starman if they are already under the effects of it
