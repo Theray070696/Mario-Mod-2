@@ -1,7 +1,6 @@
 package io.github.Theray070696.mariodeath.block;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -38,12 +37,12 @@ public class BlockMarioConnectedTexture extends BlockMario
         super(material, addToCreativeTab, isGround);
 
         this.setDefaultState(this.blockState.getBaseState()
-                .withProperty(CONNECTED_DOWN, Boolean.FALSE)
-                .withProperty(CONNECTED_EAST, Boolean.FALSE)
-                .withProperty(CONNECTED_NORTH, Boolean.FALSE)
-                .withProperty(CONNECTED_SOUTH, Boolean.FALSE)
-                .withProperty(CONNECTED_UP, Boolean.FALSE)
-                .withProperty(CONNECTED_WEST, Boolean.FALSE));
+                .withProperty(CONNECTED_DOWN, false)
+                .withProperty(CONNECTED_EAST, false)
+                .withProperty(CONNECTED_NORTH, false)
+                .withProperty(CONNECTED_SOUTH, false)
+                .withProperty(CONNECTED_UP, false)
+                .withProperty(CONNECTED_WEST, false));
     }
 
     @Override
@@ -61,8 +60,8 @@ public class BlockMarioConnectedTexture extends BlockMario
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[]{CONNECTED_DOWN, CONNECTED_UP, CONNECTED_NORTH, CONNECTED_SOUTH, CONNECTED_WEST,
-                CONNECTED_EAST});
+        return new BlockStateContainer(this, CONNECTED_DOWN, CONNECTED_UP, CONNECTED_NORTH, CONNECTED_SOUTH, CONNECTED_WEST,
+                CONNECTED_EAST);
     }
 
     @Override
@@ -76,7 +75,7 @@ public class BlockMarioConnectedTexture extends BlockMario
         final IBlockState original = world.getBlockState(pos);
         final IBlockState connected = world.getBlockState(pos.offset(side));
 
-        return original != null && connected != null && canConnect(original, connected);
+        return canConnect(original, connected);
     }
 
     protected boolean canConnect(@Nonnull IBlockState original, @Nonnull IBlockState connected)
