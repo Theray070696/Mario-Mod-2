@@ -105,8 +105,8 @@ public class ModBlocks
         blockGroundUnderground = RayBlockRegistry.register(new BlockMario(Material.ROCK, true, true).setUnlocalizedName
                 ("marioBlockGroundUnderground").setHardness(4.0F));
         blockMarioBrickUnderground = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockBrickUnderground").setHardness(2.0F));
-        blockUndergroundDecoration = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockUndergroundDecoration").setHardness
-                (5.0F));
+        blockUndergroundDecoration = RayBlockRegistry.register(new BlockMario(Material.WOOD).setUnlocalizedName("marioBlockUndergroundDecoration")
+                .setHardness(5.0F));
         blockEmptyQuestionMarkUndergroundSMB = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMarkUndergroundSMB",
                 EnumBlockType.SMB_UNDERGROUND));
         blockQuestionMarkUndergroundSMB = RayBlockRegistry.register(new BlockQuestionMark("marioBlockQuestionMarkUndergroundSMB", EnumBlockType
