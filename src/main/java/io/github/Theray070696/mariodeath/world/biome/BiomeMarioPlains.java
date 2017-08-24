@@ -29,9 +29,9 @@ public class BiomeMarioPlains extends BiomePlains
     }
 
     @Override
-    public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal)
+    public void genTerrainBlocks(World world, Random rand, ChunkPrimer chunkPrimer, int x, int z, double noiseVal)
     {
-        int seaLevel = worldIn.getSeaLevel();
+        int seaLevel = world.getSeaLevel();
         IBlockState topBlockState = this.topBlock;
         IBlockState fillerBlockState = this.fillerBlock;
         int fillBlocksToFill = -1;
@@ -44,10 +44,10 @@ public class BiomeMarioPlains extends BiomePlains
         {
             if(y <= rand.nextInt(5))
             {
-                chunkPrimerIn.setBlockState(localZ, y, localX, BEDROCK);
+                chunkPrimer.setBlockState(localZ, y, localX, BEDROCK);
             } else
             {
-                IBlockState blockState = chunkPrimerIn.getBlockState(localZ, y, localX);
+                IBlockState blockState = chunkPrimer.getBlockState(localZ, y, localX);
 
                 if(blockState.getMaterial() == Material.AIR)
                 {
@@ -81,21 +81,21 @@ public class BiomeMarioPlains extends BiomePlains
 
                         if(y >= seaLevel - 1)
                         {
-                            chunkPrimerIn.setBlockState(localZ, y, localX, topBlockState);
+                            chunkPrimer.setBlockState(localZ, y, localX, topBlockState);
                         } else if(y < seaLevel - 7 - fillerDepth)
                         {
                             topBlockState = AIR;
                             fillerBlockState = ModBlocks.blockGroundUndergroundSMW.getDefaultState();
-                            chunkPrimerIn.setBlockState(localZ, y, localX, GRAVEL); // I'll let gravel generate for now. Would be more useful than
+                            chunkPrimer.setBlockState(localZ, y, localX, GRAVEL); // I'll let gravel generate for now. Would be more useful than
                             // the brick blocks
                         } else
                         {
-                            chunkPrimerIn.setBlockState(localZ, y, localX, fillerBlockState);
+                            chunkPrimer.setBlockState(localZ, y, localX, fillerBlockState);
                         }
                     } else if(fillBlocksToFill > 0)
                     {
                         --fillBlocksToFill;
-                        chunkPrimerIn.setBlockState(localZ, y, localX, fillerBlockState);
+                        chunkPrimer.setBlockState(localZ, y, localX, fillerBlockState);
 
                         if(fillBlocksToFill == 0 && fillerBlockState.getBlock() == Blocks.SAND && fillerDepth > 1)
                         {
@@ -103,9 +103,6 @@ public class BiomeMarioPlains extends BiomePlains
                             fillerBlockState = fillerBlockState.getValue(BlockSand.VARIANT) == BlockSand.EnumType.RED_SAND ? RED_SANDSTONE :
                                     SANDSTONE;
                         }
-                    } else
-                    {
-                        chunkPrimerIn.setBlockState(localZ, y, localX, ModBlocks.blockGroundUndergroundSMW.getDefaultState());
                     }
                 }
             }
