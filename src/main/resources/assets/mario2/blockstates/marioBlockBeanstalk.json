@@ -2,27 +2,30 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {
-      "all": "mario2:blocks/beanstalk"
+      "cross": "mario2:blocks/beanstalk"
     },
     "ambientocclusion": false
   },
   "variants": {
     "normal": {
-      "model": "cube_all"
+      "model": "cross"
     },
     "inventory": {
-      "model": "cube_all"
+      "model": "cross",
+      "textures": {
+        "cross": "mario2:blocks/beanstalk_top"
+      }
     },
     "istop=true": {
-      "model": "cube_all",
+      "model": "cross",
       "textures": {
-        "all": "mario2:blocks/beanstalk_top"
+        "cross": "mario2:blocks/beanstalk_top"
       }
     },
     "istop=false": {
-      "model": "cube_all",
+      "model": "cross",
       "textures": {
-        "all": "mario2:blocks/beanstalk"
+        "cross": "mario2:blocks/beanstalk"
       }
     }
   }

@@ -30,6 +30,9 @@ public class CraftingHandler
         addRecipe(new ShapelessOreRecipeMario(new ItemStack(Items.GOLD_NUGGET), "itemMarioCoin"));
         addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModItems.itemMarioCoin, 2), "ingotGold"));
 
+        addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockBeanstalk), "r", "r", "s", 'r', "sugarcane", 's', new ItemStack(Items
+                .WHEAT_SEEDS)));
+
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockGround, 8), "sss", "sss", "sss", 's', "stone"));
         addShaped(new ItemStack(ModBlocks.blockMarioBrick, 16), "bb", "bb", 'b', new ItemStack(Blocks.BRICK_BLOCK));
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockDecoration, 4), "www", "www", "www", 'w', "plankWood"));
@@ -54,7 +57,6 @@ public class CraftingHandler
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockPipe, 2), "i i", "iei", "iii", 'i', "ingotIron", 'e', "enderpearl"));
 
         // Block converting
-
         addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModBlocks.blockGroundSMW), new ItemStack(ModBlocks.blockGround), new ItemStack(ModItems
                 .itemMarioCoin, 1, 1)));
         addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModBlocks.blockGround), new ItemStack(ModBlocks.blockGroundSMW), new ItemStack(ModItems
