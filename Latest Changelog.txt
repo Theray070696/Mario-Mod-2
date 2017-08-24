@@ -14,7 +14,7 @@ Running changelog for next build.
 [+] Added Beanstalks
 [+] New model and behavior for Fire Flower fireballs. They're ripped from the original Super Mario Mod
 [*] Connected textures are now handled by the Connected Textures Mod
-[*] Connected Textures Mod now required
+[*] Connected Textures Mod now required for the client
 [*] Add mushrooms and 1-Ups to Ore Dictionary
 [*] Mushrooms and 1-Ups now heal twice as much in hardcore mode
 [*] Music from the Starman now properly follows the player
