@@ -1,7 +1,7 @@
 {
     "ctm": {
         "ctm_version": 1,
-        "type": "EDGES_FULL",
+        "type": "ctm",
         "textures": [
             "mario2:blocks/connected/smwGround/normal_ct"
         ],
