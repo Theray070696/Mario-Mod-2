@@ -162,7 +162,8 @@ public class WorldGenMario implements IWorldGenerator
 
                 if(block == Blocks.GRASS || block == Blocks.DIRT || block == Blocks.STONE || block == Blocks.SAND || block == Blocks.MYCELIUM ||
                         block == ModBlocks.blockGround || block == ModBlocks.blockGroundUnderground || block == ModBlocks.blockGroundUnderwater ||
-                        block == ModBlocks.blockGroundSnow || block == ModBlocks.blockCastleWall || block == ModBlocks.blockGroundSMW)
+                        block == ModBlocks.blockGroundSnow || block == ModBlocks.blockCastleWall || block == ModBlocks.blockGroundSMW || block ==
+                        ModBlocks.blockGroundUndergroundSMW)
                 {
                     worldGenerator.generate(world, rand, new BlockPos(x, y, z));
                 }
