@@ -154,12 +154,12 @@ public class MarioDeath
         LogHelper.info("Registering World Generation");
         GameRegistry.registerWorldGenerator(new WorldGenMario(), 0);
 
+        // ... Well fuck. It's "Overworld with Mario blocks".
         ModBiomes.initBiomes();
 
         // These two will come back as soon an I can make them interesting and not just "Overworld with Mario blocks".
         //DimensionManager.registerDimension(ConfigHandler.marioDimensionID, DimensionType.register("Marios World", "_mario", ConfigHandler
         // .marioDimensionID, WorldProviderMario.class, false));
-        //ModBiomes.registerWithBiomeDictionary();
         LogHelper.info("World Generation Registered");
 
         proxy.init(event);

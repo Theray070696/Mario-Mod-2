@@ -5,6 +5,7 @@ import io.github.Theray070696.mariodeath.entity.EntityFireball;
 import io.github.Theray070696.mariodeath.entity.EntityGoomba;
 import io.github.Theray070696.mariodeath.entity.EntityKoopa;
 import io.github.Theray070696.mariodeath.lib.ModInfo;
+import io.github.Theray070696.mariodeath.world.ModBiomes;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeManager;
@@ -23,29 +24,34 @@ public abstract class CommonProxy implements IProxy
     @Override
     public void preInit(FMLPreInitializationEvent event)
     {
+
+    }
+
+    @Override
+    public void init(FMLInitializationEvent event)
+    {
         EntityRegistry.registerModEntity(EntityGoomba.class, ModInfo.MOD_ID + ":goomba", 0, MarioDeath.INSTANCE, 128, 1, false);
         EntityRegistry.registerModEntity(EntityKoopa.class, ModInfo.MOD_ID + ":koopa", 1, MarioDeath.INSTANCE, 128, 1, false);
         EntityRegistry.registerModEntity(EntityFireball.class, ModInfo.MOD_ID + ":fireball", 2, MarioDeath.INSTANCE, 64, 1, true);
 
-        List<BiomeManager.BiomeEntry> biomeEntries = new ArrayList<BiomeManager.BiomeEntry>();
+        List<BiomeManager.BiomeEntry> biomeEntries = new ArrayList<>();
         biomeEntries.addAll(BiomeManager.getBiomes(BiomeManager.BiomeType.COOL));
         biomeEntries.addAll(BiomeManager.getBiomes(BiomeManager.BiomeType.DESERT));
         biomeEntries.addAll(BiomeManager.getBiomes(BiomeManager.BiomeType.ICY));
         biomeEntries.addAll(BiomeManager.getBiomes(BiomeManager.BiomeType.WARM));
-        List<Biome> biomes = new ArrayList<Biome>();
+        List<Biome> biomes = new ArrayList<>();
         for(BiomeManager.BiomeEntry b : biomeEntries)
         {
             biomes.add(b.biome);
         }
         biomes.addAll(BiomeManager.oceanBiomes);
 
+        biomes.remove(ModBiomes.biomeMarioPlains);
+
         EntityRegistry.addSpawn(EntityGoomba.class, 100, 2, 5, EnumCreatureType.MONSTER, biomes.toArray(new Biome[biomes.size()]));
         EntityRegistry.addSpawn(EntityKoopa.class, 100, 2, 5, EnumCreatureType.MONSTER, biomes.toArray(new Biome[biomes.size()]));
-    }
 
-    @Override
-    public void init(FMLInitializationEvent event)
-    {
-
+        EntityRegistry.addSpawn(EntityGoomba.class, 200, 3, 6, EnumCreatureType.MONSTER, ModBiomes.biomeMarioPlains);
+        EntityRegistry.addSpawn(EntityKoopa.class, 200, 3, 6, EnumCreatureType.MONSTER, ModBiomes.biomeMarioPlains);
     }
 }
