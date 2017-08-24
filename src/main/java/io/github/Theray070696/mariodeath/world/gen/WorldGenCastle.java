@@ -8,7 +8,6 @@ import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -42,21 +41,21 @@ public class WorldGenCastle extends WorldGenerator
                 world.notifyBlockUpdate(pos, blockState, blockState, 3);
                 flag = true;
 
-                for(int i = 0; i < template.getSize().getX(); i++)
+                for(int x = 0; x < template.getSize().getX(); x++)
                 {
                     if(!flag)
                     {
                         break;
                     }
 
-                    for(int j = 0; j < template.getSize().getZ(); j++)
+                    for(int z = 0; z < template.getSize().getZ(); z++)
                     {
                         if(!flag)
                         {
                             break;
                         }
 
-                        BlockPos down = pos.add(i, -1, j);
+                        BlockPos down = pos.add(x, -1, z);
                         Block b = world.getBlockState(down).getBlock();
                         if(b instanceof BlockLiquid || b instanceof BlockFluidBase || b instanceof BlockAir || b instanceof BlockSlab || b
                                 instanceof BlockSnow)
@@ -69,7 +68,7 @@ public class WorldGenCastle extends WorldGenerator
                 if(flag)
                 {
                     PlacementSettings placementsettings = new PlacementSettings().setMirror(Mirror.NONE).setRotation(Rotation.values()[rand.nextInt
-                            (4)]).setIgnoreEntities(false).setChunk((ChunkPos) null).setReplacedBlock((Block) null).setIgnoreStructureBlock(false);
+                            (4)]).setIgnoreEntities(false).setChunk(null).setReplacedBlock(null).setIgnoreStructureBlock(false);
 
                     template.addBlocksToWorld(world, pos.down(), placementsettings);
                     return true;
