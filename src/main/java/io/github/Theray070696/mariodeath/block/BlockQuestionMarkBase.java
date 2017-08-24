@@ -6,6 +6,7 @@ import io.github.Theray070696.mariodeath.core.EventHandler;
 import io.github.Theray070696.mariodeath.item.*;
 import io.github.Theray070696.mariodeath.lib.ItemsInQuestionMarks;
 import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
@@ -41,7 +42,12 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
 
     public BlockQuestionMarkBase(boolean addToCreativeTab, EnumBlockType blockType)
     {
-        super(addToCreativeTab);
+        this(Material.ROCK, addToCreativeTab, blockType);
+    }
+
+    public BlockQuestionMarkBase(Material material, boolean addToCreativeTab, EnumBlockType blockType)
+    {
+        super(material, addToCreativeTab);
 
         this.setHardness(1.5F);
         this.blockType = blockType;
