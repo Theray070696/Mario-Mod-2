@@ -1,6 +1,8 @@
 package io.github.Theray070696.mariodeath.world.biome;
 
 import io.github.Theray070696.mariodeath.block.ModBlocks;
+import io.github.Theray070696.mariodeath.entity.EntityGoomba;
+import io.github.Theray070696.mariodeath.entity.EntityKoopa;
 import io.github.Theray070696.mariodeath.lib.ModInfo;
 import io.github.Theray070696.mariodeath.world.decorator.MarioPlainsBiomeDecorator;
 import net.minecraft.block.BlockSand;
@@ -26,6 +28,8 @@ public class BiomeMarioPlains extends BiomePlains
         this.topBlock = ModBlocks.blockGroundSMW.getDefaultState();
         this.fillerBlock = ModBlocks.blockGroundSMW.getDefaultState();
         this.setRegistryName(ModInfo.MOD_ID, "biomeMarioPlains");
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityGoomba.class, 200, 3, 6));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityKoopa.class, 200, 3, 6));
     }
 
     @Override

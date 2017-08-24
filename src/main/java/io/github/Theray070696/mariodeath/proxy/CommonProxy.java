@@ -24,12 +24,6 @@ public abstract class CommonProxy implements IProxy
     @Override
     public void preInit(FMLPreInitializationEvent event)
     {
-
-    }
-
-    @Override
-    public void init(FMLInitializationEvent event)
-    {
         EntityRegistry.registerModEntity(EntityGoomba.class, ModInfo.MOD_ID + ":goomba", 0, MarioDeath.INSTANCE, 128, 1, false);
         EntityRegistry.registerModEntity(EntityKoopa.class, ModInfo.MOD_ID + ":koopa", 1, MarioDeath.INSTANCE, 128, 1, false);
         EntityRegistry.registerModEntity(EntityFireball.class, ModInfo.MOD_ID + ":fireball", 2, MarioDeath.INSTANCE, 64, 1, true);
@@ -50,8 +44,10 @@ public abstract class CommonProxy implements IProxy
 
         EntityRegistry.addSpawn(EntityGoomba.class, 100, 2, 5, EnumCreatureType.MONSTER, biomes.toArray(new Biome[biomes.size()]));
         EntityRegistry.addSpawn(EntityKoopa.class, 100, 2, 5, EnumCreatureType.MONSTER, biomes.toArray(new Biome[biomes.size()]));
+    }
 
-        EntityRegistry.addSpawn(EntityGoomba.class, 200, 3, 6, EnumCreatureType.MONSTER, ModBiomes.biomeMarioPlains);
-        EntityRegistry.addSpawn(EntityKoopa.class, 200, 3, 6, EnumCreatureType.MONSTER, ModBiomes.biomeMarioPlains);
+    @Override
+    public void init(FMLInitializationEvent event)
+    {
     }
 }

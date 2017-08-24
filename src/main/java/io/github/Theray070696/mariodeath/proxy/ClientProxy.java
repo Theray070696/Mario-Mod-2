@@ -34,12 +34,6 @@ public class ClientProxy extends CommonProxy
     public void preInit(FMLPreInitializationEvent event)
     {
         super.preInit(event);
-    }
-
-    @Override
-    public void init(FMLInitializationEvent event)
-    {
-        super.init(event);
 
         RenderingRegistry.registerEntityRenderingHandler(EntityGoomba.class, new IRenderFactory<EntityGoomba>()
         {
@@ -67,6 +61,12 @@ public class ClientProxy extends CommonProxy
                 return new RenderFireball(manager);
             }
         });
+    }
+
+    @Override
+    public void init(FMLInitializationEvent event)
+    {
+        super.init(event);
 
         MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
     }
