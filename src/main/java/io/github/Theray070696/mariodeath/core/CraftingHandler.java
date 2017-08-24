@@ -62,6 +62,11 @@ public class CraftingHandler
         addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModBlocks.blockGround), new ItemStack(ModBlocks.blockGroundSMW), new ItemStack(ModItems
                 .itemMarioCoin)));
 
+        addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModBlocks.blockGroundUndergroundSMW), new ItemStack(ModBlocks.blockGroundUnderground),
+                new ItemStack(ModItems.itemMarioCoin, 1, 1)));
+        addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModBlocks.blockGroundUnderground), new ItemStack(ModBlocks.blockGroundUndergroundSMW),
+                new ItemStack(ModItems.itemMarioCoin)));
+
         addShapeless(new ItemStack(ModBlocks.blockEmptyQuestionMarkSMB), new ItemStack(ModBlocks.blockEmptyQuestionMark), new ItemStack(ModItems
                 .itemMarioCoin));
         addShapeless(new ItemStack(ModBlocks.blockEmptyQuestionMarkSMB), new ItemStack(ModBlocks.blockEmptyQuestionMarkSMB3), new ItemStack
@@ -97,6 +102,8 @@ public class CraftingHandler
         GameRegistry.addSmelting(new ItemStack(ModBlocks.blockDecoration), new ItemStack(ModBlocks.blockUndergroundDecoration), 0.3f);
 
         GameRegistry.addSmelting(new ItemStack(ModBlocks.blockMarioBrickUnderground), new ItemStack(ModBlocks.blockMarioCastleBrick), 0.3f);
+
+        GameRegistry.addSmelting(new ItemStack(ModBlocks.blockMarioLog), new ItemStack(Items.COAL, 1, 1), 0.15f);
     }
 
     private static void addShaped(ItemStack output, Object... inputs)
