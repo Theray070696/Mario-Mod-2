@@ -16,7 +16,7 @@ public class ModBiomes
     public static void initBiomes()
     {
         biomeMarioPlains = GameRegistry.register(new BiomeMarioPlains());
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(biomeMarioPlains, 10));
+        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(biomeMarioPlains, 5));
         BiomeManager.addSpawnBiome(biomeMarioPlains);
         BiomeDictionary.registerBiomeType(biomeMarioPlains, BiomeDictionary.Type.PLAINS);
     }
