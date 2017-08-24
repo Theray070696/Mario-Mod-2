@@ -24,7 +24,12 @@ public class BlockMario extends BlockRay
 
     public BlockMario(Material material)
     {
-        this(material, true, false);
+        this(material, true);
+    }
+
+    public BlockMario(Material material, boolean addToCreativeTab)
+    {
+        this(material, addToCreativeTab, false);
     }
 
     public BlockMario(Material material, boolean addToCreativeTab, boolean isGround)
