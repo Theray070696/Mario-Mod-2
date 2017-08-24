@@ -27,7 +27,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -176,13 +175,6 @@ public class MarioDeath
         LogHelper.info("Post-Init");
 
         PluginHandler.getInstance().postInit();
-
-        isCTMLoaded = Loader.isModLoaded("ctm");
-
-        if(isCTMLoaded)
-        {
-            LogHelper.info("Connected Textures Mod Detected");
-        }
 
         LogHelper.info("Post-Init Complete");
     }

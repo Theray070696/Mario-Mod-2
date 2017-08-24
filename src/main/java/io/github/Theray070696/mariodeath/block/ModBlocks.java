@@ -79,8 +79,8 @@ public class ModBlocks
                 ("marioBlockPlanks"));
         blockMarioSapling = RayBlockRegistry.register(new BlockMarioSapling());
 
-        blockGroundSMW = RayBlockRegistry.register(new BlockMarioConnectedTexture(Material.GRASS, true, true).setUnlocalizedName
-                ("marioBlockGroundSMW").setHardness(4.0F));
+        blockGroundSMW = RayBlockRegistry.register(new BlockMario(Material.GRASS, true, true).setUnlocalizedName("marioBlockGroundSMW").setHardness
+                (4.0F));
 
         blockEmptyQuestionMark = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMark", EnumBlockType.SMW));
         blockQuestionMark = RayBlockRegistry.register(new BlockQuestionMark("marioBlockQuestionMark", EnumBlockType.SMW));

@@ -1,6 +1,7 @@
 package io.github.Theray070696.mariodeath.world;
 
 import io.github.Theray070696.mariodeath.block.ModBlocks;
+import io.github.Theray070696.mariodeath.world.biome.BiomeMarioPlains;
 import io.github.Theray070696.mariodeath.world.gen.WorldGenCastle;
 import io.github.Theray070696.mariodeath.world.gen.WorldGenMinableSingle;
 import io.github.Theray070696.mariodeath.world.gen.WorldGenQuestionMark;
@@ -84,25 +85,25 @@ public class WorldGenMario implements IWorldGenerator
             this.runGenerator(this.invisibleBlockSMB3, world, random, chunkX, chunkZ, random.nextInt(4), 15, 85);
 
             this.runGenerator(this.invisibleBlock, world, random, chunkX, chunkZ, random.nextInt(4), 15, 85);
-
-        } /*else if(world.provider instanceof WorldProviderMario)
+        } else if(world.provider.getBiomeForCoords(new BlockPos(chunkX * 16, 0, chunkZ * 16)) instanceof BiomeMarioPlains)
         {
-            this.runGenerator(this.questionMarkSMB, world, random, chunkX, chunkZ, random.nextInt(6), 50, 85);
-            this.runGenerator(this.questionMarkUndergroundSMB, world, random, chunkX, chunkZ, random.nextInt(6), 3, 45);
-            this.runGenerator(this.invisibleBlockSMB, world, random, chunkX, chunkZ, random.nextInt(10), 3, 85);
+            this.runGenerator(this.questionMarkSMB, world, random, chunkX, chunkZ, random.nextInt(4), 50, 85);
+            this.runGenerator(this.questionMarkUndergroundSMB, world, random, chunkX, chunkZ, random.nextInt(4), 3, 45);
+            this.runGenerator(this.invisibleBlockSMB, world, random, chunkX, chunkZ, random.nextInt(6), 3, 85);
 
-            this.runGenerator(this.questionMarkSMB3, world, random, chunkX, chunkZ, random.nextInt(6), 50, 85);
-            this.runGenerator(this.questionMarkNotRareSMB3, world, random, chunkX, chunkZ, random.nextInt(6), 3, 45);
-            this.runGenerator(this.invisibleBlockSMB3, world, random, chunkX, chunkZ, random.nextInt(10), 3, 85);
+            this.runGenerator(this.questionMarkSMB3, world, random, chunkX, chunkZ, random.nextInt(4), 50, 85);
+            this.runGenerator(this.questionMarkNotRareSMB3, world, random, chunkX, chunkZ, random.nextInt(4), 3, 45);
+            this.runGenerator(this.invisibleBlockSMB3, world, random, chunkX, chunkZ, random.nextInt(6), 3, 85);
 
-            this.runGenerator(this.questionMark, world, random, chunkX, chunkZ, random.nextInt(6), 50, 85);
-            this.runGenerator(this.questionMarkNotRare, world, random, chunkX, chunkZ, random.nextInt(6), 3, 45);
-            this.runGenerator(this.invisibleBlock, world, random, chunkX, chunkZ, random.nextInt(10), 3, 85);
+            this.runGenerator(this.questionMark, world, random, chunkX, chunkZ, random.nextInt(4), 50, 85);
+            this.runGenerator(this.questionMarkNotRare, world, random, chunkX, chunkZ, random.nextInt(4), 3, 45);
+            this.runGenerator(this.invisibleBlock, world, random, chunkX, chunkZ, random.nextInt(6), 3, 85);
 
             this.runGenerator(this.noteBlock, world, random, chunkX, chunkZ, random.nextInt(20), 25, 100);
 
             this.runGenerator(this.castle, world, random, chunkX, chunkZ, 0, 0, 0);
-        } */ else if(world.getWorldType().getWorldTypeName().equalsIgnoreCase("atg"))
+            this.runGenerator(this.castle, world, random, chunkX, chunkZ, 0, 0, 0);
+        } else if(world.getWorldType().getWorldTypeName().equalsIgnoreCase("atg"))
         {
             this.runGenerator(this.questionMarkSMB, world, random, chunkX, chunkZ, random.nextInt(2), 50, 128);
             this.runGenerator(this.questionMarkUndergroundSMB, world, random, chunkX, chunkZ, random.nextInt(2), 3, 50);
