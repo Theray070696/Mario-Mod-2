@@ -2,6 +2,7 @@ package io.github.Theray070696.mariodeath.block;
 
 import io.github.Theray070696.mariodeath.audio.SoundHandler;
 import io.github.Theray070696.mariodeath.core.EventHandler;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,7 +18,7 @@ public class BlockNoteBlock extends BlockMario
 {
     public BlockNoteBlock()
     {
-        super();
+        super(Material.WOOD);
 
         this.setUnlocalizedName("marioBlockNoteBlock");
     }

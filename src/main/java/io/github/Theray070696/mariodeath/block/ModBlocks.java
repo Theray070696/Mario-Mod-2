@@ -71,7 +71,7 @@ public class ModBlocks
 
         blockGround = RayBlockRegistry.register(new BlockMario(Material.ROCK, true, true).setUnlocalizedName("marioBlockGround").setHardness(4.0F));
         blockMarioBrick = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockBrick").setHardness(2.0F));
-        blockDecoration = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockDecoration").setHardness(5.0F));
+        blockDecoration = RayBlockRegistry.register(new BlockMario(Material.WOOD).setUnlocalizedName("marioBlockDecoration").setHardness(5.0F));
         blockNoteBlock = RayBlockRegistry.register(new BlockNoteBlock());
 
         blockMarioLeaves = RayBlockRegistry.register(new BlockMarioLeaves());
@@ -80,7 +80,7 @@ public class ModBlocks
                 ("marioBlockPlanks"));
         blockMarioSapling = RayBlockRegistry.register(new BlockMarioSapling());
 
-        blockGroundSMW = RayBlockRegistry.register(new BlockMario(Material.GRASS, true, true).setUnlocalizedName("marioBlockGroundSMW").setHardness
+        blockGroundSMW = RayBlockRegistry.register(new BlockMario(Material.GROUND, true, true).setUnlocalizedName("marioBlockGroundSMW").setHardness
                 (4.0F));
         blockGroundUndergroundSMW = RayBlockRegistry.register(new BlockMario(Material.ROCK, true, true).setUnlocalizedName
                 ("marioBlockGroundUndergroundSMW").setHardness(4.0F));
@@ -118,7 +118,8 @@ public class ModBlocks
                 EnumBlockType.SMB_CASTLE));
         blockQuestionMarkCastleSMB = RayBlockRegistry.register(new BlockQuestionMark("marioBlockQuestionMarkCastleSMB", EnumBlockType.SMB_CASTLE));
 
-        blockGroundUnderwater = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockGroundUnderwater").setHardness(4.0F));
+        blockGroundUnderwater = RayBlockRegistry.register(new BlockMario(Material.CORAL).setUnlocalizedName("marioBlockGroundUnderwater")
+                .setHardness(4.0F));
 
         temp = new BlockMario().setUnlocalizedName("marioBlockGroundSnow").setHardness(4.0F);
         temp.slipperiness = 0.9f;

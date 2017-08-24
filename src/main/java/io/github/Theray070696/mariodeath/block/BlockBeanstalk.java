@@ -1,6 +1,7 @@
 package io.github.Theray070696.mariodeath.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
@@ -29,7 +30,7 @@ public class BlockBeanstalk extends BlockMario
 
     public BlockBeanstalk()
     {
-        super();
+        super(Material.PLANTS);
 
         this.setDefaultState(this.blockState.getBaseState().withProperty(ISTOP, false));
 

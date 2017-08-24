@@ -1,6 +1,7 @@
 package io.github.Theray070696.mariodeath.block;
 
 import io.github.Theray070696.mariodeath.configuration.ConfigHandler;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -16,7 +17,7 @@ public class BlockInvisibleBlock extends BlockQuestionMark
 {
     public BlockInvisibleBlock(String name, EnumBlockType blockType)
     {
-        super(name, blockType);
+        super(Material.AIR, name, blockType);
 
         this.setHardness(4.0F);
     }
