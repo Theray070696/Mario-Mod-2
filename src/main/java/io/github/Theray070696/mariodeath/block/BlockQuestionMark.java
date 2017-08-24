@@ -1,5 +1,7 @@
 package io.github.Theray070696.mariodeath.block;
 
+import net.minecraft.block.material.Material;
+
 /**
  * Created by Theray070696 on 8/27/2015.
  */
@@ -7,9 +9,13 @@ public class BlockQuestionMark extends BlockQuestionMarkBase
 {
     public BlockQuestionMark(String name, EnumBlockType blockType)
     {
-        super(false, blockType);
+        this(Material.ROCK, name, blockType);
+    }
 
-        //this.setUnlocalizedName("marioBlockQuestionMark");
+    public BlockQuestionMark(Material material, String name, EnumBlockType blockType)
+    {
+        super(material, false, blockType);
+
         this.setUnlocalizedName(name);
     }
 
