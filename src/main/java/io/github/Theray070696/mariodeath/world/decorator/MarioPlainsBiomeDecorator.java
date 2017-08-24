@@ -2,7 +2,6 @@ package io.github.Theray070696.mariodeath.world.decorator;
 
 import io.github.Theray070696.mariodeath.block.ModBlocks;
 import io.github.Theray070696.mariodeath.world.gen.WorldGenMarioTree;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -73,27 +72,6 @@ public class MarioPlainsBiomeDecorator extends BiomeDecorator
     protected void genDecorations(Biome biome, World world, Random rand)
     {
         net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, chunkPos));
-
-        for(int y = 255; y >= 0; --y)
-        {
-            if(y > rand.nextInt(5))
-            {
-                for(int x = 0; x < 16; x++)
-                {
-                    for(int z = 0; z < 16; z++)
-                    {
-                        BlockPos pos = this.chunkPos.add(x, y, z);
-                        IBlockState blockState = world.getBlockState(pos);
-
-                        if(blockState.getBlock() == Blocks.STONE)
-                        {
-                            world.setBlockState(pos, ModBlocks.blockGroundUndergroundSMW.getDefaultState());
-                        }
-                    }
-                }
-            }
-        }
-
         this.generateOres(world, rand);
 
         if(TerrainGen.decorate(world, rand, chunkPos, DecorateBiomeEvent.Decorate.EventType.SAND))
