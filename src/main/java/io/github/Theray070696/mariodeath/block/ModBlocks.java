@@ -56,6 +56,7 @@ public class ModBlocks
     public static Block blockBeanstalk;
 
     public static Block blockGroundSMW;
+    public static Block blockGroundUndergroundSMW;
 
     public static BlockMario blockPipeBase;
     public static BlockPipe blockPipe;
@@ -81,6 +82,8 @@ public class ModBlocks
 
         blockGroundSMW = RayBlockRegistry.register(new BlockMario(Material.GRASS, true, true).setUnlocalizedName("marioBlockGroundSMW").setHardness
                 (4.0F));
+        blockGroundUndergroundSMW = RayBlockRegistry.register(new BlockMario(Material.ROCK, true, true).setUnlocalizedName
+                ("marioBlockGroundUndergroundSMW").setHardness(4.0F));
 
         blockEmptyQuestionMark = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMark", EnumBlockType.SMW));
         blockQuestionMark = RayBlockRegistry.register(new BlockQuestionMark("marioBlockQuestionMark", EnumBlockType.SMW));

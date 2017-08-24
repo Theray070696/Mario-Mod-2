@@ -1,0 +1,12 @@
+{
+    "ctm": {
+        "ctm_version": 1,
+        "type": "ctm",
+        "textures": [
+            "mario2:blocks/connected/smwGroundUnderground/normal_ct"
+        ],
+        "extra": {
+            "ignore_states": "true"
+        }
+    }
+}

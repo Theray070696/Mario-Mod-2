@@ -59,7 +59,7 @@ public class BiomeMarioPlains extends BiomePlains
                         if(fillerDepth <= 0)
                         {
                             topBlockState = AIR;
-                            fillerBlockState = ModBlocks.blockGroundUnderground.getDefaultState();
+                            fillerBlockState = ModBlocks.blockGroundUndergroundSMW.getDefaultState();
                         } else if(y >= seaLevel - 4 && y <= seaLevel + 1)
                         {
                             topBlockState = this.topBlock;
@@ -85,9 +85,9 @@ public class BiomeMarioPlains extends BiomePlains
                         } else if(y < seaLevel - 7 - fillerDepth)
                         {
                             topBlockState = AIR;
-                            fillerBlockState = ModBlocks.blockGroundUnderground.getDefaultState();
-                            //chunkPrimerIn.setBlockState(localZ, y, localX, GRAVEL);
-                            chunkPrimerIn.setBlockState(localZ, y, localX, ModBlocks.blockMarioBrickUnderground.getDefaultState());
+                            fillerBlockState = ModBlocks.blockGroundUndergroundSMW.getDefaultState();
+                            chunkPrimerIn.setBlockState(localZ, y, localX, GRAVEL); // I'll let gravel generate for now. Would be more useful than
+                            // the brick blocks
                         } else
                         {
                             chunkPrimerIn.setBlockState(localZ, y, localX, fillerBlockState);
@@ -105,8 +105,7 @@ public class BiomeMarioPlains extends BiomePlains
                         }
                     } else
                     {
-                        // Replace all stone with Underground Ground Blocks. I hope.
-                        chunkPrimerIn.setBlockState(localZ, y, localX, ModBlocks.blockGroundUnderground.getDefaultState());
+                        chunkPrimerIn.setBlockState(localZ, y, localX, ModBlocks.blockGroundUndergroundSMW.getDefaultState());
                     }
                 }
             }

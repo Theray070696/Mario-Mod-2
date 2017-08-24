@@ -47,23 +47,23 @@ public class MarioPlainsBiomeDecorator extends BiomeDecorator
         {
             this.chunkProviderSettings = ChunkProviderSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
             this.chunkPos = pos;
-            this.dirtGen = new WorldGenMinable(ModBlocks.blockGround.getDefaultState(), this.chunkProviderSettings.dirtSize);
-            this.gravelGen = new WorldGenMinable(ModBlocks.blockMarioBrickUnderground.getDefaultState(), this.chunkProviderSettings.gravelSize);
-            this.graniteGen = new WorldGenMinable(ModBlocks.blockGroundUnderground.getDefaultState(), this.chunkProviderSettings.graniteSize);
-            this.dioriteGen = new WorldGenMinable(ModBlocks.blockGroundUnderground.getDefaultState(), this.chunkProviderSettings.dioriteSize);
-            this.andesiteGen = new WorldGenMinable(ModBlocks.blockGroundUnderground.getDefaultState(), this.chunkProviderSettings.andesiteSize);
+            this.dirtGen = new WorldGenMinable(ModBlocks.blockGroundSMW.getDefaultState(), this.chunkProviderSettings.dirtSize);
+            this.gravelGen = new WorldGenMinable(Blocks.GRAVEL.getDefaultState(), this.chunkProviderSettings.gravelSize);
+            this.graniteGen = new WorldGenMinable(ModBlocks.blockGroundUndergroundSMW.getDefaultState(), this.chunkProviderSettings.graniteSize);
+            this.dioriteGen = new WorldGenMinable(ModBlocks.blockGroundUndergroundSMW.getDefaultState(), this.chunkProviderSettings.dioriteSize);
+            this.andesiteGen = new WorldGenMinable(ModBlocks.blockGroundUndergroundSMW.getDefaultState(), this.chunkProviderSettings.andesiteSize);
             this.coalGen = new WorldGenMinable(Blocks.COAL_ORE.getDefaultState(), this.chunkProviderSettings.coalSize, BlockMatcher.forBlock
-                    (ModBlocks.blockGroundUnderground));
+                    (ModBlocks.blockGroundUndergroundSMW));
             this.ironGen = new WorldGenMinable(Blocks.IRON_ORE.getDefaultState(), this.chunkProviderSettings.ironSize, BlockMatcher.forBlock
-                    (ModBlocks.blockGroundUnderground));
+                    (ModBlocks.blockGroundUndergroundSMW));
             this.goldGen = new WorldGenMinable(Blocks.GOLD_ORE.getDefaultState(), this.chunkProviderSettings.goldSize, BlockMatcher.forBlock
-                    (ModBlocks.blockGroundUnderground));
+                    (ModBlocks.blockGroundUndergroundSMW));
             this.redstoneGen = new WorldGenMinable(Blocks.REDSTONE_ORE.getDefaultState(), this.chunkProviderSettings.redstoneSize, BlockMatcher
-                    .forBlock(ModBlocks.blockGroundUnderground));
+                    .forBlock(ModBlocks.blockGroundUndergroundSMW));
             this.diamondGen = new WorldGenMinable(Blocks.DIAMOND_ORE.getDefaultState(), this.chunkProviderSettings.diamondSize, BlockMatcher
-                    .forBlock(ModBlocks.blockGroundUnderground));
+                    .forBlock(ModBlocks.blockGroundUndergroundSMW));
             this.lapisGen = new WorldGenMinable(Blocks.LAPIS_ORE.getDefaultState(), this.chunkProviderSettings.lapisSize, BlockMatcher.forBlock
-                    (ModBlocks.blockGroundUnderground));
+                    (ModBlocks.blockGroundUndergroundSMW));
             this.genDecorations(biome, world, rand);
             this.decorating = false;
         }

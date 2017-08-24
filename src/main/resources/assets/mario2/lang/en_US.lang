@@ -89,6 +89,7 @@ item.mario2:itemPipeLink.name=Pipe Link
 
 tile.mario2:marioBlockMarioMaker.name=Mario Maker
 tile.mario2:marioBlockGroundSMW.name=Ground Block
+tile.mario2:marioBlockGroundUndergroundSMW.name=Underground Ground Block
 
 tile.mario2:marioBlockQuestionMarkSMB3.name=?-Block
 tile.mario2:marioBlockEmptyQuestionMarkSMB3.name=Empty ?-Block
