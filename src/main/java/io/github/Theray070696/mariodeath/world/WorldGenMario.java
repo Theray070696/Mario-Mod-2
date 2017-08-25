@@ -1,8 +1,7 @@
 package io.github.Theray070696.mariodeath.world;
 
 import io.github.Theray070696.mariodeath.block.ModBlocks;
-import io.github.Theray070696.mariodeath.world.biome.BiomeMarioForest;
-import io.github.Theray070696.mariodeath.world.biome.BiomeMarioPlains;
+import io.github.Theray070696.mariodeath.world.biome.BiomeMario;
 import io.github.Theray070696.mariodeath.world.gen.WorldGenCastle;
 import io.github.Theray070696.mariodeath.world.gen.WorldGenMinableSingle;
 import io.github.Theray070696.mariodeath.world.gen.WorldGenQuestionMark;
@@ -83,8 +82,7 @@ public class WorldGenMario implements IWorldGenerator
             this.runGenerator(this.invisibleBlockSMB3, world, random, chunkX, chunkZ, random.nextInt(4), 15, 85);
 
             this.runGenerator(this.invisibleBlock, world, random, chunkX, chunkZ, random.nextInt(4), 15, 85);
-        } else if(world.provider.getBiomeForCoords(new BlockPos(chunkX * 16, 0, chunkZ * 16)) instanceof BiomeMarioPlains || world.provider
-                .getBiomeForCoords(new BlockPos(chunkX * 16, 0, chunkZ * 16)) instanceof BiomeMarioForest)
+        } else if(world.provider.getBiomeForCoords(new BlockPos(chunkX * 16, 0, chunkZ * 16)) instanceof BiomeMario)
         {
             this.runGenerator(this.questionMarkSMB, world, random, chunkX, chunkZ, random.nextInt(4), 50, 85);
             this.runGenerator(this.questionMarkUndergroundSMB, world, random, chunkX, chunkZ, random.nextInt(4), 3, 45);

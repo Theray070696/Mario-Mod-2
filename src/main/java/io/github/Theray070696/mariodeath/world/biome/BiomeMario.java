@@ -5,6 +5,7 @@ import io.github.Theray070696.mariodeath.entity.EntityGoomba;
 import io.github.Theray070696.mariodeath.entity.EntityKoopa;
 import io.github.Theray070696.mariodeath.lib.ModInfo;
 import io.github.Theray070696.mariodeath.util.IWeightProvider;
+import io.github.Theray070696.mariodeath.world.ModDimension;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -54,6 +55,52 @@ public abstract class BiomeMario extends Biome implements IWeightProvider
                 {
                     fillBlocksToFill = -1;
                 } else if(blockState.getBlock() == Blocks.STONE)
+                {
+                    if(fillBlocksToFill == -1)
+                    {
+                        if(fillerDepth <= 0)
+                        {
+                            topBlockState = AIR;
+                            fillerBlockState = ModBlocks.blockGroundUndergroundSMW.getDefaultState();
+                        } else if(y >= seaLevel - 4 && y <= seaLevel + 1)
+                        {
+                            topBlockState = this.topBlock;
+                            fillerBlockState = this.fillerBlock;
+                        }
+
+                        if(y < seaLevel && (topBlockState == null || topBlockState.getMaterial() == Material.AIR))
+                        {
+                            if(this.getFloatTemperature(mutableBlockPos.setPos(x, y, z)) < 0.15F)
+                            {
+                                topBlockState = ModBlocks.blockGroundSnow.getDefaultState();
+                            } else
+                            {
+                                topBlockState = WATER;
+                            }
+                        }
+
+                        fillBlocksToFill = fillerDepth;
+
+                        if(y >= seaLevel - 1)
+                        {
+                            chunkPrimer.setBlockState(localZ, y, localX, topBlockState);
+                        } else if(y < seaLevel - 7 - fillerDepth)
+                        {
+                            topBlockState = AIR;
+                            fillerBlockState = ModBlocks.blockGroundUndergroundSMW.getDefaultState();
+                            chunkPrimer.setBlockState(localZ, y, localX, GRAVEL); // I'll let gravel generate for now. Would be more useful than
+                            // the brick blocks
+                        } else
+                        {
+                            chunkPrimer.setBlockState(localZ, y, localX, fillerBlockState);
+                        }
+                    } else if(fillBlocksToFill > 0)
+                    {
+                        --fillBlocksToFill;
+                        chunkPrimer.setBlockState(localZ, y, localX, fillerBlockState);
+                    }
+                } else if(world.provider.getDimensionType().equals(ModDimension.DIMENSION_MARIO) && blockState.getBlock() == ModBlocks
+                        .blockGroundUndergroundSMW)
                 {
                     if(fillBlocksToFill == -1)
                     {
