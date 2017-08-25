@@ -10,6 +10,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 /**
@@ -30,8 +31,14 @@ public class CraftingHandler
         addRecipe(new ShapelessOreRecipeMario(new ItemStack(Items.GOLD_NUGGET), "itemMarioCoin"));
         addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModItems.itemMarioCoin, 2), "ingotGold"));
 
-        addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockBeanstalk), "r", "r", "s", 'r', "sugarcane", 's', new ItemStack(Items
-                .WHEAT_SEEDS)));
+        if(OreDictionary.doesOreNameExist("seed"))
+        {
+            addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockBeanstalk), "r", "r", "s", 'r', "sugarcane", 's', "seed"));
+        } else
+        {
+            addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockBeanstalk), "r", "r", "s", 'r', "sugarcane", 's', new ItemStack(Items
+                    .WHEAT_SEEDS)));
+        }
 
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockGround, 8), "sss", "sss", "sss", 's', "stone"));
         addShaped(new ItemStack(ModBlocks.blockMarioBrick, 16), "bb", "bb", 'b', new ItemStack(Blocks.BRICK_BLOCK));

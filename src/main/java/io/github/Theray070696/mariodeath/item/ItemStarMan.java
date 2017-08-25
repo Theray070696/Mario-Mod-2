@@ -16,7 +16,6 @@ import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 /**
@@ -32,7 +31,7 @@ public class ItemStarMan extends ItemMario
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(@Nullable ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
     {
         if(itemStack != null && world != null && player != null && !(player instanceof FakePlayer) && !player.isPotionActive(PotionEffectsMario
                 .potionStarman))

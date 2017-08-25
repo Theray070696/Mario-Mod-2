@@ -1,5 +1,6 @@
 package io.github.Theray070696.mariodeath.world;
 
+import io.github.Theray070696.mariodeath.world.biome.BiomeMario;
 import io.github.Theray070696.mariodeath.world.biome.BiomeMarioForest;
 import io.github.Theray070696.mariodeath.world.biome.BiomeMarioPlains;
 import net.minecraft.world.biome.Biome;
@@ -12,9 +13,9 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
  */
 public class ModBiomes
 {
-    public static Biome biomeMarioPlains;
-    public static Biome biomeMarioForest;
-    public static Biome biomeMarioForestHills;
+    public static BiomeMario biomeMarioPlains;
+    public static BiomeMario biomeMarioForest;
+    public static BiomeMario biomeMarioForestHills;
 
     public static void initBiomes()
     {
@@ -23,13 +24,14 @@ public class ModBiomes
         BiomeManager.addSpawnBiome(biomeMarioPlains);
         BiomeDictionary.registerBiomeType(biomeMarioPlains, BiomeDictionary.Type.PLAINS);
 
-        biomeMarioForest = GameRegistry.register(new BiomeMarioForest("biomeMarioForest"));
+        biomeMarioForest = GameRegistry.register(new BiomeMarioForest("biomeMarioForest", new Biome.BiomeProperties("Mario Forest").setBaseBiome
+                ("Forest").setTemperature(0.7F).setRainfall(0.8F)));
         BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(biomeMarioForest, 5));
         BiomeManager.addSpawnBiome(biomeMarioForest);
         BiomeDictionary.registerBiomeType(biomeMarioForest, BiomeDictionary.Type.FOREST);
 
-        biomeMarioForestHills = GameRegistry.register(new BiomeMarioForest(new Biome.BiomeProperties("Mario Forest Hills").setBaseBiome("ForestHills")
-                .setBaseHeight(0.45F).setHeightVariation(0.3F).setTemperature(0.7F).setRainfall(0.8F), "biomeMarioForestHills"));
+        biomeMarioForestHills = GameRegistry.register(new BiomeMarioForest("biomeMarioForestHills", new Biome.BiomeProperties("Mario Forest Hills")
+                .setBaseBiome("ForestHills").setBaseHeight(0.45F).setHeightVariation(0.3F).setTemperature(0.7F).setRainfall(0.8F)));
         BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(biomeMarioForestHills, 5));
         BiomeManager.addSpawnBiome(biomeMarioForestHills);
         BiomeDictionary.registerBiomeType(biomeMarioForestHills, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.HILLS);

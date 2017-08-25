@@ -14,7 +14,6 @@ import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 /**
@@ -36,7 +35,7 @@ public class ItemSuperLeaf extends ItemMario implements IBauble
         if(!world.isRemote) // If we're on the server side...
         {
             if(entity != null && entity instanceof EntityPlayer && !(entity instanceof FakePlayer) && entity.motionY < 0.0f) // If the entity is
-                // not null, is a player, is not a fake player, and is falling...
+            // not null, is a player, is not a fake player, and is falling...
             {
                 EntityPlayer player = (EntityPlayer) entity; // Save the player entity.
 
@@ -55,10 +54,10 @@ public class ItemSuperLeaf extends ItemMario implements IBauble
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(@Nullable ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
     {
         if(!world.isRemote && itemStack != null && player != null && !(player instanceof FakePlayer)) // If we're on the server side, the ItemStack
-            // is not null, the player is not null, and the player is not a fake player...
+        // is not null, the player is not null, and the player is not a fake player...
         {
             player.fallDistance = 0.0F; // Cancel fall damage.
 
@@ -88,7 +87,7 @@ public class ItemSuperLeaf extends ItemMario implements IBauble
     public void onWornTick(ItemStack itemStack, EntityLivingBase player)
     {
         if(itemStack != null && player != null && !(player instanceof FakePlayer) && player.motionY < 0.0f) // If the ItemStack is not null, the
-            // player is not null, and the player is not a fake player...
+        // player is not null, and the player is not a fake player...
         {
             player.fallDistance = 0.0F; // Cancel fall damage.
         }

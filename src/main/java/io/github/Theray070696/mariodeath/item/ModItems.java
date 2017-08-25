@@ -24,6 +24,8 @@ public class ModItems
     public static ItemRay itemStarMan;
     public static ItemRay itemSuperLeaf;
 
+    public static Item itemDebug;
+
     public static Item itemRecordSMBUnderwater;
 
     public static ItemRay itemCoinCurrency;
@@ -50,6 +52,8 @@ public class ModItems
         if(ConfigHandler.developerModeEnabled)
         {
             itemSuperLeaf = RayItemRegistry.registerItem(new ItemSuperLeaf());
+
+            itemDebug = RayItemRegistry.registerItem(new ItemDebug());
         }
 
         OreDictionary.registerOre("itemMarioMushroom", new ItemStack(itemMarioMushroom, 1, 0));

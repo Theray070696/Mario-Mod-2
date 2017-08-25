@@ -11,8 +11,6 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
 
-import javax.annotation.Nullable;
-
 /**
  * Created by Theray070696 on 9/15/2015.
  */
@@ -28,7 +26,7 @@ public class ItemFireFlower extends ItemMario
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(@Nullable ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
     {
         if(!world.isRemote && itemStack != null && player != null && !(player instanceof FakePlayer))
         {

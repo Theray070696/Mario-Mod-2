@@ -99,6 +99,8 @@ tile.mario2:marioBlockInvisibleBlockEmptySMB3.name=Empty Invisible Block
 item.mario2:records.smbUnderwater.name=Music Disc
 item.record.mario2:smbUnderwater.desc=Super Mario Bros. - Underwater
 
+item.mario2:itemDebug.name=Debug Item
+
 item.mario2:errorname=HOW DID YOU MANAGE THIS?! REPORT THIS TO THE MOD AUTHOR!
 
 gui.mario2:marioMaker=Mario Maker

@@ -16,7 +16,6 @@ import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 /**
@@ -43,10 +42,10 @@ public class ItemMushroom extends ItemMario
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(@Nullable ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
     {
         if(!world.isRemote && itemStack != null && player != null && !(player instanceof FakePlayer)) // If we're on the server side, the ItemStack
-            // is not null, the player is not null, AND this was not used by a fake player...
+        // is not null, the player is not null, AND this was not used by a fake player...
         {
             if(player.getHealth() < player.getMaxHealth()) // If the player needs healing...
             {

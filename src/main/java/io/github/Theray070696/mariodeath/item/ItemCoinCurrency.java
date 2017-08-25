@@ -49,7 +49,7 @@ public class ItemCoinCurrency extends ItemMario
         RayCore.proxy.registerItemRenderer(this, 4, ModInfo.MOD_ID, getUnwrappedUnlocalizedName() + "_4");
     }
 
-    private static enum CoinType
+    private enum CoinType
     {
         COIN_GREEN(0, "itemCoinGreen"),
         COIN_BLUE(1, "itemCoinBlue"),
@@ -60,7 +60,7 @@ public class ItemCoinCurrency extends ItemMario
         private final int meta;
         private final String typeName;
 
-        private CoinType(int meta, String name)
+        CoinType(int meta, String name)
         {
             this.meta = meta;
             typeName = name;
