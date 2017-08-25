@@ -1,6 +1,7 @@
 package io.github.Theray070696.mariodeath.world;
 
 import io.github.Theray070696.mariodeath.block.ModBlocks;
+import io.github.Theray070696.mariodeath.world.biome.BiomeMarioForest;
 import io.github.Theray070696.mariodeath.world.biome.BiomeMarioPlains;
 import io.github.Theray070696.mariodeath.world.gen.WorldGenCastle;
 import io.github.Theray070696.mariodeath.world.gen.WorldGenMinableSingle;
@@ -69,9 +70,7 @@ public class WorldGenMario implements IWorldGenerator
         if(world.provider instanceof WorldProviderHell)
         {
             // Nether or Hellish dimensions
-
-            this.runGenerator(this.questionMarkUndergroundRareSMB, world, random, chunkX, chunkZ, random.nextInt(5),
-                    3, 100);
+            this.runGenerator(this.questionMarkUndergroundRareSMB, world, random, chunkX, chunkZ, random.nextInt(5), 3, 100);
 
             this.runGenerator(this.questionMarkSMB3, world, random, chunkX, chunkZ, random.nextInt(5), 3, 100);
 
@@ -79,13 +78,13 @@ public class WorldGenMario implements IWorldGenerator
         } else if(world.provider instanceof WorldProviderEnd)
         {
             // End or End-like dimensions
-
             this.runGenerator(this.invisibleBlockSMB, world, random, chunkX, chunkZ, random.nextInt(4), 15, 85);
 
             this.runGenerator(this.invisibleBlockSMB3, world, random, chunkX, chunkZ, random.nextInt(4), 15, 85);
 
             this.runGenerator(this.invisibleBlock, world, random, chunkX, chunkZ, random.nextInt(4), 15, 85);
-        } else if(world.provider.getBiomeForCoords(new BlockPos(chunkX * 16, 0, chunkZ * 16)) instanceof BiomeMarioPlains)
+        } else if(world.provider.getBiomeForCoords(new BlockPos(chunkX * 16, 0, chunkZ * 16)) instanceof BiomeMarioPlains || world.provider
+                .getBiomeForCoords(new BlockPos(chunkX * 16, 0, chunkZ * 16)) instanceof BiomeMarioForest)
         {
             this.runGenerator(this.questionMarkSMB, world, random, chunkX, chunkZ, random.nextInt(4), 50, 85);
             this.runGenerator(this.questionMarkUndergroundSMB, world, random, chunkX, chunkZ, random.nextInt(4), 3, 45);
@@ -122,7 +121,6 @@ public class WorldGenMario implements IWorldGenerator
                 .getName().contains("Tardis"))
         {
             // Overworld or some mod dimension
-
             this.runGenerator(this.questionMarkSMB, world, random, chunkX, chunkZ, random.nextInt(2), 50, 85);
             this.runGenerator(this.questionMarkUndergroundSMB, world, random, chunkX, chunkZ, random.nextInt(2), 3, 45);
             this.runGenerator(this.invisibleBlockSMB, world, random, chunkX, chunkZ, random.nextInt(5), 3, 85);
