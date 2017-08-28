@@ -64,6 +64,21 @@ public class MarioPlainsBiomeDecorator extends BiomeDecorator
                     .forBlock(Blocks.STONE));
             this.lapisGen = new WorldGenMinable(Blocks.LAPIS_ORE.getDefaultState(), this.chunkProviderSettings.lapisSize, BlockMatcher.forBlock
                     (Blocks.STONE));
+
+            // For Mario dimension.
+            this.coalGen = new WorldGenMinable(Blocks.COAL_ORE.getDefaultState(), this.chunkProviderSettings.coalSize, BlockMatcher.forBlock
+                    (ModBlocks.blockGroundUndergroundSMW));
+            this.ironGen = new WorldGenMinable(Blocks.IRON_ORE.getDefaultState(), this.chunkProviderSettings.ironSize, BlockMatcher.forBlock
+                    (ModBlocks.blockGroundUndergroundSMW));
+            this.goldGen = new WorldGenMinable(Blocks.GOLD_ORE.getDefaultState(), this.chunkProviderSettings.goldSize, BlockMatcher.forBlock
+                    (ModBlocks.blockGroundUndergroundSMW));
+            this.redstoneGen = new WorldGenMinable(Blocks.REDSTONE_ORE.getDefaultState(), this.chunkProviderSettings.redstoneSize, BlockMatcher
+                    .forBlock(ModBlocks.blockGroundUndergroundSMW));
+            this.diamondGen = new WorldGenMinable(Blocks.DIAMOND_ORE.getDefaultState(), this.chunkProviderSettings.diamondSize, BlockMatcher
+                    .forBlock(ModBlocks.blockGroundUndergroundSMW));
+            this.lapisGen = new WorldGenMinable(Blocks.LAPIS_ORE.getDefaultState(), this.chunkProviderSettings.lapisSize, BlockMatcher.forBlock
+                    (ModBlocks.blockGroundUndergroundSMW));
+
             this.genDecorations(biome, world, rand);
             this.decorating = false;
         }
