@@ -24,7 +24,7 @@ public class MarioPlainsBiomeDecorator extends BiomeDecorator
 {
     public MarioPlainsBiomeDecorator()
     {
-        treesPerChunk = 5;
+        treesPerChunk = 0;
         flowersPerChunk = 0;
         grassPerChunk = 0;
         deadBushPerChunk = 0;
