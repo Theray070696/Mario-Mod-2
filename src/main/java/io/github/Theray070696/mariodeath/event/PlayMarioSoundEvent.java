@@ -24,7 +24,7 @@ public class PlayMarioSoundEvent extends PlayerEvent
         return soundType;
     }
 
-    public static enum SoundType
+    public enum SoundType
     {
         JOIN_SOUND,
         LEAVE_SOUND,
