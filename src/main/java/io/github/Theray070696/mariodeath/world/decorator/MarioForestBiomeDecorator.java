@@ -78,6 +78,7 @@ public class MarioForestBiomeDecorator extends BiomeDecorator
                     .forBlock(ModBlocks.blockGroundUndergroundSMW));
             this.lapisGen = new WorldGenMinable(Blocks.LAPIS_ORE.getDefaultState(), this.chunkProviderSettings.lapisSize, BlockMatcher.forBlock
                     (ModBlocks.blockGroundUndergroundSMW));
+
             this.genDecorations(biome, world, rand);
             this.decorating = false;
         }

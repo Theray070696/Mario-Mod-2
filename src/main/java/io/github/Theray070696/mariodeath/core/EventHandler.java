@@ -4,6 +4,7 @@ import io.github.Theray070696.mariodeath.audio.SoundHandler;
 import io.github.Theray070696.mariodeath.capability.CoinCountProvider;
 import io.github.Theray070696.mariodeath.entity.EntityGoomba;
 import io.github.Theray070696.mariodeath.entity.EntityKoopa;
+import io.github.Theray070696.mariodeath.event.PlayMarioSoundEvent;
 import io.github.Theray070696.mariodeath.item.ModItems;
 import io.github.Theray070696.mariodeath.lib.ModInfo;
 import io.github.Theray070696.mariodeath.potion.PotionEffectsMario;
@@ -29,6 +30,7 @@ import net.minecraft.world.storage.loot.LootEntryTable;
 import net.minecraft.world.storage.loot.LootPool;
 import net.minecraft.world.storage.loot.RandomValueRange;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -80,6 +82,13 @@ public class EventHandler
     {
         if(event.getEntityLiving() != null && event.getEntityLiving() instanceof EntityPlayerMP) // If the entity that was killed was a player...
         {
+            if(MinecraftForge.EVENT_BUS.post(new PlayMarioSoundEvent((EntityPlayerMP) event.getEntityLiving(), PlayMarioSoundEvent.SoundType
+                    .DEATH_SOUND)))
+            {
+                // Another mod wants to handle sounds, so we return so we don't play our sounds.
+                return;
+            }
+
             EntityPlayerMP entityPlayer = (EntityPlayerMP) event.getEntityLiving(); // Get the player entity.
 
             String playerName = entityPlayer.getName(); // Get player display name.
@@ -121,17 +130,20 @@ public class EventHandler
     {
         EntityPlayerMP player = (EntityPlayerMP) event.player; // Get the player that joined.
 
-        if(player.getName().equalsIgnoreCase("Theray070696")) // If it was me...
+        if(!MinecraftForge.EVENT_BUS.post(new PlayMarioSoundEvent(player, PlayMarioSoundEvent.SoundType.JOIN_SOUND)))
         {
-            RayCoreAPI.playSoundToAll("mario2:player.rayJoin"); // Play Terry Crews "IT'S ME!" sound to everyone.
-        } else if(player.getName().equalsIgnoreCase("JasterMK3")) // If it was a good friend of mine...
-        {
-            int randInt = new Random().nextInt(5) + 1; // Get a random number for a sound.
+            if(player.getName().equalsIgnoreCase("Theray070696")) // If it was me...
+            {
+                RayCoreAPI.playSoundToAll("mario2:player.rayJoin"); // Play Terry Crews "IT'S ME!" sound to everyone.
+            } else if(player.getName().equalsIgnoreCase("JasterMK3")) // If it was a good friend of mine...
+            {
+                int randInt = new Random().nextInt(5) + 1; // Get a random number for a sound.
 
-            RayCoreAPI.playSoundToAll("mario2:player.jasterJoin" + randInt); // Use that random number to pick a sound.
-        } else // If it was a normal user...
-        {
-            RayCoreAPI.playSoundToAll("mario2:player.join"); // Play Mario "It's a me!" sound to everyone.
+                RayCoreAPI.playSoundToAll("mario2:player.jasterJoin" + randInt); // Use that random number to pick a sound.
+            } else // If it was a normal user...
+            {
+                RayCoreAPI.playSoundToAll("mario2:player.join"); // Play Mario "It's a me!" sound to everyone.
+            }
         }
 
         player.getCapability(CoinCountProvider.COIN_COUNT, null).sync(player); // Resync coin counter.
@@ -160,17 +172,20 @@ public class EventHandler
     @SubscribeEvent
     public void playerLeaveEvent(PlayerEvent.PlayerLoggedOutEvent event)
     {
-        if(event.player.getName().equalsIgnoreCase("Theray070696")) // If it was me...
+        if(!MinecraftForge.EVENT_BUS.post(new PlayMarioSoundEvent(event.player, PlayMarioSoundEvent.SoundType.LEAVE_SOUND)))
         {
-            RayCoreAPI.playSoundToAll("mario2:player.rayLeave"); // Play Terry Crews "GOODBYE!" sound to everyone.
-        } else if(event.player.getName().equalsIgnoreCase("JasterMK3")) // If it was a good friend of mine...
-        {
-            int randInt = new Random().nextInt(2) + 1; // Get a random number for a sound.
+            if(event.player.getName().equalsIgnoreCase("Theray070696")) // If it was me...
+            {
+                RayCoreAPI.playSoundToAll("mario2:player.rayLeave"); // Play Terry Crews "GOODBYE!" sound to everyone.
+            } else if(event.player.getName().equalsIgnoreCase("JasterMK3")) // If it was a good friend of mine...
+            {
+                int randInt = new Random().nextInt(2) + 1; // Get a random number for a sound.
 
-            RayCoreAPI.playSoundToAll("mario2:player.jasterLeave" + randInt); // Use that random number to pick a sound.
-        } else // If it was a normal user...
-        {
-            RayCoreAPI.playSoundToAll("mario2:player.leave"); // Play Mario "See you next time!" sound to everyone.
+                RayCoreAPI.playSoundToAll("mario2:player.jasterLeave" + randInt); // Use that random number to pick a sound.
+            } else // If it was a normal user...
+            {
+                RayCoreAPI.playSoundToAll("mario2:player.leave"); // Play Mario "See you next time!" sound to everyone.
+            }
         }
     }
 
