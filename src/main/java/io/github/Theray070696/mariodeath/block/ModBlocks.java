@@ -58,6 +58,12 @@ public class ModBlocks
     public static Block blockGroundSMW;
     public static Block blockGroundUndergroundSMW;
 
+    public static Block blockCoalOreSMW;
+    public static Block blockIronOreSMW;
+    public static Block blockGoldOreSMW;
+    public static Block blockDiamondOreSMW;
+    public static Block blockLapisOreSMW;
+
     public static BlockMario blockPipeBase;
     public static BlockPipe blockPipe;
 
@@ -84,6 +90,17 @@ public class ModBlocks
                 (4.0F));
         blockGroundUndergroundSMW = RayBlockRegistry.register(new BlockMario(Material.ROCK, true, true).setUnlocalizedName
                 ("marioBlockGroundUndergroundSMW").setHardness(4.0F));
+
+        blockCoalOreSMW = RayBlockRegistry.register(new BlockMarioOre().setUnlocalizedName("marioBlockCoalSMW").setHardness(3.0F).setResistance
+                (5.0F));
+        blockIronOreSMW = RayBlockRegistry.register(new BlockMarioOre().setUnlocalizedName("marioBlockIronSMW").setHardness(3.0F).setResistance
+                (5.0F));
+        blockGoldOreSMW = RayBlockRegistry.register(new BlockMarioOre().setUnlocalizedName("marioBlockGoldSMW").setHardness(3.0F).setResistance
+                (5.0F));
+        blockDiamondOreSMW = RayBlockRegistry.register(new BlockMarioOre().setUnlocalizedName("marioBlockDiamondSMW").setHardness(3.0F)
+                .setResistance(5.0F));
+        blockLapisOreSMW = RayBlockRegistry.register(new BlockMarioOre().setUnlocalizedName("marioBlockLapisSMW").setHardness(3.0F).setResistance
+                (5.0F));
 
         blockEmptyQuestionMark = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMark", EnumBlockType.SMW));
         blockQuestionMark = RayBlockRegistry.register(new BlockQuestionMark("marioBlockQuestionMark", EnumBlockType.SMW));
@@ -138,6 +155,12 @@ public class ModBlocks
         OreDictionary.registerOre("plankWood", blockMarioPlanks);
         OreDictionary.registerOre("treeLeaves", blockMarioLeaves);
         OreDictionary.registerOre("treeSapling", blockMarioSapling);
+
+        OreDictionary.registerOre("oreCoal", blockCoalOreSMW);
+        OreDictionary.registerOre("oreIron", blockIronOreSMW);
+        OreDictionary.registerOre("oreGold", blockGoldOreSMW);
+        OreDictionary.registerOre("oreDiamond", blockDiamondOreSMW);
+        OreDictionary.registerOre("oreLapis", blockLapisOreSMW);
 
         OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyQuestionMark);
         OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyInvisibleBlock);
