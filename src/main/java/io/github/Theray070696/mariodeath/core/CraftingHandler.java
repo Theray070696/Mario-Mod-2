@@ -34,6 +34,9 @@ public class CraftingHandler
         if(OreDictionary.doesOreNameExist("seed"))
         {
             addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockBeanstalk), "r", "r", "s", 'r', "sugarcane", 's', "seed"));
+        } else if(OreDictionary.doesOreNameExist("seeds"))
+        {
+            addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockBeanstalk), "r", "r", "s", 'r', "sugarcane", 's', "seeds"));
         } else
         {
             addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.blockBeanstalk), "r", "r", "s", 'r', "sugarcane", 's', new ItemStack(Items
