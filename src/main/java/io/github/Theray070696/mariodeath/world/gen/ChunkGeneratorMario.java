@@ -22,6 +22,11 @@ import net.minecraft.world.gen.feature.WorldGenLakes;
 import net.minecraft.world.gen.structure.MapGenMineshaft;
 import net.minecraft.world.gen.structure.MapGenScatteredFeature;
 import net.minecraft.world.gen.structure.MapGenVillage;
+import net.minecraftforge.event.ForgeEventFactory;
+import net.minecraftforge.event.terraingen.InitMapGenEvent;
+import net.minecraftforge.event.terraingen.InitNoiseGensEvent;
+import net.minecraftforge.event.terraingen.PopulateChunkEvent;
+import net.minecraftforge.event.terraingen.TerrainGen;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -30,7 +35,7 @@ import java.util.Random;
 /**
  * Created by Theray070696 on 8/25/2017
  */
-public class ChunkGeneratorMario implements IChunkGenerator //extends ChunkProviderOverworld
+public class ChunkGeneratorMario implements IChunkGenerator
 {
     public static IBlockState UNDERGROUND_GROUND = ModBlocks.blockGroundUndergroundSMW.getDefaultState();
     private final Random rand;
@@ -63,16 +68,12 @@ public class ChunkGeneratorMario implements IChunkGenerator //extends ChunkProvi
     public ChunkGeneratorMario(World world, long seed, boolean mapFeaturesEnabled, String settingsString)
     {
         {
-            caveGenerator = net.minecraftforge.event.terraingen.TerrainGen.getModdedMapGen(caveGenerator, net.minecraftforge.event.terraingen
-                    .InitMapGenEvent.EventType.CAVE);
-            villageGenerator = (MapGenVillage) net.minecraftforge.event.terraingen.TerrainGen.getModdedMapGen(villageGenerator, net.minecraftforge
-                    .event.terraingen.InitMapGenEvent.EventType.VILLAGE);
-            mineshaftGenerator = (MapGenMineshaft) net.minecraftforge.event.terraingen.TerrainGen.getModdedMapGen(mineshaftGenerator, net
-                    .minecraftforge.event.terraingen.InitMapGenEvent.EventType.MINESHAFT);
-            scatteredFeatureGenerator = (MapGenScatteredFeature) net.minecraftforge.event.terraingen.TerrainGen.getModdedMapGen
-                    (scatteredFeatureGenerator, net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.SCATTERED_FEATURE);
-            ravineGenerator = net.minecraftforge.event.terraingen.TerrainGen.getModdedMapGen(ravineGenerator, net.minecraftforge.event.terraingen
-                    .InitMapGenEvent.EventType.RAVINE);
+            caveGenerator = TerrainGen.getModdedMapGen(caveGenerator, InitMapGenEvent.EventType.CAVE);
+            villageGenerator = (MapGenVillage) TerrainGen.getModdedMapGen(villageGenerator, InitMapGenEvent.EventType.VILLAGE);
+            mineshaftGenerator = (MapGenMineshaft) TerrainGen.getModdedMapGen(mineshaftGenerator, InitMapGenEvent.EventType.MINESHAFT);
+            scatteredFeatureGenerator = (MapGenScatteredFeature) TerrainGen.getModdedMapGen(scatteredFeatureGenerator, InitMapGenEvent.EventType
+                    .SCATTERED_FEATURE);
+            ravineGenerator = TerrainGen.getModdedMapGen(ravineGenerator, InitMapGenEvent.EventType.RAVINE);
         }
         this.worldObj = world;
         this.mapFeaturesEnabled = mapFeaturesEnabled;
@@ -104,9 +105,9 @@ public class ChunkGeneratorMario implements IChunkGenerator //extends ChunkProvi
             world.setSeaLevel(this.settings.seaLevel);
         }
 
-        net.minecraftforge.event.terraingen.InitNoiseGensEvent.ContextOverworld ctx = new net.minecraftforge.event.terraingen.InitNoiseGensEvent
-                .ContextOverworld(minLimitPerlinNoise, maxLimitPerlinNoise, mainPerlinNoise, surfaceNoise, scaleNoise, depthNoise, forestNoise);
-        ctx = net.minecraftforge.event.terraingen.TerrainGen.getModdedNoiseGenerators(world, this.rand, ctx);
+        InitNoiseGensEvent.ContextOverworld ctx = new InitNoiseGensEvent.ContextOverworld(minLimitPerlinNoise, maxLimitPerlinNoise,
+                mainPerlinNoise, surfaceNoise, scaleNoise, depthNoise, forestNoise);
+        ctx = TerrainGen.getModdedNoiseGenerators(world, this.rand, ctx);
         this.minLimitPerlinNoise = ctx.getLPerlin1();
         this.maxLimitPerlinNoise = ctx.getLPerlin2();
         this.mainPerlinNoise = ctx.getPerlin();
@@ -184,7 +185,7 @@ public class ChunkGeneratorMario implements IChunkGenerator //extends ChunkProvi
 
     public void replaceBiomeBlocks(int x, int z, ChunkPrimer primer, Biome[] biomes)
     {
-        if(!net.minecraftforge.event.ForgeEventFactory.onReplaceBiomeBlocks(this, x, z, primer, this.worldObj))
+        if(!ForgeEventFactory.onReplaceBiomeBlocks(this, x, z, primer, this.worldObj))
         {
             return;
         }
@@ -382,7 +383,7 @@ public class ChunkGeneratorMario implements IChunkGenerator //extends ChunkProvi
         boolean villageGenerated = false;
         ChunkPos chunkpos = new ChunkPos(x, z);
 
-        net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(true, this, this.worldObj, this.rand, x, z, villageGenerated);
+        ForgeEventFactory.onChunkPopulate(true, this, this.worldObj, this.rand, x, z, villageGenerated);
 
         if(this.mapFeaturesEnabled)
         {
@@ -403,12 +404,9 @@ public class ChunkGeneratorMario implements IChunkGenerator //extends ChunkProvi
         }
 
         if(biome != Biomes.DESERT && biome != Biomes.DESERT_HILLS && this.settings.useWaterLakes && !villageGenerated && this.rand.nextInt(this
-                .settings
-                .waterLakeChance) == 0)
+                .settings.waterLakeChance) == 0)
         {
-            if(net.minecraftforge.event.terraingen.TerrainGen.populate(this, this.worldObj, this.rand, x, z, villageGenerated, net.minecraftforge
-                    .event
-                    .terraingen.PopulateChunkEvent.Populate.EventType.LAKE))
+            if(TerrainGen.populate(this, this.worldObj, this.rand, x, z, villageGenerated, PopulateChunkEvent.Populate.EventType.LAKE))
             {
                 int finalX = this.rand.nextInt(16) + 8;
                 int finalY = this.rand.nextInt(256);
@@ -419,9 +417,7 @@ public class ChunkGeneratorMario implements IChunkGenerator //extends ChunkProvi
 
         if(!villageGenerated && this.rand.nextInt(this.settings.lavaLakeChance / 10) == 0 && this.settings.useLavaLakes)
         {
-            if(net.minecraftforge.event.terraingen.TerrainGen.populate(this, this.worldObj, this.rand, x, z, villageGenerated, net.minecraftforge
-                    .event
-                    .terraingen.PopulateChunkEvent.Populate.EventType.LAVA))
+            if(TerrainGen.populate(this, this.worldObj, this.rand, x, z, villageGenerated, PopulateChunkEvent.Populate.EventType.LAVA))
             {
                 int finalX = this.rand.nextInt(16) + 8;
                 int finalY = this.rand.nextInt(this.rand.nextInt(248) + 8);
@@ -436,9 +432,7 @@ public class ChunkGeneratorMario implements IChunkGenerator //extends ChunkProvi
 
         if(this.settings.useDungeons)
         {
-            if(net.minecraftforge.event.terraingen.TerrainGen.populate(this, this.worldObj, this.rand, x, z, villageGenerated, net.minecraftforge
-                    .event
-                    .terraingen.PopulateChunkEvent.Populate.EventType.DUNGEON))
+            if(TerrainGen.populate(this, this.worldObj, this.rand, x, z, villageGenerated, PopulateChunkEvent.Populate.EventType.DUNGEON))
             {
                 for(int chance = 0; chance < this.settings.dungeonChance; ++chance)
                 {
@@ -451,17 +445,13 @@ public class ChunkGeneratorMario implements IChunkGenerator //extends ChunkProvi
         }
 
         biome.decorate(this.worldObj, this.rand, new BlockPos(bx, 0, bz));
-        if(net.minecraftforge.event.terraingen.TerrainGen.populate(this, this.worldObj, this.rand, x, z, villageGenerated, net.minecraftforge.event
-                .terraingen
-                .PopulateChunkEvent.Populate.EventType.ANIMALS))
+        if(TerrainGen.populate(this, this.worldObj, this.rand, x, z, villageGenerated, PopulateChunkEvent.Populate.EventType.ANIMALS))
         {
             WorldEntitySpawner.performWorldGenSpawning(this.worldObj, biome, bx + 8, bz + 8, 16, 16, this.rand);
         }
         blockpos = blockpos.add(8, 0, 8);
 
-        if(net.minecraftforge.event.terraingen.TerrainGen.populate(this, this.worldObj, this.rand, x, z, villageGenerated, net.minecraftforge.event
-                .terraingen
-                .PopulateChunkEvent.Populate.EventType.ICE))
+        if(TerrainGen.populate(this, this.worldObj, this.rand, x, z, villageGenerated, PopulateChunkEvent.Populate.EventType.ICE))
         {
             for(int xMod = 0; xMod < 16; ++xMod)
             {
@@ -483,7 +473,7 @@ public class ChunkGeneratorMario implements IChunkGenerator //extends ChunkProvi
             }
         }//Forge: End ICE
 
-        net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(false, this, this.worldObj, this.rand, x, z, villageGenerated);
+        ForgeEventFactory.onChunkPopulate(false, this, this.worldObj, this.rand, x, z, villageGenerated);
 
         BlockFalling.fallInstantly = false;
     }
