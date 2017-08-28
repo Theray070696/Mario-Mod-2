@@ -1,7 +1,7 @@
 package io.github.Theray070696.mariodeath.block;
 
-import io.github.Theray070696.mariodeath.configuration.ConfigHandler;
-import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.MaterialTransparent;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -17,51 +17,32 @@ public class BlockInvisibleBlock extends BlockQuestionMark
 {
     public BlockInvisibleBlock(String name, EnumBlockType blockType)
     {
-        super(Material.AIR, name, blockType);
+        super(new MaterialTransparent(MapColor.AIR), name, blockType);
 
         this.setHardness(4.0F);
     }
 
     @Override
-    protected boolean canSilkHarvest()
-    {
-        return false;
-    }
-
-    @Override
     public EnumBlockRenderType getRenderType(IBlockState state)
     {
-        if(ConfigHandler.developerModeEnabled)
-        {
-            return EnumBlockRenderType.MODEL;
-        } else
-        {
-            return EnumBlockRenderType.INVISIBLE;
-        }
+        return EnumBlockRenderType.INVISIBLE;
     }
 
     @Override
     public boolean isOpaqueCube(IBlockState state)
     {
-        if(ConfigHandler.developerModeEnabled)
-        {
-            return true;
-        } else
-        {
-            return false;
-        }
+        return false;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
     {
-        if(ConfigHandler.developerModeEnabled)
-        {
-            return true;
-        } else
-        {
-            return false;
-        }
+        return false;
+    }
+
+    public boolean isReplaceable(IBlockAccess world, BlockPos pos)
+    {
+        return false;
     }
 }

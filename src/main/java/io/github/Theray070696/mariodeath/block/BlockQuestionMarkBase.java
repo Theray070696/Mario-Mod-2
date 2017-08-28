@@ -20,8 +20,6 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 import javax.annotation.Nullable;
@@ -91,12 +89,6 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World world, BlockPos pos)
     {
         return new AxisAlignedBB(0.0D, 0.25D, 0.0D, 1.0D, 1.0D, 1.0D); // You can jump into the bottom of the block.
-    }
-
-    @SideOnly(Side.CLIENT)
-    public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos)
-    {
-        return FULL_BLOCK_AABB.offset(pos); // Hitbox is the size of a full block.
     }
 
     public boolean isFullCube(IBlockState state)
