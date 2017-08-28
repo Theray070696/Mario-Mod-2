@@ -3,9 +3,9 @@
   "textures": {
     "down": "mario2:blocks/pipeLL",
     "up": "mario2:blocks/pipeLL",
-    "east": "mario2:blocks/pipeLR3",
-    "west": "mario2:blocks/pipeLR3",
-    "north": "mario2:blocks/pipeLR3",
-    "south": "mario2:blocks/pipeLR3"
+    "east": "mario2:blocks/pipeLR2",
+    "west": "mario2:blocks/pipeLR2",
+    "north": "mario2:blocks/pipeLR2",
+    "south": "mario2:blocks/pipeLR2"
   }
 }
