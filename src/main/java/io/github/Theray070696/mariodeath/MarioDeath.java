@@ -153,8 +153,6 @@ public class MarioDeath
         network.registerMessage(PacketSyncCoinCounter.Handler.class, PacketSyncCoinCounter.class, 0, Side.CLIENT);
         network.registerMessage(PacketGetCoins.Handler.class, PacketGetCoins.class, 1, Side.SERVER);
 
-        ModDimension.initDimension();
-
         PluginHandler.getInstance().preInit();
 
         LogHelper.info("Pre-Init Complete");
@@ -181,12 +179,9 @@ public class MarioDeath
         LogHelper.info("Registering World Generation");
         GameRegistry.registerWorldGenerator(new WorldGenMario(), 0);
 
-        // Well fuck... It's "Overworld with Mario blocks".
         ModBiomes.initBiomes();
+        ModDimension.initDimension();
 
-        // These two will come back as soon an I can make them interesting and not just "Overworld with Mario blocks".
-        //DimensionManager.registerDimension(ConfigHandler.marioDimensionID, DimensionType.register("Marios World", "_mario", ConfigHandler
-        // .marioDimensionID, WorldProviderMario.class, false));
         LogHelper.info("World Generation Registered");
 
         proxy.init(event);
