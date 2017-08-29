@@ -9,6 +9,7 @@ import io.github.Theray070696.mariodeath.capability.CapabilityHandler;
 import io.github.Theray070696.mariodeath.capability.CoinCount;
 import io.github.Theray070696.mariodeath.capability.CoinCountStorage;
 import io.github.Theray070696.mariodeath.capability.ICoinCount;
+import io.github.Theray070696.mariodeath.command.CommandMario;
 import io.github.Theray070696.mariodeath.configuration.ConfigHandler;
 import io.github.Theray070696.mariodeath.core.CraftingHandler;
 import io.github.Theray070696.mariodeath.core.EventHandler;
@@ -35,6 +36,7 @@ import net.minecraftforge.fml.common.*;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.functions.ArtifactVersionNameFunction;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
@@ -205,5 +207,11 @@ public class MarioDeath
 
         long time = stopwatch.stop().elapsed(TimeUnit.MILLISECONDS);
         LogHelper.info("Mario Mod 2 loaded in " + time + "ms.");
+    }
+
+    @Mod.EventHandler
+    public void serverStarting(FMLServerStartingEvent event)
+    {
+        event.registerServerCommand(new CommandMario());
     }
 }

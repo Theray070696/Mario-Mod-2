@@ -1,8 +1,10 @@
 package io.github.Theray070696.mariodeath.world.gen;
 
+import io.github.Theray070696.mariodeath.block.BlockInvisibleBlock;
 import io.github.Theray070696.mariodeath.block.BlockQuestionMarkBase;
 import io.github.Theray070696.mariodeath.block.EnumBlockType;
 import io.github.Theray070696.mariodeath.block.tile.TileQuestionMark;
+import io.github.Theray070696.mariodeath.dev.MarioDevStats;
 import io.github.Theray070696.mariodeath.lib.ItemsInQuestionMarks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
@@ -92,6 +94,13 @@ public class WorldGenQuestionMark extends WorldGenerator
 
                 questionMark.setItemInBlock(item);
             }
+
+            if(block instanceof BlockInvisibleBlock)
+            {
+                MarioDevStats.invisibleBlocksGenerated++;
+            }
+
+            MarioDevStats.questionMarksGenerated++;
         }
     }
 
