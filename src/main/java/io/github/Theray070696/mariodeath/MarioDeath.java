@@ -212,6 +212,9 @@ public class MarioDeath
     @Mod.EventHandler
     public void serverStarting(FMLServerStartingEvent event)
     {
-        event.registerServerCommand(new CommandMario());
+        if(ConfigHandler.developerModeEnabled)
+        {
+            event.registerServerCommand(new CommandMario());
+        }
     }
 }

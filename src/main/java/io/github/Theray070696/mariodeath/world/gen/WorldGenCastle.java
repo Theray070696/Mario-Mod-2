@@ -1,5 +1,6 @@
 package io.github.Theray070696.mariodeath.world.gen;
 
+import io.github.Theray070696.mariodeath.configuration.ConfigHandler;
 import io.github.Theray070696.mariodeath.dev.MarioDevStats;
 import io.github.Theray070696.mariodeath.lib.ModInfo;
 import net.minecraft.block.*;
@@ -73,7 +74,10 @@ public class WorldGenCastle extends WorldGenerator
 
                     template.addBlocksToWorld(world, pos.down(), placementsettings);
 
-                    MarioDevStats.castlesGenerated++;
+                    if(ConfigHandler.developerModeEnabled)
+                    {
+                        MarioDevStats.castlesGenerated++;
+                    }
 
                     return true;
                 }
