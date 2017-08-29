@@ -1,5 +1,6 @@
 package io.github.Theray070696.mariodeath;
 
+import com.google.common.base.Stopwatch;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import io.github.Theray070696.mariodeath.audio.SoundHandler;
@@ -45,6 +46,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nonnull;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Theray070696 on 8/25/15.
@@ -58,6 +60,8 @@ public class MarioDeath
 
     @SidedProxy(clientSide = ModInfo.CLIENT_PROXY, serverSide = ModInfo.SERVER_PROXY)
     public static IProxy proxy;
+
+    private Stopwatch stopwatch;
 
     public static CreativeTabs tabMarioItems = new CreativeTabs("tabMarioItems")
     {
@@ -114,6 +118,8 @@ public class MarioDeath
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
+        stopwatch = Stopwatch.createStarted();
+
         LogHelper.info("Pre-Init");
 
         if(proxy.getSide().isClient() && !Loader.isModLoaded("ctm")) // We need CTM for some of the blocks in the mod.
@@ -196,5 +202,8 @@ public class MarioDeath
         PluginHandler.getInstance().postInit();
 
         LogHelper.info("Post-Init Complete");
+
+        long time = stopwatch.stop().elapsed(TimeUnit.MILLISECONDS);
+        LogHelper.info("Mario Mod 2 loaded in " + time + "ms.");
     }
 }

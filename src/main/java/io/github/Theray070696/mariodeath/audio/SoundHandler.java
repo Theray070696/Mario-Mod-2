@@ -44,37 +44,15 @@ public class SoundHandler
 
     public static SoundEvent diamonds;
 
-    // Join sounds
-
-    public static SoundEvent rayJoin;
-
-    public static SoundEvent jasterJoin1;
-    public static SoundEvent jasterJoin2;
-    public static SoundEvent jasterJoin3;
-    public static SoundEvent jasterJoin4;
-    public static SoundEvent jasterJoin5;
+    // Join sound
 
     public static SoundEvent join;
 
-    // Leave sounds
-
-    public static SoundEvent rayLeave;
-
-    public static SoundEvent jasterLeave1;
-    public static SoundEvent jasterLeave2;
+    // Leave sound
 
     public static SoundEvent leave;
 
     // Death sounds
-
-    public static SoundEvent rayDeath1;
-    public static SoundEvent rayDeath2;
-    public static SoundEvent rayDeath3;
-    public static SoundEvent rayDeath4;
-    public static SoundEvent rayDeath5;
-
-    public static SoundEvent jasterDeath1;
-    public static SoundEvent jasterDeath2;
 
     public static SoundEvent death1;
     public static SoundEvent death2;
@@ -119,35 +97,13 @@ public class SoundHandler
 
         // Join Sound
 
-        rayJoin = register("player.rayJoin");
-
-        jasterJoin1 = register("player.jasterJoin1");
-        jasterJoin2 = register("player.jasterJoin2");
-        jasterJoin3 = register("player.jasterJoin3");
-        jasterJoin4 = register("player.jasterJoin4");
-        jasterJoin5 = register("player.jasterJoin5");
-
         join = register("player.join");
 
         // Leave Sound
 
-        rayLeave = register("player.rayLeave");
-
-        jasterLeave1 = register("player.jasterLeave1");
-        jasterLeave2 = register("player.jasterLeave2");
-
         leave = register("player.leave");
 
         // Death Sounds
-
-        rayDeath1 = register("player.rayDeath1");
-        rayDeath2 = register("player.rayDeath2");
-        rayDeath3 = register("player.rayDeath3");
-        rayDeath4 = register("player.rayDeath4");
-        rayDeath5 = register("player.rayDeath5");
-
-        jasterDeath1 = register("player.jasterDeath1");
-        jasterDeath2 = register("player.jasterDeath2");
 
         death1 = register("player.death1");
         death2 = register("player.death2");
