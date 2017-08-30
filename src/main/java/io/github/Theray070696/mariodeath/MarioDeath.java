@@ -207,7 +207,7 @@ public class MarioDeath
         LogHelper.info("Post-Init Complete in " + time + "ms");
 
         time = stopwatch.stop().elapsed(TimeUnit.MILLISECONDS);
-        LogHelper.info("Mario Mod 2 loaded in " + time + "ms.");
+        LogHelper.info("Mario Mod 2 loaded in " + time + "ms");
     }
 
     @Mod.EventHandler
