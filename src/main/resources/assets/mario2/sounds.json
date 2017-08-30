@@ -1,255 +1,176 @@
 {
-    "player.death1":
-    {
-        "category": "neutral",
-        "sounds":
-        [
-            {
-                "name": "mario2:player/death1",
-                "stream": true
-            }
-        ]
-    },
-    "player.death2":
-    {
-        "category": "neutral",
-        "sounds":
-        [
-            {
-                "name": "mario2:player/death2",
-                "stream": true
-            }
-        ]
-    },
-    "player.death3":
-    {
-        "category": "neutral",
-        "sounds":
-        [
-            {
-                "name": "mario2:player/death3",
-                "stream": true
-            }
-        ]
-    },
-    "player.death4":
-    {
-        "category": "neutral",
-        "sounds":
-        [
-            {
-                "name": "mario2:player/death4",
-                "stream": true
-            }
-        ]
-    },
-    "player.diamonds":
-    {
-        "category": "neutral",
-        "sounds":
-        [
-            {
-                "name": "mario2:player/diamonds",
-                "stream": true
-            }
-        ]
-    },
-    "item.starman":
-    {
-        "category": "neutral",
-        "sounds": [
-            {
-                "name": "mario2:item/starman",
-                "stream": true
-            }
-        ]
-    },
-    "item.jasterStarman":
-    {
-        "category": "neutral",
-        "sounds":
-        [
-            {
-                "name": "mario2:item/jasterStarman",
-                "stream": true
-            }
-        ]
-    },
-    "item.fireball":
-    {
-        "category": "neutral",
-        "sounds":
-        [
-            "mario2:item/fireball"
-        ]
-    },
-    "item.1up":
-    {
-        "category": "neutral",
-        "sounds":
-        [
-            "mario2:item/1up"
-        ]
-    },
-    "item.mushroom":
-    {
-        "category": "neutral",
-        "sounds":
-        [
-            "mario2:item/mushroom"
-        ]
-    },
-    "item.smw1up":
-    {
-        "category": "neutral",
-        "sounds":
-        [
-            "mario2:item/smw1up"
-        ]
-    },
-    "item.smwMushroom":
-    {
-        "category": "neutral",
-        "sounds":
-        [
-            "mario2:item/smwMushroom"
-        ]
-    },
-    "item.smbCoin":
-    {
-        "category": "neutral",
-        "sounds":
-        [
-            "mario2:item/smbCoin"
-        ]
-    },
-    "item.smwCoin":
-    {
-        "category": "neutral",
-        "sounds":
-        [
-            "mario2:item/smwCoin"
-        ]
-    },
-    "item.cape":
-    {
-        "category": "neutral",
-        "sounds":
-        [
-            {
-                "name": "mario2:item/cape",
-                "stream": true
-            }
-        ]
-    },
-    "player.join":
-    {
-        "category": "neutral",
-        "sounds":
-        [
-            {
-                "name": "mario2:player/join",
-                "stream": true
-            }
-        ]
-    },
-    "player.leave":
-    {
-        "category": "neutral",
-        "sounds":
-        [
-            {
-                "name": "mario2:player/leave",
-                "stream": true
-            }
-        ]
-    },
-    "block.note":
-    {
-        "category": "block",
-        "sounds":
-        [
-            "mario2:block/spring"
-        ]
-    },
-    "block.spring":
-    {
-        "category": "block",
-        "sounds":
-        [
-            "mario2:block/spring"
-        ]
-    },
-    "block.smbEmptyBlockHit":
-    {
-        "category": "block",
-        "sounds":
-        [
-            "mario2:block/smbEmptyBlockHit"
-        ]
-    },
-    "block.smbBlockHitPowerup":
-    {
-        "category": "block",
-        "sounds":
-        [
-            "mario2:block/smbBlockHitPowerup"
-        ]
-    },
-    "block.smwEmptyBlockHit":
-    {
-        "category": "block",
-        "sounds":
-        [
-            "mario2:block/smwEmptyBlockHit"
-        ]
-    },
-    "block.smwBlockHitPowerup":
-    {
-        "category": "block",
-        "sounds":
-        [
-            "mario2:block/smwBlockHitPowerup"
-        ]
-    },
-    "block.pipe":
-    {
-        "category": "block",
-        "sounds": [
-            {
-                "name": "mario2:block/pipe",
-                "stream": true
-            }
-        ]
-    },
-    "block.beanstalk":
-    {
-        "category": "block",
-        "sounds": [
-            {
-                "name": "mario2:block/beanstalk",
-                "stream": true
-            }
-        ]
-    },
-    "entity.goomba.death":
-    {
-        "category": "block",
-        "sounds": [
-            {
-                "name": "mario2:entity/goomba/death",
-                "stream": true
-            }
-        ]
-    },
-    "records.smbUnderwater":
-    {
-        "category": "record",
-        "sounds": [
-            {
-                "name": "mario2:records/smbUnderwater",
-                "stream": true
-            }
-        ]
-    }
+  "player.death1": {
+    "category": "neutral",
+    "sounds": [
+      "mario2:player/death1"
+    ]
+  },
+  "player.death2": {
+    "category": "neutral",
+    "sounds": [
+      "mario2:player/death2"
+    ]
+  },
+  "player.death3": {
+    "category": "neutral",
+    "sounds": [
+      "mario2:player/death3"
+    ]
+  },
+  "player.death4": {
+    "category": "neutral",
+    "sounds": [
+      "mario2:player/death4"
+    ]
+  },
+  "player.diamonds": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "mario2:player/diamonds",
+        "stream": true
+      }
+    ]
+  },
+  "item.starman": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "mario2:item/starman",
+        "stream": true
+      }
+    ]
+  },
+  "item.jasterStarman": {
+    "category": "neutral",
+    "sounds": [
+      {
+        "name": "mario2:item/jasterStarman",
+        "stream": true
+      }
+    ]
+  },
+  "item.fireball": {
+    "category": "neutral",
+    "sounds": [
+      "mario2:item/fireball"
+    ]
+  },
+  "item.1up": {
+    "category": "neutral",
+    "sounds": [
+      "mario2:item/1up"
+    ]
+  },
+  "item.mushroom": {
+    "category": "neutral",
+    "sounds": [
+      "mario2:item/mushroom"
+    ]
+  },
+  "item.smw1up": {
+    "category": "neutral",
+    "sounds": [
+      "mario2:item/smw1up"
+    ]
+  },
+  "item.smwMushroom": {
+    "category": "neutral",
+    "sounds": [
+      "mario2:item/smwMushroom"
+    ]
+  },
+  "item.smbCoin": {
+    "category": "neutral",
+    "sounds": [
+      "mario2:item/smbCoin"
+    ]
+  },
+  "item.smwCoin": {
+    "category": "neutral",
+    "sounds": [
+      "mario2:item/smwCoin"
+    ]
+  },
+  "item.cape": {
+    "category": "neutral",
+    "sounds": [
+      "mario2:item/cape"
+    ]
+  },
+  "player.join": {
+    "category": "neutral",
+    "sounds": [
+      "mario2:player/join"
+    ]
+  },
+  "player.leave": {
+    "category": "neutral",
+    "sounds": [
+      "mario2:player/leave"
+    ]
+  },
+  "block.note": {
+    "category": "block",
+    "sounds": [
+      "mario2:block/spring"
+    ]
+  },
+  "block.spring": {
+    "category": "block",
+    "sounds": [
+      "mario2:block/spring"
+    ]
+  },
+  "block.smbEmptyBlockHit": {
+    "category": "block",
+    "sounds": [
+      "mario2:block/smbEmptyBlockHit"
+    ]
+  },
+  "block.smbBlockHitPowerup": {
+    "category": "block",
+    "sounds": [
+      "mario2:block/smbBlockHitPowerup"
+    ]
+  },
+  "block.smwEmptyBlockHit": {
+    "category": "block",
+    "sounds": [
+      "mario2:block/smwEmptyBlockHit"
+    ]
+  },
+  "block.smwBlockHitPowerup": {
+    "category": "block",
+    "sounds": [
+      "mario2:block/smwBlockHitPowerup"
+    ]
+  },
+  "block.pipe": {
+    "category": "block",
+    "sounds": [
+      "mario2:block/pipe"
+    ]
+  },
+  "block.beanstalk": {
+    "category": "block",
+    "sounds": [
+      "mario2:block/beanstalk"
+    ]
+  },
+  "entity.goomba.death": {
+    "category": "hostile",
+    "sounds": [
+      "mario2:entity/goomba/death"
+    ]
+  },
+  "records.smbUnderwater": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "mario2:records/smbUnderwater",
+        "stream": true
+      }
+    ]
+  }
 }
