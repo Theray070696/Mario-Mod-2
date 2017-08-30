@@ -9,6 +9,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
 
@@ -85,5 +87,12 @@ public class EntityGoomba extends EntityMob
                 }
             }
         }
+    }
+
+    @Override
+    public boolean getCanSpawnHere()
+    {
+        return this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && this.getBlockPathWeight(new BlockPos(this.posX, this
+                .getEntityBoundingBox().minY, this.posZ)) >= 0.0F && this.worldObj.getBlockState((new BlockPos(this)).down()).canEntitySpawn(this);
     }
 }
