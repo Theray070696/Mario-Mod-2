@@ -2,6 +2,7 @@ package io.github.Theray070696.mariodeath.entity;
 
 import io.github.Theray070696.mariodeath.audio.SoundHandler;
 import io.github.Theray070696.mariodeath.item.ModItems;
+import io.github.Theray070696.mariodeath.world.provider.WorldProviderMario;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
@@ -92,7 +93,14 @@ public class EntityKoopa extends EntityMob
     @Override
     public boolean getCanSpawnHere()
     {
-        return this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && this.getBlockPathWeight(new BlockPos(this.posX, this
-                .getEntityBoundingBox().minY, this.posZ)) >= 0.0F && this.worldObj.getBlockState((new BlockPos(this)).down()).canEntitySpawn(this);
+        if(this.worldObj.provider instanceof WorldProviderMario)
+        {
+            return this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && this.getBlockPathWeight(new BlockPos(this.posX, this
+                    .getEntityBoundingBox().minY, this.posZ)) >= 0.0F && this.worldObj.getBlockState((new BlockPos(this)).down()).canEntitySpawn
+                    (this);
+        } else
+        {
+            return super.getCanSpawnHere();
+        }
     }
 }
