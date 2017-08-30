@@ -1,6 +1,6 @@
 package io.github.Theray070696.mariodeath.network;
 
-import io.github.Theray070696.mariodeath.MarioDeath;
+import io.github.Theray070696.mariodeath.MarioMod2;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -45,7 +45,7 @@ public class PacketSyncCoinCounter implements IMessage
                 @Override
                 public void run()
                 {
-                    MarioDeath.proxy.setClientCoinCount(message.newCoinCount);
+                    MarioMod2.proxy.setClientCoinCount(message.newCoinCount);
                 }
             });
 

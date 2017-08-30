@@ -1,6 +1,6 @@
 package io.github.Theray070696.mariodeath.block;
 
-import io.github.Theray070696.mariodeath.MarioDeath;
+import io.github.Theray070696.mariodeath.MarioMod2;
 import io.github.Theray070696.mariodeath.lib.ModInfo;
 import io.github.Theray070696.raycore.block.BlockRay;
 import net.minecraft.block.material.Material;
@@ -38,7 +38,7 @@ public class BlockMario extends BlockRay
 
         if(addToCreativeTab)
         {
-            this.setCreativeTab(MarioDeath.tabMarioBlocks);
+            this.setCreativeTab(MarioMod2.tabMarioBlocks);
         }
 
         this.isGround = isGround;

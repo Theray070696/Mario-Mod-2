@@ -1,6 +1,6 @@
 package io.github.Theray070696.mariodeath.client.gui;
 
-import io.github.Theray070696.mariodeath.MarioDeath;
+import io.github.Theray070696.mariodeath.MarioMod2;
 import io.github.Theray070696.mariodeath.container.ContainerMarioMaker;
 import io.github.Theray070696.mariodeath.lib.ModInfo;
 import io.github.Theray070696.mariodeath.network.PacketGetCoins;
@@ -110,13 +110,13 @@ public class GuiMarioMaker extends GuiContainer
             }
         } else if(button.id == 4)
         {
-            MarioDeath.network.sendToServer(new PacketGetCoins(this.coinsToGet, 0));
+            MarioMod2.network.sendToServer(new PacketGetCoins(this.coinsToGet, 0));
         } else if(button.id == 5)
         {
-            MarioDeath.network.sendToServer(new PacketGetCoins(this.coinsToGet, 2));
+            MarioMod2.network.sendToServer(new PacketGetCoins(this.coinsToGet, 2));
         } else if(button.id == 6)
         {
-            MarioDeath.network.sendToServer(new PacketGetCoins(this.coinsToGet, 1));
+            MarioMod2.network.sendToServer(new PacketGetCoins(this.coinsToGet, 1));
         }
     }
 

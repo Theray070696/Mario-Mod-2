@@ -55,10 +55,10 @@ import java.util.concurrent.TimeUnit;
  */
 @SuppressWarnings("unused")
 @Mod(modid = ModInfo.MOD_ID, name = ModInfo.MOD_NAME, version = ModInfo.MOD_VERSION, dependencies = ModInfo.DEPENDENCIES)
-public class MarioDeath
+public class MarioMod2
 {
     @Mod.Instance(ModInfo.MOD_ID)
-    public static MarioDeath INSTANCE;
+    public static MarioMod2 INSTANCE;
 
     @SidedProxy(clientSide = ModInfo.CLIENT_PROXY, serverSide = ModInfo.SERVER_PROXY)
     public static IProxy proxy;
@@ -113,7 +113,7 @@ public class MarioDeath
 
     public static SimpleNetworkWrapper network;
 
-    public MarioDeath()
+    public MarioMod2()
     {
         PluginHandler.getInstance().registerBuiltInPlugins();
     }

@@ -1,6 +1,6 @@
 package io.github.Theray070696.mariodeath.item;
 
-import io.github.Theray070696.mariodeath.MarioDeath;
+import io.github.Theray070696.mariodeath.MarioMod2;
 import io.github.Theray070696.mariodeath.lib.ModInfo;
 import io.github.Theray070696.raycore.item.ItemRay;
 
@@ -20,7 +20,7 @@ public class ItemMario extends ItemRay
 
         if(addToCreativeTab)
         {
-            this.setCreativeTab(MarioDeath.tabMarioItems);
+            this.setCreativeTab(MarioMod2.tabMarioItems);
         }
     }
 }

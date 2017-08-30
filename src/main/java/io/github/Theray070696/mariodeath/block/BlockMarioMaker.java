@@ -1,6 +1,6 @@
 package io.github.Theray070696.mariodeath.block;
 
-import io.github.Theray070696.mariodeath.MarioDeath;
+import io.github.Theray070696.mariodeath.MarioMod2;
 import io.github.Theray070696.mariodeath.lib.GuiIds;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -35,7 +35,7 @@ public class BlockMarioMaker extends BlockMario
         {
             if(!world.isRemote)
             {
-                player.openGui(MarioDeath.INSTANCE, GuiIds.MARIO_MAKER_GUI_ID, world, blockPos.getX(), blockPos.getY(), blockPos.getZ());
+                player.openGui(MarioMod2.INSTANCE, GuiIds.MARIO_MAKER_GUI_ID, world, blockPos.getX(), blockPos.getY(), blockPos.getZ());
             }
 
             return true;
