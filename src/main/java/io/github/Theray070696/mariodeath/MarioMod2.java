@@ -63,7 +63,6 @@ public class MarioMod2
     @SidedProxy(clientSide = ModInfo.CLIENT_PROXY, serverSide = ModInfo.SERVER_PROXY)
     public static IProxy proxy;
 
-    private Stopwatch stopwatch;
     private Stopwatch stopwatchInitPhases;
 
     public static CreativeTabs tabMarioItems = new CreativeTabs("tabMarioItems")
@@ -121,7 +120,6 @@ public class MarioMod2
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-        stopwatch = Stopwatch.createStarted();
         stopwatchInitPhases = Stopwatch.createStarted();
         LogHelper.info("Pre-Init");
 
@@ -205,9 +203,6 @@ public class MarioMod2
 
         long time = stopwatchInitPhases.stop().elapsed(TimeUnit.MILLISECONDS);
         LogHelper.info("Post-Init Complete in " + time + "ms");
-
-        time = stopwatch.stop().elapsed(TimeUnit.MILLISECONDS);
-        LogHelper.info("Mario Mod 2 loaded in " + time + "ms");
     }
 
     @Mod.EventHandler
