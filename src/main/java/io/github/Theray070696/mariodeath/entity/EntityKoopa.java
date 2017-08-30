@@ -22,9 +22,9 @@ import java.util.Random;
  */
 public class EntityKoopa extends EntityMob
 {
-    public EntityKoopa(World worldIn)
+    public EntityKoopa(World world)
     {
-        super(worldIn);
+        super(world);
         this.setSize(0.8F, 0.8F);
     }
 
