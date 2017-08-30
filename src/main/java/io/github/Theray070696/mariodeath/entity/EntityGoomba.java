@@ -36,11 +36,6 @@ public class EntityGoomba extends EntityMob
         this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
-        this.applyEntityAI();
-    }
-
-    protected void applyEntityAI()
-    {
         this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
     }
 
