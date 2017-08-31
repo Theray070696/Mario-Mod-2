@@ -5,7 +5,6 @@ import io.github.Theray070696.mariodeath.entity.EntityGoomba;
 import io.github.Theray070696.mariodeath.entity.EntityKoopa;
 import io.github.Theray070696.mariodeath.lib.ModInfo;
 import io.github.Theray070696.mariodeath.util.IWeightProvider;
-import io.github.Theray070696.mariodeath.world.ModDimension;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -26,6 +25,8 @@ public abstract class BiomeMario extends Biome implements IWeightProvider
     {
         super(properties);
         this.setRegistryName(ModInfo.MOD_ID, registryName);
+        this.topBlock = ModBlocks.blockGroundSMW.getDefaultState();
+        this.fillerBlock = ModBlocks.blockGroundSMW.getDefaultState();
         this.spawnableMonsterList.add(new SpawnListEntry(EntityGoomba.class, 200, 3, 6));
         this.spawnableMonsterList.add(new SpawnListEntry(EntityKoopa.class, 200, 3, 6));
     }
@@ -99,8 +100,7 @@ public abstract class BiomeMario extends Biome implements IWeightProvider
                         --fillBlocksToFill;
                         chunkPrimer.setBlockState(localZ, y, localX, fillerBlockState);
                     }
-                } else if(world.provider.getDimensionType().equals(ModDimension.DIMENSION_MARIO) && blockState.getBlock() == ModBlocks
-                        .blockGroundUndergroundSMW)
+                } else if(blockState.getBlock() == ModBlocks.blockGroundUndergroundSMW)
                 {
                     if(fillBlocksToFill == -1)
                     {
