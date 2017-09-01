@@ -16,7 +16,7 @@ public class MarioTeleporter extends Teleporter
     }
 
     @Override
-    public void placeInPortal(Entity entityIn, float rotationYaw)
+    public void placeInPortal(Entity entity, float rotationYaw)
     {
     }
 }
