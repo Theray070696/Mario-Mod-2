@@ -1,5 +1,6 @@
 package io.github.Theray070696.mariodeath.world;
 
+import io.github.Theray070696.mariodeath.configuration.ConfigHandler;
 import io.github.Theray070696.mariodeath.world.provider.WorldProviderMario;
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;
@@ -9,12 +10,11 @@ import net.minecraftforge.common.DimensionManager;
  */
 public class ModDimension
 {
-    public static final int DIMENTION_MARIO_ID = DimensionManager.getNextFreeDimId();
-    public static final DimensionType DIMENSION_MARIO = DimensionType.register("Mario", "_mario", DIMENTION_MARIO_ID, WorldProviderMario.class,
-            false);
+    public static DimensionType DIMENSION_MARIO;
 
     public static void initDimension()
     {
-        DimensionManager.registerDimension(DIMENTION_MARIO_ID, DIMENSION_MARIO);
+        DIMENSION_MARIO = DimensionType.register("Mario", "_mario", ConfigHandler.marioDimensionID, WorldProviderMario.class, false);
+        DimensionManager.registerDimension(ConfigHandler.marioDimensionID, DIMENSION_MARIO);
     }
 }

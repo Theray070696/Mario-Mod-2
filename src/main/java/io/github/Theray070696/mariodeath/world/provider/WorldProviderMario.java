@@ -1,6 +1,6 @@
 package io.github.Theray070696.mariodeath.world.provider;
 
-import io.github.Theray070696.mariodeath.world.ModDimension;
+import io.github.Theray070696.mariodeath.configuration.ConfigHandler;
 import io.github.Theray070696.mariodeath.world.biome.BiomeProviderMario;
 import io.github.Theray070696.mariodeath.world.gen.ChunkGeneratorMario;
 import net.minecraft.world.DimensionType;
@@ -15,7 +15,7 @@ public class WorldProviderMario extends WorldProvider
     @Override
     public DimensionType getDimensionType()
     {
-        return DimensionType.getById(ModDimension.DIMENTION_MARIO_ID);
+        return DimensionType.getById(ConfigHandler.marioDimensionID);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class WorldProviderMario extends WorldProvider
     @Override
     public void createBiomeProvider()
     {
-        this.setDimension(ModDimension.DIMENTION_MARIO_ID);
+        this.setDimension(ConfigHandler.marioDimensionID);
         this.biomeProvider = new BiomeProviderMario(worldObj.getWorldInfo());
     }
 }

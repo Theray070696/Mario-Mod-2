@@ -1,7 +1,7 @@
 package io.github.Theray070696.mariodeath.item;
 
+import io.github.Theray070696.mariodeath.configuration.ConfigHandler;
 import io.github.Theray070696.mariodeath.util.MarioTeleporter;
-import io.github.Theray070696.mariodeath.world.ModDimension;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -31,10 +31,10 @@ public class ItemDebug extends ItemMario
         {
             EntityPlayerMP playerMP = (EntityPlayerMP) player;
 
-            if(playerMP.dimension != ModDimension.DIMENTION_MARIO_ID)
+            if(playerMP.dimension != ConfigHandler.marioDimensionID)
             {
-                playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, ModDimension.DIMENTION_MARIO_ID, new MarioTeleporter(playerMP
-                        .mcServer.worldServerForDimension(ModDimension.DIMENTION_MARIO_ID)));
+                playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, ConfigHandler.marioDimensionID, new MarioTeleporter(playerMP
+                        .mcServer.worldServerForDimension(ConfigHandler.marioDimensionID)));
             } else if(playerMP.dimension != 0)
             {
                 playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, 0, new MarioTeleporter(playerMP.mcServer
