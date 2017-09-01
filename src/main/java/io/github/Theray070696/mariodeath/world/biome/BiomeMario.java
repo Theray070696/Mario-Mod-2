@@ -5,6 +5,7 @@ import io.github.Theray070696.mariodeath.entity.EntityGoomba;
 import io.github.Theray070696.mariodeath.entity.EntityKoopa;
 import io.github.Theray070696.mariodeath.lib.ModInfo;
 import io.github.Theray070696.mariodeath.util.IWeightProvider;
+import io.github.Theray070696.mariodeath.world.provider.WorldProviderMario;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -100,7 +101,7 @@ public abstract class BiomeMario extends Biome implements IWeightProvider
                         --fillBlocksToFill;
                         chunkPrimer.setBlockState(localZ, y, localX, fillerBlockState);
                     }
-                } else if(blockState.getBlock() == ModBlocks.blockGroundUndergroundSMW)
+                } else if(world.provider instanceof WorldProviderMario && blockState.getBlock() == ModBlocks.blockGroundUndergroundSMW)
                 {
                     if(fillBlocksToFill == -1)
                     {
