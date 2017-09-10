@@ -35,6 +35,8 @@ public class ItemFireFlower extends ItemMario
 
             world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler.fireball,
                     SoundCategory.PLAYERS, 1.0F, 1.0F);
+
+            itemStack.damageItem(1, player);
         }
 
         return new ActionResult<>(EnumActionResult.PASS, itemStack);
