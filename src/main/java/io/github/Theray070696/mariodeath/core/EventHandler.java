@@ -67,14 +67,7 @@ public class EventHandler
 
     public static void setSoundCooldown(EntityLivingBase entity, int cooldown)
     {
-        if(soundCooldown.containsKey(entity.getEntityId()))
-        {
-            soundCooldown.remove(entity.getEntityId());
-            soundCooldown.put(entity.getEntityId(), cooldown);
-        } else
-        {
-            soundCooldown.put(entity.getEntityId(), cooldown);
-        }
+        soundCooldown.put(entity.getEntityId(), cooldown);
     }
 
     @SubscribeEvent
