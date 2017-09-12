@@ -62,10 +62,10 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
     {
         if(world.getBlockState(new BlockPos(x, y, z)).getBlock() instanceof BlockPipe && world.getBlockState(new BlockPos(x, y + yMod, z)).getBlock
                 () instanceof BlockPipe && world.getBlockState(new BlockPos(x + xMod, y, z)).getBlock() instanceof BlockPipe && world.getBlockState
-                (new BlockPos(x + xMod, y + yMod, z)).getBlock() instanceof BlockPipe
-                && world.getBlockState(new BlockPos(x, y, z + zMod)).getBlock() instanceof BlockPipe && world.getBlockState(new BlockPos(x + xMod,
-                y, z + zMod)).getBlock() instanceof BlockPipe && world.getBlockState(new BlockPos(x, y + yMod, z + zMod)).getBlock() instanceof
-                BlockPipe && world.getBlockState(new BlockPos(x + xMod, y + yMod, z + zMod)).getBlock() instanceof BlockPipe)
+                (new BlockPos(x + xMod, y + yMod, z)).getBlock() instanceof BlockPipe && world.getBlockState(new BlockPos(x, y, z + zMod)).getBlock
+                () instanceof BlockPipe && world.getBlockState(new BlockPos(x + xMod, y, z + zMod)).getBlock() instanceof BlockPipe && world
+                .getBlockState(new BlockPos(x, y + yMod, z + zMod)).getBlock() instanceof BlockPipe && world.getBlockState(new BlockPos(x + xMod, y
+                + yMod, z + zMod)).getBlock() instanceof BlockPipe)
         {
             return true;
         }
@@ -163,8 +163,8 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
                                         // Items
                                         ItemStack stack = ((EntityItem) entity).getEntityItem().copy();
 
-                                        EntityItem entityItem = new EntityItem(otherWorld, teleportDestinationPos.getX(), teleportDestinationPos.getY(),
-                                                teleportDestinationPos.getZ(), stack);
+                                        EntityItem entityItem = new EntityItem(otherWorld, teleportDestinationPos.getX(), teleportDestinationPos
+                                                .getY(), teleportDestinationPos.getZ(), stack);
 
                                         otherWorld.spawnEntityInWorld(entityItem);
                                         entity.setDead();

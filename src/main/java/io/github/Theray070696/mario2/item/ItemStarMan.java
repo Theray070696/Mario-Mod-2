@@ -45,9 +45,6 @@ public class ItemStarMan extends ItemMario
                         .jasterStarMan, SoundCategory.PLAYERS, 1.0F, 1.0F);
             }
 
-            //world.playSound(null, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), SoundHandler.starMan,
-            //SoundCategory.PLAYERS, 1.0F, 1.0F);
-
             RayCoreAPI.playMovingSound(SoundHandler.starMan, SoundCategory.PLAYERS, world, player);
 
             itemStack.stackSize--;

@@ -110,13 +110,13 @@ public class ShapelessOreRecipeMario implements IMarioRecipe
      */
     @SuppressWarnings("unchecked")
     @Override
-    public boolean matches(InventoryCrafting var1, World world)
+    public boolean matches(InventoryCrafting inv, World world)
     {
         ArrayList<Object> required = new ArrayList<Object>(input);
 
-        for(int x = 0; x < var1.getSizeInventory(); x++)
+        for(int x = 0; x < inv.getSizeInventory(); x++)
         {
-            ItemStack slot = var1.getStackInSlot(x);
+            ItemStack slot = inv.getStackInSlot(x);
 
             if(slot != null)
             {

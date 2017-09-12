@@ -100,40 +100,40 @@ public class ContainerMarioMaker extends Container
      */
     public ItemStack transferStackInSlot(EntityPlayer entityPlayer, int slotID)
     {
-        ItemStack itemstack = null;
-        Slot slot = (Slot) this.inventorySlots.get(slotID);
+        ItemStack itemStack = null;
+        Slot slot = this.inventorySlots.get(slotID);
 
         if(slot != null && slot.getHasStack())
         {
-            ItemStack itemstack1 = slot.getStack();
-            itemstack = itemstack1.copy();
+            ItemStack itemStack1 = slot.getStack();
+            itemStack = itemStack1.copy();
 
             if(slotID == 0)
             {
-                if(!this.mergeItemStack(itemstack1, 10, 46, true))
+                if(!this.mergeItemStack(itemStack1, 10, 46, true))
                 {
                     return null;
                 }
 
-                slot.onSlotChange(itemstack1, itemstack);
+                slot.onSlotChange(itemStack1, itemStack);
             } else if(slotID >= 10 && slotID < 37)
             {
-                if(!this.mergeItemStack(itemstack1, 37, 46, false))
+                if(!this.mergeItemStack(itemStack1, 37, 46, false))
                 {
                     return null;
                 }
             } else if(slotID >= 37 && slotID < 46)
             {
-                if(!this.mergeItemStack(itemstack1, 10, 37, false))
+                if(!this.mergeItemStack(itemStack1, 10, 37, false))
                 {
                     return null;
                 }
-            } else if(!this.mergeItemStack(itemstack1, 10, 46, false))
+            } else if(!this.mergeItemStack(itemStack1, 10, 46, false))
             {
                 return null;
             }
 
-            if(itemstack1.stackSize == 0)
+            if(itemStack1.stackSize == 0)
             {
                 slot.putStack(null);
             } else
@@ -141,15 +141,15 @@ public class ContainerMarioMaker extends Container
                 slot.onSlotChanged();
             }
 
-            if(itemstack1.stackSize == itemstack.stackSize)
+            if(itemStack1.stackSize == itemStack.stackSize)
             {
                 return null;
             }
 
-            slot.onPickupFromSlot(entityPlayer, itemstack1);
+            slot.onPickupFromSlot(entityPlayer, itemStack1);
         }
 
-        return itemstack;
+        return itemStack;
     }
 
     /**

@@ -11,13 +11,13 @@ public class GenLayerSubBiomes extends GenLayerMario
     public GenLayerSubBiomes(long seed, GenLayer parentGenLayer)
     {
         super(seed);
-        parent = parentGenLayer;
+        this.parent = parentGenLayer;
     }
 
     @Override
     public int[] getInts(int x, int z, int sizeX, int sizeZ)
     {
-        int[] currentBiomeInts = parent.getInts(x - 2, z - 2, sizeX + 4, sizeZ + 4);
+        int[] currentBiomeInts = this.parent.getInts(x - 2, z - 2, sizeX + 4, sizeZ + 4);
         int[] biomeInts = IntCache.getIntCache(sizeX * sizeZ);
 
         for(int zz = 0; zz < sizeZ; ++zz)

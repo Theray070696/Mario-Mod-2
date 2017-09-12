@@ -38,25 +38,25 @@ public class WeightedList<T extends IWeightProvider> extends ArrayList<T>
 
     public void recalculateWeight()
     {
-        totalWeight = 0;
+        this.totalWeight = 0;
         for(T obj : this)
         {
-            totalWeight += obj.getWeight();
+            this.totalWeight += obj.getWeight();
         }
     }
 
     public int getTotalWeight()
     {
-        return totalWeight;
+        return this.totalWeight;
     }
 
     public T getRandomItem(Random rand)
     {
-        if(totalWeight == 0)
+        if(this.totalWeight == 0)
         {
             return null;
         }
-        int i = rand.nextInt(totalWeight);
+        int i = rand.nextInt(this.totalWeight);
 
         for(T obj : this)
         {
@@ -71,7 +71,7 @@ public class WeightedList<T extends IWeightProvider> extends ArrayList<T>
 
     public T getRandomItem(int weight)
     {
-        if(totalWeight == 0)
+        if(this.totalWeight == 0)
         {
             return null;
         }

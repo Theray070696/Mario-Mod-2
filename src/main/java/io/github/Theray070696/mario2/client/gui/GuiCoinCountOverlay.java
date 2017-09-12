@@ -4,7 +4,6 @@ import io.github.Theray070696.mario2.capability.CoinCountProvider;
 import io.github.Theray070696.mario2.capability.ICoinCount;
 import io.github.Theray070696.mario2.item.ModItems;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.GuiIngameForge;
 
@@ -20,15 +19,14 @@ public class GuiCoinCountOverlay extends GuiIngameForge
 
     public void renderCoinCount(int width, int height)
     {
-        if(mc.getRenderViewEntity() instanceof EntityPlayer)
+        if(mc.thePlayer != null)
         {
             mc.mcProfiler.startSection("marioCoinCounter");
 
-            EntityPlayer player = (EntityPlayer) mc.getRenderViewEntity();
             int left = 2;
             int top = height - 20;
 
-            ICoinCount coinCountProvider = player.getCapability(CoinCountProvider.COIN_COUNT, null);
+            ICoinCount coinCountProvider = mc.thePlayer.getCapability(CoinCountProvider.COIN_COUNT, null);
             int coinCount = coinCountProvider.getCoinCount();
 
             this.itemRenderer.renderItemIntoGUI(new ItemStack(ModItems.itemMarioCoin, 1, 1), left, top);

@@ -34,9 +34,9 @@ public class MarioMakerRecipeCategory extends BlankRecipeCategory<IRecipeWrapper
     public MarioMakerRecipeCategory(IGuiHelper guiHelper)
     {
         ResourceLocation location = new ResourceLocation(ModInfo.MOD_ID, "textures/gui/marioMakerGUI.png");
-        background = guiHelper.createDrawable(location, 29, 16, width, height);
-        localizedName = I18n.format("gui.mario2:marioMaker");
-        craftingGridHelper = guiHelper.createCraftingGridHelper(craftInputSlot1, craftOutputSlot);
+        this.background = guiHelper.createDrawable(location, 29, 16, width, height);
+        this.localizedName = I18n.format("gui.mario2:marioMaker");
+        this.craftingGridHelper = guiHelper.createCraftingGridHelper(craftInputSlot1, craftOutputSlot);
     }
 
     @Override
@@ -48,13 +48,13 @@ public class MarioMakerRecipeCategory extends BlankRecipeCategory<IRecipeWrapper
     @Override
     public String getTitle()
     {
-        return localizedName;
+        return this.localizedName;
     }
 
     @Override
     public IDrawable getBackground()
     {
-        return background;
+        return this.background;
     }
 
     @Override
@@ -76,15 +76,15 @@ public class MarioMakerRecipeCategory extends BlankRecipeCategory<IRecipeWrapper
         if(recipeWrapper instanceof IShapedCraftingRecipeWrapper)
         {
             IShapedCraftingRecipeWrapper wrapper = (IShapedCraftingRecipeWrapper) recipeWrapper;
-            craftingGridHelper.setInput(guiItemStacks, wrapper.getInputs(), wrapper.getWidth(), wrapper.getHeight());
-            craftingGridHelper.setOutput(guiItemStacks, wrapper.getOutputs());
+            this.craftingGridHelper.setInput(guiItemStacks, wrapper.getInputs(), wrapper.getWidth(), wrapper.getHeight());
+            this.craftingGridHelper.setOutput(guiItemStacks, wrapper.getOutputs());
         } else if(recipeWrapper instanceof ICraftingRecipeWrapper)
         {
-            craftingGridHelper.setInput(guiItemStacks, recipeWrapper.getInputs());
-            craftingGridHelper.setOutput(guiItemStacks, ((ICraftingRecipeWrapper) recipeWrapper).getOutputs());
+            this.craftingGridHelper.setInput(guiItemStacks, recipeWrapper.getInputs());
+            this.craftingGridHelper.setOutput(guiItemStacks, ((ICraftingRecipeWrapper) recipeWrapper).getOutputs());
         } else
         {
-            craftingGridHelper.setInput(guiItemStacks, recipeWrapper.getInputs());
+            this.craftingGridHelper.setInput(guiItemStacks, recipeWrapper.getInputs());
             guiItemStacks.setFromRecipe(craftOutputSlot, recipeWrapper.getOutputs());
         }
     }
@@ -118,12 +118,12 @@ public class MarioMakerRecipeCategory extends BlankRecipeCategory<IRecipeWrapper
         if(recipeWrapper instanceof IShapedCraftingRecipeWrapper)
         {
             IShapedCraftingRecipeWrapper wrapper = (IShapedCraftingRecipeWrapper) recipeWrapper;
-            craftingGridHelper.setInputStacks(guiItemStacks, inputs, wrapper.getWidth(), wrapper.getHeight());
-            craftingGridHelper.setOutput(guiItemStacks, outputs);
+            this.craftingGridHelper.setInputStacks(guiItemStacks, inputs, wrapper.getWidth(), wrapper.getHeight());
+            this.craftingGridHelper.setOutput(guiItemStacks, outputs);
         } else
         {
-            craftingGridHelper.setInputStacks(guiItemStacks, inputs);
-            craftingGridHelper.setOutput(guiItemStacks, outputs);
+            this.craftingGridHelper.setInputStacks(guiItemStacks, inputs);
+            this.craftingGridHelper.setOutput(guiItemStacks, outputs);
         }
     }
 }

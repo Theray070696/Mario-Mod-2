@@ -41,6 +41,7 @@ public class ShapedRecipesHandler implements IRecipeHandler<ShapedRecipeMario>
         {
             return false;
         }
+
         int inputCount = 0;
         for(ItemStack input : recipe.recipeItems)
         {
@@ -49,14 +50,7 @@ public class ShapedRecipesHandler implements IRecipeHandler<ShapedRecipeMario>
                 inputCount++;
             }
         }
-        if(inputCount > 9)
-        {
-            return false;
-        }
-        if(inputCount == 0)
-        {
-            return false;
-        }
-        return true;
+
+        return inputCount <= 9 && inputCount != 0;
     }
 }

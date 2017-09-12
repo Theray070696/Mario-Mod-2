@@ -85,7 +85,7 @@ public class ItemCape extends ItemMario implements IBauble
     }
 
     @Override
-    public BaubleType getBaubleType(ItemStack itemstack)
+    public BaubleType getBaubleType(ItemStack itemStack)
     {
         return BaubleType.BELT;
     }
@@ -101,23 +101,23 @@ public class ItemCape extends ItemMario implements IBauble
     }
 
     @Override
-    public void onEquipped(ItemStack itemstack, EntityLivingBase player)
+    public void onEquipped(ItemStack itemStack, EntityLivingBase player)
     {
     }
 
     @Override
-    public void onUnequipped(ItemStack itemstack, EntityLivingBase player)
+    public void onUnequipped(ItemStack itemStack, EntityLivingBase player)
     {
     }
 
     @Override
-    public boolean canEquip(ItemStack itemstack, EntityLivingBase player)
+    public boolean canEquip(ItemStack itemStack, EntityLivingBase player)
     {
         return true;
     }
 
     @Override
-    public boolean canUnequip(ItemStack itemstack, EntityLivingBase player)
+    public boolean canUnequip(ItemStack itemStack, EntityLivingBase player)
     {
         return true;
     }

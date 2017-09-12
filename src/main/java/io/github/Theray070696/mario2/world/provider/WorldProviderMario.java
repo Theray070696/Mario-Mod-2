@@ -21,7 +21,7 @@ public class WorldProviderMario extends WorldProvider
     @Override
     public IChunkGenerator createChunkGenerator()
     {
-        return new ChunkGeneratorMario(worldObj, getSeed(), worldObj.getWorldInfo().isMapFeaturesEnabled(), worldObj.getWorldInfo()
+        return new ChunkGeneratorMario(this.worldObj, getSeed(), this.worldObj.getWorldInfo().isMapFeaturesEnabled(), this.worldObj.getWorldInfo()
                 .getGeneratorOptions());
     }
 
@@ -29,6 +29,6 @@ public class WorldProviderMario extends WorldProvider
     public void createBiomeProvider()
     {
         this.setDimension(ConfigHandler.marioDimensionID);
-        this.biomeProvider = new BiomeProviderMario(worldObj.getWorldInfo());
+        this.biomeProvider = new BiomeProviderMario(this.worldObj.getWorldInfo());
     }
 }

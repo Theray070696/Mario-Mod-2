@@ -45,12 +45,12 @@ public class ShapedOreRecipeWrapper extends BlankRecipeWrapper implements IShape
     @Override
     public void getIngredients(IIngredients ingredients)
     {
-        IStackHelper stackHelper = jeiHelpers.getStackHelper();
-        ItemStack recipeOutput = recipe.getRecipeOutput();
+        IStackHelper stackHelper = this.jeiHelpers.getStackHelper();
+        ItemStack recipeOutput = this.recipe.getRecipeOutput();
 
         try
         {
-            List<List<ItemStack>> inputs = stackHelper.expandRecipeItemStackInputs(Arrays.asList(recipe.getInput()));
+            List<List<ItemStack>> inputs = stackHelper.expandRecipeItemStackInputs(Arrays.asList(this.recipe.getInput()));
             ingredients.setInputLists(ItemStack.class, inputs);
             if(recipeOutput != null)
             {
@@ -65,24 +65,24 @@ public class ShapedOreRecipeWrapper extends BlankRecipeWrapper implements IShape
     @Override
     public List getInputs()
     {
-        return Arrays.asList(recipe.getInput());
+        return Arrays.asList(this.recipe.getInput());
     }
 
     @Override
     public List<ItemStack> getOutputs()
     {
-        return Collections.singletonList(recipe.getRecipeOutput());
+        return Collections.singletonList(this.recipe.getRecipeOutput());
     }
 
     @Override
     public int getWidth()
     {
-        return width;
+        return this.width;
     }
 
     @Override
     public int getHeight()
     {
-        return height;
+        return this.height;
     }
 }

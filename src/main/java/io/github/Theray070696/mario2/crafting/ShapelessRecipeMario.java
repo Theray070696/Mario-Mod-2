@@ -34,21 +34,21 @@ public class ShapelessRecipeMario implements IMarioRecipe
 
     public ItemStack[] getRemainingItems(InventoryCrafting inv)
     {
-        ItemStack[] aitemstack = new ItemStack[inv.getSizeInventory()];
+        ItemStack[] itemStack = new ItemStack[inv.getSizeInventory()];
 
-        for(int i = 0; i < aitemstack.length; ++i)
+        for(int i = 0; i < itemStack.length; ++i)
         {
-            ItemStack itemstack = inv.getStackInSlot(i);
-            aitemstack[i] = net.minecraftforge.common.ForgeHooks.getContainerItem(itemstack);
+            ItemStack itemStack1 = inv.getStackInSlot(i);
+            itemStack[i] = net.minecraftforge.common.ForgeHooks.getContainerItem(itemStack1);
         }
 
-        return aitemstack;
+        return itemStack;
     }
 
     /**
      * Used to check if a recipe matches current crafting inventory
      */
-    public boolean matches(InventoryCrafting inv, World worldIn)
+    public boolean matches(InventoryCrafting inv, World world)
     {
         List<ItemStack> list = Lists.newArrayList(this.recipeItems);
 
@@ -56,19 +56,19 @@ public class ShapelessRecipeMario implements IMarioRecipe
         {
             for(int j = 0; j < inv.getWidth(); ++j)
             {
-                ItemStack itemstack = inv.getStackInRowAndColumn(j, i);
+                ItemStack itemStack = inv.getStackInRowAndColumn(j, i);
 
-                if(itemstack != null)
+                if(itemStack != null)
                 {
                     boolean flag = false;
 
-                    for(ItemStack itemstack1 : list)
+                    for(ItemStack itemStack1 : list)
                     {
-                        if(itemstack.getItem() == itemstack1.getItem() && (itemstack1.getMetadata() == 32767 || itemstack.getMetadata() ==
-                                itemstack1.getMetadata()))
+                        if(itemStack.getItem() == itemStack1.getItem() && (itemStack1.getMetadata() == 32767 || itemStack.getMetadata() ==
+                                itemStack1.getMetadata()))
                         {
                             flag = true;
-                            list.remove(itemstack1);
+                            list.remove(itemStack1);
                             break;
                         }
                     }

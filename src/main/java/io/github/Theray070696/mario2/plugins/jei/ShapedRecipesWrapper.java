@@ -32,8 +32,8 @@ public class ShapedRecipesWrapper extends BlankRecipeWrapper implements IShapedC
     @Override
     public void getIngredients(IIngredients ingredients)
     {
-        List<ItemStack> recipeItems = Arrays.asList(recipe.recipeItems);
-        ItemStack recipeOutput = recipe.getRecipeOutput();
+        List<ItemStack> recipeItems = Arrays.asList(this.recipe.recipeItems);
+        ItemStack recipeOutput = this.recipe.getRecipeOutput();
         try
         {
             ingredients.setInputs(ItemStack.class, recipeItems);
@@ -50,24 +50,24 @@ public class ShapedRecipesWrapper extends BlankRecipeWrapper implements IShapedC
     @Override
     public List getInputs()
     {
-        return Arrays.asList(recipe.recipeItems);
+        return Arrays.asList(this.recipe.recipeItems);
     }
 
     @Override
     public List<ItemStack> getOutputs()
     {
-        return Collections.singletonList(recipe.getRecipeOutput());
+        return Collections.singletonList(this.recipe.getRecipeOutput());
     }
 
     @Override
     public int getWidth()
     {
-        return recipe.recipeWidth;
+        return this.recipe.recipeWidth;
     }
 
     @Override
     public int getHeight()
     {
-        return recipe.recipeHeight;
+        return this.recipe.recipeHeight;
     }
 }

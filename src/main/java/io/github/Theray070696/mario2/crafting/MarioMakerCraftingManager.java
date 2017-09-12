@@ -9,7 +9,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -28,13 +27,13 @@ public class MarioMakerCraftingManager
 
     private MarioMakerCraftingManager()
     {
-        Collections.sort(this.recipes, new Comparator<IMarioRecipe>()
+        this.recipes.sort(new Comparator<IMarioRecipe>()
         {
-            public int compare(IMarioRecipe p_compare_1_, IMarioRecipe p_compare_2_)
+            public int compare(IMarioRecipe recipe1, IMarioRecipe recipe2)
             {
-                return p_compare_1_ instanceof ShapelessRecipeMario && p_compare_2_ instanceof ShapedRecipeMario ? 1 : (p_compare_2_ instanceof
-                        ShapelessRecipeMario && p_compare_1_ instanceof ShapedRecipeMario ? -1 : (p_compare_2_.getRecipeSize() < p_compare_1_
-                        .getRecipeSize() ? -1 : (p_compare_2_.getRecipeSize() > p_compare_1_.getRecipeSize() ? 1 : 0)));
+                return recipe1 instanceof ShapelessRecipeMario && recipe2 instanceof ShapedRecipeMario ? 1 : (recipe2 instanceof
+                        ShapelessRecipeMario && recipe1 instanceof ShapedRecipeMario ? -1 : (recipe2.getRecipeSize() < recipe1.getRecipeSize() ? -1
+                        : (recipe2.getRecipeSize() > recipe1.getRecipeSize() ? 1 : 0)));
             }
         });
     }
@@ -44,12 +43,11 @@ public class MarioMakerCraftingManager
      */
     public static MarioMakerCraftingManager getInstance()
     {
-        /** The static instance of this class */
         return INSTANCE;
     }
 
     /**
-     * Adds a shaped recipe to the games recipe list.
+     * Adds a shaped recipe to the recipe list.
      */
     public ShapedRecipeMario addRecipe(ItemStack stack, Object... recipeComponents)
     {
@@ -60,9 +58,9 @@ public class MarioMakerCraftingManager
 
         if(recipeComponents[i] instanceof String[])
         {
-            String[] astring = (String[]) ((String[]) recipeComponents[i++]);
+            String[] aString = (String[]) recipeComponents[i++];
 
-            for(String s2 : astring)
+            for(String s2 : aString)
             {
                 ++k;
                 j = s2.length();
@@ -84,40 +82,40 @@ public class MarioMakerCraftingManager
         for(map = Maps.<Character, ItemStack>newHashMap(); i < recipeComponents.length; i += 2)
         {
             Character character = (Character) recipeComponents[i];
-            ItemStack itemstack = null;
+            ItemStack itemStack = null;
 
             if(recipeComponents[i + 1] instanceof Item)
             {
-                itemstack = new ItemStack((Item) recipeComponents[i + 1]);
+                itemStack = new ItemStack((Item) recipeComponents[i + 1]);
             } else if(recipeComponents[i + 1] instanceof Block)
             {
-                itemstack = new ItemStack((Block) recipeComponents[i + 1], 1, 32767);
+                itemStack = new ItemStack((Block) recipeComponents[i + 1], 1, 32767);
             } else if(recipeComponents[i + 1] instanceof ItemStack)
             {
-                itemstack = (ItemStack) recipeComponents[i + 1];
+                itemStack = (ItemStack) recipeComponents[i + 1];
             }
 
-            map.put(character, itemstack);
+            map.put(character, itemStack);
         }
 
-        ItemStack[] aitemstack = new ItemStack[j * k];
+        ItemStack[] aItemStack = new ItemStack[j * k];
 
         for(int l = 0; l < j * k; ++l)
         {
             char c0 = s.charAt(l);
 
-            if(map.containsKey(Character.valueOf(c0)))
+            if(map.containsKey(c0))
             {
-                aitemstack[l] = ((ItemStack) map.get(Character.valueOf(c0))).copy();
+                aItemStack[l] = map.get(c0).copy();
             } else
             {
-                aitemstack[l] = null;
+                aItemStack[l] = null;
             }
         }
 
-        ShapedRecipeMario shapedrecipes = new ShapedRecipeMario(j, k, aitemstack, stack);
-        this.recipes.add(shapedrecipes);
-        return shapedrecipes;
+        ShapedRecipeMario shapedRecipe = new ShapedRecipeMario(j, k, aItemStack, stack);
+        this.recipes.add(shapedRecipe);
+        return shapedRecipe;
     }
 
     /**
@@ -161,37 +159,37 @@ public class MarioMakerCraftingManager
      * Retrieves an ItemStack that has multiple recipes for it.
      */
     @Nullable
-    public ItemStack findMatchingRecipe(InventoryCrafting craftMatrix, World worldIn)
+    public ItemStack findMatchingRecipe(InventoryCrafting craftMatrix, World world)
     {
-        for(IMarioRecipe irecipe : this.recipes)
+        for(IMarioRecipe recipe : this.recipes)
         {
-            if(irecipe.matches(craftMatrix, worldIn))
+            if(recipe.matches(craftMatrix, world))
             {
-                return irecipe.getCraftingResult(craftMatrix);
+                return recipe.getCraftingResult(craftMatrix);
             }
         }
 
         return null;
     }
 
-    public ItemStack[] getRemainingItems(InventoryCrafting craftMatrix, World worldIn)
+    public ItemStack[] getRemainingItems(InventoryCrafting craftMatrix, World world)
     {
-        for(IMarioRecipe irecipe : this.recipes)
+        for(IMarioRecipe recipe : this.recipes)
         {
-            if(irecipe.matches(craftMatrix, worldIn))
+            if(recipe.matches(craftMatrix, world))
             {
-                return irecipe.getRemainingItems(craftMatrix);
+                return recipe.getRemainingItems(craftMatrix);
             }
         }
 
-        ItemStack[] aitemstack = new ItemStack[craftMatrix.getSizeInventory()];
+        ItemStack[] itemStack = new ItemStack[craftMatrix.getSizeInventory()];
 
-        for(int i = 0; i < aitemstack.length; ++i)
+        for(int i = 0; i < itemStack.length; ++i)
         {
-            aitemstack[i] = craftMatrix.getStackInSlot(i);
+            itemStack[i] = craftMatrix.getStackInSlot(i);
         }
 
-        return aitemstack;
+        return itemStack;
     }
 
     public List<IMarioRecipe> getRecipeList()

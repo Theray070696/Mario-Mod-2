@@ -39,7 +39,7 @@ public class ShapelessRecipesHandler implements IRecipeHandler<ShapelessRecipeMa
     @Override
     public IRecipeWrapper getRecipeWrapper(ShapelessRecipeMario recipe)
     {
-        return new ShapelessRecipesWrapper(guiHelper, recipe);
+        return new ShapelessRecipesWrapper(this.guiHelper, recipe);
     }
 
     @Override
@@ -49,6 +49,7 @@ public class ShapelessRecipesHandler implements IRecipeHandler<ShapelessRecipeMa
         {
             return false;
         }
+
         int inputCount = 0;
         for(Object input : recipe.recipeItems)
         {
@@ -60,10 +61,7 @@ public class ShapelessRecipesHandler implements IRecipeHandler<ShapelessRecipeMa
                 return false;
             }
         }
-        if(inputCount > 9)
-        {
-            return false;
-        }
-        return inputCount > 0;
+
+        return inputCount <= 9 && inputCount > 0;
     }
 }

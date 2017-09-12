@@ -116,7 +116,7 @@ public class MarioMod2
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-        stopwatchInitPhases = Stopwatch.createStarted();
+        this.stopwatchInitPhases = Stopwatch.createStarted();
         LogHelper.info("Pre-Init");
 
         if(proxy.getSide().isClient() && !Loader.isModLoaded("ctm")) // We need CTM for some of the blocks in the mod.
@@ -150,14 +150,14 @@ public class MarioMod2
 
         PluginHandler.getInstance().preInit();
 
-        long time = stopwatchInitPhases.stop().elapsed(TimeUnit.MILLISECONDS);
+        long time = this.stopwatchInitPhases.stop().elapsed(TimeUnit.MILLISECONDS);
         LogHelper.info("Pre-Init Complete in " + time + "ms");
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
-        stopwatchInitPhases = Stopwatch.createStarted();
+        this.stopwatchInitPhases = Stopwatch.createStarted();
         LogHelper.info("Init");
 
         NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new GuiHandler());
@@ -185,19 +185,19 @@ public class MarioMod2
 
         PluginHandler.getInstance().init();
 
-        long time = stopwatchInitPhases.stop().elapsed(TimeUnit.MILLISECONDS);
+        long time = this.stopwatchInitPhases.stop().elapsed(TimeUnit.MILLISECONDS);
         LogHelper.info("Init Complete in " + time + "ms");
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-        stopwatchInitPhases = Stopwatch.createStarted();
+        this.stopwatchInitPhases = Stopwatch.createStarted();
         LogHelper.info("Post-Init");
 
         PluginHandler.getInstance().postInit();
 
-        long time = stopwatchInitPhases.stop().elapsed(TimeUnit.MILLISECONDS);
+        long time = this.stopwatchInitPhases.stop().elapsed(TimeUnit.MILLISECONDS);
         LogHelper.info("Post-Init Complete in " + time + "ms");
     }
 

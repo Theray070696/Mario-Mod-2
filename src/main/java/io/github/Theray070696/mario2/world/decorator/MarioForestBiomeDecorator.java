@@ -25,17 +25,17 @@ public class MarioForestBiomeDecorator extends BiomeDecorator
 {
     public MarioForestBiomeDecorator()
     {
-        treesPerChunk = 10;
-        flowersPerChunk = 0;
-        grassPerChunk = 0;
-        deadBushPerChunk = 0;
-        mushroomsPerChunk = 0;
-        reedsPerChunk = 0;
-        cactiPerChunk = 0;
-        sandPerChunk = 0;
-        sandPerChunk2 = 0;
-        clayPerChunk = 0;
-        bigMushroomsPerChunk = 0;
+        this.treesPerChunk = 10;
+        this.flowersPerChunk = 0;
+        this.grassPerChunk = 0;
+        this.deadBushPerChunk = 0;
+        this.mushroomsPerChunk = 0;
+        this.reedsPerChunk = 0;
+        this.cactiPerChunk = 0;
+        this.sandPerChunk = 0;
+        this.sandPerChunk2 = 0;
+        this.clayPerChunk = 0;
+        this.bigMushroomsPerChunk = 0;
     }
 
     @Override
@@ -92,10 +92,10 @@ public class MarioForestBiomeDecorator extends BiomeDecorator
 
     protected void genDecorations(Biome biome, World world, Random rand)
     {
-        net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, chunkPos));
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(world, rand, this.chunkPos));
         this.generateOres(world, rand);
 
-        if(TerrainGen.decorate(world, rand, chunkPos, DecorateBiomeEvent.Decorate.EventType.SAND))
+        if(TerrainGen.decorate(world, rand, this.chunkPos, DecorateBiomeEvent.Decorate.EventType.SAND))
         {
             for(int i = 0; i < this.sandPerChunk2; ++i)
             {
@@ -105,7 +105,7 @@ public class MarioForestBiomeDecorator extends BiomeDecorator
             }
         }
 
-        if(TerrainGen.decorate(world, rand, chunkPos, DecorateBiomeEvent.Decorate.EventType.CLAY))
+        if(TerrainGen.decorate(world, rand, this.chunkPos, DecorateBiomeEvent.Decorate.EventType.CLAY))
         {
             for(int i1 = 0; i1 < this.clayPerChunk; ++i1)
             {
@@ -115,7 +115,7 @@ public class MarioForestBiomeDecorator extends BiomeDecorator
             }
         }
 
-        if(TerrainGen.decorate(world, rand, chunkPos, DecorateBiomeEvent.Decorate.EventType.SAND_PASS2))
+        if(TerrainGen.decorate(world, rand, this.chunkPos, DecorateBiomeEvent.Decorate.EventType.SAND_PASS2))
         {
             for(int j1 = 0; j1 < this.sandPerChunk; ++j1)
             {
@@ -132,7 +132,7 @@ public class MarioForestBiomeDecorator extends BiomeDecorator
             ++treeChance;
         }
 
-        if(TerrainGen.decorate(world, rand, chunkPos, DecorateBiomeEvent.Decorate.EventType.TREE))
+        if(TerrainGen.decorate(world, rand, this.chunkPos, DecorateBiomeEvent.Decorate.EventType.TREE))
         {
             for(int j2 = 0; j2 < treeChance; ++j2)
             {
@@ -148,7 +148,7 @@ public class MarioForestBiomeDecorator extends BiomeDecorator
 
         if(this.generateLakes)
         {
-            if(TerrainGen.decorate(world, rand, chunkPos, DecorateBiomeEvent.Decorate.EventType.LAKE_WATER))
+            if(TerrainGen.decorate(world, rand, this.chunkPos, DecorateBiomeEvent.Decorate.EventType.LAKE_WATER))
             {
                 for(int k5 = 0; k5 < 50; ++k5)
                 {
@@ -165,7 +165,7 @@ public class MarioForestBiomeDecorator extends BiomeDecorator
                 }
             }
 
-            if(TerrainGen.decorate(world, rand, chunkPos, DecorateBiomeEvent.Decorate.EventType.LAKE_LAVA))
+            if(TerrainGen.decorate(world, rand, this.chunkPos, DecorateBiomeEvent.Decorate.EventType.LAKE_LAVA))
             {
                 for(int l5 = 0; l5 < 20; ++l5)
                 {
@@ -177,6 +177,6 @@ public class MarioForestBiomeDecorator extends BiomeDecorator
                 }
             }
         }
-        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, chunkPos));
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(world, rand, this.chunkPos));
     }
 }

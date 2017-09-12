@@ -66,9 +66,8 @@ public class JEIPlugin extends BlankModPlugin
 
         @Nullable
         @Override
-        public List<Rectangle> getGuiExtraAreas(GuiMarioMaker guiContainer)
+        public List<Rectangle> getGuiExtraAreas(GuiMarioMaker guiMarioMaker)
         {
-            GuiMarioMaker guiMarioMaker = guiContainer;
             return guiMarioMaker.getExtraGuiAreas();
         }
     }

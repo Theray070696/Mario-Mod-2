@@ -116,7 +116,7 @@ public class WorldGenMario implements IWorldGenerator
 
             this.runGenerator(this.noteBlock, world, random, chunkX, chunkZ, random.nextInt(15), 25, 128);
         } else if(!world.provider.getDimensionType().getName().equalsIgnoreCase("CompactMachinesWorld") && !world.provider.getDimensionType()
-                .getName().contains("Tardis"))
+                .getName().contains("Tardis") && !world.provider.getDimensionType().getName().contains("etd"))
         {
             // Overworld or some mod dimension
             this.runGenerator(this.questionMarkSMB, world, random, chunkX, chunkZ, random.nextInt(2), 50, 85);

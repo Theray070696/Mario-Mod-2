@@ -68,12 +68,12 @@ public class ChunkGeneratorMario implements IChunkGenerator
     public ChunkGeneratorMario(World world, long seed, boolean mapFeaturesEnabled, String settingsString)
     {
         {
-            caveGenerator = TerrainGen.getModdedMapGen(caveGenerator, InitMapGenEvent.EventType.CAVE);
-            villageGenerator = (MapGenVillage) TerrainGen.getModdedMapGen(villageGenerator, InitMapGenEvent.EventType.VILLAGE);
-            mineshaftGenerator = (MapGenMineshaft) TerrainGen.getModdedMapGen(mineshaftGenerator, InitMapGenEvent.EventType.MINESHAFT);
-            scatteredFeatureGenerator = (MapGenScatteredFeature) TerrainGen.getModdedMapGen(scatteredFeatureGenerator, InitMapGenEvent.EventType
-                    .SCATTERED_FEATURE);
-            ravineGenerator = TerrainGen.getModdedMapGen(ravineGenerator, InitMapGenEvent.EventType.RAVINE);
+            this.caveGenerator = TerrainGen.getModdedMapGen(caveGenerator, InitMapGenEvent.EventType.CAVE);
+            this.villageGenerator = (MapGenVillage) TerrainGen.getModdedMapGen(villageGenerator, InitMapGenEvent.EventType.VILLAGE);
+            this.mineshaftGenerator = (MapGenMineshaft) TerrainGen.getModdedMapGen(mineshaftGenerator, InitMapGenEvent.EventType.MINESHAFT);
+            this.scatteredFeatureGenerator = (MapGenScatteredFeature) TerrainGen.getModdedMapGen(scatteredFeatureGenerator, InitMapGenEvent
+                    .EventType.SCATTERED_FEATURE);
+            this.ravineGenerator = TerrainGen.getModdedMapGen(ravineGenerator, InitMapGenEvent.EventType.RAVINE);
         }
         this.worldObj = world;
         this.mapFeaturesEnabled = mapFeaturesEnabled;
@@ -105,8 +105,8 @@ public class ChunkGeneratorMario implements IChunkGenerator
             world.setSeaLevel(this.settings.seaLevel);
         }
 
-        InitNoiseGensEvent.ContextOverworld ctx = new InitNoiseGensEvent.ContextOverworld(minLimitPerlinNoise, maxLimitPerlinNoise,
-                mainPerlinNoise, surfaceNoise, scaleNoise, depthNoise, forestNoise);
+        InitNoiseGensEvent.ContextOverworld ctx = new InitNoiseGensEvent.ContextOverworld(this.minLimitPerlinNoise, this.maxLimitPerlinNoise, this
+                .mainPerlinNoise, this.surfaceNoise, this.scaleNoise, this.depthNoise, this.forestNoise);
         ctx = TerrainGen.getModdedNoiseGenerators(world, this.rand, ctx);
         this.minLimitPerlinNoise = ctx.getLPerlin1();
         this.maxLimitPerlinNoise = ctx.getLPerlin2();
@@ -189,6 +189,7 @@ public class ChunkGeneratorMario implements IChunkGenerator
         {
             return;
         }
+
         this.depthBuffer = this.surfaceNoise.getRegion(this.depthBuffer, (double) (x * 16), (double) (z * 16), 16, 16, 0.0625D, 0.0625D, 1.0D);
 
         for(int xMult = 0; xMult < 16; ++xMult)

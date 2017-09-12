@@ -90,31 +90,31 @@ public class SlotCraftingMario extends Slot
     public void onPickupFromSlot(EntityPlayer playerIn, ItemStack stack)
     {
         this.onCrafting(stack);
-        ItemStack[] aitemstack = MarioMakerCraftingManager.getInstance().getRemainingItems(this.craftMatrix, playerIn.worldObj);
+        ItemStack[] aItemStack = MarioMakerCraftingManager.getInstance().getRemainingItems(this.craftMatrix, playerIn.worldObj);
 
-        for(int i = 0; i < aitemstack.length; ++i)
+        for(int i = 0; i < aItemStack.length; ++i)
         {
-            ItemStack itemstack = this.craftMatrix.getStackInSlot(i);
-            ItemStack itemstack1 = aitemstack[i];
+            ItemStack itemStack = this.craftMatrix.getStackInSlot(i);
+            ItemStack itemStack1 = aItemStack[i];
 
-            if(itemstack != null)
+            if(itemStack != null)
             {
                 this.craftMatrix.decrStackSize(i, 1);
-                itemstack = this.craftMatrix.getStackInSlot(i);
+                itemStack = this.craftMatrix.getStackInSlot(i);
             }
 
-            if(itemstack1 != null)
+            if(itemStack1 != null)
             {
-                if(itemstack == null)
+                if(itemStack == null)
                 {
-                    this.craftMatrix.setInventorySlotContents(i, itemstack1);
-                } else if(ItemStack.areItemsEqual(itemstack, itemstack1) && ItemStack.areItemStackTagsEqual(itemstack, itemstack1))
+                    this.craftMatrix.setInventorySlotContents(i, itemStack1);
+                } else if(ItemStack.areItemsEqual(itemStack, itemStack1) && ItemStack.areItemStackTagsEqual(itemStack, itemStack1))
                 {
-                    itemstack1.stackSize += itemstack.stackSize;
-                    this.craftMatrix.setInventorySlotContents(i, itemstack1);
-                } else if(!this.thePlayer.inventory.addItemStackToInventory(itemstack1))
+                    itemStack1.stackSize += itemStack.stackSize;
+                    this.craftMatrix.setInventorySlotContents(i, itemStack1);
+                } else if(!this.thePlayer.inventory.addItemStackToInventory(itemStack1))
                 {
-                    this.thePlayer.dropItem(itemstack1, false);
+                    this.thePlayer.dropItem(itemStack1, false);
                 }
             }
         }

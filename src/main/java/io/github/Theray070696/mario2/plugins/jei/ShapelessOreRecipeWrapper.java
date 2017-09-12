@@ -38,12 +38,12 @@ public class ShapelessOreRecipeWrapper extends AbstractShapelessRecipeWrapper
     @Override
     public void getIngredients(IIngredients ingredients)
     {
-        IStackHelper stackHelper = jeiHelpers.getStackHelper();
-        ItemStack recipeOutput = recipe.getRecipeOutput();
+        IStackHelper stackHelper = this.jeiHelpers.getStackHelper();
+        ItemStack recipeOutput = this.recipe.getRecipeOutput();
 
         try
         {
-            List<List<ItemStack>> inputs = stackHelper.expandRecipeItemStackInputs(recipe.getInput());
+            List<List<ItemStack>> inputs = stackHelper.expandRecipeItemStackInputs(this.recipe.getInput());
             ingredients.setInputLists(ItemStack.class, inputs);
 
             if(recipeOutput != null)
@@ -59,12 +59,12 @@ public class ShapelessOreRecipeWrapper extends AbstractShapelessRecipeWrapper
     @Override
     public List getInputs()
     {
-        return recipe.getInput();
+        return this.recipe.getInput();
     }
 
     @Override
     public List<ItemStack> getOutputs()
     {
-        return Collections.singletonList(recipe.getRecipeOutput());
+        return Collections.singletonList(this.recipe.getRecipeOutput());
     }
 }

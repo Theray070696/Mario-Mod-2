@@ -124,9 +124,9 @@ public class WorldGenMarioTree extends WorldGenerator
     protected boolean canGrowInto(Block blockType)
     {
         Material material = blockType.getDefaultState().getMaterial();
-        return material == Material.AIR || material == Material.LEAVES || blockType == Blocks.GRASS || blockType == Blocks.DIRT || blockType ==
-                Blocks.LOG || blockType == Blocks.LOG2 || blockType == Blocks.SAPLING || blockType == Blocks.VINE || blockType == ModBlocks
-                .blockGround || blockType == ModBlocks.blockGroundUnderground || blockType == ModBlocks.blockMarioLog;
+        return material == Material.AIR || material == Material.LEAVES || blockType == Blocks.VINE || blockType == ModBlocks.blockGround ||
+                blockType == ModBlocks.blockGroundUnderground || blockType == ModBlocks.blockMarioLog || blockType == ModBlocks.blockMarioLeaves ||
+                blockType == ModBlocks.blockMarioSapling;
     }
 
     public boolean isReplaceable(World world, BlockPos pos)

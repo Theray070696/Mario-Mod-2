@@ -54,12 +54,12 @@ public class EntityFireball extends Entity
         {
             Vec3d vec3d = new Vec3d(this.posX, this.posY, this.posZ);
             Vec3d vec3d1 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-            RayTraceResult movingobjectposition = this.worldObj.rayTraceBlocks(vec3d, vec3d1);
+            RayTraceResult rayTraceResult = this.worldObj.rayTraceBlocks(vec3d, vec3d1);
             vec3d = new Vec3d(this.posX, this.posY, this.posZ);
             vec3d1 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-            if(movingobjectposition != null)
+            if(rayTraceResult != null)
             {
-                vec3d1 = new Vec3d(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
+                vec3d1 = new Vec3d(rayTraceResult.hitVec.xCoord, rayTraceResult.hitVec.yCoord, rayTraceResult.hitVec.zCoord);
             }
 
             Entity entity = null;
@@ -73,11 +73,11 @@ public class EntityFireball extends Entity
                 if(entity1.canBeCollidedWith())
                 {
                     float f5 = 1.0F;
-                    AxisAlignedBB axisalignedbb1 = entity1.getEntityBoundingBox().expand((double) f5, (double) f5, (double) f5);
-                    RayTraceResult movingobjectposition1 = axisalignedbb1.calculateIntercept(vec3d, vec3d1);
-                    if(movingobjectposition1 != null)
+                    AxisAlignedBB entityBoundingBox = entity1.getEntityBoundingBox().expand((double) f5, (double) f5, (double) f5);
+                    RayTraceResult rayTraceResult1 = entityBoundingBox.calculateIntercept(vec3d, vec3d1);
+                    if(rayTraceResult1 != null)
                     {
-                        double d1 = vec3d.distanceTo(movingobjectposition1.hitVec);
+                        double d1 = vec3d.distanceTo(rayTraceResult1.hitVec);
                         if(d1 < d || d == 0.0D)
                         {
                             entity = entity1;
@@ -89,14 +89,14 @@ public class EntityFireball extends Entity
 
             if(entity != null)
             {
-                movingobjectposition = new RayTraceResult(entity);
+                rayTraceResult = new RayTraceResult(entity);
             }
 
-            if(movingobjectposition != null && movingobjectposition.entityHit != null && movingobjectposition.entityHit instanceof EntityLiving &&
-                    !(movingobjectposition.entityHit instanceof EntityPlayer))
+            if(rayTraceResult != null && rayTraceResult.entityHit != null && rayTraceResult.entityHit instanceof EntityLiving &&
+                    !(rayTraceResult.entityHit instanceof EntityPlayer))
             {
-                movingobjectposition.entityHit.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this, this), 5.0F);
-                movingobjectposition.entityHit.setFire(20);
+                rayTraceResult.entityHit.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this, this), 5.0F);
+                rayTraceResult.entityHit.setFire(20);
                 this.setDead();
             } else
             {
@@ -140,14 +140,14 @@ public class EntityFireball extends Entity
         }
     }
 
-    public void writeEntityToNBT(NBTTagCompound nbttagcompound)
+    public void writeEntityToNBT(NBTTagCompound tagCompound)
     {
-        nbttagcompound.setByte("Fuse", (byte) this.fuse);
+        tagCompound.setByte("Fuse", (byte) this.fuse);
     }
 
-    public void readEntityFromNBT(NBTTagCompound nbttagcompound)
+    public void readEntityFromNBT(NBTTagCompound tagCompound)
     {
-        this.fuse = nbttagcompound.getByte("Fuse");
+        this.fuse = tagCompound.getByte("Fuse");
     }
 
     protected void entityInit()

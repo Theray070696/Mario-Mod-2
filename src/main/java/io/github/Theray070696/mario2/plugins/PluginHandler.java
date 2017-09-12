@@ -40,9 +40,9 @@ public class PluginHandler
         }
 
         LogHelper.info("Registering plugin for " + plugin.getModID());
-        plugins.add(plugin);
+        this.plugins.add(plugin);
 
-        switch(currentPhase)
+        switch(this.currentPhase)
         {
             case DONE:
             case POSTINIT:
@@ -64,8 +64,8 @@ public class PluginHandler
 
     public void preInit()
     {
-        currentPhase = Phase.PREINIT;
-        for(IPlugin plugin : plugins)
+        this.currentPhase = Phase.PREINIT;
+        for(IPlugin plugin : this.plugins)
         {
             plugin.preInit();
         }
@@ -73,8 +73,8 @@ public class PluginHandler
 
     public void init()
     {
-        currentPhase = Phase.INIT;
-        for(IPlugin plugin : plugins)
+        this.currentPhase = Phase.INIT;
+        for(IPlugin plugin : this.plugins)
         {
             plugin.init();
         }
@@ -82,17 +82,17 @@ public class PluginHandler
 
     public void postInit()
     {
-        currentPhase = Phase.POSTINIT;
-        for(IPlugin plugin : plugins)
+        this.currentPhase = Phase.POSTINIT;
+        for(IPlugin plugin : this.plugins)
         {
             plugin.postInit();
         }
-        currentPhase = Phase.DONE;
+        this.currentPhase = Phase.DONE;
     }
 
     public void registerBuiltInPlugins()
     {
-        //registerPlugin(new NotEnoughItems());
+        //this.registerPlugin(new NotEnoughItems());
     }
 
     private enum Phase

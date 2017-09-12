@@ -50,6 +50,7 @@ public class ShapelessOreRecipeHandler implements IRecipeHandler<ShapelessOreRec
         {
             return false;
         }
+
         int inputCount = 0;
         for(Object input : recipe.getInput())
         {
@@ -61,19 +62,13 @@ public class ShapelessOreRecipeHandler implements IRecipeHandler<ShapelessOreRec
                     return false;
                 }
             }
+
             if(input != null)
             {
                 inputCount++;
             }
         }
-        if(inputCount > 9)
-        {
-            return false;
-        }
-        if(inputCount == 0)
-        {
-            return false;
-        }
-        return true;
+
+        return inputCount <= 9 && inputCount != 0;
     }
 }
