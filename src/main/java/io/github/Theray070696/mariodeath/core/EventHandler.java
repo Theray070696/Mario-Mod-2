@@ -171,6 +171,11 @@ public class EventHandler
     @SubscribeEvent
     public void onLivingDropsEvent(LivingDropsEvent event)
     {
+        if(!event.getEntity().worldObj.getGameRules().getBoolean("doMobLoot"))
+        {
+            return;
+        }
+
         if(event.getSource().getSourceOfDamage() instanceof EntityPlayer && !(event.getSource().getSourceOfDamage() instanceof FakePlayer)) // If
         // the cause of damage was a player, but NOT a fake player...
         {
@@ -213,7 +218,7 @@ public class EventHandler
                 } else if(randInt >= 20 && randInt < 45) // 25% chance.
                 {
                     entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, rand.nextInt(4), 2), 0.0f); // Red Coin
-                } else if(randInt >= 45 && randInt < 90) // 45% chance.
+                } else if(randInt >= 45 && randInt < 90 || true) // 45% chance.
                 {
                     entity.entityDropItem(new ItemStack(ModItems.itemMarioCoin, rand.nextInt(4) + 1, rand.nextInt(3)), 0.0f); // Normal Coin
                 }
