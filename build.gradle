@@ -28,7 +28,7 @@ dependencies {
 }
 
 version = "2.0.7.0"
-group = "io.github.Theray070696.mariodeath" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = "io.github.Theray070696.mario2" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "mario2"
 
 sourceCompatibility = targetCompatibility = "1.8" // Need this here so eclipse task generates correctly.
@@ -48,7 +48,7 @@ minecraft {
     mappings = "snapshot_20161111"
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 	
-    replaceIn "src/main/java/io/github/Theray070696/mariodeath/lib/ModInfo.java"
+    replaceIn "src/main/java/io/github/Theray070696/mario2/lib/ModInfo.java"
     replace "version", project.version
 }
 
