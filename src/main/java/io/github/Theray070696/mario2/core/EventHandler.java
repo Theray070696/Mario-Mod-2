@@ -216,7 +216,7 @@ public class EventHandler
                     entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, rand.nextInt(4), 2), 0.0f); // Red Coin
                 } else if(randInt >= 45 && randInt < 90) // 45% chance.
                 {
-                    entity.entityDropItem(new ItemStack(ModItems.itemMarioCoin, rand.nextInt(4) + 1, rand.nextInt(3)), 0.0f); // Normal Coin
+                    entity.entityDropItem(new ItemStack(ModItems.itemCoin, rand.nextInt(4) + 1, rand.nextInt(3)), 0.0f); // Normal Coin
                 }
             }
         }

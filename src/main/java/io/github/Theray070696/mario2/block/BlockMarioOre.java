@@ -28,13 +28,13 @@ public class BlockMarioOre extends BlockMario
 
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return this == ModBlocks.blockCoalOreSMW ? Items.COAL : (this == ModBlocks.blockDiamondOreSMW ? Items.DIAMOND : (this == ModBlocks
-                .blockLapisOreSMW ? Items.DYE : Item.getItemFromBlock(this)));
+        return this == ModBlocks.marioBlockCoalOreSMW ? Items.COAL : (this == ModBlocks.marioBlockDiamondOreSMW ? Items.DIAMOND : (this == ModBlocks
+                .marioBlockLapisOreSMW ? Items.DYE : Item.getItemFromBlock(this)));
     }
 
     public int quantityDropped(Random rand)
     {
-        return this == ModBlocks.blockLapisOreSMW ? 4 + rand.nextInt(5) : 1;
+        return this == ModBlocks.marioBlockLapisOreSMW ? 4 + rand.nextInt(5) : 1;
     }
 
     public int quantityDroppedWithBonus(int fortune, Random rand)
@@ -68,13 +68,13 @@ public class BlockMarioOre extends BlockMario
         {
             int i = 0;
 
-            if(this == ModBlocks.blockCoalOreSMW)
+            if(this == ModBlocks.marioBlockCoalOreSMW)
             {
                 i = MathHelper.getInt(rand, 0, 2);
-            } else if(this == ModBlocks.blockDiamondOreSMW)
+            } else if(this == ModBlocks.marioBlockDiamondOreSMW)
             {
                 i = MathHelper.getInt(rand, 3, 7);
-            } else if(this == ModBlocks.blockLapisOreSMW)
+            } else if(this == ModBlocks.marioBlockLapisOreSMW)
             {
                 i = MathHelper.getInt(rand, 2, 5);
             }
@@ -91,19 +91,19 @@ public class BlockMarioOre extends BlockMario
 
     public int damageDropped(IBlockState state)
     {
-        return this == ModBlocks.blockLapisOreSMW ? EnumDyeColor.BLUE.getDyeDamage() : 0;
+        return this == ModBlocks.marioBlockLapisOreSMW ? EnumDyeColor.BLUE.getDyeDamage() : 0;
     }
 
     @Override
     public int getHarvestLevel(IBlockState state)
     {
-        if(state.getBlock() == ModBlocks.blockCoalOreSMW)
+        if(state.getBlock() == ModBlocks.marioBlockCoalOreSMW)
         {
             return 0;
-        } else if(state.getBlock() == ModBlocks.blockIronOreSMW || state.getBlock() == ModBlocks.blockLapisOreSMW)
+        } else if(state.getBlock() == ModBlocks.marioBlockIronOreSMW || state.getBlock() == ModBlocks.marioBlockLapisOreSMW)
         {
             return 1;
-        } else if(state.getBlock() == ModBlocks.blockGoldOreSMW || state.getBlock() == ModBlocks.blockDiamondOreSMW)
+        } else if(state.getBlock() == ModBlocks.marioBlockGoldOreSMW || state.getBlock() == ModBlocks.marioBlockDiamondOreSMW)
         {
             return 2;
         }

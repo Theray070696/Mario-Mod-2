@@ -45,20 +45,20 @@ public class WorldGenMario implements IWorldGenerator
 
     public WorldGenMario()
     {
-        this.questionMarkSMB = new WorldGenQuestionMark(ModBlocks.blockQuestionMarkSMB, true);
-        this.questionMarkUndergroundSMB = new WorldGenMinableSingle(ModBlocks.blockQuestionMarkUndergroundSMB, Blocks.AIR, false);
-        this.questionMarkUndergroundRareSMB = new WorldGenMinableSingle(ModBlocks.blockQuestionMarkUndergroundSMB, Blocks.AIR, true);
-        this.invisibleBlockSMB = new WorldGenMinableSingle(ModBlocks.blockInvisibleBlockSMB, Blocks.AIR, true);
+        this.questionMarkSMB = new WorldGenQuestionMark(ModBlocks.marioBlockQuestionMarkSMB, true);
+        this.questionMarkUndergroundSMB = new WorldGenMinableSingle(ModBlocks.marioBlockQuestionMarkUndergroundSMB, Blocks.AIR, false);
+        this.questionMarkUndergroundRareSMB = new WorldGenMinableSingle(ModBlocks.marioBlockQuestionMarkUndergroundSMB, Blocks.AIR, true);
+        this.invisibleBlockSMB = new WorldGenMinableSingle(ModBlocks.marioBlockInvisibleBlockSMB, Blocks.AIR, true);
 
-        this.questionMarkSMB3 = new WorldGenQuestionMark(ModBlocks.blockQuestionMarkSMB3, true);
-        this.questionMarkNotRareSMB3 = new WorldGenMinableSingle(ModBlocks.blockQuestionMarkSMB, Blocks.AIR, false);
-        this.invisibleBlockSMB3 = new WorldGenMinableSingle(ModBlocks.blockInvisibleBlockSMB3, Blocks.AIR, true);
+        this.questionMarkSMB3 = new WorldGenQuestionMark(ModBlocks.marioBlockQuestionMarkSMB3, true);
+        this.questionMarkNotRareSMB3 = new WorldGenMinableSingle(ModBlocks.marioBlockQuestionMarkSMB, Blocks.AIR, false);
+        this.invisibleBlockSMB3 = new WorldGenMinableSingle(ModBlocks.marioBlockInvisibleBlockSMB3, Blocks.AIR, true);
 
-        this.questionMark = new WorldGenQuestionMark(ModBlocks.blockQuestionMark, true);
-        this.questionMarkNotRare = new WorldGenMinableSingle(ModBlocks.blockQuestionMark, Blocks.AIR, false);
-        this.invisibleBlock = new WorldGenMinableSingle(ModBlocks.blockInvisibleBlock, Blocks.AIR, true);
+        this.questionMark = new WorldGenQuestionMark(ModBlocks.marioBlockQuestionMark, true);
+        this.questionMarkNotRare = new WorldGenMinableSingle(ModBlocks.marioBlockQuestionMark, Blocks.AIR, false);
+        this.invisibleBlock = new WorldGenMinableSingle(ModBlocks.marioBlockInvisibleBlock, Blocks.AIR, true);
 
-        this.noteBlock = new WorldGenMinableSingle(ModBlocks.blockNoteBlock, Blocks.AIR, false);
+        this.noteBlock = new WorldGenMinableSingle(ModBlocks.marioBlockNoteBlock, Blocks.AIR, false);
 
         this.castle = new WorldGenCastle();
     }
@@ -157,9 +157,9 @@ public class WorldGenMario implements IWorldGenerator
                 Block block = world.getBlockState(new BlockPos(x, y - 1, z)).getBlock();
 
                 if(block == Blocks.GRASS || block == Blocks.DIRT || block == Blocks.STONE || block == Blocks.SAND || block == Blocks.MYCELIUM ||
-                        block == ModBlocks.blockGround || block == ModBlocks.blockGroundUnderground || block == ModBlocks.blockGroundUnderwater ||
-                        block == ModBlocks.blockGroundSnow || block == ModBlocks.blockCastleWall || block == ModBlocks.blockGroundSMW || block ==
-                        ModBlocks.blockGroundUndergroundSMW)
+                        block == ModBlocks.marioBlockGround || block == ModBlocks.marioBlockGroundUnderground || block == ModBlocks.marioBlockGroundUnderwater ||
+                        block == ModBlocks.marioBlockGroundSnow || block == ModBlocks.marioBlockCastleWall || block == ModBlocks.marioBlockGroundSMW || block ==
+                        ModBlocks.marioBlockGroundUndergroundSMW)
                 {
                     worldGenerator.generate(world, rand, new BlockPos(x, y, z));
                 }

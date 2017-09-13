@@ -2,177 +2,172 @@ package io.github.Theray070696.mario2.block;
 
 import io.github.Theray070696.mario2.block.tile.TilePipe;
 import io.github.Theray070696.mario2.block.tile.TileQuestionMark;
+import io.github.Theray070696.mario2.lib.ModInfo;
 import io.github.Theray070696.mario2.util.LogHelper;
-import io.github.Theray070696.raycore.api.block.RayBlockRegistry;
+import io.github.Theray070696.raycore.RayCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
 /**
  * Created by Theray070696 on 8/27/2015.
  */
+@Mod.EventBusSubscriber
+@GameRegistry.ObjectHolder(ModInfo.MOD_ID)
 public class ModBlocks
 {
-    public static BlockMario blockMarioMaker;
+    public static final Block marioBlockMarioMaker = null;
+    public static final Block marioBlockNoteBlock = null;
+    public static final Block marioBlockEmptyQuestionMark = null;
+    public static final Block marioBlockQuestionMark = null;
+    public static final Block marioBlockEmptyQuestionMarkSMB = null;
+    public static final Block marioBlockQuestionMarkSMB = null;
+    public static final Block marioBlockEmptyQuestionMarkSMB3 = null;
+    public static final Block marioBlockQuestionMarkSMB3 = null;
+    public static final Block marioBlockEmptyInvisibleBlock = null;
+    public static final Block marioBlockInvisibleBlock = null;
+    public static final Block marioBlockEmptyInvisibleBlockSMB = null;
+    public static final Block marioBlockInvisibleBlockSMB = null;
+    public static final Block marioBlockEmptyInvisibleBlockSMB3 = null;
+    public static final Block marioBlockInvisibleBlockSMB3 = null;
+    public static final Block marioBlockEmptyQuestionMarkUndergroundSMB = null;
+    public static final Block marioBlockQuestionMarkUndergroundSMB = null;
+    public static final Block marioBlockEmptyQuestionMarkCastleSMB = null;
+    public static final Block marioBlockQuestionMarkCastleSMB = null;
+    public static final Block marioBlockGround = null;
+    public static final Block marioBlockMarioBrick = null;
+    public static final Block marioBlockDecoration = null;
+    public static final Block marioBlockGroundUnderground = null;
+    public static final Block marioBlockMarioBrickUnderground = null;
+    public static final Block marioBlockUndergroundDecoration = null;
+    public static final Block marioBlockGroundUnderwater = null;
+    public static final Block marioBlockGroundSnow = null;
+    public static final Block marioBlockCastleWall = null;
+    public static final Block marioBlockMarioCastleBrick = null;
+    public static final Block marioBlockMarioLeaves = null;
+    public static final Block marioBlockMarioLog = null;
+    public static final Block marioBlockMarioPlanks = null;
+    public static final Block marioBlockMarioSapling = null;
+    public static final Block marioBlockBeanstalk = null;
+    public static final Block marioBlockGroundSMW = null;
+    public static final Block marioBlockGroundUndergroundSMW = null;
+    public static final Block marioBlockCoalOreSMW = null;
+    public static final Block marioBlockIronOreSMW = null;
+    public static final Block marioBlockGoldOreSMW = null;
+    public static final Block marioBlockDiamondOreSMW = null;
+    public static final Block marioBlockLapisOreSMW = null;
+    public static final Block marioBlockPipeBase = null;
+    public static final Block marioBlockPipe = null;
 
-    public static BlockMario blockNoteBlock;
+    private static final Block[] BLOCKS =
+            {
+                    new BlockMarioMaker(),
+                    new BlockMario(Material.ROCK, true, true).setUnlocalizedName("marioBlockGround").setHardness(4.0F),
+                    new BlockMario().setUnlocalizedName("marioBlockBrick").setHardness(2.0F),
+                    new BlockMario(Material.WOOD).setUnlocalizedName("marioBlockDecoration").setHardness(5.0F),
+                    new BlockNoteBlock(),
+                    new BlockMarioLeaves(),
+                    new BlockMarioLog(),
+                    new BlockMario(Material.WOOD).setHardness(2.0F).setResistance(5.0F).setUnlocalizedName("marioBlockPlanks"),
+                    new BlockMarioSapling(),
+                    new BlockMario(Material.GROUND, true, true).setUnlocalizedName("marioBlockGroundSMW").setHardness(4.0F),
+                    new BlockMario(Material.ROCK, true, true).setUnlocalizedName("marioBlockGroundUndergroundSMW").setHardness(4.0F),
+                    new BlockMarioOre().setUnlocalizedName("marioBlockCoalSMW").setHardness(3.0F).setResistance(5.0F),
+                    new BlockMarioOre().setUnlocalizedName("marioBlockIronSMW").setHardness(3.0F).setResistance(5.0F),
+                    new BlockMarioOre().setUnlocalizedName("marioBlockGoldSMW").setHardness(3.0F).setResistance(5.0F),
+                    new BlockMarioOre().setUnlocalizedName("marioBlockDiamondSMW").setHardness(3.0F).setResistance(5.0F),
+                    new BlockMarioOre().setUnlocalizedName("marioBlockLapisSMW").setHardness(3.0F).setResistance(5.0F),
+                    new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMark", EnumBlockType.SMW),
+                    new BlockQuestionMark("marioBlockQuestionMark", EnumBlockType.SMW),
+                    new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMarkSMB", EnumBlockType.SMB),
+                    new BlockQuestionMark("marioBlockQuestionMarkSMB", EnumBlockType.SMB),
+                    new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMarkSMB3", EnumBlockType.SMB3),
+                    new BlockQuestionMark("marioBlockQuestionMarkSMB3", EnumBlockType.SMB3),
+                    new BlockQuestionMarkEmpty("marioBlockInvisibleBlockEmpty", EnumBlockType.SMW_INVISIBLE),
+                    new BlockInvisibleBlock("marioBlockInvisibleBlock", EnumBlockType.SMW_INVISIBLE),
+                    new BlockQuestionMarkEmpty("marioBlockInvisibleBlockEmptySMB", EnumBlockType.SMB_INVISIBLE),
+                    new BlockInvisibleBlock("marioBlockInvisibleBlockSMB", EnumBlockType.SMB_INVISIBLE),
+                    new BlockQuestionMarkEmpty("marioBlockInvisibleBlockEmptySMB3", EnumBlockType.SMB3_INVISIBLE),
+                    new BlockInvisibleBlock("marioBlockInvisibleBlockSMB3", EnumBlockType.SMB3_INVISIBLE),
+                    new BlockMario(Material.ROCK, true, true).setUnlocalizedName("marioBlockGroundUnderground").setHardness(4.0F),
+                    new BlockMario().setUnlocalizedName("marioBlockBrickUnderground").setHardness(2.0F),
+                    new BlockMario(Material.WOOD).setUnlocalizedName("marioBlockUndergroundDecoration").setHardness(5.0F),
+                    new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMarkUndergroundSMB", EnumBlockType.SMB_UNDERGROUND),
+                    new BlockQuestionMark("marioBlockQuestionMarkUndergroundSMB", EnumBlockType.SMB_UNDERGROUND),
+                    new BlockMario().setUnlocalizedName("marioBlockCastleWall").setHardness(6.0F),
+                    new BlockMario().setUnlocalizedName("marioBlockCastleBrick").setHardness(3.0F),
+                    new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMarkCastleSMB", EnumBlockType.SMB_CASTLE),
+                    new BlockQuestionMark("marioBlockQuestionMarkCastleSMB", EnumBlockType.SMB_CASTLE),
+                    new BlockMario(Material.CORAL).setUnlocalizedName("marioBlockGroundUnderwater").setHardness(4.0F),
+                    new BlockMarioSnow(),
+                    new BlockBeanstalk(),
+                    new BlockPipeBase(),
+                    new BlockPipe()
+            };
 
-    public static BlockMario blockEmptyQuestionMark;
-    public static BlockMario blockQuestionMark;
-    public static BlockMario blockEmptyQuestionMarkSMB;
-    public static BlockMario blockQuestionMarkSMB;
-    public static BlockMario blockEmptyQuestionMarkSMB3;
-    public static BlockMario blockQuestionMarkSMB3;
+    @SubscribeEvent
+    public static void registerBlocks(RegistryEvent.Register<Block> event)
+    {
+        event.getRegistry().registerAll(BLOCKS);
+        LogHelper.info("Block Registration Complete");
+    }
 
-    public static BlockMario blockEmptyInvisibleBlock;
-    public static BlockMario blockInvisibleBlock;
-    public static BlockMario blockEmptyInvisibleBlockSMB;
-    public static BlockMario blockInvisibleBlockSMB;
-    public static BlockMario blockEmptyInvisibleBlockSMB3;
-    public static BlockMario blockInvisibleBlockSMB3;
+    @SubscribeEvent
+    public static void registerItemBlocks(RegistryEvent.Register<Item> event)
+    {
+        for(Block block : BLOCKS)
+        {
+            event.getRegistry().register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+        }
 
-    public static BlockMario blockEmptyQuestionMarkUndergroundSMB;
-    public static BlockMario blockQuestionMarkUndergroundSMB;
+        LogHelper.info("ItemBlock Registration Complete");
+    }
 
-    public static BlockMario blockEmptyQuestionMarkCastleSMB;
-    public static BlockMario blockQuestionMarkCastleSMB;
-
-    public static Block blockGround;
-    public static Block blockMarioBrick;
-    public static Block blockDecoration;
-    public static Block blockGroundUnderground;
-    public static Block blockMarioBrickUnderground;
-    public static Block blockUndergroundDecoration;
-    public static Block blockGroundUnderwater;
-    public static Block blockGroundSnow;
-    public static Block blockCastleWall;
-    public static Block blockMarioCastleBrick;
-    public static Block blockMarioLeaves;
-    public static Block blockMarioLog;
-    public static Block blockMarioPlanks;
-    public static BlockMarioSapling blockMarioSapling;
-
-    public static Block blockBeanstalk;
-
-    public static Block blockGroundSMW;
-    public static Block blockGroundUndergroundSMW;
-
-    public static Block blockCoalOreSMW;
-    public static Block blockIronOreSMW;
-    public static Block blockGoldOreSMW;
-    public static Block blockDiamondOreSMW;
-    public static Block blockLapisOreSMW;
-
-    public static BlockMario blockPipeBase;
-    public static BlockPipe blockPipe;
+    @SubscribeEvent
+    public static void loadBlockModels(ModelRegistryEvent event)
+    {
+        for(Block block : BLOCKS)
+        {
+            RayCore.proxy.registerItemRenderer(Item.getItemFromBlock(block), 0, ModInfo.MOD_ID, block.getRegistryName().getResourcePath());
+        }
+    }
 
     public static void initBlocks()
     {
-        LogHelper.info("Loading Blocks");
-
-        Block temp;
-
-        blockMarioMaker = RayBlockRegistry.register(new BlockMarioMaker());
-
-        blockGround = RayBlockRegistry.register(new BlockMario(Material.ROCK, true, true).setUnlocalizedName("marioBlockGround").setHardness(4.0F));
-        blockMarioBrick = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockBrick").setHardness(2.0F));
-        blockDecoration = RayBlockRegistry.register(new BlockMario(Material.WOOD).setUnlocalizedName("marioBlockDecoration").setHardness(5.0F));
-        blockNoteBlock = RayBlockRegistry.register(new BlockNoteBlock());
-
-        blockMarioLeaves = RayBlockRegistry.register(new BlockMarioLeaves());
-        blockMarioLog = RayBlockRegistry.register(new BlockMarioLog());
-        blockMarioPlanks = RayBlockRegistry.register(new BlockMario(Material.WOOD).setHardness(2.0F).setResistance(5.0F).setUnlocalizedName
-                ("marioBlockPlanks"));
-        blockMarioSapling = RayBlockRegistry.register(new BlockMarioSapling());
-
-        blockGroundSMW = RayBlockRegistry.register(new BlockMario(Material.GROUND, true, true).setUnlocalizedName("marioBlockGroundSMW").setHardness
-                (4.0F));
-        blockGroundUndergroundSMW = RayBlockRegistry.register(new BlockMario(Material.ROCK, true, true).setUnlocalizedName
-                ("marioBlockGroundUndergroundSMW").setHardness(4.0F));
-
-        blockCoalOreSMW = RayBlockRegistry.register(new BlockMarioOre().setUnlocalizedName("marioBlockCoalSMW").setHardness(3.0F).setResistance
-                (5.0F));
-        blockIronOreSMW = RayBlockRegistry.register(new BlockMarioOre().setUnlocalizedName("marioBlockIronSMW").setHardness(3.0F).setResistance
-                (5.0F));
-        blockGoldOreSMW = RayBlockRegistry.register(new BlockMarioOre().setUnlocalizedName("marioBlockGoldSMW").setHardness(3.0F).setResistance
-                (5.0F));
-        blockDiamondOreSMW = RayBlockRegistry.register(new BlockMarioOre().setUnlocalizedName("marioBlockDiamondSMW").setHardness(3.0F)
-                .setResistance(5.0F));
-        blockLapisOreSMW = RayBlockRegistry.register(new BlockMarioOre().setUnlocalizedName("marioBlockLapisSMW").setHardness(3.0F).setResistance
-                (5.0F));
-
-        blockEmptyQuestionMark = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMark", EnumBlockType.SMW));
-        blockQuestionMark = RayBlockRegistry.register(new BlockQuestionMark("marioBlockQuestionMark", EnumBlockType.SMW));
-        blockEmptyQuestionMarkSMB = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMarkSMB", EnumBlockType.SMB));
-        blockQuestionMarkSMB = RayBlockRegistry.register(new BlockQuestionMark("marioBlockQuestionMarkSMB", EnumBlockType.SMB));
-        blockEmptyQuestionMarkSMB3 = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMarkSMB3", EnumBlockType.SMB3));
-        blockQuestionMarkSMB3 = RayBlockRegistry.register(new BlockQuestionMark("marioBlockQuestionMarkSMB3", EnumBlockType.SMB3));
-
-        blockEmptyInvisibleBlock = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockInvisibleBlockEmpty", EnumBlockType
-                .SMW_INVISIBLE));
-        blockInvisibleBlock = RayBlockRegistry.register(new BlockInvisibleBlock("marioBlockInvisibleBlock", EnumBlockType.SMW_INVISIBLE));
-        blockEmptyInvisibleBlockSMB = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockInvisibleBlockEmptySMB", EnumBlockType
-                .SMB_INVISIBLE));
-        blockInvisibleBlockSMB = RayBlockRegistry.register(new BlockInvisibleBlock("marioBlockInvisibleBlockSMB", EnumBlockType.SMB_INVISIBLE));
-        blockEmptyInvisibleBlockSMB3 = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockInvisibleBlockEmptySMB3", EnumBlockType
-                .SMB3_INVISIBLE));
-        blockInvisibleBlockSMB3 = RayBlockRegistry.register(new BlockInvisibleBlock("marioBlockInvisibleBlockSMB3", EnumBlockType.SMB3_INVISIBLE));
-
-        blockGroundUnderground = RayBlockRegistry.register(new BlockMario(Material.ROCK, true, true).setUnlocalizedName
-                ("marioBlockGroundUnderground").setHardness(4.0F));
-        blockMarioBrickUnderground = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockBrickUnderground").setHardness(2.0F));
-        blockUndergroundDecoration = RayBlockRegistry.register(new BlockMario(Material.WOOD).setUnlocalizedName("marioBlockUndergroundDecoration")
-                .setHardness(5.0F));
-        blockEmptyQuestionMarkUndergroundSMB = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMarkUndergroundSMB",
-                EnumBlockType.SMB_UNDERGROUND));
-        blockQuestionMarkUndergroundSMB = RayBlockRegistry.register(new BlockQuestionMark("marioBlockQuestionMarkUndergroundSMB", EnumBlockType
-                .SMB_UNDERGROUND));
-
-        blockCastleWall = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockCastleWall").setHardness(6.0F));
-        blockMarioCastleBrick = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockCastleBrick").setHardness(3.0F));
-        blockEmptyQuestionMarkCastleSMB = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMarkCastleSMB",
-                EnumBlockType.SMB_CASTLE));
-        blockQuestionMarkCastleSMB = RayBlockRegistry.register(new BlockQuestionMark("marioBlockQuestionMarkCastleSMB", EnumBlockType.SMB_CASTLE));
-
-        blockGroundUnderwater = RayBlockRegistry.register(new BlockMario(Material.CORAL).setUnlocalizedName("marioBlockGroundUnderwater")
-                .setHardness(4.0F));
-
-        temp = new BlockMario().setUnlocalizedName("marioBlockGroundSnow").setHardness(4.0F);
-        temp.slipperiness = 0.9f;
-        blockGroundSnow = RayBlockRegistry.register(temp);
-
-        blockBeanstalk = RayBlockRegistry.register(new BlockBeanstalk());
-
-        blockPipeBase = RayBlockRegistry.register(new BlockPipeBase());
-        blockPipe = RayBlockRegistry.register(new BlockPipe());
+        LogHelper.info("Loading Extra Block Data");
 
         GameRegistry.registerTileEntity(TilePipe.class, "tileMarioPipe");
-
         GameRegistry.registerTileEntity(TileQuestionMark.class, "tileMarioQuestionMark");
 
-        OreDictionary.registerOre("logWood", blockMarioLog);
-        OreDictionary.registerOre("plankWood", blockMarioPlanks);
-        OreDictionary.registerOre("treeLeaves", blockMarioLeaves);
-        OreDictionary.registerOre("treeSapling", blockMarioSapling);
+        OreDictionary.registerOre("logWood", marioBlockMarioLog);
+        OreDictionary.registerOre("plankWood", marioBlockMarioPlanks);
+        OreDictionary.registerOre("treeLeaves", marioBlockMarioLeaves);
+        OreDictionary.registerOre("treeSapling", marioBlockMarioSapling);
 
-        OreDictionary.registerOre("oreCoal", blockCoalOreSMW);
-        OreDictionary.registerOre("oreIron", blockIronOreSMW);
-        OreDictionary.registerOre("oreGold", blockGoldOreSMW);
-        OreDictionary.registerOre("oreDiamond", blockDiamondOreSMW);
-        OreDictionary.registerOre("oreLapis", blockLapisOreSMW);
+        OreDictionary.registerOre("oreCoal", marioBlockCoalOreSMW);
+        OreDictionary.registerOre("oreIron", marioBlockIronOreSMW);
+        OreDictionary.registerOre("oreGold", marioBlockGoldOreSMW);
+        OreDictionary.registerOre("oreDiamond", marioBlockDiamondOreSMW);
+        OreDictionary.registerOre("oreLapis", marioBlockLapisOreSMW);
 
-        OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyQuestionMark);
-        OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyInvisibleBlock);
+        OreDictionary.registerOre("emptyQuestionMarkBlock", marioBlockEmptyQuestionMark);
+        OreDictionary.registerOre("emptyQuestionMarkBlock", marioBlockEmptyInvisibleBlock);
 
-        OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyQuestionMarkSMB);
-        OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyQuestionMarkUndergroundSMB);
-        OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyQuestionMarkCastleSMB);
-        OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyInvisibleBlockSMB);
+        OreDictionary.registerOre("emptyQuestionMarkBlock", marioBlockEmptyQuestionMarkSMB);
+        OreDictionary.registerOre("emptyQuestionMarkBlock", marioBlockEmptyQuestionMarkUndergroundSMB);
+        OreDictionary.registerOre("emptyQuestionMarkBlock", marioBlockEmptyQuestionMarkCastleSMB);
+        OreDictionary.registerOre("emptyQuestionMarkBlock", marioBlockEmptyInvisibleBlockSMB);
 
-        OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyQuestionMarkSMB3);
-        OreDictionary.registerOre("emptyQuestionMarkBlock", blockEmptyInvisibleBlockSMB3);
+        OreDictionary.registerOre("emptyQuestionMarkBlock", marioBlockEmptyQuestionMarkSMB3);
+        OreDictionary.registerOre("emptyQuestionMarkBlock", marioBlockEmptyInvisibleBlockSMB3);
 
-        LogHelper.info("Block Loading Complete");
+        LogHelper.info("Extra Block Data Loading Complete");
     }
 }

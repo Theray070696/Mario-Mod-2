@@ -90,7 +90,7 @@ public class WorldGenMarioTree extends WorldGenerator
                                     if(state.getBlock().isAir(state, world, blockpos) || state.getBlock().isLeaves(state, world, blockpos) ||
                                             state.getMaterial() == Material.VINE)
                                     {
-                                        this.setBlockAndNotifyAdequately(world, blockpos, ModBlocks.blockMarioLeaves.getDefaultState());
+                                        this.setBlockAndNotifyAdequately(world, blockpos, ModBlocks.marioBlockMarioLeaves.getDefaultState());
                                     }
                                 }
                             }
@@ -105,7 +105,7 @@ public class WorldGenMarioTree extends WorldGenerator
                         if(state.getBlock().isAir(state, world, upN) || state.getBlock().isLeaves(state, world, upN) || state.getMaterial() ==
                                 Material.VINE)
                         {
-                            this.setBlockAndNotifyAdequately(world, pos.up(j3), ModBlocks.blockMarioLog.getDefaultState());
+                            this.setBlockAndNotifyAdequately(world, pos.up(j3), ModBlocks.marioBlockMarioLog.getDefaultState());
                         }
                     }
 
@@ -124,9 +124,9 @@ public class WorldGenMarioTree extends WorldGenerator
     protected boolean canGrowInto(Block blockType)
     {
         Material material = blockType.getDefaultState().getMaterial();
-        return material == Material.AIR || material == Material.LEAVES || blockType == Blocks.VINE || blockType == ModBlocks.blockGround ||
-                blockType == ModBlocks.blockGroundUnderground || blockType == ModBlocks.blockMarioLog || blockType == ModBlocks.blockMarioLeaves ||
-                blockType == ModBlocks.blockMarioSapling;
+        return material == Material.AIR || material == Material.LEAVES || blockType == Blocks.VINE || blockType == ModBlocks.marioBlockGround ||
+                blockType == ModBlocks.marioBlockGroundUnderground || blockType == ModBlocks.marioBlockMarioLog || blockType == ModBlocks.marioBlockMarioLeaves ||
+                blockType == ModBlocks.marioBlockMarioSapling;
     }
 
     public boolean isReplaceable(World world, BlockPos pos)

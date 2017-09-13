@@ -114,4 +114,10 @@ public class ItemMushroom extends ItemMario
             tooltip.add("Restores 5 hearts"); // Add a helpful tooltip.
         }
     }
+
+    @Override
+    public int getMaxMetadata()
+    {
+        return 3;
+    }
 }

@@ -14,8 +14,8 @@ public class BiomeMarioForest extends BiomeMario
     public BiomeMarioForest(String registryName, BiomeProperties properties)
     {
         super(registryName, properties);
-        this.topBlock = ModBlocks.blockGroundSMW.getDefaultState();
-        this.fillerBlock = ModBlocks.blockGroundSMW.getDefaultState();
+        this.topBlock = ModBlocks.marioBlockGroundSMW.getDefaultState();
+        this.fillerBlock = ModBlocks.marioBlockGroundSMW.getDefaultState();
         this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityWolf.class, 5, 4, 4));
     }
 

@@ -65,7 +65,7 @@ public class MarioMod2
         @Override
         public ItemStack getIconItemStack()
         {
-            return new ItemStack(ModItems.itemMarioMushroom, 1, 1);
+            return new ItemStack(ModItems.itemMushroom, 1, 1);
         }
 
         @Nonnull
@@ -73,7 +73,7 @@ public class MarioMod2
         @Override
         public ItemStack getTabIconItem()
         {
-            return new ItemStack(ModItems.itemMarioMushroom, 1, 1);
+            return new ItemStack(ModItems.itemMushroom, 1, 1);
         }
     };
 
@@ -84,7 +84,7 @@ public class MarioMod2
         @Override
         public ItemStack getIconItemStack()
         {
-            return new ItemStack(ModBlocks.blockMarioMaker);
+            return new ItemStack(ModBlocks.marioBlockMarioMaker);
         }
 
         @Nonnull
@@ -92,7 +92,7 @@ public class MarioMod2
         @Override
         public ItemStack getTabIconItem()
         {
-            return new ItemStack(ModBlocks.blockMarioMaker);
+            return new ItemStack(ModBlocks.marioBlockMarioMaker);
         }
     };
 
@@ -119,10 +119,6 @@ public class MarioMod2
 
         SoundHandler.init();
 
-        ModBlocks.initBlocks();
-        ModItems.initItems();
-        PotionEffectsMario.init();
-
         LootTableList.register(new ResourceLocation(ModInfo.MOD_ID, "inject/disks"));
 
         proxy.preInit(event);
@@ -142,6 +138,10 @@ public class MarioMod2
     {
         this.stopwatchInitPhases = Stopwatch.createStarted();
         LogHelper.info("Init");
+
+        ModBlocks.initBlocks();
+        ModItems.initItems();
+        PotionEffectsMario.init();
 
         NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new GuiHandler());
 

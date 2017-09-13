@@ -112,28 +112,28 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
 
             if(blockType.equals(EnumBlockType.SMB))
             {
-                world.setBlockState(pos, ModBlocks.blockQuestionMarkSMB.getDefaultState(), 3); // Change it to the filled block.
+                world.setBlockState(pos, ModBlocks.marioBlockQuestionMarkSMB.getDefaultState(), 3); // Change it to the filled block.
             } else if(blockType.equals(EnumBlockType.SMB_INVISIBLE))
             {
-                world.setBlockState(pos, ModBlocks.blockInvisibleBlockSMB.getDefaultState(), 3); // Change it to the filled block.
+                world.setBlockState(pos, ModBlocks.marioBlockInvisibleBlockSMB.getDefaultState(), 3); // Change it to the filled block.
             } else if(blockType.equals(EnumBlockType.SMB_UNDERGROUND))
             {
-                world.setBlockState(pos, ModBlocks.blockQuestionMarkUndergroundSMB.getDefaultState(), 3); // Change it to the filled block.
+                world.setBlockState(pos, ModBlocks.marioBlockQuestionMarkUndergroundSMB.getDefaultState(), 3); // Change it to the filled block.
             } else if(blockType.equals(EnumBlockType.SMB_CASTLE))
             {
-                world.setBlockState(pos, ModBlocks.blockQuestionMarkCastleSMB.getDefaultState(), 3); // Change it to the filled block.
+                world.setBlockState(pos, ModBlocks.marioBlockQuestionMarkCastleSMB.getDefaultState(), 3); // Change it to the filled block.
             } else if(blockType.equals(EnumBlockType.SMB3))
             {
-                world.setBlockState(pos, ModBlocks.blockQuestionMarkSMB3.getDefaultState(), 3); // Change it to the filled block.
+                world.setBlockState(pos, ModBlocks.marioBlockQuestionMarkSMB3.getDefaultState(), 3); // Change it to the filled block.
             } else if(blockType.equals(EnumBlockType.SMB3_INVISIBLE))
             {
-                world.setBlockState(pos, ModBlocks.blockInvisibleBlockSMB3.getDefaultState(), 3); // Change it to the filled block.
+                world.setBlockState(pos, ModBlocks.marioBlockInvisibleBlockSMB3.getDefaultState(), 3); // Change it to the filled block.
             } else if(blockType.equals(EnumBlockType.SMW))
             {
-                world.setBlockState(pos, ModBlocks.blockQuestionMark.getDefaultState(), 3); // Change it to the filled block.
+                world.setBlockState(pos, ModBlocks.marioBlockQuestionMark.getDefaultState(), 3); // Change it to the filled block.
             } else if(blockType.equals(EnumBlockType.SMW_INVISIBLE))
             {
-                world.setBlockState(pos, ModBlocks.blockInvisibleBlock.getDefaultState(), 3); // Change it to the filled block.
+                world.setBlockState(pos, ModBlocks.marioBlockInvisibleBlock.getDefaultState(), 3); // Change it to the filled block.
             }
 
             keepInventory = false; // We can dropInventory again.
@@ -149,28 +149,28 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
 
             if(blockType.equals(EnumBlockType.SMB))
             {
-                world.setBlockState(pos, ModBlocks.blockEmptyQuestionMarkSMB.getDefaultState(), 3); // Change it to the empty block.
+                world.setBlockState(pos, ModBlocks.marioBlockEmptyQuestionMarkSMB.getDefaultState(), 3); // Change it to the empty block.
             } else if(blockType.equals(EnumBlockType.SMB_INVISIBLE))
             {
-                world.setBlockState(pos, ModBlocks.blockEmptyInvisibleBlockSMB.getDefaultState(), 3); // Change it to the empty block.
+                world.setBlockState(pos, ModBlocks.marioBlockEmptyInvisibleBlockSMB.getDefaultState(), 3); // Change it to the empty block.
             } else if(blockType.equals(EnumBlockType.SMB_UNDERGROUND))
             {
-                world.setBlockState(pos, ModBlocks.blockEmptyQuestionMarkUndergroundSMB.getDefaultState(), 3); // Change it to the empty block.
+                world.setBlockState(pos, ModBlocks.marioBlockEmptyQuestionMarkUndergroundSMB.getDefaultState(), 3); // Change it to the empty block.
             } else if(blockType.equals(EnumBlockType.SMB_CASTLE))
             {
-                world.setBlockState(pos, ModBlocks.blockEmptyQuestionMarkCastleSMB.getDefaultState(), 3); // Change it to the filled block.
+                world.setBlockState(pos, ModBlocks.marioBlockEmptyQuestionMarkCastleSMB.getDefaultState(), 3); // Change it to the filled block.
             } else if(blockType.equals(EnumBlockType.SMB3))
             {
-                world.setBlockState(pos, ModBlocks.blockEmptyQuestionMarkSMB3.getDefaultState(), 3); // Change it to the empty block.
+                world.setBlockState(pos, ModBlocks.marioBlockEmptyQuestionMarkSMB3.getDefaultState(), 3); // Change it to the empty block.
             } else if(blockType.equals(EnumBlockType.SMB3_INVISIBLE))
             {
-                world.setBlockState(pos, ModBlocks.blockEmptyInvisibleBlockSMB3.getDefaultState(), 3); // Change it to the empty block.
+                world.setBlockState(pos, ModBlocks.marioBlockEmptyInvisibleBlockSMB3.getDefaultState(), 3); // Change it to the empty block.
             } else if(blockType.equals(EnumBlockType.SMW))
             {
-                world.setBlockState(pos, ModBlocks.blockEmptyQuestionMark.getDefaultState(), 3); // Change it to the empty block.
+                world.setBlockState(pos, ModBlocks.marioBlockEmptyQuestionMark.getDefaultState(), 3); // Change it to the empty block.
             } else if(blockType.equals(EnumBlockType.SMW_INVISIBLE))
             {
-                world.setBlockState(pos, ModBlocks.blockEmptyInvisibleBlock.getDefaultState(), 3); // Change it to the empty block.
+                world.setBlockState(pos, ModBlocks.marioBlockEmptyInvisibleBlock.getDefaultState(), 3); // Change it to the empty block.
             }
 
             keepInventory = false; // We can dropInventory again.
@@ -202,17 +202,17 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                 {
                     world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbCoin, SoundCategory.BLOCKS, 1.0F, 1.0F); // Play this
                     // sound.
-                    newItemStack = new ItemStack(ModItems.itemMarioCoin); // Set ItemStack to Mario 1 Coin.
+                    newItemStack = new ItemStack(ModItems.itemCoin); // Set ItemStack to Mario 1 Coin.
                 } else if(blockType.equals(EnumBlockType.SMW) || blockType.equals(EnumBlockType.SMW_INVISIBLE)) // If it was from Mario World...
                 {
                     world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smwCoin, SoundCategory.BLOCKS, 1.0F, 1.0F); // Play this
                     // sound.
-                    newItemStack = new ItemStack(ModItems.itemMarioCoin, 1, 1); // Set ItemStack to Mario World Coin.
+                    newItemStack = new ItemStack(ModItems.itemCoin, 1, 1); // Set ItemStack to Mario World Coin.
                 } else if(blockType.equals(EnumBlockType.SMB3) || blockType.equals(EnumBlockType.SMB3_INVISIBLE)) // If it was from Mario 3...
                 {
                     world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbCoin, SoundCategory.BLOCKS, 1.0F, 1.0F); // Play this
                     // sound.
-                    newItemStack = new ItemStack(ModItems.itemMarioCoin, 1, 2); // Set ItemStack to Mario 3 Coin.
+                    newItemStack = new ItemStack(ModItems.itemCoin, 1, 2); // Set ItemStack to Mario 3 Coin.
                 }
             } else if(itemInBlock == ItemsInQuestionMarks.ITEM_MUSHROOM) // If the item was a Mushroom...
             {
@@ -221,17 +221,17 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                 {
                     world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbBlockHitPowerup, SoundCategory.BLOCKS, 1.0F, 1.0F);
                     // Play this sound.
-                    newItemStack = new ItemStack(ModItems.itemMarioMushroom); // Set ItemStack to Mario 1 Mushroom.
+                    newItemStack = new ItemStack(ModItems.itemMushroom); // Set ItemStack to Mario 1 Mushroom.
                 } else if(blockType.equals(EnumBlockType.SMW) || blockType.equals(EnumBlockType.SMW_INVISIBLE)) // If it was from Mario World...
                 {
                     world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smwBlockHitPowerup, SoundCategory.BLOCKS, 1.0F, 1.0F);
                     // Play this sound.
-                    newItemStack = new ItemStack(ModItems.itemMarioMushroom, 1, 1); // Set ItemStack to Mario World Mushroom.
+                    newItemStack = new ItemStack(ModItems.itemMushroom, 1, 1); // Set ItemStack to Mario World Mushroom.
                 } else if(blockType.equals(EnumBlockType.SMB3) || blockType.equals(EnumBlockType.SMB3_INVISIBLE)) // If it was from Mario 3...
                 {
                     world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbBlockHitPowerup, SoundCategory.BLOCKS, 1.0F, 1.0F);
                     // Play this sound.
-                    newItemStack = new ItemStack(ModItems.itemMarioMushroom, 1, 2); // Set ItemStack to Mario 3 Mushroom.
+                    newItemStack = new ItemStack(ModItems.itemMushroom, 1, 2); // Set ItemStack to Mario 3 Mushroom.
                 }
             } else if(itemInBlock == ItemsInQuestionMarks.ITEM_1UP) // If the item was a 1Up...
             {
@@ -294,10 +294,10 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
 
                 for(int i = 1; i < 10; i++) // Go from 1 to 9.
                 {
-                    world.setBlockState(pos.up(i), ModBlocks.blockBeanstalk.getDefaultState()); // Set the block to a beanstalk
+                    world.setBlockState(pos.up(i), ModBlocks.marioBlockBeanstalk.getDefaultState()); // Set the block to a beanstalk
                 }
 
-                world.setBlockState(pos.up(10), ModBlocks.blockBeanstalk.getDefaultState().withProperty(BlockBeanstalk.ISTOP, true), 2); // Set the
+                world.setBlockState(pos.up(10), ModBlocks.marioBlockBeanstalk.getDefaultState().withProperty(BlockBeanstalk.ISTOP, true), 2); // Set the
                 // top to the top of the beanstalk.
             }
 
@@ -402,7 +402,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                             heldItem.setCount(heldItem.getCount() - 1); // Decrease amount of items in stack by one.
                             this.updateQuestionMarkState(ItemsInQuestionMarks.ITEM_STAR_MAN, world, pos, tileQuestionMark); // Update the state of
                             // the block.
-                        } else if(item == Item.getItemFromBlock(ModBlocks.blockBeanstalk)) // If the item is a beanstalk...
+                        } else if(item == Item.getItemFromBlock(ModBlocks.marioBlockBeanstalk)) // If the item is a beanstalk...
                         {
                             heldItem.setCount(heldItem.getCount() - 1); // Decrease amount of items in stack by one.
                             this.updateQuestionMarkState(ItemsInQuestionMarks.ITEM_BEANSTALK, world, pos, tileQuestionMark); // Update the state of
@@ -421,28 +421,28 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
     {
         if(blockType.equals(EnumBlockType.SMB))
         {
-            return Item.getItemFromBlock(ModBlocks.blockEmptyQuestionMarkSMB);
+            return Item.getItemFromBlock(ModBlocks.marioBlockEmptyQuestionMarkSMB);
         } else if(blockType.equals(EnumBlockType.SMB_INVISIBLE))
         {
-            return Item.getItemFromBlock(ModBlocks.blockEmptyInvisibleBlockSMB);
+            return Item.getItemFromBlock(ModBlocks.marioBlockEmptyInvisibleBlockSMB);
         } else if(blockType.equals(EnumBlockType.SMB_UNDERGROUND))
         {
-            return Item.getItemFromBlock(ModBlocks.blockEmptyQuestionMarkUndergroundSMB);
+            return Item.getItemFromBlock(ModBlocks.marioBlockEmptyQuestionMarkUndergroundSMB);
         } else if(blockType.equals(EnumBlockType.SMB_CASTLE))
         {
-            return Item.getItemFromBlock(ModBlocks.blockQuestionMarkCastleSMB);
+            return Item.getItemFromBlock(ModBlocks.marioBlockQuestionMarkCastleSMB);
         } else if(blockType.equals(EnumBlockType.SMB3))
         {
-            return Item.getItemFromBlock(ModBlocks.blockEmptyQuestionMarkSMB3);
+            return Item.getItemFromBlock(ModBlocks.marioBlockEmptyQuestionMarkSMB3);
         } else if(blockType.equals(EnumBlockType.SMB3_INVISIBLE))
         {
-            return Item.getItemFromBlock(ModBlocks.blockEmptyInvisibleBlockSMB3);
+            return Item.getItemFromBlock(ModBlocks.marioBlockEmptyInvisibleBlockSMB3);
         } else if(blockType.equals(EnumBlockType.SMW))
         {
-            return Item.getItemFromBlock(ModBlocks.blockEmptyQuestionMark);
+            return Item.getItemFromBlock(ModBlocks.marioBlockEmptyQuestionMark);
         } else if(blockType.equals(EnumBlockType.SMW_INVISIBLE))
         {
-            return Item.getItemFromBlock(ModBlocks.blockEmptyInvisibleBlock);
+            return Item.getItemFromBlock(ModBlocks.marioBlockEmptyInvisibleBlock);
         } else
         {
             return super.getItemDropped(state, rand, fortune);
@@ -481,26 +481,26 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
             if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType
                     .SMB_UNDERGROUND) || blockType.equals(EnumBlockType.SMB_CASTLE))
             {
-                itemStack = new ItemStack(ModItems.itemMarioCoin);
+                itemStack = new ItemStack(ModItems.itemCoin);
             } else if(blockType.equals(EnumBlockType.SMW) || blockType.equals(EnumBlockType.SMW_INVISIBLE))
             {
-                itemStack = new ItemStack(ModItems.itemMarioCoin, 1, 1);
+                itemStack = new ItemStack(ModItems.itemCoin, 1, 1);
             } else if(blockType.equals(EnumBlockType.SMB3) || blockType.equals(EnumBlockType.SMB3_INVISIBLE))
             {
-                itemStack = new ItemStack(ModItems.itemMarioCoin, 1, 2);
+                itemStack = new ItemStack(ModItems.itemCoin, 1, 2);
             }
         } else if(itemInBlock == ItemsInQuestionMarks.ITEM_MUSHROOM)
         {
             if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType
                     .SMB_UNDERGROUND) || blockType.equals(EnumBlockType.SMB_CASTLE))
             {
-                itemStack = new ItemStack(ModItems.itemMarioMushroom);
+                itemStack = new ItemStack(ModItems.itemMushroom);
             } else if(blockType.equals(EnumBlockType.SMW) || blockType.equals(EnumBlockType.SMW_INVISIBLE))
             {
-                itemStack = new ItemStack(ModItems.itemMarioMushroom, 1, 1);
+                itemStack = new ItemStack(ModItems.itemMushroom, 1, 1);
             } else if(blockType.equals(EnumBlockType.SMB3) || blockType.equals(EnumBlockType.SMB3_INVISIBLE))
             {
-                itemStack = new ItemStack(ModItems.itemMarioMushroom, 1, 2);
+                itemStack = new ItemStack(ModItems.itemMushroom, 1, 2);
             }
         } else if(itemInBlock == ItemsInQuestionMarks.ITEM_1UP)
         {
@@ -526,7 +526,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
             itemStack = new ItemStack(ModItems.itemStarMan);
         } else if(itemInBlock == ItemsInQuestionMarks.ITEM_BEANSTALK)
         {
-            itemStack = new ItemStack(ModBlocks.blockBeanstalk);
+            itemStack = new ItemStack(ModBlocks.marioBlockBeanstalk);
         }
 
         if(itemStack != null && itemStack.getCount() > 0)

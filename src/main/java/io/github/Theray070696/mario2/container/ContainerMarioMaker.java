@@ -91,7 +91,7 @@ public class ContainerMarioMaker extends Container
      */
     public boolean canInteractWith(EntityPlayer entityPlayer)
     {
-        return this.world.getBlockState(this.pos).getBlock() == ModBlocks.blockMarioMaker && entityPlayer.getDistanceSq((double) this.pos.getX()
+        return this.world.getBlockState(this.pos).getBlock() == ModBlocks.marioBlockMarioMaker && entityPlayer.getDistanceSq((double) this.pos.getX()
                 + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
     }
 

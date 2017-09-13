@@ -68,7 +68,7 @@ public class EntityKoopa extends EntityMob
                 int amount = rand.nextInt(3);
                 if(amount > 0)
                 {
-                    this.entityDropItem(new ItemStack(ModItems.itemMarioCoin, rand.nextInt(3), rand.nextInt(3)), 0.0F);
+                    this.entityDropItem(new ItemStack(ModItems.itemCoin, rand.nextInt(3), rand.nextInt(3)), 0.0F);
                 }
             } else
             {
@@ -78,7 +78,7 @@ public class EntityKoopa extends EntityMob
                     int amount = rand.nextInt(3);
                     if(amount > 0)
                     {
-                        this.entityDropItem(new ItemStack(ModItems.itemMarioCoin, rand.nextInt(3), rand.nextInt(3)), 0.0F);
+                        this.entityDropItem(new ItemStack(ModItems.itemCoin, rand.nextInt(3), rand.nextInt(3)), 0.0F);
                     }
                 }
             }

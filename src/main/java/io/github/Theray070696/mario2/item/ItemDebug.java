@@ -29,6 +29,11 @@ public class ItemDebug extends ItemMario
     {
         ItemStack itemStack = player.getHeldItem(hand);
 
+        if(!ConfigHandler.developerModeEnabled)
+        {
+            return new ActionResult<>(EnumActionResult.PASS, itemStack);
+        }
+
         if(!world.isRemote && !itemStack.isEmpty() && !(player instanceof FakePlayer))
         {
             EntityPlayerMP playerMP = (EntityPlayerMP) player;

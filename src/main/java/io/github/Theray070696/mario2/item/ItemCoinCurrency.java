@@ -80,4 +80,10 @@ public class ItemCoinCurrency extends ItemMario
             return "errorname";
         }
     }
+
+    @Override
+    public int getMaxMetadata()
+    {
+        return 5;
+    }
 }

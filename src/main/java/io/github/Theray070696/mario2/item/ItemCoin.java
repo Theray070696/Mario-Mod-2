@@ -86,4 +86,10 @@ public class ItemCoin extends ItemMario
         tooltip.add("Right click to add to your coin counter");
         tooltip.add("You can get coins out of your counter in the Mario Maker");
     }
+
+    @Override
+    public int getMaxMetadata()
+    {
+        return 3;
+    }
 }

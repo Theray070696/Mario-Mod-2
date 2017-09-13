@@ -113,4 +113,10 @@ public class Item1Up extends ItemMario
             tooltip.add("Restores 10 hearts"); // Add a helpful tooltip.
         }
     }
+
+    @Override
+    public int getMaxMetadata()
+    {
+        return 3;
+    }
 }

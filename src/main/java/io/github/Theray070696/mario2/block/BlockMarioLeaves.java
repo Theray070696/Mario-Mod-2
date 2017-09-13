@@ -204,7 +204,7 @@ public class BlockMarioLeaves extends BlockMario implements IShearable
     @Nullable
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(ModBlocks.blockMarioSapling);
+        return Item.getItemFromBlock(ModBlocks.marioBlockMarioSapling);
     }
 
     private int getSaplingDropChance()

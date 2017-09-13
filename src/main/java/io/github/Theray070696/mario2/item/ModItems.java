@@ -1,75 +1,104 @@
 package io.github.Theray070696.mario2.item;
 
 import io.github.Theray070696.mario2.audio.SoundHandler;
-import io.github.Theray070696.mario2.configuration.ConfigHandler;
 import io.github.Theray070696.mario2.lib.ModInfo;
 import io.github.Theray070696.mario2.util.LogHelper;
-import io.github.Theray070696.raycore.api.item.RayItemRegistry;
+import io.github.Theray070696.raycore.RayCore;
 import io.github.Theray070696.raycore.item.ItemRay;
 import io.github.Theray070696.raycore.item.ItemRayRecord;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
 /**
  * Created by Theray070696 on 8/27/2015.
  */
+@Mod.EventBusSubscriber
+@GameRegistry.ObjectHolder(ModInfo.MOD_ID)
 public class ModItems
 {
-    public static ItemRay itemMarioCoin;
-    public static ItemRay itemMarioMushroom;
-    public static ItemRay item1Up;
-    public static ItemRay itemCape;
-    public static ItemRay itemFireFlower;
-    public static ItemRay itemStarMan;
-    public static ItemRay itemSuperLeaf;
+    public static final Item itemCoin = null;
+    public static final Item itemMushroom = null;
+    public static final Item item1Up = null;
+    public static final Item itemCape = null;
+    public static final Item itemFireFlower = null;
+    public static final Item itemStarMan = null;
+    public static final Item itemSuperLeaf = null;
+    public static final Item itemDebug = null;
+    public static final Item itemCoinCurrency = null;
+    public static final Item itemPipeLink = null;
 
-    public static Item itemDebug;
+    @GameRegistry.ObjectHolder("records.smbUnderwater")
+    public static final Item itemRecordSMBUnderwater = null;
 
-    public static Item itemRecordSMBUnderwater;
+    private static final Item[] ITEMS =
+            {
+                    new ItemCoin(),
+                    new ItemMushroom(),
+                    new Item1Up(),
+                    new ItemCape(),
+                    new ItemFireFlower(),
+                    new ItemStarMan(),
+                    new ItemPipeLink(),
+                    new ItemCoinCurrency(),
+                    new ItemRayRecord(ModInfo.MOD_ID, "smbUnderwater", 513, SoundHandler.recordUnderwaterSMB).setUnlocalizedName("records.smbUnderwater"),
+                    new ItemSuperLeaf(),
+                    new ItemDebug()
+            };
 
-    public static ItemRay itemCoinCurrency;
+    @SubscribeEvent
+    public static void registerItems(RegistryEvent.Register<Item> event)
+    {
+        for(Item item : ITEMS)
+        {
+            event.getRegistry().register(item);
+        }
 
-    public static ItemRay itemPipeLink;
+        LogHelper.info("Item Registration Complete");
+    }
+
+    @SubscribeEvent
+    public static void loadItemModels(ModelRegistryEvent event)
+    {
+        for(Item item : ITEMS)
+        {
+            if(!item.getHasSubtypes())
+            {
+                RayCore.proxy.registerItemRenderer(item, 0, ModInfo.MOD_ID, item.getRegistryName().getResourcePath());
+            } else if(item instanceof ItemRay)
+            {
+                for(int i = 0; i < ((ItemRay) item).getMaxMetadata(); i++)
+                {
+                    RayCore.proxy.registerItemRenderer(item, i, ModInfo.MOD_ID, item.getRegistryName().getResourcePath() + "_" + i);
+                }
+            }
+        }
+    }
 
     public static void initItems()
     {
-        LogHelper.info("Loading Items");
+        LogHelper.info("Loading Extra Item Data");
 
-        itemMarioCoin = RayItemRegistry.registerItem(new ItemCoin());
-        itemMarioMushroom = RayItemRegistry.registerItem(new ItemMushroom());
-        item1Up = RayItemRegistry.registerItem(new Item1Up());
-        itemCape = RayItemRegistry.registerItem(new ItemCape());
-        itemFireFlower = RayItemRegistry.registerItem(new ItemFireFlower());
-        itemStarMan = RayItemRegistry.registerItem(new ItemStarMan());
-        itemPipeLink = RayItemRegistry.registerItem(new ItemPipeLink());
-
-        itemCoinCurrency = RayItemRegistry.registerItem(new ItemCoinCurrency());
-
-        itemRecordSMBUnderwater = RayItemRegistry.registerItem(new ItemRayRecord(ModInfo.MOD_ID, "smbUnderwater", 513, SoundHandler
-                .recordUnderwaterSMB).setUnlocalizedName("records.smbUnderwater"));
-
-        if(ConfigHandler.developerModeEnabled)
-        {
-            itemSuperLeaf = RayItemRegistry.registerItem(new ItemSuperLeaf());
-
-            itemDebug = RayItemRegistry.registerItem(new ItemDebug());
-        }
-
-        OreDictionary.registerOre("itemMarioMushroom", new ItemStack(itemMarioMushroom, 1, 0));
-        OreDictionary.registerOre("itemMarioMushroom", new ItemStack(itemMarioMushroom, 1, 1));
-        OreDictionary.registerOre("itemMarioMushroom", new ItemStack(itemMarioMushroom, 1, 2));
+        OreDictionary.registerOre("itemMushroom", new ItemStack(itemMushroom, 1, 0));
+        OreDictionary.registerOre("itemMushroom", new ItemStack(itemMushroom, 1, 1));
+        OreDictionary.registerOre("itemMushroom", new ItemStack(itemMushroom, 1, 2));
 
         OreDictionary.registerOre("itemMario1Up", new ItemStack(item1Up, 1, 0));
         OreDictionary.registerOre("itemMario1Up", new ItemStack(item1Up, 1, 1));
         OreDictionary.registerOre("itemMario1Up", new ItemStack(item1Up, 1, 2));
 
-        OreDictionary.registerOre("itemMarioCoin", new ItemStack(itemMarioCoin, 1, 0));
-        OreDictionary.registerOre("itemMarioCoin", new ItemStack(itemMarioCoin, 1, 1));
-        OreDictionary.registerOre("itemMarioCoin", new ItemStack(itemMarioCoin, 1, 2));
+        OreDictionary.registerOre("itemCoin", new ItemStack(itemCoin, 1, 0));
+        OreDictionary.registerOre("itemCoin", new ItemStack(itemCoin, 1, 1));
+        OreDictionary.registerOre("itemCoin", new ItemStack(itemCoin, 1, 2));
 
         OreDictionary.registerOre("record", itemRecordSMBUnderwater);
 
-        LogHelper.info("Item Loading Complete");
+        LogHelper.info("Extra Item Data Loading Complete");
     }
 }

@@ -35,7 +35,7 @@ import java.util.Random;
  */
 public class ChunkGeneratorMario implements IChunkGenerator
 {
-    public static IBlockState UNDERGROUND_GROUND = ModBlocks.blockGroundUndergroundSMW.getDefaultState();
+    public static IBlockState UNDERGROUND_GROUND = ModBlocks.marioBlockGroundUndergroundSMW.getDefaultState();
     private final Random rand;
     private final World worldObj;
     private final boolean mapFeaturesEnabled;
