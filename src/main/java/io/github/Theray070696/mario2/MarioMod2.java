@@ -1,8 +1,6 @@
 package io.github.Theray070696.mario2;
 
 import com.google.common.base.Stopwatch;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 import io.github.Theray070696.mario2.audio.SoundHandler;
 import io.github.Theray070696.mario2.block.ModBlocks;
 import io.github.Theray070696.mario2.capability.CapabilityHandler;
@@ -32,22 +30,19 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.fml.common.*;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.functions.ArtifactVersionNameFunction;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.common.versioning.ArtifactVersion;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
-import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -118,19 +113,6 @@ public class MarioMod2
     {
         this.stopwatchInitPhases = Stopwatch.createStarted();
         LogHelper.info("Pre-Init");
-
-        if(proxy.getSide().isClient() && !Loader.isModLoaded("ctm")) // We need CTM for some of the blocks in the mod.
-        {
-            Map<String, ArtifactVersion> names = Maps.uniqueIndex(Loader.instance().activeModContainer().getRequirements(), new
-                    ArtifactVersionNameFunction());
-            Set<ArtifactVersion> versionMissingMods = Sets.newHashSet();
-
-            FMLLog.severe("The mod %s (%s) requires mods %s to be available", ModInfo.MOD_ID, ModInfo.MOD_NAME, "ctm");
-            versionMissingMods.add(names.get("ctm"));
-            RuntimeException ret = new MissingModsException(versionMissingMods, ModInfo.MOD_ID, ModInfo.MOD_NAME);
-            FMLLog.severe(ret.getMessage());
-            throw ret;
-        }
 
         ConfigHandler.loadConfig(event);
 
