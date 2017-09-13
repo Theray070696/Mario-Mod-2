@@ -282,6 +282,6 @@ public class ShapedOreRecipeMario implements IMarioRecipe
     @Override
     public ItemStack[] getRemainingItems(InventoryCrafting inv) //getRecipeLeftovers
     {
-        return ForgeHooks.defaultRecipeGetRemainingItems(inv);
+        return ForgeHooks.defaultRecipeGetRemainingItems(inv).toArray(new ItemStack[0]);
     }
 }

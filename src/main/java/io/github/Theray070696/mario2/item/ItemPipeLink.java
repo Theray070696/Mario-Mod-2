@@ -2,6 +2,7 @@ package io.github.Theray070696.mario2.item;
 
 import io.github.Theray070696.mario2.block.BlockPipe;
 import io.github.Theray070696.mario2.block.tile.TilePipe;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -32,9 +33,11 @@ public class ItemPipeLink extends ItemMario
     }
 
     @Override
-    public EnumActionResult onItemUse(ItemStack itemStack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float
-            hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY,
+                                      float hitZ)
     {
+        ItemStack itemStack = player.getHeldItem(hand);
+
         // First check a few things.
         // Is this the server?
         // Is the ItemStack not null?
@@ -42,8 +45,8 @@ public class ItemPipeLink extends ItemMario
         // Is the Player a real player?
         // Is the Block we're right clicking on a Pipe?
         // Is it a Multiblock?
-        if(!world.isRemote && itemStack != null && player != null && !(player instanceof FakePlayer) && world.getBlockState(pos).getBlock()
-                instanceof BlockPipe && world.getBlockState(pos).getValue(BlockPipe.ISMULTIBLOCK))
+        if(!world.isRemote && !itemStack.isEmpty() && !(player instanceof FakePlayer) && world.getBlockState(pos).getBlock() instanceof BlockPipe
+                && world.getBlockState(pos).getValue(BlockPipe.ISMULTIBLOCK))
         {
             // Get Pipe TileEntity
             TilePipe tilePipe = (TilePipe) world.getTileEntity(pos);
@@ -58,14 +61,14 @@ public class ItemPipeLink extends ItemMario
                 itemStack.getTagCompound().setIntArray("pipePos", new int[]{pos.getX(), pos.getY(), pos.getZ(), world.provider.getDimension()});
 
                 // Inform the Player that linking has started
-                player.addChatComponentMessage(new TextComponentString("Link started."));
+                player.sendMessage(new TextComponentString("Link started."));
             } else // We are linking to a Pipe.
             {
                 // Save the data to this int array for later use
                 int[] posDim = itemStack.getTagCompound().getIntArray("pipePos");
 
                 // Get the World the other Pipe is in
-                World otherPipeWorld = world.getMinecraftServer().worldServerForDimension(posDim[3]);
+                World otherPipeWorld = world.getMinecraftServer().getWorld(posDim[3]);
 
                 // Make sure the original Pipe is still valid
                 if(otherPipeWorld.getTileEntity(new BlockPos(posDim[0], posDim[1], posDim[2])) != null && otherPipeWorld.getTileEntity(new BlockPos
@@ -92,7 +95,7 @@ public class ItemPipeLink extends ItemMario
                     itemStack.getTagCompound().setIntArray("pipePos", new int[]{0, 0, 0, 0});
 
                     // Inform the Player that the linking is complete
-                    player.addChatComponentMessage(new TextComponentString("Pipes linked!"));
+                    player.sendMessage(new TextComponentString("Pipes linked!"));
                 } else // INVALID PIPE
                 {
                     // Clear linking flag
@@ -102,8 +105,8 @@ public class ItemPipeLink extends ItemMario
                     itemStack.getTagCompound().setIntArray("pipePos", new int[]{0, 0, 0, 0});
 
                     // Inform the Player that something went wrong
-                    player.addChatComponentMessage(new TextComponentString("The Pipe at X: " + posDim[0] + " Y: " + posDim[1] + " Z: " + posDim[2]
-                            + ", in dimension " + posDim[3] + " could not be found!"));
+                    player.sendMessage(new TextComponentString("The Pipe at X: " + posDim[0] + " Y: " + posDim[1] + " Z: " + posDim[2] + ", in " +
+                            "dimension " + posDim[3] + " could not be found!"));
                 }
             }
         }
@@ -124,23 +127,23 @@ public class ItemPipeLink extends ItemMario
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean advanced)
+    public void addInformation(ItemStack itemStack, World player, List<String> tooltip, ITooltipFlag advanced)
     {
         // I'm not sure if this is needed, but better to be safe than sorry
-        super.addInformation(itemStack, player, list, advanced);
+        super.addInformation(itemStack, player, tooltip, advanced);
 
-        list.add("Right click on two pipes to link them together.");
+        tooltip.add("Right click on two pipes to link them together.");
 
         // Game crashes without the hasTagCompound check
         if(itemStack.hasTagCompound() && itemStack.getTagCompound().getBoolean("linking"))
         {
             int[] posDim = itemStack.getTagCompound().getIntArray("pipePos");
 
-            list.add("Linked to Pipe at:");
-            list.add("X: " + posDim[0]);
-            list.add("Y: " + posDim[1]);
-            list.add("Z: " + posDim[2]);
-            list.add("Dimension: " + posDim[3]);
+            tooltip.add("Linked to Pipe at:");
+            tooltip.add("X: " + posDim[0]);
+            tooltip.add("Y: " + posDim[1]);
+            tooltip.add("Z: " + posDim[2]);
+            tooltip.add("Dimension: " + posDim[3]);
         }
     }
 }

@@ -11,7 +11,7 @@ public class BiomeMarioPlains extends BiomeMario
 {
     public BiomeMarioPlains()
     {
-        super("biomeMarioPlains", new BiomeProperties("Mario Plains").setBaseBiome("Plains").setBaseHeight(0.125F).setHeightVariation(0.05F)
+        super("biomemarioplains", new BiomeProperties("Mario Plains").setBaseBiome("Plains").setBaseHeight(0.125F).setHeightVariation(0.05F)
                 .setTemperature(0.8F).setRainfall(0.4F));
         this.topBlock = ModBlocks.blockGroundSMW.getDefaultState();
         this.fillerBlock = ModBlocks.blockGroundSMW.getDefaultState();

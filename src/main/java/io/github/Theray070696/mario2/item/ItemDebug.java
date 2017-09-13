@@ -25,20 +25,21 @@ public class ItemDebug extends ItemMario
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
-        if(!world.isRemote && itemStack != null && player != null && player instanceof EntityPlayerMP && !(player instanceof FakePlayer))
+        ItemStack itemStack = player.getHeldItem(hand);
+
+        if(!world.isRemote && !itemStack.isEmpty() && !(player instanceof FakePlayer))
         {
             EntityPlayerMP playerMP = (EntityPlayerMP) player;
 
             if(playerMP.dimension != ConfigHandler.marioDimensionID)
             {
                 playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, ConfigHandler.marioDimensionID, new MarioTeleporter(playerMP
-                        .mcServer.worldServerForDimension(ConfigHandler.marioDimensionID)));
+                        .mcServer.getWorld(ConfigHandler.marioDimensionID)));
             } else if(playerMP.dimension != 0)
             {
-                playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, 0, new MarioTeleporter(playerMP.mcServer
-                        .worldServerForDimension(0)));
+                playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, 0, new MarioTeleporter(playerMP.mcServer.getWorld(0)));
             }
         }
 

@@ -5,7 +5,7 @@ import io.github.Theray070696.mario2.world.biome.BiomeProviderMario;
 import io.github.Theray070696.mario2.world.gen.ChunkGeneratorMario;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
-import net.minecraft.world.chunk.IChunkGenerator;
+import net.minecraft.world.gen.IChunkGenerator;
 
 /**
  * Created by Theray070696 on 8/25/2017
@@ -21,14 +21,15 @@ public class WorldProviderMario extends WorldProvider
     @Override
     public IChunkGenerator createChunkGenerator()
     {
-        return new ChunkGeneratorMario(this.worldObj, getSeed(), this.worldObj.getWorldInfo().isMapFeaturesEnabled(), this.worldObj.getWorldInfo()
+        return new ChunkGeneratorMario(this.world, getSeed(), this.world.getWorldInfo().isMapFeaturesEnabled(), this.world.getWorldInfo()
                 .getGeneratorOptions());
     }
 
     @Override
-    public void createBiomeProvider()
+    protected void init()
     {
+        super.init();
         this.setDimension(ConfigHandler.marioDimensionID);
-        this.biomeProvider = new BiomeProviderMario(this.worldObj.getWorldInfo());
+        this.biomeProvider = new BiomeProviderMario(this.world.getWorldInfo());
     }
 }

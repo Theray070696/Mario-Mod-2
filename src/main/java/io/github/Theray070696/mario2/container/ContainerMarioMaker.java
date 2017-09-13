@@ -23,11 +23,11 @@ public class ContainerMarioMaker extends Container
      */
     public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
     public IInventory craftResult = new InventoryCraftResult();
-    private World worldObj;
+    private World world;
 
     public ContainerMarioMaker(InventoryPlayer inventoryPlayer, World world, BlockPos pos)
     {
-        this.worldObj = world;
+        this.world = world;
         this.pos = pos;
         this.addSlotToContainer(new SlotCraftingMario(inventoryPlayer.player, this.craftMatrix, this.craftResult, 0, 124, 35));
         int l;
@@ -62,7 +62,7 @@ public class ContainerMarioMaker extends Container
      */
     public void onCraftMatrixChanged(IInventory inventory)
     {
-        this.craftResult.setInventorySlotContents(0, MarioMakerCraftingManager.getInstance().findMatchingRecipe(this.craftMatrix, this.worldObj));
+        this.craftResult.setInventorySlotContents(0, MarioMakerCraftingManager.getInstance().findMatchingRecipe(this.craftMatrix, this.world));
     }
 
     /**
@@ -72,7 +72,7 @@ public class ContainerMarioMaker extends Container
     {
         super.onContainerClosed(entityPlayer);
 
-        if(!this.worldObj.isRemote)
+        if(!this.world.isRemote)
         {
             for(int i = 0; i < 9; ++i)
             {
@@ -91,7 +91,7 @@ public class ContainerMarioMaker extends Container
      */
     public boolean canInteractWith(EntityPlayer entityPlayer)
     {
-        return this.worldObj.getBlockState(this.pos).getBlock() == ModBlocks.blockMarioMaker && entityPlayer.getDistanceSq((double) this.pos.getX()
+        return this.world.getBlockState(this.pos).getBlock() == ModBlocks.blockMarioMaker && entityPlayer.getDistanceSq((double) this.pos.getX()
                 + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
     }
 
@@ -110,9 +110,11 @@ public class ContainerMarioMaker extends Container
 
             if(slotID == 0)
             {
+                itemStack1.getItem().onCreated(itemStack1, this.world, entityPlayer);
+
                 if(!this.mergeItemStack(itemStack1, 10, 46, true))
                 {
-                    return null;
+                    return ItemStack.EMPTY;
                 }
 
                 slot.onSlotChange(itemStack1, itemStack);
@@ -120,33 +122,38 @@ public class ContainerMarioMaker extends Container
             {
                 if(!this.mergeItemStack(itemStack1, 37, 46, false))
                 {
-                    return null;
+                    return ItemStack.EMPTY;
                 }
             } else if(slotID >= 37 && slotID < 46)
             {
                 if(!this.mergeItemStack(itemStack1, 10, 37, false))
                 {
-                    return null;
+                    return ItemStack.EMPTY;
                 }
             } else if(!this.mergeItemStack(itemStack1, 10, 46, false))
             {
-                return null;
+                return ItemStack.EMPTY;
             }
 
-            if(itemStack1.stackSize == 0)
+            if(itemStack1.isEmpty())
             {
-                slot.putStack(null);
+                slot.putStack(ItemStack.EMPTY);
             } else
             {
                 slot.onSlotChanged();
             }
 
-            if(itemStack1.stackSize == itemStack.stackSize)
+            if(itemStack1.getCount() == itemStack.getCount())
             {
-                return null;
+                return ItemStack.EMPTY;
             }
 
-            slot.onPickupFromSlot(entityPlayer, itemStack1);
+            ItemStack itemStack2 = slot.onTake(entityPlayer, itemStack1);
+
+            if(slotID == 0)
+            {
+                entityPlayer.dropItem(itemStack2, false);
+            }
         }
 
         return itemStack;
@@ -156,8 +163,8 @@ public class ContainerMarioMaker extends Container
      * Called to determine if the current slot is valid for the stack merging (double-click) code. The stack passed in
      * is null for the initial slot that was double-clicked.
      */
-    public boolean canMergeSlot(ItemStack stack, Slot slotIn)
+    public boolean canMergeSlot(ItemStack stack, Slot slot)
     {
-        return slotIn.inventory != this.craftResult && super.canMergeSlot(stack, slotIn);
+        return slot.inventory != this.craftResult && super.canMergeSlot(stack, slot);
     }
 }

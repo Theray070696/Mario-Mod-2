@@ -19,10 +19,10 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemHandlerHelper;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
 /**
@@ -86,7 +86,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World world, BlockPos pos)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess world, BlockPos pos)
     {
         return new AxisAlignedBB(0.0D, 0.25D, 0.0D, 1.0D, 1.0D, 1.0D); // You can jump into the bottom of the block.
     }
@@ -320,7 +320,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                     entityItem.motionX = rand.nextGaussian() * factor; // X motion.
                     entityItem.motionY = rand.nextGaussian() * factor + 0.2F; // Y motion.
                     entityItem.motionZ = rand.nextGaussian() * factor; // Z motion.
-                    world.spawnEntityInWorld(entityItem); // Spawn the item entity.
+                    world.spawnEntity(entityItem); // Spawn the item entity.
                 }
             }
 
@@ -329,8 +329,8 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem,
-                                    EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX,
+                                    float hitY, float hitZ)
     {
         if(player.isSneaking()) // If the player is sneaking...
         {
@@ -343,10 +343,11 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                 {
                     TileQuestionMark tileQuestionMark = (TileQuestionMark) world.getTileEntity(pos); // Store TileEntity for later use.
 
-                    if(heldItem != null && tileQuestionMark.getItemInBlock() == ItemsInQuestionMarks.ITEM_NOTHING) // If the player is holding
+                    if(tileQuestionMark.getItemInBlock() == ItemsInQuestionMarks.ITEM_NOTHING) // If the player is holding
                     // something, and the question mark block is empty...
                     {
-                        Item item = heldItem.getItem(); // Get the held item.
+                        ItemStack heldItem = player.getHeldItemMainhand();
+                        Item item = player.getHeldItemMainhand().getItem(); // Get the held item.
                         int blockType = 0; // Used to compare against damage values.
 
                         if(this.blockType.equals(EnumBlockType.SMW) || this.blockType.equals(EnumBlockType.SMW_INVISIBLE)) // If the block is from
@@ -363,7 +364,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                         {
                             if(heldItem.getItemDamage() == blockType) // If it matches the block type...
                             {
-                                heldItem.stackSize--; // Decrease amount of items in stack by one.
+                                heldItem.setCount(heldItem.getCount() - 1); // Decrease amount of items in stack by one.
                                 this.updateQuestionMarkState(ItemsInQuestionMarks.ITEM_COIN, world, pos, tileQuestionMark); // Update the state of
                                 // the block.
                             }
@@ -371,7 +372,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                         {
                             if(heldItem.getItemDamage() == blockType) // If it matches the block type...
                             {
-                                heldItem.stackSize--; // Decrease amount of items in stack by one.
+                                heldItem.setCount(heldItem.getCount() - 1); // Decrease amount of items in stack by one.
                                 this.updateQuestionMarkState(ItemsInQuestionMarks.ITEM_MUSHROOM, world, pos, tileQuestionMark); // Update the state
                                 // of the block.
                             }
@@ -379,7 +380,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                         {
                             if(heldItem.getItemDamage() == blockType) // If it matches the block type...
                             {
-                                heldItem.stackSize--; // Decrease amount of items in stack by one.
+                                heldItem.setCount(heldItem.getCount() - 1); // Decrease amount of items in stack by one.
                                 this.updateQuestionMarkState(ItemsInQuestionMarks.ITEM_1UP, world, pos, tileQuestionMark); // Update the state of
                                 // the block.
                             }
@@ -387,23 +388,23 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                         {
                             if(blockType == 1) // If the block is a Mario World block...
                             {
-                                heldItem.stackSize--; // Decrease amount of items in stack by one.
+                                heldItem.setCount(heldItem.getCount() - 1); // Decrease amount of items in stack by one.
                                 this.updateQuestionMarkState(ItemsInQuestionMarks.ITEM_CAPE, world, pos, tileQuestionMark); // Update the state of
                                 // the block.
                             }
                         } else if(item instanceof ItemFireFlower) // If the item is a Fire Flower...
                         {
-                            heldItem.stackSize--; // Decrease amount of items in stack by one.
+                            heldItem.setCount(heldItem.getCount() - 1); // Decrease amount of items in stack by one.
                             this.updateQuestionMarkState(ItemsInQuestionMarks.ITEM_FIRE_FLOWER, world, pos, tileQuestionMark); // Update the state
                             // of the block.
                         } else if(item instanceof ItemStarMan) // If the item is a Starman...
                         {
-                            heldItem.stackSize--; // Decrease amount of items in stack by one.
+                            heldItem.setCount(heldItem.getCount() - 1); // Decrease amount of items in stack by one.
                             this.updateQuestionMarkState(ItemsInQuestionMarks.ITEM_STAR_MAN, world, pos, tileQuestionMark); // Update the state of
                             // the block.
                         } else if(item == Item.getItemFromBlock(ModBlocks.blockBeanstalk)) // If the item is a beanstalk...
                         {
-                            heldItem.stackSize--; // Decrease amount of items in stack by one.
+                            heldItem.setCount(heldItem.getCount() - 1); // Decrease amount of items in stack by one.
                             this.updateQuestionMarkState(ItemsInQuestionMarks.ITEM_BEANSTALK, world, pos, tileQuestionMark); // Update the state of
                             // the block.
                         }
@@ -528,7 +529,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
             itemStack = new ItemStack(ModBlocks.blockBeanstalk);
         }
 
-        if(itemStack != null && itemStack.stackSize > 0)
+        if(itemStack != null && itemStack.getCount() > 0)
         {
             Random rand = new Random();
 
@@ -542,7 +543,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
             entityItem.motionX = rand.nextGaussian() * factor;
             entityItem.motionY = rand.nextGaussian() * factor + 0.2F;
             entityItem.motionZ = rand.nextGaussian() * factor;
-            world.spawnEntityInWorld(entityItem);
+            world.spawnEntity(entityItem);
             questionMark.setItemInBlock(ItemsInQuestionMarks.ITEM_NOTHING);
         }
     }

@@ -2,6 +2,7 @@ package io.github.Theray070696.mario2.entity;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
@@ -50,21 +51,21 @@ public class EntityFireball extends Entity
 
     public void onUpdate()
     {
-        if(!this.worldObj.isRemote)
+        if(!this.world.isRemote)
         {
             Vec3d vec3d = new Vec3d(this.posX, this.posY, this.posZ);
             Vec3d vec3d1 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-            RayTraceResult rayTraceResult = this.worldObj.rayTraceBlocks(vec3d, vec3d1);
+            RayTraceResult rayTraceResult = this.world.rayTraceBlocks(vec3d, vec3d1);
             vec3d = new Vec3d(this.posX, this.posY, this.posZ);
             vec3d1 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
             if(rayTraceResult != null)
             {
-                vec3d1 = new Vec3d(rayTraceResult.hitVec.xCoord, rayTraceResult.hitVec.yCoord, rayTraceResult.hitVec.zCoord);
+                vec3d1 = new Vec3d(rayTraceResult.hitVec.x, rayTraceResult.hitVec.y, rayTraceResult.hitVec.z);
             }
 
             Entity entity = null;
-            List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY,
-                    this.motionZ).expand(1.0D, 1.0D, 1.0D));
+            List list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().offset(this.motionX, this.motionY, this
+                    .motionZ).expand(1.0D, 1.0D, 1.0D));
             double d = 0.0D;
 
             for(int l = 0; l < list.size(); ++l)
@@ -111,7 +112,7 @@ public class EntityFireball extends Entity
                 this.prevPosX = this.posX;
                 this.prevPosY = this.posY;
                 this.prevPosZ = this.posZ;
-                this.moveEntity(this.motionX, this.motionY, this.motionZ);
+                this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
                 boolean collided = false;
                 if(this.motionX != prevVelX)
                 {

@@ -60,9 +60,9 @@ public class EntityGoomba extends EntityMob
     public void onDeath(DamageSource cause)
     {
         super.onDeath(cause);
-        if(!this.worldObj.isRemote)
+        if(!this.world.isRemote)
         {
-            if(!(cause.getEntity() instanceof FakePlayer))
+            if(!(cause.getTrueSource() instanceof FakePlayer))
             {
                 Random rand = new Random();
                 int amount = rand.nextInt(3);
@@ -88,11 +88,10 @@ public class EntityGoomba extends EntityMob
     @Override
     public boolean getCanSpawnHere()
     {
-        if(this.worldObj.provider instanceof WorldProviderMario)
+        if(this.world.provider instanceof WorldProviderMario)
         {
-            return this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && this.getBlockPathWeight(new BlockPos(this.posX, this
-                    .getEntityBoundingBox().minY, this.posZ)) >= 0.0F && this.worldObj.getBlockState((new BlockPos(this)).down()).canEntitySpawn
-                    (this);
+            return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.getBlockPathWeight(new BlockPos(this.posX, this
+                    .getEntityBoundingBox().minY, this.posZ)) >= 0.0F && this.world.getBlockState((new BlockPos(this)).down()).canEntitySpawn(this);
         } else
         {
             return super.getCanSpawnHere();

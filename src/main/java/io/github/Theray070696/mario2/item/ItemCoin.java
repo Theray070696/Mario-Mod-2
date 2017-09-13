@@ -5,14 +5,12 @@ import io.github.Theray070696.mario2.capability.CoinCountProvider;
 import io.github.Theray070696.mario2.capability.ICoinCount;
 import io.github.Theray070696.mario2.lib.ModInfo;
 import io.github.Theray070696.raycore.RayCore;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fml.relauncher.Side;
@@ -35,18 +33,20 @@ public class ItemCoin extends ItemMario
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List list)
+    public void getSubItems(CreativeTabs tab, NonNullList list)
     {
         for(int i = 0; i < 3; i++)
         {
-            list.add(new ItemStack(item, 1, i));
+            list.add(new ItemStack(this, 1, i));
         }
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
-        if(!world.isRemote && itemStack != null && player != null && !(player instanceof FakePlayer))
+        ItemStack itemStack = player.getHeldItem(hand);
+
+        if(!world.isRemote && !itemStack.isEmpty() && !(player instanceof FakePlayer))
         {
             int meta = itemStack.getItemDamage();
             if(meta == 0 || meta == 2)
@@ -63,7 +63,8 @@ public class ItemCoin extends ItemMario
 
             provider.addToCoinCount(1);
             provider.sync(player);
-            itemStack.stackSize--;
+
+            itemStack.setCount(itemStack.getCount() - 1);
         }
 
         return new ActionResult<>(EnumActionResult.PASS, itemStack);
@@ -78,11 +79,11 @@ public class ItemCoin extends ItemMario
     }
 
     @Override
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean advanced)
+    public void addInformation(ItemStack itemStack, World player, List<String> tooltip, ITooltipFlag advanced)
     {
-        super.addInformation(itemStack, player, list, advanced);
+        super.addInformation(itemStack, player, tooltip, advanced);
 
-        list.add("Right click to add to your coin counter");
-        list.add("You can get coins out of your counter in the Mario Maker");
+        tooltip.add("Right click to add to your coin counter");
+        tooltip.add("You can get coins out of your counter in the Mario Maker");
     }
 }

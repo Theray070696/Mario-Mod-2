@@ -39,7 +39,7 @@ public class BlockBeanstalk extends BlockMario
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World world, BlockPos blockPos)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess world, BlockPos blockPos)
     {
         return new AxisAlignedBB(0.44F, 0.0F, 0.44F, 0.56F, 1.0F, 0.56F);
     }
@@ -56,7 +56,7 @@ public class BlockBeanstalk extends BlockMario
     {
         if(placer instanceof EntityPlayer)
         {
-            ++stack.stackSize;
+            stack.setCount(stack.getCount() + 1);
             world.destroyBlock(pos, false);
         }
     }
@@ -115,7 +115,7 @@ public class BlockBeanstalk extends BlockMario
 
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[]{ISTOP});
+        return new BlockStateContainer(this, ISTOP);
     }
 
     @Override

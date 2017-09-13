@@ -153,7 +153,7 @@ public class TilePipe extends TileEntity
     {
         if(this.hasMaster() && !this.isMaster())
         {
-            TileEntity tile = this.worldObj.getTileEntity(new BlockPos(this.getMasterX(), this.getMasterY(), this.getMasterZ()));
+            TileEntity tile = this.world.getTileEntity(new BlockPos(this.getMasterX(), this.getMasterY(), this.getMasterZ()));
             if(tile instanceof TilePipe)
             {
                 TilePipe tilePipe = (TilePipe) tile;
@@ -172,7 +172,7 @@ public class TilePipe extends TileEntity
     {
         if(this.hasMaster() && !this.isMaster())
         {
-            TileEntity tile = this.worldObj.getTileEntity(new BlockPos(this.getMasterX(), this.getMasterY(), this.getMasterZ()));
+            TileEntity tile = this.world.getTileEntity(new BlockPos(this.getMasterX(), this.getMasterY(), this.getMasterZ()));
             if(tile instanceof TilePipe)
             {
                 TilePipe tilePipe = (TilePipe) tile;
@@ -216,7 +216,7 @@ public class TilePipe extends TileEntity
     {
         if(this.hasMaster() && !this.isMaster())
         {
-            TileEntity tile = this.worldObj.getTileEntity(new BlockPos(this.getMasterX(), this.getMasterY(), this.getMasterZ()));
+            TileEntity tile = this.world.getTileEntity(new BlockPos(this.getMasterX(), this.getMasterY(), this.getMasterZ()));
             if(tile instanceof TilePipe)
             {
                 TilePipe tilePipe = (TilePipe) tile;
@@ -249,9 +249,9 @@ public class TilePipe extends TileEntity
             return this;
         } else if(this.hasMaster())
         {
-            if(worldObj.getTileEntity(new BlockPos(this.masterX, this.masterY, this.masterZ)) instanceof TilePipe)
+            if(this.world.getTileEntity(new BlockPos(this.masterX, this.masterY, this.masterZ)) instanceof TilePipe)
             {
-                return (TilePipe) worldObj.getTileEntity(new BlockPos(this.masterX, this.masterY, this.masterZ));
+                return (TilePipe) this.world.getTileEntity(new BlockPos(this.masterX, this.masterY, this.masterZ));
             }
         }
 
@@ -262,12 +262,12 @@ public class TilePipe extends TileEntity
     {
         if(this.isMaster())
         {
-            return (BlockPipe) worldObj.getBlockState(pos).getBlock();
+            return (BlockPipe) this.world.getBlockState(pos).getBlock();
         } else if(this.hasMaster())
         {
-            if(worldObj.getBlockState(new BlockPos(this.masterX, this.masterY, this.masterZ)).getBlock() instanceof BlockPipe)
+            if(this.world.getBlockState(new BlockPos(this.masterX, this.masterY, this.masterZ)).getBlock() instanceof BlockPipe)
             {
-                return (BlockPipe) worldObj.getBlockState(new BlockPos(this.masterX, this.masterY, this.masterZ)).getBlock();
+                return (BlockPipe) this.world.getBlockState(new BlockPos(this.masterX, this.masterY, this.masterZ)).getBlock();
             }
         }
 

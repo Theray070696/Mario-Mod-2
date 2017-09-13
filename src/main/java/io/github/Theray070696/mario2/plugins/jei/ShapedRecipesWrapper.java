@@ -3,6 +3,7 @@ package io.github.Theray070696.mario2.plugins.jei;
 import io.github.Theray070696.mario2.crafting.ShapedRecipeMario;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
+import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.wrapper.IShapedCraftingRecipeWrapper;
 import net.minecraft.item.ItemStack;
 
@@ -13,7 +14,7 @@ import java.util.List;
 /**
  * Created by Theray070696 on 4/13/2017.
  */
-public class ShapedRecipesWrapper extends BlankRecipeWrapper implements IShapedCraftingRecipeWrapper
+public class ShapedRecipesWrapper implements IShapedCraftingRecipeWrapper, IRecipeWrapper
 {
     private final ShapedRecipeMario recipe;
 
@@ -22,9 +23,9 @@ public class ShapedRecipesWrapper extends BlankRecipeWrapper implements IShapedC
         this.recipe = recipe;
         for(ItemStack itemStack : this.recipe.recipeItems)
         {
-            if(itemStack != null && itemStack.stackSize != 1)
+            if(itemStack != null && itemStack.getCount() != 1)
             {
-                itemStack.stackSize = 1;
+                itemStack.setCount(1);
             }
         }
     }
@@ -45,18 +46,6 @@ public class ShapedRecipesWrapper extends BlankRecipeWrapper implements IShapedC
         {
             throw new RuntimeException(e);
         }
-    }
-
-    @Override
-    public List getInputs()
-    {
-        return Arrays.asList(this.recipe.recipeItems);
-    }
-
-    @Override
-    public List<ItemStack> getOutputs()
-    {
-        return Collections.singletonList(this.recipe.getRecipeOutput());
     }
 
     @Override

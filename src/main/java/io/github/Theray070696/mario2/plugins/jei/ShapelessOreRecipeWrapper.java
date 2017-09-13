@@ -27,9 +27,9 @@ public class ShapelessOreRecipeWrapper extends AbstractShapelessRecipeWrapper
             if(input instanceof ItemStack)
             {
                 ItemStack itemStack = (ItemStack) input;
-                if(itemStack.stackSize != 1)
+                if(itemStack.getCount() != 1)
                 {
-                    itemStack.stackSize = 1;
+                    itemStack.setCount(1);
                 }
             }
         }
@@ -54,17 +54,5 @@ public class ShapelessOreRecipeWrapper extends AbstractShapelessRecipeWrapper
         {
             throw new RuntimeException(e);
         }
-    }
-
-    @Override
-    public List getInputs()
-    {
-        return this.recipe.getInput();
-    }
-
-    @Override
-    public List<ItemStack> getOutputs()
-    {
-        return Collections.singletonList(this.recipe.getRecipeOutput());
     }
 }

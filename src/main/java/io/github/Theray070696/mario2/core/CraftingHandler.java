@@ -6,12 +6,16 @@ import io.github.Theray070696.mario2.crafting.MarioMakerCraftingManager;
 import io.github.Theray070696.mario2.crafting.ShapedOreRecipeMario;
 import io.github.Theray070696.mario2.crafting.ShapelessOreRecipeMario;
 import io.github.Theray070696.mario2.item.ModItems;
+import io.github.Theray070696.mario2.lib.ModInfo;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 /**
  * Created by Theray070696 on 8/27/2015.
@@ -20,10 +24,12 @@ public class CraftingHandler
 {
     public static void initCraftingRecipes()
     {
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockMarioMaker), "bgb", "gbg", "bgb", 'b', "emptyQuestionMarkBlock",
-                'g', "itemMarioCoin"));
+        ForgeRegistries.RECIPES.register(new ShapedOreRecipe(new ResourceLocation("mario_maker"), new ItemStack(ModBlocks.blockMarioMaker), "bgb",
+                "gbg", "bgb", 'b', "emptyQuestionMarkBlock", 'g', "itemMarioCoin").setRegistryName(new ResourceLocation(ModInfo.MOD_ID,
+                "mario_maker")));
 
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.blockMarioPlanks, 4), new ItemStack(ModBlocks.blockMarioLog));
+        ForgeRegistries.RECIPES.register(new ShapelessOreRecipe(new ResourceLocation("mario_planks"), new ItemStack(ModBlocks.blockMarioPlanks, 4),
+                new ItemStack(ModBlocks.blockMarioLog)).setRegistryName(new ResourceLocation(ModInfo.MOD_ID, "mario_planks")));
     }
 
     public static void initMarioMakerRecipes()

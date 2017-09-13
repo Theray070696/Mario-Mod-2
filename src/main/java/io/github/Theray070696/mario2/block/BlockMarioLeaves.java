@@ -186,7 +186,8 @@ public class BlockMarioLeaves extends BlockMario implements IShearable
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
-        if(world.isRainingAt(pos.up()) && !world.getBlockState(pos.down()).isFullyOpaque() && rand.nextInt(15) == 1)
+        if(world.isRainingAt(pos.up()) && !world.getBlockState(pos.down()).getBlock().isOpaqueCube(world.getBlockState(pos.down())) && rand.nextInt
+                (15) == 1)
         {
             double x = (double) ((float) pos.getX() + rand.nextFloat());
             double y = (double) pos.getY() - 0.05D;

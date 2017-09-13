@@ -25,12 +25,6 @@ public class ShapelessRecipesHandler implements IRecipeHandler<ShapelessRecipeMa
     }
 
     @Override
-    public String getRecipeCategoryUid()
-    {
-        return "Mario Maker";
-    }
-
-    @Override
     public String getRecipeCategoryUid(ShapelessRecipeMario recipe)
     {
         return "Mario Maker";

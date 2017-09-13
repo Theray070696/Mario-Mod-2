@@ -4,13 +4,10 @@ import io.github.Theray070696.mario2.MarioMod2;
 import io.github.Theray070696.mario2.lib.GuiIds;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
 
 /**
  * Created by Theray070696 on 3/31/2016.
@@ -25,8 +22,8 @@ public class BlockMarioMaker extends BlockMario
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos blockPos, IBlockState blockState, EntityPlayer player, EnumHand hand, @Nullable ItemStack
-            heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos blockPos, IBlockState blockState, EntityPlayer player, EnumHand hand, EnumFacing side,
+                                    float hitX, float hitY, float hitZ)
     {
         if(player.isSneaking())
         {

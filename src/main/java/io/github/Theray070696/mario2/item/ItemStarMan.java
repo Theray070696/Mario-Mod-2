@@ -3,6 +3,7 @@ package io.github.Theray070696.mario2.item;
 import io.github.Theray070696.mario2.audio.SoundHandler;
 import io.github.Theray070696.mario2.potion.PotionEffectsMario;
 import io.github.Theray070696.raycore.api.RayCoreAPI;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
@@ -31,10 +32,11 @@ public class ItemStarMan extends ItemMario
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
-        if(itemStack != null && world != null && player != null && !(player instanceof FakePlayer) && !player.isPotionActive(PotionEffectsMario
-                .potionStarman))
+        ItemStack itemStack = player.getHeldItem(hand);
+
+        if(!world.isRemote && !itemStack.isEmpty() && !(player instanceof FakePlayer) && !player.isPotionActive(PotionEffectsMario.potionStarman))
         {
             player.addPotionEffect(new PotionEffect(PotionEffectsMario.potionStarman, 258, 10));
             player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 258, 5));
@@ -47,7 +49,7 @@ public class ItemStarMan extends ItemMario
 
             RayCoreAPI.playMovingSound(SoundHandler.starMan, SoundCategory.PLAYERS, world, player);
 
-            itemStack.stackSize--;
+            itemStack.setCount(itemStack.getCount() - 1);
         }
 
         return new ActionResult<>(EnumActionResult.PASS, itemStack);
@@ -55,10 +57,10 @@ public class ItemStarMan extends ItemMario
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean advanced)
+    public void addInformation(ItemStack itemStack, World player, List<String> tooltip, ITooltipFlag advanced)
     {
-        super.addInformation(itemStack, player, list, advanced);
+        super.addInformation(itemStack, player, tooltip, advanced);
 
-        list.add("Gives 12 seconds of invincibility and speed boost");
+        tooltip.add("Gives 12 seconds of invincibility and speed boost");
     }
 }

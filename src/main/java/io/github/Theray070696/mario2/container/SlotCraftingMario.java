@@ -51,7 +51,7 @@ public class SlotCraftingMario extends Slot
     {
         if(this.getHasStack())
         {
-            this.amountCrafted += Math.min(amount, this.getStack().stackSize);
+            this.amountCrafted += Math.min(amount, this.getStack().getCount());
         }
 
         return super.decrStackSize(amount);
@@ -74,7 +74,7 @@ public class SlotCraftingMario extends Slot
     {
         if(this.amountCrafted > 0)
         {
-            stack.onCrafting(this.thePlayer.worldObj, this.thePlayer, this.amountCrafted);
+            stack.onCrafting(this.thePlayer.world, this.thePlayer, this.amountCrafted);
         }
 
         this.amountCrafted = 0;
@@ -87,10 +87,10 @@ public class SlotCraftingMario extends Slot
         }*/
     }
 
-    public void onPickupFromSlot(EntityPlayer playerIn, ItemStack stack)
+    public ItemStack onTake(EntityPlayer player, ItemStack stack)
     {
         this.onCrafting(stack);
-        ItemStack[] aItemStack = MarioMakerCraftingManager.getInstance().getRemainingItems(this.craftMatrix, playerIn.worldObj);
+        ItemStack[] aItemStack = MarioMakerCraftingManager.getInstance().getRemainingItems(this.craftMatrix, player.world);
 
         for(int i = 0; i < aItemStack.length; ++i)
         {
@@ -110,7 +110,7 @@ public class SlotCraftingMario extends Slot
                     this.craftMatrix.setInventorySlotContents(i, itemStack1);
                 } else if(ItemStack.areItemsEqual(itemStack, itemStack1) && ItemStack.areItemStackTagsEqual(itemStack, itemStack1))
                 {
-                    itemStack1.stackSize += itemStack.stackSize;
+                    itemStack1.setCount(itemStack.getCount() + itemStack1.getCount());
                     this.craftMatrix.setInventorySlotContents(i, itemStack1);
                 } else if(!this.thePlayer.inventory.addItemStackToInventory(itemStack1))
                 {
@@ -118,5 +118,7 @@ public class SlotCraftingMario extends Slot
                 }
             }
         }
+
+        return stack;
     }
 }

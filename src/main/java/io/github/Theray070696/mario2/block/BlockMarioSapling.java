@@ -48,9 +48,9 @@ public class BlockMarioSapling extends BlockMario implements IGrowable
         return state.getBlock() instanceof BlockMario && ((BlockMario) state.getBlock()).isGround();
     }
 
-    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
     {
-        super.neighborChanged(state, world, pos, block);
+        super.neighborChanged(state, world, pos, block, fromPos);
         this.checkAndDropBlock(world, pos, state);
     }
 

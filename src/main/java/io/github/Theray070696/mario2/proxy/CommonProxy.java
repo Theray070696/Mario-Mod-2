@@ -7,6 +7,7 @@ import io.github.Theray070696.mario2.entity.EntityKoopa;
 import io.github.Theray070696.mario2.lib.ModInfo;
 import io.github.Theray070696.mario2.world.ModBiomes;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -24,9 +25,9 @@ public abstract class CommonProxy implements IProxy
     @Override
     public void preInit(FMLPreInitializationEvent event)
     {
-        EntityRegistry.registerModEntity(EntityGoomba.class, ModInfo.MOD_ID + ":goomba", 0, MarioMod2.INSTANCE, 128, 1, false);
-        EntityRegistry.registerModEntity(EntityKoopa.class, ModInfo.MOD_ID + ":koopa", 1, MarioMod2.INSTANCE, 128, 1, false);
-        EntityRegistry.registerModEntity(EntityFireball.class, ModInfo.MOD_ID + ":fireball", 2, MarioMod2.INSTANCE, 64, 1, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(ModInfo.MOD_ID, "goomba"), EntityGoomba.class, ModInfo.MOD_ID + ":goomba", 0, MarioMod2.INSTANCE, 128, 1, false);
+        EntityRegistry.registerModEntity(new ResourceLocation(ModInfo.MOD_ID, "koopa"), EntityKoopa.class, ModInfo.MOD_ID + ":koopa", 1, MarioMod2.INSTANCE, 128, 1, false);
+        EntityRegistry.registerModEntity(new ResourceLocation(ModInfo.MOD_ID, "fireball"), EntityFireball.class, ModInfo.MOD_ID + ":fireball", 2, MarioMod2.INSTANCE, 64, 1, true);
 
         List<BiomeManager.BiomeEntry> biomeEntries = new ArrayList<>();
         biomeEntries.addAll(BiomeManager.getBiomes(BiomeManager.BiomeType.COOL));

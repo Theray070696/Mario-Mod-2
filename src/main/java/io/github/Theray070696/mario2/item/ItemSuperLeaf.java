@@ -2,6 +2,7 @@ package io.github.Theray070696.mario2.item;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -41,9 +42,9 @@ public class ItemSuperLeaf extends ItemMario implements IBauble
 
                 for(int i = 0; i < 9; i++) // Loop from zero to nine.
                 {
-                    ItemStack itemStack = player.inventory.mainInventory[i]; // Get the item in this hotbar slot.
+                    ItemStack itemStack = player.inventory.mainInventory.get(i); // Get the item in this hotbar slot.
 
-                    if(itemStack != null && itemStack.isItemEqual(stack)) // If it's not null and is a cape...
+                    if(!itemStack.isEmpty() && itemStack.isItemEqual(stack)) // If it's not null and is a cape...
                     {
                         player.fallDistance = 0.0F; // Cancel fall damage.
                         return; // Exit out of the function.
@@ -54,9 +55,11 @@ public class ItemSuperLeaf extends ItemMario implements IBauble
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
-        if(!world.isRemote && itemStack != null && player != null && !(player instanceof FakePlayer)) // If we're on the server side, the ItemStack
+        ItemStack itemStack = player.getHeldItem(hand);
+
+        if(!world.isRemote && !itemStack.isEmpty() && !(player instanceof FakePlayer)) // If we're on the server side, the ItemStack
         // is not null, the player is not null, and the player is not a fake player...
         {
             player.fallDistance = 0.0F; // Cancel fall damage.
@@ -70,11 +73,11 @@ public class ItemSuperLeaf extends ItemMario implements IBauble
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean advanced)
+    public void addInformation(ItemStack itemStack, World player, List<String> tooltip, ITooltipFlag advanced)
     {
-        super.addInformation(itemStack, player, list, advanced);
+        super.addInformation(itemStack, player, tooltip, advanced);
 
-        list.add("Negates fall damage"); // Add helpful tooltip.
+        tooltip.add("Negates fall damage"); // Add helpful tooltip.
     }
 
     @Override

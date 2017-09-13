@@ -15,7 +15,6 @@ import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.gen.*;
 import net.minecraft.world.gen.feature.WorldGenDungeons;
 import net.minecraft.world.gen.feature.WorldGenLakes;
@@ -28,7 +27,6 @@ import net.minecraftforge.event.terraingen.InitNoiseGensEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
@@ -55,7 +53,7 @@ public class ChunkGeneratorMario implements IChunkGenerator
     private NoiseGeneratorOctaves maxLimitPerlinNoise;
     private NoiseGeneratorOctaves mainPerlinNoise;
     private NoiseGeneratorPerlin surfaceNoise;
-    private ChunkProviderSettings settings;
+    private ChunkGeneratorSettings settings;
     private IBlockState oceanBlock = Blocks.WATER.getDefaultState();
     private double[] depthBuffer = new double[256];
     private MapGenBase caveGenerator = new MapGenCaves();
@@ -93,14 +91,14 @@ public class ChunkGeneratorMario implements IChunkGenerator
         {
             for(int j = -2; j <= 2; ++j)
             {
-                float f = 10.0F / MathHelper.sqrt_float((float) (i * i + j * j) + 0.2F);
+                float f = 10.0F / MathHelper.sqrt((float) (i * i + j * j) + 0.2F);
                 this.biomeWeights[i + 2 + (j + 2) * 5] = f;
             }
         }
 
         if(settingsString != null)
         {
-            this.settings = ChunkProviderSettings.Factory.jsonToFactory(settingsString).build();
+            this.settings = ChunkGeneratorSettings.Factory.jsonToFactory(settingsString).build();
             this.oceanBlock = this.settings.useLavaOceans ? Blocks.LAVA.getDefaultState() : Blocks.WATER.getDefaultState();
             world.setSeaLevel(this.settings.seaLevel);
         }
@@ -202,7 +200,7 @@ public class ChunkGeneratorMario implements IChunkGenerator
         }
     }
 
-    public Chunk provideChunk(int x, int z)
+    public Chunk generateChunk(int x, int z)
     {
         this.rand.setSeed((long) x * 341873128712L + (long) z * 132897987541L);
         ChunkPrimer chunkprimer = new ChunkPrimer();
@@ -355,7 +353,7 @@ public class ChunkGeneratorMario implements IChunkGenerator
                     double minDensity = this.minLimitRegion[noiseIndex] / (double) this.settings.lowerLimitScale;
                     double maxDensity = this.maxLimitRegion[noiseIndex] / (double) this.settings.upperLimitScale;
                     double mainDensity = (this.mainNoiseRegion[noiseIndex] / 10.0D + 1.0D) / 2.0D;
-                    double d5 = MathHelper.denormalizeClamp(minDensity, maxDensity, mainDensity) - densityOffset;
+                    double d5 = MathHelper.clampedLerp(minDensity, maxDensity, mainDensity) - densityOffset;
 
                     if(heightMapY > 29)
                     {
@@ -499,10 +497,29 @@ public class ChunkGeneratorMario implements IChunkGenerator
         return biome.getSpawnableList(creatureType);
     }
 
-    @Nullable
-    public BlockPos getStrongholdGen(World world, String structureName, BlockPos pos)
+    public boolean isInsideStructure(World worldIn, String structureName, BlockPos pos)
     {
-        return null;
+        if(!this.mapFeaturesEnabled)
+        {
+            return false;
+        } else
+        {
+            return "Mineshaft".equals(structureName) && this.mineshaftGenerator != null && this.mineshaftGenerator.isInsideStructure(pos);
+        }
+    }
+
+    public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position, boolean findUnexplored)
+    {
+        if(!this.mapFeaturesEnabled)
+        {
+            return null;
+        } else if("Mineshaft".equals(structureName) && this.mineshaftGenerator != null)
+        {
+            return this.mineshaftGenerator.getNearestStructurePos(worldIn, position, findUnexplored);
+        } else
+        {
+            return null;
+        }
     }
 
     public void recreateStructures(Chunk chunk, int x, int z)

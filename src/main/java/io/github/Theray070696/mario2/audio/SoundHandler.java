@@ -6,6 +6,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
@@ -117,11 +118,11 @@ public class SoundHandler
 
     public static SoundEvent register(String name)
     {
-        ResourceLocation loc = new ResourceLocation(ModInfo.MOD_ID, name);
-        SoundEvent e = new SoundEvent(loc);
-        GameRegistry.register(e, loc);
+        SoundEvent event = new SoundEvent(new ResourceLocation(ModInfo.MOD_ID, name));
+        event.setRegistryName(new ResourceLocation(ModInfo.MOD_ID, name));
+        ForgeRegistries.SOUND_EVENTS.register(event);
 
-        return e;
+        return event;
     }
 
     public static void playSoundName(String soundName, World world, SoundCategory category, BlockPos pos)

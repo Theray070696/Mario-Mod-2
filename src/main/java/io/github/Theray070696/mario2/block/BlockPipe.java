@@ -11,6 +11,7 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,7 +31,6 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 /**
@@ -74,7 +74,7 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World world, BlockPos blockPos)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess world, BlockPos blockPos)
     {
         EnumFacing side = blockState.getValue(FACING);
         boolean rearBlock = getActualState(blockState, world, blockPos).getValue(REARBLOCK);
@@ -139,7 +139,7 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
 
                         if(world.getMinecraftServer() != null)
                         {
-                            World otherWorld = world.getMinecraftServer().worldServerForDimension(teleportDestinationDimension);
+                            World otherWorld = world.getMinecraftServer().getWorld(teleportDestinationDimension);
 
                             if(otherWorld.getBlockState(teleportDestinationPos).getBlock() instanceof BlockPipe && otherWorld.getTileEntity
                                     (teleportDestinationPos) instanceof TilePipe)
@@ -161,16 +161,13 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
                                     } else if(entity instanceof EntityItem)
                                     {
                                         // Items
-                                        ItemStack stack = ((EntityItem) entity).getEntityItem().copy();
+                                        ItemStack stack = ((EntityItem) entity).getItem().copy();
 
                                         EntityItem entityItem = new EntityItem(otherWorld, teleportDestinationPos.getX(), teleportDestinationPos
                                                 .getY(), teleportDestinationPos.getZ(), stack);
 
-                                        otherWorld.spawnEntityInWorld(entityItem);
+                                        otherWorld.spawnEntity(entityItem);
                                         entity.setDead();
-
-                                        //world.getMinecraftServer().getPlayerList().transferEntityToWorld(entity, world.provider.getDimension(),
-                                        //(WorldServer) world, (WorldServer) otherWorld, new MarioTeleporter((WorldServer) otherWorld));
                                     } else
                                     {
                                         // Other Entities
@@ -560,11 +557,12 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem,
-                                    EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX,
+                                    float hitY, float hitZ)
     {
-        if(player.isSneaking() || (!state.getValue(ISMULTIBLOCK) && heldItem != null) || (state.getValue(ISMULTIBLOCK) && heldItem != null &&
-                heldItem.getItem() instanceof ItemPipeLink))
+        if(player.isSneaking() || (!state.getValue(ISMULTIBLOCK) && !player.getHeldItemMainhand().isEmpty() && !player.getHeldItemOffhand().isEmpty
+                ()) || (state.getValue(ISMULTIBLOCK) && (player.getHeldItemMainhand().getItem() instanceof ItemPipeLink || player
+                .getHeldItemOffhand().getItem() instanceof ItemPipeLink)))
         {
             return false;
         } else
@@ -609,7 +607,7 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
                 {
                     if(world.getMinecraftServer() != null)
                     {
-                        World otherPipeWorld = world.getMinecraftServer().worldServerForDimension(otherPipeDim);
+                        World otherPipeWorld = world.getMinecraftServer().getWorld(otherPipeDim);
                         if(otherPipeWorld.getTileEntity(otherPipePos) != null && otherPipeWorld.getTileEntity(otherPipePos) instanceof TilePipe)
                         {
                             TilePipe otherPipe = (TilePipe) otherPipeWorld.getTileEntity(otherPipePos);
@@ -645,7 +643,7 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
                             {
                                 if(world.getMinecraftServer() != null)
                                 {
-                                    World otherPipeWorld = world.getMinecraftServer().worldServerForDimension(otherPipeDim);
+                                    World otherPipeWorld = world.getMinecraftServer().getWorld(otherPipeDim);
                                     if(otherPipeWorld.getTileEntity(otherPipePos) != null && otherPipeWorld.getTileEntity(otherPipePos) instanceof
                                             TilePipe)
                                     {
@@ -759,7 +757,7 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced)
+    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced)
     {
         super.addInformation(stack, player, tooltip, advanced);
 

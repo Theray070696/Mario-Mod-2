@@ -48,20 +48,19 @@ public class PacketGetCoins implements IMessage
         @Override
         public IMessage onMessage(PacketGetCoins message, MessageContext ctx)
         {
-            IThreadListener mainThread = (WorldServer) ctx.getServerHandler().playerEntity.worldObj;
+            IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
             mainThread.addScheduledTask(new Runnable()
             {
                 @Override
                 public void run()
                 {
-                    if(message.coinCount <= ctx.getServerHandler().playerEntity.getCapability(CoinCountProvider.COIN_COUNT, null).getCoinCount())
+                    if(message.coinCount <= ctx.getServerHandler().player.getCapability(CoinCountProvider.COIN_COUNT, null).getCoinCount())
                     {
-                        ctx.getServerHandler().playerEntity.getCapability(CoinCountProvider.COIN_COUNT, null).subtractFromCoinCount(message
+                        ctx.getServerHandler().player.getCapability(CoinCountProvider.COIN_COUNT, null).subtractFromCoinCount(message
                                 .coinCount);
-                        ctx.getServerHandler().playerEntity.getCapability(CoinCountProvider.COIN_COUNT, null).sync(ctx.getServerHandler()
-                                .playerEntity);
+                        ctx.getServerHandler().player.getCapability(CoinCountProvider.COIN_COUNT, null).sync(ctx.getServerHandler().player);
 
-                        EntityItem entityItem = ctx.getServerHandler().playerEntity.entityDropItem(new ItemStack(ModItems.itemMarioCoin, message
+                        EntityItem entityItem = ctx.getServerHandler().player.entityDropItem(new ItemStack(ModItems.itemMarioCoin, message
                                 .coinCount, message.coinType), 0.0f);
 
                         entityItem.setNoPickupDelay();

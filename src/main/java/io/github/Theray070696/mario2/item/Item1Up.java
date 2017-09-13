@@ -3,14 +3,12 @@ package io.github.Theray070696.mario2.item;
 import io.github.Theray070696.mario2.audio.SoundHandler;
 import io.github.Theray070696.mario2.lib.ModInfo;
 import io.github.Theray070696.raycore.RayCore;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fml.relauncher.Side;
@@ -33,18 +31,20 @@ public class Item1Up extends ItemMario
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List list)
+    public void getSubItems(CreativeTabs tab, NonNullList list)
     {
         for(int i = 0; i < 3; i++)
         {
-            list.add(new ItemStack(item, 1, i));
+            list.add(new ItemStack(this, 1, i));
         }
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
-        if(!world.isRemote && itemStack != null && player != null && !(player instanceof FakePlayer))
+        ItemStack itemStack = player.getHeldItem(hand);
+
+        if(!world.isRemote && !itemStack.isEmpty() && !(player instanceof FakePlayer))
         {
             if(player.getHealth() < player.getMaxHealth())
             {
@@ -79,7 +79,7 @@ public class Item1Up extends ItemMario
                             .oneUp, SoundCategory.PLAYERS, 1.0F, 1.0F);
                 }
 
-                itemStack.stackSize--;
+                itemStack.setCount(itemStack.getCount() - 1);
             }
         }
 
@@ -96,16 +96,21 @@ public class Item1Up extends ItemMario
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean advanced)
+    public void addInformation(ItemStack itemStack, World player, List<String> tooltip, ITooltipFlag advanced)
     {
-        super.addInformation(itemStack, player, list, advanced);
+        super.addInformation(itemStack, player, tooltip, advanced);
 
-        if(!player.getEntityWorld().getWorldInfo().isHardcoreModeEnabled())
+        if(player == null)
         {
-            list.add("Restores 5 hearts"); // Add a helpful tooltip.
+            return;
+        }
+
+        if(!player.getWorldInfo().isHardcoreModeEnabled())
+        {
+            tooltip.add("Restores 5 hearts"); // Add a helpful tooltip.
         } else
         {
-            list.add("Restores 10 hearts"); // Add a helpful tooltip.
+            tooltip.add("Restores 10 hearts"); // Add a helpful tooltip.
         }
     }
 }

@@ -15,12 +15,10 @@ import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.entity.monster.SkeletonType;
+import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.AchievementList;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
@@ -37,7 +35,6 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.player.AchievementEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
@@ -80,7 +77,7 @@ public class EventHandler
             {
                 Random rand = new Random();
 
-                SoundHandler.playSoundName("mario2:player.death" + rand.nextInt(4) + 1, event.getEntityLiving().worldObj, SoundCategory.PLAYERS,
+                SoundHandler.playSoundName("mario2:player.death" + rand.nextInt(4) + 1, event.getEntityLiving().world, SoundCategory.PLAYERS,
                         event.getEntityLiving().getPosition());
             }
         }
@@ -147,7 +144,7 @@ public class EventHandler
         }
     }
 
-    @SubscribeEvent
+    /*@SubscribeEvent
     public void onAchievement(AchievementEvent event)
     {
         // If the player would get the DIAMONDS! achievement, and the can unlock it, and they don't already have it...
@@ -156,7 +153,7 @@ public class EventHandler
         {
             RayCoreAPI.playSoundToAll("mario2:player.diamonds"); // Play a sound to everybody on the server.
         }
-    }
+    }*/
 
     @SubscribeEvent
     public void onEntityDamaged(LivingHurtEvent event)
@@ -171,12 +168,12 @@ public class EventHandler
     @SubscribeEvent
     public void onLivingDropsEvent(LivingDropsEvent event)
     {
-        if(!event.getEntity().worldObj.getGameRules().getBoolean("doMobLoot"))
+        if(!event.getEntity().world.getGameRules().getBoolean("doMobLoot"))
         {
             return;
         }
 
-        if(event.getSource().getSourceOfDamage() instanceof EntityPlayer && !(event.getSource().getSourceOfDamage() instanceof FakePlayer)) // If
+        if(event.getSource().getTrueSource() instanceof EntityPlayer && !(event.getSource().getTrueSource() instanceof FakePlayer)) // If
         // the cause of damage was a player, but NOT a fake player...
         {
             Entity entity = event.getEntity(); // Get entity that is dropping item(s).
@@ -197,8 +194,7 @@ public class EventHandler
                 {
                     entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, 1, 3), 0.0f); // Dragon Coin
                 }
-            } else if(entity instanceof EntitySkeleton && ((EntitySkeleton) entity).getSkeletonType() == SkeletonType.WITHER) // If the entity was
-            // a Wither Skeleton...
+            } else if(entity instanceof EntityWitherSkeleton) // If the entity was a Wither Skeleton...
             {
                 if(rand.nextInt(500) == 0) // Drop 1 Wither Coin as a very rare drop.
                 {
@@ -218,7 +214,7 @@ public class EventHandler
                 } else if(randInt >= 20 && randInt < 45) // 25% chance.
                 {
                     entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, rand.nextInt(4), 2), 0.0f); // Red Coin
-                } else if(randInt >= 45 && randInt < 90 || true) // 45% chance.
+                } else if(randInt >= 45 && randInt < 90) // 45% chance.
                 {
                     entity.entityDropItem(new ItemStack(ModItems.itemMarioCoin, rand.nextInt(4) + 1, rand.nextInt(3)), 0.0f); // Normal Coin
                 }
@@ -231,7 +227,7 @@ public class EventHandler
     {
         EntityLivingBase entity = event.getEntityLiving();
 
-        if(!entity.worldObj.isRemote)
+        if(!entity.world.isRemote)
         {
             if(getSoundCooldown(entity) > 0)
             {
@@ -239,13 +235,13 @@ public class EventHandler
             }
         }
 
-        if(entity.worldObj.isRemote)
+        if(entity.world.isRemote)
         {
             if(entity.isPotionActive(PotionEffectsMario.potionStarman))
             {
                 Random rand = new Random();
-                entity.worldObj.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, entity.posX - 0.1D + rand.nextGaussian() * 0.2D, entity.posY +
-                        0.5D - rand.nextGaussian() * 0.2D, entity.posZ - 0.1D + rand.nextGaussian() * 0.2D, 0.0D, 0.0D, 0.0D);
+                entity.world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, entity.posX - 0.1D + rand.nextGaussian() * 0.2D, entity.posY + 0.5D -
+                        rand.nextGaussian() * 0.2D, entity.posZ - 0.1D + rand.nextGaussian() * 0.2D, 0.0D, 0.0D, 0.0D);
             }
         }
     }

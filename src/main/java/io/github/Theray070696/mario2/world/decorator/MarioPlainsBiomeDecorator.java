@@ -9,7 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
-import net.minecraft.world.gen.ChunkProviderSettings;
+import net.minecraft.world.gen.ChunkGeneratorSettings;
 import net.minecraft.world.gen.feature.WorldGenLiquids;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.common.MinecraftForge;
@@ -32,8 +32,8 @@ public class MarioPlainsBiomeDecorator extends BiomeDecorator
         this.mushroomsPerChunk = 0;
         this.reedsPerChunk = 0;
         this.cactiPerChunk = 0;
-        this.sandPerChunk = 0;
-        this.sandPerChunk2 = 0;
+        this.sandPatchesPerChunk = 0;
+        this.gravelPatchesPerChunk = 0;
         this.clayPerChunk = 0;
         this.bigMushroomsPerChunk = 0;
     }
@@ -46,7 +46,7 @@ public class MarioPlainsBiomeDecorator extends BiomeDecorator
             throw new RuntimeException("Already decorating");
         } else
         {
-            this.chunkProviderSettings = ChunkProviderSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
+            this.chunkProviderSettings = ChunkGeneratorSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
             this.chunkPos = pos;
             this.dirtGen = new WorldGenMinable(ModBlocks.blockGround.getDefaultState(), this.chunkProviderSettings.dirtSize);
             this.gravelGen = new WorldGenMinable(Blocks.GRAVEL.getDefaultState(), this.chunkProviderSettings.gravelSize);
@@ -97,7 +97,7 @@ public class MarioPlainsBiomeDecorator extends BiomeDecorator
 
         if(TerrainGen.decorate(world, rand, this.chunkPos, DecorateBiomeEvent.Decorate.EventType.SAND))
         {
-            for(int i = 0; i < this.sandPerChunk2; ++i)
+            for(int i = 0; i < this.sandPatchesPerChunk; ++i)
             {
                 int j = rand.nextInt(16) + 8;
                 int k = rand.nextInt(16) + 8;
@@ -115,13 +115,13 @@ public class MarioPlainsBiomeDecorator extends BiomeDecorator
             }
         }
 
-        if(TerrainGen.decorate(world, rand, this.chunkPos, DecorateBiomeEvent.Decorate.EventType.SAND_PASS2))
+        if(TerrainGen.decorate(world, rand, chunkPos, DecorateBiomeEvent.Decorate.EventType.SAND_PASS2))
         {
-            for(int j1 = 0; j1 < this.sandPerChunk; ++j1)
+            for(int j1 = 0; j1 < this.gravelPatchesPerChunk; ++j1)
             {
-                int x = rand.nextInt(16) + 8;
-                int z = rand.nextInt(16) + 8;
-                this.gravelAsSandGen.generate(world, rand, world.getTopSolidOrLiquidBlock(this.chunkPos.add(x, 0, z)));
+                int i2 = rand.nextInt(16) + 8;
+                int j6 = rand.nextInt(16) + 8;
+                this.gravelGen.generate(world, rand, world.getTopSolidOrLiquidBlock(this.chunkPos.add(i2, 0, j6)));
             }
         }
 
@@ -146,34 +146,34 @@ public class MarioPlainsBiomeDecorator extends BiomeDecorator
             }
         }
 
-        if(this.generateLakes)
+        if(this.generateFalls)
         {
-            if(TerrainGen.decorate(world, rand, this.chunkPos, DecorateBiomeEvent.Decorate.EventType.LAKE_WATER))
+            if(TerrainGen.decorate(world, rand, chunkPos, DecorateBiomeEvent.Decorate.EventType.LAKE_WATER))
             {
                 for(int k5 = 0; k5 < 50; ++k5)
                 {
-                    int x = rand.nextInt(16) + 8;
-                    int z = rand.nextInt(16) + 8;
+                    int i10 = rand.nextInt(16) + 8;
+                    int l13 = rand.nextInt(16) + 8;
                     int i17 = rand.nextInt(248) + 8;
 
                     if(i17 > 0)
                     {
-                        int y = rand.nextInt(i17);
-                        BlockPos pos = this.chunkPos.add(x, y, z);
-                        (new WorldGenLiquids(Blocks.FLOWING_WATER)).generate(world, rand, pos);
+                        int k19 = rand.nextInt(i17);
+                        BlockPos blockpos6 = this.chunkPos.add(i10, k19, l13);
+                        (new WorldGenLiquids(Blocks.FLOWING_WATER)).generate(world, rand, blockpos6);
                     }
                 }
             }
 
-            if(TerrainGen.decorate(world, rand, this.chunkPos, DecorateBiomeEvent.Decorate.EventType.LAKE_LAVA))
+            if(TerrainGen.decorate(world, rand, chunkPos, DecorateBiomeEvent.Decorate.EventType.LAKE_LAVA))
             {
                 for(int l5 = 0; l5 < 20; ++l5)
                 {
-                    int x = rand.nextInt(16) + 8;
-                    int y = rand.nextInt(rand.nextInt(rand.nextInt(240) + 8) + 8);
-                    int z = rand.nextInt(16) + 8;
-                    BlockPos pos = this.chunkPos.add(x, y, z);
-                    (new WorldGenLiquids(Blocks.FLOWING_LAVA)).generate(world, rand, pos);
+                    int j10 = rand.nextInt(16) + 8;
+                    int i14 = rand.nextInt(16) + 8;
+                    int j17 = rand.nextInt(rand.nextInt(rand.nextInt(240) + 8) + 8);
+                    BlockPos blockpos3 = this.chunkPos.add(j10, j17, i14);
+                    (new WorldGenLiquids(Blocks.FLOWING_LAVA)).generate(world, rand, blockpos3);
                 }
             }
         }

@@ -13,8 +13,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProviderEnd;
 import net.minecraft.world.WorldProviderHell;
-import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fml.common.IWorldGenerator;
@@ -100,7 +100,7 @@ public class WorldGenMario implements IWorldGenerator
 
             this.runGenerator(this.castle, world, random, chunkX, chunkZ, 0, 0, 0);
             this.runGenerator(this.castle, world, random, chunkX, chunkZ, 0, 0, 0);
-        } else if(world.getWorldType().getWorldTypeName().equalsIgnoreCase("atg"))
+        } else if(world.getWorldType().getName().equalsIgnoreCase("atg"))
         {
             this.runGenerator(this.questionMarkSMB, world, random, chunkX, chunkZ, random.nextInt(2), 50, 128);
             this.runGenerator(this.questionMarkUndergroundSMB, world, random, chunkX, chunkZ, random.nextInt(2), 3, 50);
