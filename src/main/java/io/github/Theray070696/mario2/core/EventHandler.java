@@ -144,17 +144,6 @@ public class EventHandler
         }
     }
 
-    /*@SubscribeEvent
-    public void onAchievement(AchievementEvent event)
-    {
-        // If the player would get the DIAMONDS! achievement, and the can unlock it, and they don't already have it...
-        if(event.getAchievement().equals(AchievementList.DIAMONDS) && !event.getEntityPlayer().hasAchievement(event.getAchievement()) && (
-                (EntityPlayerMP) event.getEntityPlayer()).getStatFile().canUnlockAchievement(AchievementList.DIAMONDS))
-        {
-            RayCoreAPI.playSoundToAll("mario2:player.diamonds"); // Play a sound to everybody on the server.
-        }
-    }*/
-
     @SubscribeEvent
     public void onEntityDamaged(LivingHurtEvent event)
     {
