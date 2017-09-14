@@ -49,7 +49,7 @@ public class MarioForestBiomeDecorator extends BiomeDecorator
             this.chunkProviderSettings = ChunkGeneratorSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
             this.chunkPos = pos;
             this.dirtGen = new WorldGenMinable(ModBlocks.marioBlockGround.getDefaultState(), this.chunkProviderSettings.dirtSize);
-            this.gravelGen = new WorldGenMinable(Blocks.GRAVEL.getDefaultState(), this.chunkProviderSettings.gravelSize);
+            this.gravelOreGen = new WorldGenMinable(Blocks.GRAVEL.getDefaultState(), this.chunkProviderSettings.gravelSize);
             this.graniteGen = new WorldGenMinable(ModBlocks.marioBlockGroundUnderground.getDefaultState(), this.chunkProviderSettings.graniteSize);
             this.dioriteGen = new WorldGenMinable(ModBlocks.marioBlockGroundUnderground.getDefaultState(), this.chunkProviderSettings.dioriteSize);
             this.andesiteGen = new WorldGenMinable(ModBlocks.marioBlockGroundUnderground.getDefaultState(), this.chunkProviderSettings.andesiteSize);

@@ -28,8 +28,8 @@ public class CraftingHandler
                 "gbg", "bgb", 'b', "emptyQuestionMarkBlock", 'g', "itemCoin").setRegistryName(new ResourceLocation(ModInfo.MOD_ID,
                 "mario_maker")));
 
-        ForgeRegistries.RECIPES.register(new ShapelessOreRecipe(new ResourceLocation("mario_planks"), new ItemStack(ModBlocks.marioBlockMarioPlanks, 4),
-                new ItemStack(ModBlocks.marioBlockMarioLog)).setRegistryName(new ResourceLocation(ModInfo.MOD_ID, "mario_planks")));
+        ForgeRegistries.RECIPES.register(new ShapelessOreRecipe(new ResourceLocation("mario_planks"), new ItemStack(ModBlocks.marioBlockPlanks, 4),
+                new ItemStack(ModBlocks.marioBlockLog)).setRegistryName(new ResourceLocation(ModInfo.MOD_ID, "mario_planks")));
     }
 
     public static void initMarioMakerRecipes()
@@ -50,23 +50,23 @@ public class CraftingHandler
         }
 
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockGround, 8), "sss", "sss", "sss", 's', "stone"));
-        addShaped(new ItemStack(ModBlocks.marioBlockMarioBrick, 16), "bb", "bb", 'b', new ItemStack(Blocks.BRICK_BLOCK));
+        addShaped(new ItemStack(ModBlocks.marioBlockBrick, 16), "bb", "bb", 'b', new ItemStack(Blocks.BRICK_BLOCK));
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockDecoration, 4), "www", "www", "www", 'w', "plankWood"));
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockNoteBlock, 8), " n ", "ncn", " n ", 'n', new ItemStack(Blocks.NOTEBLOCK),
                 'c', "itemCoin"));
         addShaped(new ItemStack(ModBlocks.marioBlockGroundUnderwater, 8), "ggg", "gwg", "ggg", 'g', new ItemStack(ModBlocks.marioBlockGround), 'w', Items
                 .WATER_BUCKET);
         addShapeless(new ItemStack(ModBlocks.marioBlockGroundSnow), new ItemStack(ModBlocks.marioBlockGround), new ItemStack(Items.SNOWBALL));
-        addShaped(new ItemStack(ModBlocks.marioBlockCastleWall, 4), "bb", "bb", 'b', new ItemStack(ModBlocks.marioBlockMarioCastleBrick));
+        addShaped(new ItemStack(ModBlocks.marioBlockCastleWall, 4), "bb", "bb", 'b', new ItemStack(ModBlocks.marioBlockCastleBrick));
 
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkSMB, 4), " g ", "gbg", " g ", 'g', "ingotGold", 'b', new
-                ItemStack(ModBlocks.marioBlockMarioBrick)));
+                ItemStack(ModBlocks.marioBlockBrick)));
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockEmptyInvisibleBlockSMB, 4), "bgb", "gbg", "bgb", 'g', "ingotGold", 'b',
                 "blockGlass"));
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkUndergroundSMB, 4), " g ", "gbg", " g ", 'g', "ingotGold",
-                'b', new ItemStack(ModBlocks.marioBlockMarioBrickUnderground)));
+                'b', new ItemStack(ModBlocks.marioBlockBrickUnderground)));
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkCastleSMB, 4), " g ", "gbg", " g ", 'g', "ingotGold", 'b',
-                new ItemStack(ModBlocks.marioBlockMarioCastleBrick)));
+                new ItemStack(ModBlocks.marioBlockCastleBrick)));
 
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModItems.itemPipeLink), " p", "s ", 'p', new ItemStack(ModBlocks.marioBlockPipe), 's',
                 "stickWood"));
@@ -114,12 +114,12 @@ public class CraftingHandler
     public static void initSmeltingRecipes()
     {
         GameRegistry.addSmelting(new ItemStack(ModBlocks.marioBlockGround), new ItemStack(ModBlocks.marioBlockGroundUnderground), 0.3f);
-        GameRegistry.addSmelting(new ItemStack(ModBlocks.marioBlockMarioBrick), new ItemStack(ModBlocks.marioBlockMarioBrickUnderground), 0.3f);
+        GameRegistry.addSmelting(new ItemStack(ModBlocks.marioBlockBrick), new ItemStack(ModBlocks.marioBlockBrickUnderground), 0.3f);
         GameRegistry.addSmelting(new ItemStack(ModBlocks.marioBlockDecoration), new ItemStack(ModBlocks.marioBlockUndergroundDecoration), 0.3f);
 
-        GameRegistry.addSmelting(new ItemStack(ModBlocks.marioBlockMarioBrickUnderground), new ItemStack(ModBlocks.marioBlockMarioCastleBrick), 0.3f);
+        GameRegistry.addSmelting(new ItemStack(ModBlocks.marioBlockBrickUnderground), new ItemStack(ModBlocks.marioBlockCastleBrick), 0.3f);
 
-        GameRegistry.addSmelting(new ItemStack(ModBlocks.marioBlockMarioLog), new ItemStack(Items.COAL, 1, 1), 0.15f);
+        GameRegistry.addSmelting(new ItemStack(ModBlocks.marioBlockLog), new ItemStack(Items.COAL, 1, 1), 0.15f);
     }
 
     private static void addShaped(ItemStack output, Object... inputs)

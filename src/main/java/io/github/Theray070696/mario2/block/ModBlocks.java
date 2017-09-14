@@ -42,19 +42,19 @@ public class ModBlocks
     public static final Block marioBlockEmptyQuestionMarkCastleSMB = null;
     public static final Block marioBlockQuestionMarkCastleSMB = null;
     public static final Block marioBlockGround = null;
-    public static final Block marioBlockMarioBrick = null;
+    public static final Block marioBlockBrick = null;
     public static final Block marioBlockDecoration = null;
     public static final Block marioBlockGroundUnderground = null;
-    public static final Block marioBlockMarioBrickUnderground = null;
+    public static final Block marioBlockBrickUnderground = null;
     public static final Block marioBlockUndergroundDecoration = null;
     public static final Block marioBlockGroundUnderwater = null;
     public static final Block marioBlockGroundSnow = null;
     public static final Block marioBlockCastleWall = null;
-    public static final Block marioBlockMarioCastleBrick = null;
-    public static final Block marioBlockMarioLeaves = null;
-    public static final Block marioBlockMarioLog = null;
-    public static final Block marioBlockMarioPlanks = null;
-    public static final Block marioBlockMarioSapling = null;
+    public static final Block marioBlockCastleBrick = null;
+    public static final Block marioBlockLeaves = null;
+    public static final Block marioBlockLog = null;
+    public static final Block marioBlockPlanks = null;
+    public static final Block marioBlockSapling = null;
     public static final Block marioBlockBeanstalk = null;
     public static final Block marioBlockGroundSMW = null;
     public static final Block marioBlockGroundUndergroundSMW = null;
@@ -146,10 +146,10 @@ public class ModBlocks
         GameRegistry.registerTileEntity(TilePipe.class, "tileMarioPipe");
         GameRegistry.registerTileEntity(TileQuestionMark.class, "tileMarioQuestionMark");
 
-        OreDictionary.registerOre("logWood", marioBlockMarioLog);
-        OreDictionary.registerOre("plankWood", marioBlockMarioPlanks);
-        OreDictionary.registerOre("treeLeaves", marioBlockMarioLeaves);
-        OreDictionary.registerOre("treeSapling", marioBlockMarioSapling);
+        OreDictionary.registerOre("logWood", marioBlockLog);
+        OreDictionary.registerOre("plankWood", marioBlockPlanks);
+        OreDictionary.registerOre("treeLeaves", marioBlockLeaves);
+        OreDictionary.registerOre("treeSapling", marioBlockSapling);
 
         OreDictionary.registerOre("oreCoal", marioBlockCoalOreSMW);
         OreDictionary.registerOre("oreIron", marioBlockIronOreSMW);
