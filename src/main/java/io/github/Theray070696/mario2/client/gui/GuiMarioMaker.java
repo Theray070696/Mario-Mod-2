@@ -44,6 +44,7 @@ public class GuiMarioMaker extends GuiContainer
 
     protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_)
     {
+        this.drawDefaultBackground();
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(marioMakerGuiTextures);
         int k = (this.width - this.xSize) / 2;

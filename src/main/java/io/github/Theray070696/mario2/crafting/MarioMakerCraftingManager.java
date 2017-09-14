@@ -158,7 +158,6 @@ public class MarioMakerCraftingManager
     /**
      * Retrieves an ItemStack that has multiple recipes for it.
      */
-    @Nullable
     public ItemStack findMatchingRecipe(InventoryCrafting craftMatrix, World world)
     {
         for(IMarioRecipe recipe : this.recipes)
@@ -169,7 +168,7 @@ public class MarioMakerCraftingManager
             }
         }
 
-        return null;
+        return ItemStack.EMPTY;
     }
 
     public ItemStack[] getRemainingItems(InventoryCrafting craftMatrix, World world)
