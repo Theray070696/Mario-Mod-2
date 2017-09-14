@@ -9,8 +9,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
-
 /**
  * Created by Theray070696 on 1/7/2017.
  */
@@ -28,9 +26,12 @@ public class ItemCoinCurrency extends ItemMario
     @SideOnly(Side.CLIENT)
     public void getSubItems(CreativeTabs tab, NonNullList list)
     {
-        for(int i = 0; i < 5; i++)
+        if(this.isInCreativeTab(tab))
         {
-            list.add(new ItemStack(this, 1, i));
+            for(int i = 0; i < 5; i++)
+            {
+                list.add(new ItemStack(this, 1, i));
+            }
         }
     }
 

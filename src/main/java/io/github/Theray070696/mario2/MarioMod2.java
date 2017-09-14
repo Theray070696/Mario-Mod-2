@@ -59,15 +59,6 @@ public class MarioMod2
 
     public static CreativeTabs tabMarioItems = new CreativeTabs("tabMarioItems")
     {
-        @Nonnull
-        @SideOnly(Side.CLIENT)
-        @Override
-        public ItemStack getIconItemStack()
-        {
-            return new ItemStack(ModItems.itemMushroom, 1, 1);
-        }
-
-        @Nonnull
         @SideOnly(Side.CLIENT)
         @Override
         public ItemStack getTabIconItem()
@@ -78,15 +69,6 @@ public class MarioMod2
 
     public static CreativeTabs tabMarioBlocks = new CreativeTabs("tabMarioBlocks")
     {
-        @Nonnull
-        @SideOnly(Side.CLIENT)
-        @Override
-        public ItemStack getIconItemStack()
-        {
-            return new ItemStack(ModBlocks.marioBlockMarioMaker);
-        }
-
-        @Nonnull
         @SideOnly(Side.CLIENT)
         @Override
         public ItemStack getTabIconItem()

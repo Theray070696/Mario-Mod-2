@@ -33,9 +33,12 @@ public class Item1Up extends ItemMario
     @SideOnly(Side.CLIENT)
     public void getSubItems(CreativeTabs tab, NonNullList list)
     {
-        for(int i = 0; i < 3; i++)
+        if(this.isInCreativeTab(tab))
         {
-            list.add(new ItemStack(this, 1, i));
+            for(int i = 0; i < 3; i++)
+            {
+                list.add(new ItemStack(this, 1, i));
+            }
         }
     }
 
