@@ -27,7 +27,7 @@ dependencies {
   runtime "mezz.jei:jei_1.10.2:3.14.7.419"
 }
 
-version = "2.0.7.1"
+version = "2.0.7.2"
 group = "io.github.Theray070696.mario2" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "mario2"
 
