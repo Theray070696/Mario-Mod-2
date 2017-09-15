@@ -61,7 +61,7 @@ public class CraftingHandler
 
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkSMB, 4), " g ", "gbg", " g ", 'g', "ingotGold", 'b', new
                 ItemStack(ModBlocks.marioBlockBrick)));
-        addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockEmptyInvisibleBlockSMB, 4), "bgb", "gbg", "bgb", 'g', "ingotGold", 'b',
+        addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockInvisibleBlockEmptySMB, 4), "bgb", "gbg", "bgb", 'g', "ingotGold", 'b',
                 "blockGlass"));
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkUndergroundSMB, 4), " g ", "gbg", " g ", 'g', "ingotGold",
                 'b', new ItemStack(ModBlocks.marioBlockBrickUnderground)));
@@ -87,27 +87,27 @@ public class CraftingHandler
                 .itemCoin));
         addShapeless(new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkSMB), new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkSMB3), new ItemStack
                 (ModItems.itemCoin));
-        addShapeless(new ItemStack(ModBlocks.marioBlockEmptyInvisibleBlockSMB), new ItemStack(ModBlocks.marioBlockEmptyInvisibleBlock), new ItemStack
+        addShapeless(new ItemStack(ModBlocks.marioBlockInvisibleBlockEmptySMB), new ItemStack(ModBlocks.marioBlockInvisibleBlockEmpty), new ItemStack
                 (ModItems.itemCoin));
-        addShapeless(new ItemStack(ModBlocks.marioBlockEmptyInvisibleBlockSMB), new ItemStack(ModBlocks.marioBlockEmptyInvisibleBlockSMB3), new ItemStack
+        addShapeless(new ItemStack(ModBlocks.marioBlockInvisibleBlockEmptySMB), new ItemStack(ModBlocks.marioBlockInvisibleBlockEmptySMB3), new ItemStack
                 (ModItems.itemCoin));
 
         addShapeless(new ItemStack(ModBlocks.marioBlockEmptyQuestionMark), new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkSMB), new ItemStack(ModItems
                 .itemCoin, 1, 1));
         addShapeless(new ItemStack(ModBlocks.marioBlockEmptyQuestionMark), new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkSMB3), new ItemStack(ModItems
                 .itemCoin, 1, 1));
-        addShapeless(new ItemStack(ModBlocks.marioBlockEmptyInvisibleBlock), new ItemStack(ModBlocks.marioBlockEmptyInvisibleBlockSMB), new ItemStack
+        addShapeless(new ItemStack(ModBlocks.marioBlockInvisibleBlockEmpty), new ItemStack(ModBlocks.marioBlockInvisibleBlockEmptySMB), new ItemStack
                 (ModItems.itemCoin, 1, 1));
-        addShapeless(new ItemStack(ModBlocks.marioBlockEmptyInvisibleBlock), new ItemStack(ModBlocks.marioBlockEmptyInvisibleBlockSMB3), new ItemStack
+        addShapeless(new ItemStack(ModBlocks.marioBlockInvisibleBlockEmpty), new ItemStack(ModBlocks.marioBlockInvisibleBlockEmptySMB3), new ItemStack
                 (ModItems.itemCoin, 1, 1));
 
         addShapeless(new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkSMB3), new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkSMB), new ItemStack
                 (ModItems.itemCoin, 1, 2));
         addShapeless(new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkSMB3), new ItemStack(ModBlocks.marioBlockEmptyQuestionMark), new ItemStack(ModItems
                 .itemCoin, 1, 2));
-        addShapeless(new ItemStack(ModBlocks.marioBlockEmptyInvisibleBlockSMB3), new ItemStack(ModBlocks.marioBlockEmptyInvisibleBlock), new ItemStack
+        addShapeless(new ItemStack(ModBlocks.marioBlockInvisibleBlockEmptySMB3), new ItemStack(ModBlocks.marioBlockInvisibleBlockEmpty), new ItemStack
                 (ModItems.itemCoin, 1, 2));
-        addShapeless(new ItemStack(ModBlocks.marioBlockEmptyInvisibleBlockSMB3), new ItemStack(ModBlocks.marioBlockEmptyInvisibleBlockSMB), new ItemStack
+        addShapeless(new ItemStack(ModBlocks.marioBlockInvisibleBlockEmptySMB3), new ItemStack(ModBlocks.marioBlockInvisibleBlockEmptySMB), new ItemStack
                 (ModItems.itemCoin, 1, 2));
     }
 

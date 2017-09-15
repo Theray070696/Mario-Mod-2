@@ -31,11 +31,11 @@ public class ModBlocks
     public static final Block marioBlockQuestionMarkSMB = null;
     public static final Block marioBlockEmptyQuestionMarkSMB3 = null;
     public static final Block marioBlockQuestionMarkSMB3 = null;
-    public static final Block marioBlockEmptyInvisibleBlock = null;
+    public static final Block marioBlockInvisibleBlockEmpty = null;
     public static final Block marioBlockInvisibleBlock = null;
-    public static final Block marioBlockEmptyInvisibleBlockSMB = null;
+    public static final Block marioBlockInvisibleBlockEmptySMB = null;
     public static final Block marioBlockInvisibleBlockSMB = null;
-    public static final Block marioBlockEmptyInvisibleBlockSMB3 = null;
+    public static final Block marioBlockInvisibleBlockEmptySMB3 = null;
     public static final Block marioBlockInvisibleBlockSMB3 = null;
     public static final Block marioBlockEmptyQuestionMarkUndergroundSMB = null;
     public static final Block marioBlockQuestionMarkUndergroundSMB = null;
@@ -158,15 +158,15 @@ public class ModBlocks
         OreDictionary.registerOre("oreLapis", marioBlockLapisOreSMW);
 
         OreDictionary.registerOre("emptyQuestionMarkBlock", marioBlockEmptyQuestionMark);
-        OreDictionary.registerOre("emptyQuestionMarkBlock", marioBlockEmptyInvisibleBlock);
+        OreDictionary.registerOre("emptyQuestionMarkBlock", marioBlockInvisibleBlockEmpty);
 
         OreDictionary.registerOre("emptyQuestionMarkBlock", marioBlockEmptyQuestionMarkSMB);
         OreDictionary.registerOre("emptyQuestionMarkBlock", marioBlockEmptyQuestionMarkUndergroundSMB);
         OreDictionary.registerOre("emptyQuestionMarkBlock", marioBlockEmptyQuestionMarkCastleSMB);
-        OreDictionary.registerOre("emptyQuestionMarkBlock", marioBlockEmptyInvisibleBlockSMB);
+        OreDictionary.registerOre("emptyQuestionMarkBlock", marioBlockInvisibleBlockEmptySMB);
 
         OreDictionary.registerOre("emptyQuestionMarkBlock", marioBlockEmptyQuestionMarkSMB3);
-        OreDictionary.registerOre("emptyQuestionMarkBlock", marioBlockEmptyInvisibleBlockSMB3);
+        OreDictionary.registerOre("emptyQuestionMarkBlock", marioBlockInvisibleBlockEmptySMB3);
 
         LogHelper.info("Extra Block Data Loading Complete");
     }
