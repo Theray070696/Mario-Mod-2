@@ -29,6 +29,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -88,6 +89,8 @@ public class MarioMod2
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) throws Exception
     {
+        proxy.construct(event);
+
         this.stopwatchInitPhases = Stopwatch.createStarted();
         LogHelper.info("Pre-Init");
 
