@@ -22,6 +22,12 @@ import java.util.List;
 public abstract class CommonProxy implements IProxy
 {
     @Override
+    public void construct(FMLPreInitializationEvent event) throws Exception
+    {
+
+    }
+
+    @Override
     public void preInit(FMLPreInitializationEvent event)
     {
         EntityRegistry.registerModEntity(EntityGoomba.class, ModInfo.MOD_ID + ":goomba", 0, MarioMod2.INSTANCE, 128, 1, false);

@@ -16,6 +16,12 @@ public class ServerProxy extends CommonProxy
     }
 
     @Override
+    public void construct(FMLPreInitializationEvent event) throws Exception
+    {
+        super.construct(event);
+    }
+
+    @Override
     public void preInit(FMLPreInitializationEvent event)
     {
         super.preInit(event);

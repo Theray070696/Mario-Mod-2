@@ -11,6 +11,8 @@ public interface IProxy
 {
     public Side getSide();
 
+    public void construct(FMLPreInitializationEvent event) throws Exception;
+
     public void preInit(FMLPreInitializationEvent event);
 
     public void init(FMLInitializationEvent event);

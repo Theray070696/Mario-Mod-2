@@ -109,8 +109,10 @@ public class MarioMod2
     }
 
     @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event)
+    public void preInit(FMLPreInitializationEvent event) throws Exception
     {
+        proxy.construct(event);
+
         this.stopwatchInitPhases = Stopwatch.createStarted();
         LogHelper.info("Pre-Init");
 
