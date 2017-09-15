@@ -1,18 +1,18 @@
 itemGroup.tabMarioBlocks=Bloques de Mario
 itemGroup.tabMarioItems=Items de Mario
 
-entity.goomba.name=Goomba
-entity.koopa.name=Koopa
-entity.boo.name=Boo
-entity.BobOmb.name=Bomb Omb
-entity.BulletBill.name=Bullet Bill
-entity.Cheep-Cheep.name=Cheep-Cheep
-entity.HammerBro.name=Hammer Bro
-entity.toad.name=Toad
-entity.bowser.name=Bowser
-entity.beetle.name=Beetle
-entity.yoshi.name=Yoshi
-entity.mario.ShellEntity.name=Caparazón
+entity.mario2:goomba.name=Goomba
+entity.mario2:koopa.name=Koopa
+entity.mario2:boo.name=Boo
+entity.mario2:BobOmb.name=Bomb Omb
+entity.mario2:BulletBill.name=Bullet Bill
+entity.mario2:Cheep-Cheep.name=Cheep-Cheep
+entity.mario2:HammerBro.name=Hammer Bro
+entity.mario2:toad.name=Toad
+entity.mario2:bowser.name=Bowser
+entity.mario2:beetle.name=Beetle
+entity.mario2:yoshi.name=Yoshi
+entity.mario2:mario.ShellEntity.name=Caparazón
 
 tile.mario2:marioBlockPipeBase.name=Base de Tubo
 tile.mario2:marioBlockPipe.name=Tubo

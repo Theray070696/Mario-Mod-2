@@ -1,17 +1,17 @@
 itemGroup.tabMarioBlocks=Super Mario Bloecke
 itemGroup.tabMarioItems=Super Mario Items
 
-entity.goomba.name=Gumba
-entity.koopa.name=Koopa
-entity.boo.name=Buu Huu
-entity.BobOmb.name=Bob-Omb
-entity.BulletBill.name=Bullet Bill
-entity.Cheep-Cheep.name=Cheep-Cheep
-entity.HammerBro.name=Hammer Bruder
-entity.toad.name=Toad
-entity.bowser.name=Bowser
-entity.beetle.name=Beetle
-entity.yoshi.name=Yoshi
+entity.mario2:goomba.name=Gumba
+entity.mario2:koopa.name=Koopa
+entity.mario2:boo.name=Buu Huu
+entity.mario2:BobOmb.name=Bob-Omb
+entity.mario2:BulletBill.name=Bullet Bill
+entity.mario2:Cheep-Cheep.name=Cheep-Cheep
+entity.mario2:HammerBro.name=Hammer Bruder
+entity.mario2:toad.name=Toad
+entity.mario2:bowser.name=Bowser
+entity.mario2:beetle.name=Beetle
+entity.mario2:yoshi.name=Yoshi
 
 tile.mario2:marioBlockPipeBase.name=Roehre
 tile.mario2:marioBlockPipe.name=Roehre
