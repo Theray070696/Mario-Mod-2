@@ -45,22 +45,18 @@ public class SoundHandler
     public static SoundEvent diamonds;
 
     // Join sound
-
     public static SoundEvent join;
 
     // Leave sound
-
     public static SoundEvent leave;
 
     // Death sounds
-
     public static SoundEvent death1;
     public static SoundEvent death2;
     public static SoundEvent death3;
     public static SoundEvent death4;
 
     // Entities
-
     public static SoundEvent goombaDeath;
 
     public static void init()
