@@ -92,22 +92,18 @@ public class SoundHandler
         diamonds = register("player.diamonds");
 
         // Join Sound
-
         join = register("player.join");
 
         // Leave Sound
-
         leave = register("player.leave");
 
         // Death Sounds
-
         death1 = register("player.death1");
         death2 = register("player.death2");
         death3 = register("player.death3");
         death4 = register("player.death4");
 
         // Entities
-
         goombaDeath = register("entity.goomba.death");
     }
 
