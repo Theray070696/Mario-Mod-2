@@ -8,7 +8,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
  * Created by Theray070696 on 3/23/2017.
@@ -47,22 +46,18 @@ public class SoundHandler
     public static SoundEvent diamonds;
 
     // Join sound
-
     public static SoundEvent join;
 
     // Leave sound
-
     public static SoundEvent leave;
 
     // Death sounds
-
     public static SoundEvent death1;
     public static SoundEvent death2;
     public static SoundEvent death3;
     public static SoundEvent death4;
 
     // Entities
-
     public static SoundEvent goombaDeath;
 
     public static void init()
@@ -98,22 +93,18 @@ public class SoundHandler
         diamonds = register("player.diamonds");
 
         // Join Sound
-
         join = register("player.join");
 
         // Leave Sound
-
         leave = register("player.leave");
 
         // Death Sounds
-
         death1 = register("player.death1");
         death2 = register("player.death2");
         death3 = register("player.death3");
         death4 = register("player.death4");
 
         // Entities
-
         goombaDeath = register("entity.goomba.death");
     }
 
@@ -133,7 +124,7 @@ public class SoundHandler
 
     public static void playSoundName(String soundName, World world, SoundCategory category, BlockPos pos, float volume, float pitch)
     {
-        SoundEvent sound = SoundEvent.REGISTRY.getObject(new ResourceLocation(soundName));
+        SoundEvent sound = ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(soundName));
 
         if(sound != null)
         {
