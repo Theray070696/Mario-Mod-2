@@ -89,8 +89,8 @@ public class ItemSuperLeaf extends ItemMario implements IBauble
     @Override
     public void onWornTick(ItemStack itemStack, EntityLivingBase player)
     {
-        if(itemStack != null && player != null && !(player instanceof FakePlayer) && player.motionY < 0.0f) // If the ItemStack is not null, the
-        // player is not null, and the player is not a fake player...
+        if(itemStack != ItemStack.EMPTY && player != null && !(player instanceof FakePlayer) && player.motionY < 0.0f) // If the ItemStack is not
+            // empty, the player is not null, and the player is not a fake player...
         {
             player.fallDistance = 0.0F; // Cancel fall damage.
         }

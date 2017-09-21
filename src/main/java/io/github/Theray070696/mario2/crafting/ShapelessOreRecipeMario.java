@@ -19,7 +19,7 @@ import java.util.Map;
  */
 public class ShapelessOreRecipeMario implements IMarioRecipe
 {
-    protected ItemStack output = null;
+    protected ItemStack output = ItemStack.EMPTY;
     protected ArrayList<Object> input = new ArrayList<Object>();
 
     public ShapelessOreRecipeMario(Block result, Object... recipe)
@@ -118,7 +118,7 @@ public class ShapelessOreRecipeMario implements IMarioRecipe
         {
             ItemStack slot = inv.getStackInSlot(x);
 
-            if(slot != null)
+            if(!slot.isEmpty())
             {
                 boolean inRecipe = false;
                 Iterator<Object> req = required.iterator();
@@ -171,7 +171,7 @@ public class ShapelessOreRecipeMario implements IMarioRecipe
     }
 
     @Override
-    public ItemStack[] getRemainingItems(InventoryCrafting inv) //getRecipeLeftovers
+    public ItemStack[] getRemainingItems(InventoryCrafting inv)
     {
         return ForgeHooks.defaultRecipeGetRemainingItems(inv).toArray(new ItemStack[0]);
     }

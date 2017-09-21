@@ -8,7 +8,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -82,7 +81,7 @@ public class MarioMakerCraftingManager
         for(map = Maps.<Character, ItemStack>newHashMap(); i < recipeComponents.length; i += 2)
         {
             Character character = (Character) recipeComponents[i];
-            ItemStack itemStack = null;
+            ItemStack itemStack = ItemStack.EMPTY;
 
             if(recipeComponents[i + 1] instanceof Item)
             {
@@ -109,7 +108,7 @@ public class MarioMakerCraftingManager
                 aItemStack[l] = map.get(c0).copy();
             } else
             {
-                aItemStack[l] = null;
+                aItemStack[l] = ItemStack.EMPTY;
             }
         }
 

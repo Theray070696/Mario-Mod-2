@@ -46,7 +46,7 @@ public class ShapelessOreRecipeWrapper extends AbstractShapelessRecipeWrapper
             List<List<ItemStack>> inputs = stackHelper.expandRecipeItemStackInputs(this.recipe.getInput());
             ingredients.setInputLists(ItemStack.class, inputs);
 
-            if(recipeOutput != null)
+            if(recipeOutput != ItemStack.EMPTY)
             {
                 ingredients.setOutput(ItemStack.class, recipeOutput);
             }

@@ -84,32 +84,32 @@ public class ShapedRecipeMario implements IMarioRecipe
     /**
      * Checks if the region of a crafting inventory is match for the recipe.
      */
-    private boolean checkMatch(InventoryCrafting p_77573_1_, int p_77573_2_, int p_77573_3_, boolean p_77573_4_)
+    private boolean checkMatch(InventoryCrafting inv, int startX, int startY, boolean mirror)
     {
-        for(int i = 0; i < 3; ++i)
+        for(int x = 0; x < 3; ++x)
         {
-            for(int j = 0; j < 3; ++j)
+            for(int y = 0; y < 3; ++y)
             {
-                int k = i - p_77573_2_;
-                int l = j - p_77573_3_;
-                ItemStack itemStack = null;
+                int subX = x - startX;
+                int subY = y - startY;
+                ItemStack itemStack = ItemStack.EMPTY;
 
-                if(k >= 0 && l >= 0 && k < this.recipeWidth && l < this.recipeHeight)
+                if(subX >= 0 && subY >= 0 && subX < this.recipeWidth && subY < this.recipeHeight)
                 {
-                    if(p_77573_4_)
+                    if(mirror)
                     {
-                        itemStack = this.recipeItems[this.recipeWidth - k - 1 + l * this.recipeWidth];
+                        itemStack = this.recipeItems[this.recipeWidth - subX - 1 + subY * this.recipeWidth];
                     } else
                     {
-                        itemStack = this.recipeItems[k + l * this.recipeWidth];
+                        itemStack = this.recipeItems[subX + subY * this.recipeWidth];
                     }
                 }
 
-                ItemStack itemStack1 = p_77573_1_.getStackInRowAndColumn(i, j);
+                ItemStack itemStack1 = inv.getStackInRowAndColumn(x, y);
 
-                if(itemStack1 != null || itemStack != null)
+                if(!itemStack1.isEmpty() || !itemStack.isEmpty())
                 {
-                    if(itemStack1 == null || itemStack == null)
+                    if(itemStack1.isEmpty() || itemStack.isEmpty())
                     {
                         return false;
                     }
@@ -144,7 +144,7 @@ public class ShapedRecipeMario implements IMarioRecipe
             {
                 ItemStack itemStack1 = inv.getStackInSlot(i);
 
-                if(itemStack1 != null && itemStack1.hasTagCompound())
+                if(!itemStack1.isEmpty() && itemStack1.hasTagCompound())
                 {
                     itemStack.setTagCompound(itemStack1.getTagCompound().copy());
                 }

@@ -53,7 +53,7 @@ public class ShapedOreRecipeWrapper implements IShapedCraftingRecipeWrapper, IRe
         {
             List<List<ItemStack>> inputs = stackHelper.expandRecipeItemStackInputs(Arrays.asList(this.recipe.getInput()));
             ingredients.setInputLists(ItemStack.class, inputs);
-            if(recipeOutput != null)
+            if(recipeOutput != ItemStack.EMPTY)
             {
                 ingredients.setOutput(ItemStack.class, recipeOutput);
             }

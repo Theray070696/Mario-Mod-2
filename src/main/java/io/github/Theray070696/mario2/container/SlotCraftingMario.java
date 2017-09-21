@@ -97,15 +97,15 @@ public class SlotCraftingMario extends Slot
             ItemStack itemStack = this.craftMatrix.getStackInSlot(i);
             ItemStack itemStack1 = aItemStack[i];
 
-            if(itemStack != null)
+            if(!itemStack.isEmpty())
             {
                 this.craftMatrix.decrStackSize(i, 1);
                 itemStack = this.craftMatrix.getStackInSlot(i);
             }
 
-            if(itemStack1 != null)
+            if(!itemStack1.isEmpty())
             {
-                if(itemStack == null)
+                if(itemStack.isEmpty())
                 {
                     this.craftMatrix.setInventorySlotContents(i, itemStack1);
                 } else if(ItemStack.areItemsEqual(itemStack, itemStack1) && ItemStack.areItemStackTagsEqual(itemStack, itemStack1))

@@ -64,6 +64,8 @@ public class GuiMarioMaker extends GuiContainer
         {
             this.fontRenderer.drawString("" + coinsToGet, this.guiLeft + 228, this.guiTop + 13, 14737632);
         }
+
+        this.renderHoveredToolTip(mouseX, mouseY);
     }
 
     @Override

@@ -39,7 +39,7 @@ public class ShapelessRecipesHandler implements IRecipeHandler<ShapelessRecipeMa
     @Override
     public boolean isRecipeValid(ShapelessRecipeMario recipe)
     {
-        if(recipe.getRecipeOutput() == null)
+        if(recipe.getRecipeOutput() == ItemStack.EMPTY)
         {
             return false;
         }

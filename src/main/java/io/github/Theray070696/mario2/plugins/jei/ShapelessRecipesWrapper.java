@@ -40,7 +40,7 @@ public class ShapelessRecipesWrapper extends AbstractShapelessRecipeWrapper
         try
         {
             ingredients.setInputs(ItemStack.class, this.recipe.recipeItems);
-            if(recipeOutput != null)
+            if(recipeOutput != ItemStack.EMPTY)
             {
                 ingredients.setOutput(ItemStack.class, recipeOutput);
             }

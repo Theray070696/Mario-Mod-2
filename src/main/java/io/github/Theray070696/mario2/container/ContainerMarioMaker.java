@@ -78,7 +78,7 @@ public class ContainerMarioMaker extends Container
             {
                 ItemStack itemstack = this.craftMatrix.removeStackFromSlot(i);
 
-                if(itemstack != null)
+                if(!itemstack.isEmpty())
                 {
                     entityPlayer.dropItem(itemstack, false);
                 }
@@ -100,7 +100,7 @@ public class ContainerMarioMaker extends Container
      */
     public ItemStack transferStackInSlot(EntityPlayer entityPlayer, int slotID)
     {
-        ItemStack itemStack = null;
+        ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(slotID);
 
         if(slot != null && slot.getHasStack())

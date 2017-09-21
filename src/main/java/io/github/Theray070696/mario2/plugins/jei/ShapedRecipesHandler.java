@@ -31,7 +31,7 @@ public class ShapedRecipesHandler implements IRecipeHandler<ShapedRecipeMario>
     @Override
     public boolean isRecipeValid(ShapedRecipeMario recipe)
     {
-        if(recipe.getRecipeOutput() == null)
+        if(recipe.getRecipeOutput() == ItemStack.EMPTY)
         {
             return false;
         }
@@ -39,7 +39,7 @@ public class ShapedRecipesHandler implements IRecipeHandler<ShapedRecipeMario>
         int inputCount = 0;
         for(ItemStack input : recipe.recipeItems)
         {
-            if(input != null)
+            if(input != ItemStack.EMPTY)
             {
                 inputCount++;
             }

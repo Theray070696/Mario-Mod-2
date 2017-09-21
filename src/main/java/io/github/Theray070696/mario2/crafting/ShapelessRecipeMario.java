@@ -58,7 +58,7 @@ public class ShapelessRecipeMario implements IMarioRecipe
             {
                 ItemStack itemStack = inv.getStackInRowAndColumn(j, i);
 
-                if(itemStack != null)
+                if(!itemStack.isEmpty())
                 {
                     boolean flag = false;
 

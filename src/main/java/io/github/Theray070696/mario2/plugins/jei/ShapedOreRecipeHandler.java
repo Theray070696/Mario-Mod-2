@@ -4,6 +4,7 @@ import io.github.Theray070696.mario2.crafting.ShapedOreRecipeMario;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.recipe.IRecipeHandler;
 import mezz.jei.api.recipe.IRecipeWrapper;
+import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class ShapedOreRecipeHandler implements IRecipeHandler<ShapedOreRecipeMar
     @Override
     public boolean isRecipeValid(ShapedOreRecipeMario recipe)
     {
-        if(recipe.getRecipeOutput() == null)
+        if(recipe.getRecipeOutput() == ItemStack.EMPTY)
         {
             return false;
         }

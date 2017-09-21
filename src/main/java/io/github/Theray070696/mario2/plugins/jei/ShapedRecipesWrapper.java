@@ -23,7 +23,7 @@ public class ShapedRecipesWrapper implements IShapedCraftingRecipeWrapper, IReci
         this.recipe = recipe;
         for(ItemStack itemStack : this.recipe.recipeItems)
         {
-            if(itemStack != null && itemStack.getCount() != 1)
+            if(itemStack != ItemStack.EMPTY && itemStack.getCount() != 1)
             {
                 itemStack.setCount(1);
             }
@@ -38,7 +38,7 @@ public class ShapedRecipesWrapper implements IShapedCraftingRecipeWrapper, IReci
         try
         {
             ingredients.setInputs(ItemStack.class, recipeItems);
-            if(recipeOutput != null)
+            if(recipeOutput != ItemStack.EMPTY)
             {
                 ingredients.setOutput(ItemStack.class, recipeOutput);
             }
