@@ -77,7 +77,7 @@ public class EventHandler
             {
                 Random rand = new Random();
 
-                SoundHandler.playSoundName("mario2:player.death" + rand.nextInt(4) + 1, event.getEntityLiving().world, SoundCategory.PLAYERS,
+                SoundHandler.playSoundName("mario2:player.death" + (rand.nextInt(4) + 1), event.getEntityLiving().world, SoundCategory.PLAYERS,
                         event.getEntityLiving().getPosition());
             }
         }
