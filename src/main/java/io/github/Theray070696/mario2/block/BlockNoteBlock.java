@@ -26,23 +26,28 @@ public class BlockNoteBlock extends BlockMario
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos blockPos, IBlockState blockState, Entity entity)
     {
-        if(entity.motionY < -0.1D)
+        if(!world.isRemote)
         {
-            if(entity instanceof EntityLivingBase)
+            if(entity.motionY < -0.1D)
             {
-                EntityLivingBase entityLiving = (EntityLivingBase) entity;
-                if(EventHandler.getSoundCooldown(entityLiving) == 0)
+                if(entity instanceof EntityLivingBase)
+                {
+                    EntityLivingBase entityLiving = (EntityLivingBase) entity;
+                    if(EventHandler.getSoundCooldown(entityLiving) == 0)
+                    {
+                        world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.noteBlock, SoundCategory.BLOCKS, 1.0F,
+                                1.0F);
+                        EventHandler.setSoundCooldown(entityLiving, 2);
+                    }
+                } else
                 {
                     world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.noteBlock, SoundCategory.BLOCKS, 1.0F,
                             1.0F);
-                    EventHandler.setSoundCooldown(entityLiving, 2);
-                }
-            } else
-            {
-                world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.noteBlock, SoundCategory.BLOCKS, 1.0F, 1.0F);
-            }
 
-            entity.motionY *= -2.0D;
+                }
+
+                entity.motionY *= -2.0D;
+            }
         }
         entity.fallDistance = 0;
     }
