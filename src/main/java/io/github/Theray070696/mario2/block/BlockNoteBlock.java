@@ -27,29 +27,26 @@ public class BlockNoteBlock extends BlockMario
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos blockPos, IBlockState blockState, Entity entity)
     {
-        if(!world.isRemote)
+        if(entity.motionY < -0.1D)
         {
-            if(entity.motionY < -0.1D)
+            if(entity instanceof EntityLivingBase)
             {
-                if(entity instanceof EntityLivingBase)
+                EntityLivingBase entityLiving = (EntityLivingBase) entity;
+                if(EventHandler.getSoundCooldown(entityLiving) == 0)
                 {
-                    EntityLivingBase entityLiving = (EntityLivingBase) entity;
-                    if(EventHandler.getSoundCooldown(entityLiving) == 0)
-                    {
-                        world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.noteBlock, SoundCategory.BLOCKS, 1.0F,
-                                1.0F);
-                        EventHandler.setSoundCooldown(entityLiving, 2);
-                    }
-                } else
-                {
-                    world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.noteBlock, SoundCategory.BLOCKS, 1.0F, 1.0F);
-
+                    world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.noteBlock, SoundCategory.BLOCKS, 1.0F,
+                            1.0F);
+                    EventHandler.setSoundCooldown(entityLiving, 2);
                 }
+            } else
+            {
+                world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.noteBlock, SoundCategory.BLOCKS, 1.0F, 1.0F);
 
-                entity.motionY *= -2.0D;
             }
-            entity.fallDistance = 0;
+
+            entity.motionY *= -2.0D;
         }
+        entity.fallDistance = 0;
     }
 
     @Override

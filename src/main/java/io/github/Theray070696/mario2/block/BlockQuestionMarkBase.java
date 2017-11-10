@@ -54,35 +54,32 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos blockPos, IBlockState blockState, Entity entity)
     {
-        if(!world.isRemote)
+        entity.motionY = -0.25f; // Send the entity back down.
+
+        if(entity instanceof EntityPlayer) // If the entity that hit the bottom was a player...
         {
-            entity.motionY = -0.25f; // Send the entity back down.
-
-            if(entity instanceof EntityPlayer) // If the entity that hit the bottom was a player...
+            if(this instanceof BlockQuestionMark) // If the block has an item in it...
             {
-                if(this instanceof BlockQuestionMark) // If the block has an item in it...
-                {
-                    takeItemOutOfQBlock(world, blockPos, null); // Take the item out.
-                } else // Otherwise...
-                {
-                    EntityPlayer player = (EntityPlayer) entity; // Get player for use in cooldown stuff.
+                takeItemOutOfQBlock(world, blockPos, null); // Take the item out.
+            } else // Otherwise...
+            {
+                EntityPlayer player = (EntityPlayer) entity; // Get player for use in cooldown stuff.
 
-                    if(EventHandler.getSoundCooldown(player) == 0) // Make sure it's been enough time to play sounds again.
+                if(EventHandler.getSoundCooldown(player) == 0) // Make sure it's been enough time to play sounds again.
+                {
+                    if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType
+                            .SMB_UNDERGROUND) || blockType.equals(EnumBlockType.SMB_CASTLE) || blockType.equals(EnumBlockType.SMB3) || blockType
+                            .equals(EnumBlockType.SMB3_INVISIBLE)) // If it is from Mario 1 or Mario 3...
                     {
-                        if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType
-                                .SMB_UNDERGROUND) || blockType.equals(EnumBlockType.SMB_CASTLE) || blockType.equals(EnumBlockType.SMB3) || blockType
-                                .equals(EnumBlockType.SMB3_INVISIBLE)) // If it is from Mario 1 or Mario 3...
-                        {
-                            world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.smbEmptyBlockHit, SoundCategory
-                                    .BLOCKS, 1.0F, 1.0F); // Play this sound.
-                            EventHandler.setSoundCooldown(player, 1); // Don't spam sounds.
-                        } else if(blockType.equals(EnumBlockType.SMW) || blockType.equals(EnumBlockType.SMW_INVISIBLE)) // If it is from Mario
-                            // World...
-                        {
-                            world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.smwEmptyBlockHit, SoundCategory
-                                    .BLOCKS, 1.0F, 1.0F); // Play this sound.
-                            EventHandler.setSoundCooldown(player, 1); // Don't spam sounds.
-                        }
+                        world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.smbEmptyBlockHit, SoundCategory
+                                .BLOCKS, 1.0F, 1.0F); // Play this sound.
+                        EventHandler.setSoundCooldown(player, 1); // Don't spam sounds.
+                    } else if(blockType.equals(EnumBlockType.SMW) || blockType.equals(EnumBlockType.SMW_INVISIBLE)) // If it is from Mario
+                        // World...
+                    {
+                        world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.smwEmptyBlockHit, SoundCategory
+                                .BLOCKS, 1.0F, 1.0F); // Play this sound.
+                        EventHandler.setSoundCooldown(player, 1); // Don't spam sounds.
                     }
                 }
             }
