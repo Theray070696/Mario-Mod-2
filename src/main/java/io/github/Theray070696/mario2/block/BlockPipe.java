@@ -121,81 +121,85 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos blockPos, IBlockState blockState, Entity entity)
     {
-        inPipeTime++;
-
-        if(inPipeTime >= 20)
+        if(!world.isRemote)
         {
-            if(world.getTileEntity(blockPos) instanceof TilePipe)
+            inPipeTime++;
+
+            if(inPipeTime >= 20)
             {
-                if((blockState.getValue(FACING) == EnumFacing.UP && ((entity instanceof EntityPlayer && entity.isSneaking()) || !(entity instanceof
-                        EntityPlayer))) || blockState.getValue(FACING) != EnumFacing.UP)
+                if(world.getTileEntity(blockPos) instanceof TilePipe)
                 {
-                    TilePipe tilePipe = (TilePipe) world.getTileEntity(blockPos);
+                    if((blockState.getValue(FACING) == EnumFacing.UP && ((entity instanceof EntityPlayer && entity.isSneaking()) || !(entity instanceof
 
-                    if(tilePipe.hasMaster() && !tilePipe.getOtherPipePos().equals(new BlockPos(0, 0, 0)))
+                            EntityPlayer))) || blockState.getValue(FACING) != EnumFacing.UP)
                     {
-                        BlockPos teleportDestinationPos = tilePipe.getOtherPipePos();
-                        int teleportDestinationDimension = tilePipe.getOtherPipeDimension();
+                        TilePipe tilePipe = (TilePipe) world.getTileEntity(blockPos);
 
-                        if(world.getMinecraftServer() != null)
+                        if(tilePipe.hasMaster() && !tilePipe.getOtherPipePos().equals(new BlockPos(0, 0, 0)))
                         {
-                            World otherWorld = world.getMinecraftServer().getWorld(teleportDestinationDimension);
+                            BlockPos teleportDestinationPos = tilePipe.getOtherPipePos();
+                            int teleportDestinationDimension = tilePipe.getOtherPipeDimension();
 
-                            if(otherWorld.getBlockState(teleportDestinationPos).getBlock() instanceof BlockPipe && otherWorld.getTileEntity
-                                    (teleportDestinationPos) instanceof TilePipe)
+                            if(world.getMinecraftServer() != null)
                             {
-                                // Offset teleport to prevent infinite loop
-                                teleportDestinationPos = teleportDestinationPos.offset(otherWorld.getBlockState(teleportDestinationPos).getValue
-                                        (FACING), 2);
+                                World otherWorld = world.getMinecraftServer().getWorld(teleportDestinationDimension);
 
-                                // Are the Pipes in different Dimensions?
-                                if(teleportDestinationDimension != world.provider.getDimension())
+                                if(otherWorld.getBlockState(teleportDestinationPos).getBlock() instanceof BlockPipe && otherWorld.getTileEntity
+                                        (teleportDestinationPos) instanceof TilePipe)
                                 {
-                                    // Change dimension
-                                    if(entity instanceof EntityPlayerMP)
-                                    {
-                                        // Players
-                                        world.getMinecraftServer().getPlayerList().transferPlayerToDimension((EntityPlayerMP) entity,
-                                                teleportDestinationDimension, new MarioTeleporter((WorldServer) otherWorld));
-                                        entity.setSneaking(false);
-                                    } else if(entity instanceof EntityItem)
-                                    {
-                                        // Items
-                                        ItemStack stack = ((EntityItem) entity).getItem().copy();
+                                    // Offset teleport to prevent infinite loop
+                                    teleportDestinationPos = teleportDestinationPos.offset(otherWorld.getBlockState(teleportDestinationPos).getValue
+                                            (FACING), 2);
 
-                                        EntityItem entityItem = new EntityItem(otherWorld, teleportDestinationPos.getX(), teleportDestinationPos
-                                                .getY(), teleportDestinationPos.getZ(), stack);
-
-                                        otherWorld.spawnEntity(entityItem);
-                                        entity.setDead();
-                                    } else
+                                    // Are the Pipes in different Dimensions?
+                                    if(teleportDestinationDimension != world.provider.getDimension())
                                     {
-                                        // Other Entities
-                                        world.getMinecraftServer().getPlayerList().transferEntityToWorld(entity, world.provider.getDimension(),
-                                                (WorldServer) world, (WorldServer) otherWorld, new MarioTeleporter((WorldServer) otherWorld));
+                                        // Change dimension
+                                        if(entity instanceof EntityPlayerMP)
+                                        {
+                                            // Players
+                                            world.getMinecraftServer().getPlayerList().transferPlayerToDimension((EntityPlayerMP) entity,
+                                                    teleportDestinationDimension, new MarioTeleporter((WorldServer) otherWorld));
+                                            entity.setSneaking(false);
+                                        } else if(entity instanceof EntityItem)
+                                        {
+                                            // Items
+                                            ItemStack stack = ((EntityItem) entity).getItem().copy();
+
+                                            EntityItem entityItem = new EntityItem(otherWorld, teleportDestinationPos.getX(), teleportDestinationPos
+                                                    .getY(), teleportDestinationPos.getZ(), stack);
+
+                                            otherWorld.spawnEntity(entityItem);
+                                            entity.setDead();
+                                        } else
+                                        {
+                                            // Other Entities
+                                            world.getMinecraftServer().getPlayerList().transferEntityToWorld(entity, world.provider.getDimension(),
+                                                    (WorldServer) world, (WorldServer) otherWorld, new MarioTeleporter((WorldServer) otherWorld));
+                                        }
                                     }
-                                }
 
-                                if((!(entity instanceof EntityItem) && teleportDestinationDimension != world.provider.getDimension()) ||
-                                        teleportDestinationDimension == world.provider.getDimension())
-                                {
-                                    // Move the Entity to the correct coordinates
-                                    entity.setPositionAndUpdate(teleportDestinationPos.getX(), teleportDestinationPos.getY(), teleportDestinationPos
-                                            .getZ());
-                                }
+                                    if((!(entity instanceof EntityItem) && teleportDestinationDimension != world.provider.getDimension()) ||
+                                            teleportDestinationDimension == world.provider.getDimension())
+                                    {
+                                        // Move the Entity to the correct coordinates
+                                        entity.setPositionAndUpdate(teleportDestinationPos.getX(), teleportDestinationPos.getY(),
+                                                teleportDestinationPos.getZ());
+                                    }
 
-                                // Play sound
-                                world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.pipe, SoundCategory.BLOCKS,
-                                        1.0F, 1.0F);
-                                otherWorld.playSound(null, teleportDestinationPos.getX(), teleportDestinationPos.getY(), teleportDestinationPos
-                                        .getZ(), SoundHandler.pipe, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                                    // Play sound
+                                    world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.pipe, SoundCategory.BLOCKS,
+                                            1.0F, 1.0F);
+                                    otherWorld.playSound(null, teleportDestinationPos.getX(), teleportDestinationPos.getY(), teleportDestinationPos
+                                            .getZ(), SoundHandler.pipe, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                                }
                             }
                         }
                     }
                 }
-            }
 
-            inPipeTime = 0;
+                inPipeTime = 0;
+            }
         }
     }
 

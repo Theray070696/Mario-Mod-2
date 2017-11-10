@@ -54,31 +54,35 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos blockPos, IBlockState blockState, Entity entity)
     {
-        entity.motionY = -0.25f; // Send the entity back down.
-
-        if(entity instanceof EntityPlayer) // If the entity that hit the bottom was a player...
+        if(!world.isRemote)
         {
-            if(this instanceof BlockQuestionMark) // If the block has an item in it...
-            {
-                takeItemOutOfQBlock(world, blockPos, null); // Take the item out.
-            } else // Otherwise...
-            {
-                EntityPlayer player = (EntityPlayer) entity; // Get player for use in cooldown stuff.
+            entity.motionY = -0.25f; // Send the entity back down.
 
-                if(EventHandler.getSoundCooldown(player) == 0) // Make sure it's been enough time to play sounds again.
+            if(entity instanceof EntityPlayer) // If the entity that hit the bottom was a player...
+            {
+                if(this instanceof BlockQuestionMark) // If the block has an item in it...
                 {
-                    if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType
-                            .SMB_UNDERGROUND) || blockType.equals(EnumBlockType.SMB_CASTLE) || blockType.equals(EnumBlockType.SMB3) || blockType
-                            .equals(EnumBlockType.SMB3_INVISIBLE)) // If it is from Mario 1 or Mario 3...
+                    takeItemOutOfQBlock(world, blockPos, null); // Take the item out.
+                } else // Otherwise...
+                {
+                    EntityPlayer player = (EntityPlayer) entity; // Get player for use in cooldown stuff.
+
+                    if(EventHandler.getSoundCooldown(player) == 0) // Make sure it's been enough time to play sounds again.
                     {
-                        world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.smbEmptyBlockHit, SoundCategory
-                                .BLOCKS, 1.0F, 1.0F); // Play this sound.
-                        EventHandler.setSoundCooldown(player, 1); // Don't spam sounds.
-                    } else if(blockType.equals(EnumBlockType.SMW) || blockType.equals(EnumBlockType.SMW_INVISIBLE)) // If it is from Mario World...
-                    {
-                        world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.smwEmptyBlockHit, SoundCategory
-                                .BLOCKS, 1.0F, 1.0F); // Play this sound.
-                        EventHandler.setSoundCooldown(player, 1); // Don't spam sounds.
+                        if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType
+                                .SMB_UNDERGROUND) || blockType.equals(EnumBlockType.SMB_CASTLE) || blockType.equals(EnumBlockType.SMB3) || blockType
+                                .equals(EnumBlockType.SMB3_INVISIBLE)) // If it is from Mario 1 or Mario 3...
+                        {
+                            world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.smbEmptyBlockHit, SoundCategory
+                                    .BLOCKS, 1.0F, 1.0F); // Play this sound.
+                            EventHandler.setSoundCooldown(player, 1); // Don't spam sounds.
+                        } else if(blockType.equals(EnumBlockType.SMW) || blockType.equals(EnumBlockType.SMW_INVISIBLE)) // If it is from Mario
+                            // World...
+                        {
+                            world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.smwEmptyBlockHit, SoundCategory
+                                    .BLOCKS, 1.0F, 1.0F); // Play this sound.
+                            EventHandler.setSoundCooldown(player, 1); // Don't spam sounds.
+                        }
                     }
                 }
             }
@@ -297,7 +301,8 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                     world.setBlockState(pos.up(i), ModBlocks.marioBlockBeanstalk.getDefaultState()); // Set the block to a beanstalk
                 }
 
-                world.setBlockState(pos.up(10), ModBlocks.marioBlockBeanstalk.getDefaultState().withProperty(BlockBeanstalk.ISTOP, true), 2); // Set the
+                world.setBlockState(pos.up(10), ModBlocks.marioBlockBeanstalk.getDefaultState().withProperty(BlockBeanstalk.ISTOP, true), 2); //
+                // Set the
                 // top to the top of the beanstalk.
             }
 
