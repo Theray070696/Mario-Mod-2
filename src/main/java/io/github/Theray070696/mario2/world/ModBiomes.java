@@ -22,17 +22,17 @@ public class ModBiomes
     public static void initBiomes()
     {
         ForgeRegistries.BIOMES.register(biomeMarioPlains);
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(biomeMarioPlains, 5));
+        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(biomeMarioPlains, 2));
         BiomeManager.addSpawnBiome(biomeMarioPlains);
         BiomeDictionary.addTypes(biomeMarioPlains, BiomeDictionary.Type.PLAINS);
 
         ForgeRegistries.BIOMES.register(biomeMarioForest);
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(biomeMarioForest, 5));
+        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(biomeMarioForest, 2));
         BiomeManager.addSpawnBiome(biomeMarioForest);
         BiomeDictionary.addTypes(biomeMarioForest, BiomeDictionary.Type.FOREST);
 
         ForgeRegistries.BIOMES.register(biomeMarioForestHills);
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(biomeMarioForestHills, 5));
+        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(biomeMarioForestHills, 2));
         BiomeManager.addSpawnBiome(biomeMarioForestHills);
         BiomeDictionary.addTypes(biomeMarioForestHills, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.HILLS);
     }
