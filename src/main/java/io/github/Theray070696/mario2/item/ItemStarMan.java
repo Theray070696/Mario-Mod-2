@@ -1,6 +1,7 @@
 package io.github.Theray070696.mario2.item;
 
 import io.github.Theray070696.mario2.audio.SoundHandler;
+import io.github.Theray070696.mario2.lib.ModInfo;
 import io.github.Theray070696.mario2.potion.PotionEffectsMario;
 import io.github.Theray070696.raycore.api.RayCoreAPI;
 import net.minecraft.entity.player.EntityPlayer;
@@ -45,7 +46,7 @@ public class ItemStarMan extends ItemMario
                         .jasterStarMan, SoundCategory.PLAYERS, 1.0F, 1.0F);
             }
 
-            RayCoreAPI.playMovingSound(SoundHandler.starMan, SoundCategory.PLAYERS, world, player);
+            RayCoreAPI.playMovingSound(ModInfo.MOD_ID, "item.starman", SoundCategory.PLAYERS, world, player);
 
             itemStack.stackSize--;
         }
