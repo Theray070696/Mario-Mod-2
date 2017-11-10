@@ -46,14 +46,14 @@ public class JEIPlugin extends BlankModPlugin
 
         registry.addAdvancedGuiHandlers(new MarioMakerAdvancedGuiHandler());
 
-        registry.getJeiHelpers().getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModBlocks.marioBlockInvisibleBlock));
-        registry.getJeiHelpers().getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModBlocks.marioBlockInvisibleBlockSMB));
-        registry.getJeiHelpers().getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModBlocks.marioBlockInvisibleBlockSMB3));
-        registry.getJeiHelpers().getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModBlocks.marioBlockQuestionMark));
-        registry.getJeiHelpers().getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModBlocks.marioBlockQuestionMarkSMB));
-        registry.getJeiHelpers().getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModBlocks.marioBlockQuestionMarkSMB3));
-        registry.getJeiHelpers().getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModBlocks.marioBlockQuestionMarkUndergroundSMB));
-        registry.getJeiHelpers().getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModBlocks.marioBlockQuestionMarkCastleSMB));
+        jeiHelpers.getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModBlocks.marioBlockInvisibleBlock));
+        jeiHelpers.getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModBlocks.marioBlockInvisibleBlockSMB));
+        jeiHelpers.getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModBlocks.marioBlockInvisibleBlockSMB3));
+        jeiHelpers.getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModBlocks.marioBlockQuestionMark));
+        jeiHelpers.getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModBlocks.marioBlockQuestionMarkSMB));
+        jeiHelpers.getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModBlocks.marioBlockQuestionMarkSMB3));
+        jeiHelpers.getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModBlocks.marioBlockQuestionMarkUndergroundSMB));
+        jeiHelpers.getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModBlocks.marioBlockQuestionMarkCastleSMB));
     }
 
     private static class MarioMakerAdvancedGuiHandler extends BlankAdvancedGuiHandler<GuiMarioMaker>
