@@ -161,6 +161,8 @@ public class MarioMod2
 
         long time = this.stopwatchInitPhases.stop().elapsed(TimeUnit.MILLISECONDS);
         LogHelper.info("Post-Init Complete in " + time + "ms");
+
+        this.stopwatchInitPhases = null;
     }
 
     @Mod.EventHandler
