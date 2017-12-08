@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-  deobfCompile "team.chisel.ctm:CTM:MC1.11-0.2.2.12"
+  deobfCompile "team.chisel.ctm:CTM:MC1.11.2-0.2.2.12"
   // compile against the JEI API
   deobfCompile "mezz.jei:jei_1.11.2:4.2.10.250:api"
   // at runtime, use the full JEI jar
