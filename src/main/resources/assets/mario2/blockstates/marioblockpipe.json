@@ -1,0 +1,577 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "all": "mario2:blocks/marioBlockPipe"
+    },
+    "ambientocclusion": false
+  },
+  "variants": {
+    "normal": {
+      "model": "cube_all"
+    },
+    "inventory": {
+      "model": "cube_all"
+    },
+    "connecteddown=false,connectedright=false,facing=south,ismultiblock=true,rearblock=true": {
+      "_comment": "bottom right rear block",
+      "model": "mario2:marioBlockPipe_br_rear",
+      "y": 180
+    },
+    "connecteddown=false,connectedright=false,facing=north,ismultiblock=true,rearblock=true": {
+      "_comment": "bottom right rear block",
+      "model": "mario2:marioBlockPipe_br_rear"
+    },
+    "connecteddown=false,connectedright=false,facing=east,ismultiblock=true,rearblock=true": {
+      "_comment": "bottom right rear block",
+      "model": "mario2:marioBlockPipe_br_rear",
+      "y": 90
+    },
+    "connecteddown=false,connectedright=false,facing=west,ismultiblock=true,rearblock=true": {
+      "_comment": "bottom right rear block",
+      "model": "mario2:marioBlockPipe_br_rear",
+      "y": 270
+    },
+    "connecteddown=false,connectedright=false,facing=up,ismultiblock=true,rearblock=true": {
+      "_comment": "bottom right rear block",
+      "model": "mario2:marioBlockPipe_vertical_br_rear"
+    },
+    "connecteddown=false,connectedright=false,facing=down,ismultiblock=true,rearblock=true": {
+      "_comment": "bottom right rear block",
+      "model": "mario2:marioBlockPipe_vertical_tr_rear",
+      "x": 180
+    },
+    "connecteddown=false,connectedright=true,facing=south,ismultiblock=true,rearblock=true": {
+      "_comment": "bottom left rear block",
+      "model": "mario2:marioBlockPipe_bl_rear",
+      "y": 180
+    },
+    "connecteddown=false,connectedright=true,facing=north,ismultiblock=true,rearblock=true": {
+      "_comment": "bottom left rear block",
+      "model": "mario2:marioBlockPipe_bl_rear"
+    },
+    "connecteddown=false,connectedright=true,facing=east,ismultiblock=true,rearblock=true": {
+      "_comment": "bottom left rear block",
+      "model": "mario2:marioBlockPipe_bl_rear",
+      "y": 90
+    },
+    "connecteddown=false,connectedright=true,facing=west,ismultiblock=true,rearblock=true": {
+      "_comment": "bottom left rear block",
+      "model": "mario2:marioBlockPipe_bl_rear",
+      "y": 270
+    },
+    "connecteddown=false,connectedright=true,facing=up,ismultiblock=true,rearblock=true": {
+      "_comment": "bottom left rear block",
+      "model": "mario2:marioBlockPipe_vertical_bl_rear"
+    },
+    "connecteddown=false,connectedright=true,facing=down,ismultiblock=true,rearblock=true": {
+      "_comment": "bottom left rear block",
+      "model": "mario2:marioBlockPipe_vertical_tl_rear",
+      "x": 180
+    },
+    "connecteddown=true,connectedright=false,facing=south,ismultiblock=true,rearblock=true": {
+      "_comment": "top right rear block",
+      "model": "mario2:marioBlockPipe_tr_rear",
+      "y": 180
+    },
+    "connecteddown=true,connectedright=false,facing=north,ismultiblock=true,rearblock=true": {
+      "_comment": "top right rear block",
+      "model": "mario2:marioBlockPipe_tr_rear"
+    },
+    "connecteddown=true,connectedright=false,facing=east,ismultiblock=true,rearblock=true": {
+      "_comment": "top right rear block",
+      "model": "mario2:marioBlockPipe_tr_rear",
+      "y": 90
+    },
+    "connecteddown=true,connectedright=false,facing=west,ismultiblock=true,rearblock=true": {
+      "_comment": "top right rear block",
+      "model": "mario2:marioBlockPipe_tr_rear",
+      "y": 270
+    },
+    "connecteddown=true,connectedright=false,facing=up,ismultiblock=true,rearblock=true": {
+      "_comment": "top right rear block",
+      "model": "mario2:marioBlockPipe_vertical_tr_rear"
+    },
+    "connecteddown=true,connectedright=false,facing=down,ismultiblock=true,rearblock=true": {
+      "_comment": "top right rear block",
+      "model": "mario2:marioBlockPipe_vertical_br_rear",
+      "x": 180
+    },
+    "connecteddown=true,connectedright=true,facing=south,ismultiblock=true,rearblock=true": {
+      "_comment": "top left rear block",
+      "model": "mario2:marioBlockPipe_tl_rear",
+      "y": 180
+    },
+    "connecteddown=true,connectedright=true,facing=north,ismultiblock=true,rearblock=true": {
+      "_comment": "top left rear block",
+      "model": "mario2:marioBlockPipe_tl_rear"
+    },
+    "connecteddown=true,connectedright=true,facing=east,ismultiblock=true,rearblock=true": {
+      "_comment": "top left rear block",
+      "model": "mario2:marioBlockPipe_tl_rear",
+      "y": 90
+    },
+    "connecteddown=true,connectedright=true,facing=west,ismultiblock=true,rearblock=true": {
+      "_comment": "top left rear block",
+      "model": "mario2:marioBlockPipe_tl_rear",
+      "y": 270
+    },
+    "connecteddown=true,connectedright=true,facing=up,ismultiblock=true,rearblock=true": {
+      "_comment": "top left rear block",
+      "model": "mario2:marioBlockPipe_vertical_tl_rear"
+    },
+    "connecteddown=true,connectedright=true,facing=down,ismultiblock=true,rearblock=true": {
+      "_comment": "top left rear block",
+      "model": "mario2:marioBlockPipe_vertical_bl_rear",
+      "x": 180
+    },
+    "connecteddown=false,connectedright=false,facing=south,ismultiblock=false,rearblock=true": {
+      "_comment": "bottom right rear block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=false,connectedright=false,facing=north,ismultiblock=false,rearblock=true": {
+      "_comment": "bottom right rear block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=false,connectedright=false,facing=east,ismultiblock=false,rearblock=true": {
+      "_comment": "bottom right rear block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=false,connectedright=false,facing=west,ismultiblock=false,rearblock=true": {
+      "_comment": "bottom right rear block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=false,connectedright=false,facing=up,ismultiblock=false,rearblock=true": {
+      "_comment": "bottom right rear block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=false,connectedright=false,facing=down,ismultiblock=false,rearblock=true": {
+      "_comment": "bottom right rear block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=true,connectedright=false,facing=south,ismultiblock=false,rearblock=true": {
+      "_comment": "bottom left rear block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=true,connectedright=false,facing=north,ismultiblock=false,rearblock=true": {
+      "_comment": "bottom left rear block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=true,connectedright=false,facing=east,ismultiblock=false,rearblock=true": {
+      "_comment": "bottom left rear block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=true,connectedright=false,facing=west,ismultiblock=false,rearblock=true": {
+      "_comment": "bottom left rear block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=true,connectedright=false,facing=up,ismultiblock=false,rearblock=true": {
+      "_comment": "bottom left rear block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=true,connectedright=false,facing=down,ismultiblock=false,rearblock=true": {
+      "_comment": "bottom left rear block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=false,connectedright=true,facing=south,ismultiblock=false,rearblock=true": {
+      "_comment": "top right rear block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=false,connectedright=true,facing=north,ismultiblock=false,rearblock=true": {
+      "_comment": "top right rear block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=false,connectedright=true,facing=east,ismultiblock=false,rearblock=true": {
+      "_comment": "top right rear block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=false,connectedright=true,facing=west,ismultiblock=false,rearblock=true": {
+      "_comment": "top right rear block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=false,connectedright=true,facing=up,ismultiblock=false,rearblock=true": {
+      "_comment": "top right rear block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=false,connectedright=true,facing=down,ismultiblock=false,rearblock=true": {
+      "_comment": "top right rear block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=true,connectedright=true,facing=south,ismultiblock=false,rearblock=true": {
+      "_comment": "top left rear block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=true,connectedright=true,facing=north,ismultiblock=false,rearblock=true": {
+      "_comment": "top left rear block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=true,connectedright=true,facing=east,ismultiblock=false,rearblock=true": {
+      "_comment": "top left rear block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=true,connectedright=true,facing=west,ismultiblock=false,rearblock=true": {
+      "_comment": "top left rear block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=true,connectedright=true,facing=up,ismultiblock=false,rearblock=true": {
+      "_comment": "top left rear block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=true,connectedright=true,facing=down,ismultiblock=false,rearblock=true": {
+      "_comment": "top left rear block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=false,connectedright=false,facing=south,ismultiblock=true,rearblock=false": {
+      "_comment": "bottom right front block",
+      "model": "mario2:marioBlockPipe_br",
+      "y": 180
+    },
+    "connecteddown=false,connectedright=false,facing=north,ismultiblock=true,rearblock=false": {
+      "_comment": "bottom right front block",
+      "model": "mario2:marioBlockPipe_br"
+    },
+    "connecteddown=false,connectedright=false,facing=east,ismultiblock=true,rearblock=false": {
+      "_comment": "bottom right front block",
+      "model": "mario2:marioBlockPipe_br",
+      "y": 90
+    },
+    "connecteddown=false,connectedright=false,facing=west,ismultiblock=true,rearblock=false": {
+      "_comment": "bottom right front block",
+      "model": "mario2:marioBlockPipe_br",
+      "y": 270
+    },
+    "connecteddown=false,connectedright=false,facing=up,ismultiblock=true,rearblock=false": {
+      "_comment": "bottom right front block",
+      "model": "mario2:marioBlockPipe_vertical_br"
+    },
+    "connecteddown=false,connectedright=false,facing=down,ismultiblock=true,rearblock=false": {
+      "_comment": "bottom right front block",
+      "model": "mario2:marioBlockPipe_vertical_tr",
+      "x": 180
+    },
+    "connecteddown=false,connectedright=true,facing=south,ismultiblock=true,rearblock=false": {
+      "_comment": "bottom left front block",
+      "model": "mario2:marioBlockPipe_bl",
+      "y": 180
+    },
+    "connecteddown=false,connectedright=true,facing=north,ismultiblock=true,rearblock=false": {
+      "_comment": "bottom left front block",
+      "model": "mario2:marioBlockPipe_bl"
+    },
+    "connecteddown=false,connectedright=true,facing=east,ismultiblock=true,rearblock=false": {
+      "_comment": "bottom left front block",
+      "model": "mario2:marioBlockPipe_bl",
+      "y": 90
+    },
+    "connecteddown=false,connectedright=true,facing=west,ismultiblock=true,rearblock=false": {
+      "_comment": "bottom left front block",
+      "model": "mario2:marioBlockPipe_bl",
+      "y": 270
+    },
+    "connecteddown=false,connectedright=true,facing=up,ismultiblock=true,rearblock=false": {
+      "_comment": "bottom left front block",
+      "model": "mario2:marioBlockPipe_vertical_bl"
+    },
+    "connecteddown=false,connectedright=true,facing=down,ismultiblock=true,rearblock=false": {
+      "_comment": "bottom left front block",
+      "model": "mario2:marioBlockPipe_vertical_tl",
+      "x": 180
+    },
+    "connecteddown=true,connectedright=false,facing=south,ismultiblock=true,rearblock=false": {
+      "_comment": "top right front block",
+      "model": "mario2:marioBlockPipe_tr",
+      "y": 180
+    },
+    "connecteddown=true,connectedright=false,facing=north,ismultiblock=true,rearblock=false": {
+      "_comment": "top right front block",
+      "model": "mario2:marioBlockPipe_tr"
+    },
+    "connecteddown=true,connectedright=false,facing=east,ismultiblock=true,rearblock=false": {
+      "_comment": "top right front block",
+      "model": "mario2:marioBlockPipe_tr",
+      "y": 90
+    },
+    "connecteddown=true,connectedright=false,facing=west,ismultiblock=true,rearblock=false": {
+      "_comment": "top right front block",
+      "model": "mario2:marioBlockPipe_tr",
+      "y": 270
+    },
+    "connecteddown=true,connectedright=false,facing=up,ismultiblock=true,rearblock=false": {
+      "_comment": "top right front block",
+      "model": "mario2:marioBlockPipe_vertical_tr"
+    },
+    "connecteddown=true,connectedright=false,facing=down,ismultiblock=true,rearblock=false": {
+      "_comment": "top right front block",
+      "model": "mario2:marioBlockPipe_vertical_br",
+      "x": 180
+    },
+    "connecteddown=true,connectedright=true,facing=south,ismultiblock=true,rearblock=false": {
+      "_comment": "top left front block",
+      "model": "mario2:marioBlockPipe_tl",
+      "y": 180
+    },
+    "connecteddown=true,connectedright=true,facing=north,ismultiblock=true,rearblock=false": {
+      "_comment": "top left front block",
+      "model": "mario2:marioBlockPipe_tl"
+    },
+    "connecteddown=true,connectedright=true,facing=east,ismultiblock=true,rearblock=false": {
+      "_comment": "top left front block",
+      "model": "mario2:marioBlockPipe_tl",
+      "y": 90
+    },
+    "connecteddown=true,connectedright=true,facing=west,ismultiblock=true,rearblock=false": {
+      "_comment": "top left front block",
+      "model": "mario2:marioBlockPipe_tl",
+      "y": 270
+    },
+    "connecteddown=true,connectedright=true,facing=up,ismultiblock=true,rearblock=false": {
+      "_comment": "top left front block",
+      "model": "mario2:marioBlockPipe_vertical_tl"
+    },
+    "connecteddown=true,connectedright=true,facing=down,ismultiblock=true,rearblock=false": {
+      "_comment": "top left front block",
+      "model": "mario2:marioBlockPipe_vertical_bl",
+      "x": 180
+    },
+    "connecteddown=false,connectedright=false,facing=south,ismultiblock=false,rearblock=false": {
+      "_comment": "bottom right front block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=false,connectedright=false,facing=north,ismultiblock=false,rearblock=false": {
+      "_comment": "bottom right front block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=false,connectedright=false,facing=east,ismultiblock=false,rearblock=false": {
+      "_comment": "bottom right front block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=false,connectedright=false,facing=west,ismultiblock=false,rearblock=false": {
+      "_comment": "bottom right front block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=false,connectedright=false,facing=up,ismultiblock=false,rearblock=false": {
+      "_comment": "bottom right front block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=false,connectedright=false,facing=down,ismultiblock=false,rearblock=false": {
+      "_comment": "bottom right front block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=true,connectedright=false,facing=south,ismultiblock=false,rearblock=false": {
+      "_comment": "bottom left front block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=true,connectedright=false,facing=north,ismultiblock=false,rearblock=false": {
+      "_comment": "bottom left front block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=true,connectedright=false,facing=east,ismultiblock=false,rearblock=false": {
+      "_comment": "bottom left front block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=true,connectedright=false,facing=west,ismultiblock=false,rearblock=false": {
+      "_comment": "bottom left front block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=true,connectedright=false,facing=up,ismultiblock=false,rearblock=false": {
+      "_comment": "bottom left front block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=true,connectedright=false,facing=down,ismultiblock=false,rearblock=false": {
+      "_comment": "bottom left front block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=false,connectedright=true,facing=south,ismultiblock=false,rearblock=false": {
+      "_comment": "top right front block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=false,connectedright=true,facing=north,ismultiblock=false,rearblock=false": {
+      "_comment": "top right front block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=false,connectedright=true,facing=east,ismultiblock=false,rearblock=false": {
+      "_comment": "top right front block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=false,connectedright=true,facing=west,ismultiblock=false,rearblock=false": {
+      "_comment": "top right front block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=false,connectedright=true,facing=up,ismultiblock=false,rearblock=false": {
+      "_comment": "top right front block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=false,connectedright=true,facing=down,ismultiblock=false,rearblock=false": {
+      "_comment": "top right front block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=true,connectedright=true,facing=south,ismultiblock=false,rearblock=false": {
+      "_comment": "top left front block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=true,connectedright=true,facing=north,ismultiblock=false,rearblock=false": {
+      "_comment": "top left front block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=true,connectedright=true,facing=east,ismultiblock=false,rearblock=false": {
+      "_comment": "top left front block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=true,connectedright=true,facing=west,ismultiblock=false,rearblock=false": {
+      "_comment": "top left front block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=true,connectedright=true,facing=up,ismultiblock=false,rearblock=false": {
+      "_comment": "top left front block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    },
+    "connecteddown=true,connectedright=true,facing=down,ismultiblock=false,rearblock=false": {
+      "_comment": "top left front block",
+      "model": "cube_all",
+      "textures": {
+        "all": "mario2:blocks/marioBlockPipe"
+      }
+    }
+  }
+}

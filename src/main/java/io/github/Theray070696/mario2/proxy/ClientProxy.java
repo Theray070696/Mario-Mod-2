@@ -48,7 +48,7 @@ public class ClientProxy extends CommonProxy
         if(!(Boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment"))
         {
             Field missingException = ReflectionHelper.findField(FMLClientHandler.class, "modsMissing");
-            VersionRange range = VersionRange.createFromVersionSpec("[MC1.10,)");
+            VersionRange range = VersionRange.createFromVersionSpec("[MC1.12,)");
             if(!Loader.isModLoaded("ctm") || !range.containsVersion(Loader.instance().getIndexedModList().get("ctm").getProcessedVersion()))
             {
                 if(missingException.get(FMLClientHandler.instance()) == null)

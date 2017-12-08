@@ -61,24 +61,9 @@ public class MarioMod2
         @Nonnull
         @SideOnly(Side.CLIENT)
         @Override
-        public ItemStack getIconItemStack()
+        public ItemStack getTabIconItem()
         {
             return new ItemStack(ModItems.itemMarioMushroom, 1, 1);
-        }
-
-        @SideOnly(Side.CLIENT)
-        @Override
-        public int getIconItemDamage()
-        {
-            return 1;
-        }
-
-        @Nonnull
-        @SideOnly(Side.CLIENT)
-        @Override
-        public Item getTabIconItem()
-        {
-            return new ItemStack(ModItems.itemMarioMushroom, 1, 1).getItem();
         }
     };
     public static CreativeTabs tabMarioBlocks = new CreativeTabs("tabMarioBlocks")
@@ -86,17 +71,9 @@ public class MarioMod2
         @Nonnull
         @SideOnly(Side.CLIENT)
         @Override
-        public ItemStack getIconItemStack()
+        public ItemStack getTabIconItem()
         {
             return new ItemStack(ModBlocks.blockMarioMaker);
-        }
-
-        @Nonnull
-        @SideOnly(Side.CLIENT)
-        @Override
-        public Item getTabIconItem()
-        {
-            return new ItemStack(ModBlocks.blockMarioMaker).getItem();
         }
     };
     public static SimpleNetworkWrapper network;

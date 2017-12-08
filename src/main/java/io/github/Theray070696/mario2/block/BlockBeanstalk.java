@@ -1,6 +1,7 @@
 package io.github.Theray070696.mario2.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -36,10 +37,11 @@ public class BlockBeanstalk extends BlockMario
 
         this.setHardness(6.0F);
         this.setUnlocalizedName("marioBlockBeanstalk");
+        this.setSoundType(SoundType.PLANT);
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World world, BlockPos blockPos)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess world, BlockPos blockPos)
     {
         return new AxisAlignedBB(0.44F, 0.0F, 0.44F, 0.56F, 1.0F, 0.56F);
     }
@@ -56,7 +58,7 @@ public class BlockBeanstalk extends BlockMario
     {
         if(placer instanceof EntityPlayer)
         {
-            ++stack.stackSize;
+            stack.setCount(stack.getCount() + 1);
             world.destroyBlock(pos, false);
         }
     }
@@ -115,7 +117,7 @@ public class BlockBeanstalk extends BlockMario
 
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[]{ISTOP});
+        return new BlockStateContainer(this, ISTOP);
     }
 
     @Override

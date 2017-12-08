@@ -25,9 +25,16 @@ public class ItemDebug extends ItemMario
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
-        if(!world.isRemote && itemStack != null && player != null && player instanceof EntityPlayerMP && !(player instanceof FakePlayer))
+        ItemStack itemStack = player.getHeldItem(hand);
+
+        if(!ConfigHandler.developerModeEnabled)
+        {
+            return new ActionResult<>(EnumActionResult.PASS, itemStack);
+        }
+
+        if(!world.isRemote && !itemStack.isEmpty() && !(player instanceof FakePlayer))
         {
             EntityPlayerMP playerMP = (EntityPlayerMP) player;
 

@@ -1,12 +1,13 @@
 package io.github.Theray070696.mario2.audio;
 
 import io.github.Theray070696.mario2.lib.ModInfo;
+import io.github.Theray070696.mario2.util.LogHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 /**
  * Created by Theray070696 on 3/23/2017.
@@ -109,11 +110,11 @@ public class SoundHandler
 
     public static SoundEvent register(String name)
     {
-        ResourceLocation loc = new ResourceLocation(ModInfo.MOD_ID, name);
-        SoundEvent e = new SoundEvent(loc);
-        GameRegistry.register(e, loc);
+        SoundEvent event = new SoundEvent(new ResourceLocation(ModInfo.MOD_ID, name));
+        event.setRegistryName(new ResourceLocation(ModInfo.MOD_ID, name));
+        ForgeRegistries.SOUND_EVENTS.register(event);
 
-        return e;
+        return event;
     }
 
     public static void playSoundName(String soundName, World world, SoundCategory category, BlockPos pos)
@@ -123,7 +124,7 @@ public class SoundHandler
 
     public static void playSoundName(String soundName, World world, SoundCategory category, BlockPos pos, float volume, float pitch)
     {
-        SoundEvent sound = SoundEvent.REGISTRY.getObject(new ResourceLocation(soundName));
+        SoundEvent sound = ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(soundName));
 
         if(sound != null)
         {

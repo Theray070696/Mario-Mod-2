@@ -7,10 +7,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fml.relauncher.Side;
@@ -27,25 +24,28 @@ public class ItemMushroom extends ItemMario
     {
         super();
 
+        this.setMaxDamage(0);
         this.setHasSubtypes(true);
         this.setUnlocalizedName("itemMushroom");
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List list)
+    public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> list)
     {
         for(int i = 0; i < 3; i++)
         {
-            list.add(new ItemStack(item, 1, i));
+            list.add(new ItemStack(this, 1, i));
         }
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
-        if(!world.isRemote && itemStack != null && player != null && !(player instanceof FakePlayer)) // If we're on the server side, the ItemStack
-        // is not null, the player is not null, AND this was not used by a fake player...
+        ItemStack itemStack = player.getHeldItem(hand);
+
+        if(!world.isRemote && !itemStack.isEmpty() && !(player instanceof FakePlayer)) // If we're on the server side, the ItemStack is not null,
+        // the player is not null, AND this was not used by a fake player...
         {
             if(player.getHealth() < player.getMaxHealth()) // If the player needs healing...
             {
@@ -80,7 +80,7 @@ public class ItemMushroom extends ItemMario
                             .mushroom, SoundCategory.PLAYERS, 1.0F, 1.0F); // Play this sound.
                 }
 
-                itemStack.stackSize--; // Decrease amount of items in stack by one.
+                itemStack.setCount(itemStack.getCount() - 1); // Decrease amount of items in stack by one.
             }
         }
 
@@ -97,16 +97,21 @@ public class ItemMushroom extends ItemMario
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean advanced)
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> tooltip, boolean advanced)
     {
-        super.addInformation(itemStack, player, list, advanced);
+        super.addInformation(itemStack, player, tooltip, advanced);
 
-        if(!player.getEntityWorld().getWorldInfo().isHardcoreModeEnabled())
+        if(player == null)
         {
-            list.add("Restores 2.5 hearts"); // Add a helpful tooltip.
+            return;
+        }
+
+        if(!player.world.getWorldInfo().isHardcoreModeEnabled())
+        {
+            tooltip.add("Restores 2.5 hearts"); // Add a helpful tooltip.
         } else
         {
-            list.add("Restores 5 hearts"); // Add a helpful tooltip.
+            tooltip.add("Restores 5 hearts"); // Add a helpful tooltip.
         }
     }
 }

@@ -1,0 +1,21 @@
+{
+    "ctm": {
+        "ctm_version": 1,
+        "type": "ctm",
+        "textures": [
+            "mario2:blocks/connected/coalOreSMW/normal_ct"
+        ],
+        "extra": {
+            "ignore_states": "true",
+            "connect_inside": "true",
+            "connect_to": [
+                { "block": "mario2:marioBlockCoalSMW" },
+                { "block": "mario2:marioBlockIronSMW" },
+                { "block": "mario2:marioBlockGoldSMW" },
+                { "block": "mario2:marioBlockDiamondSMW" },
+                { "block": "mario2:marioBlockLapisSMW" },
+                { "block": "mario2:marioBlockGroundUndergroundSMW" }
+            ]
+        }
+    }
+}

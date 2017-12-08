@@ -19,7 +19,7 @@ public interface ICraftingHandler
      * Adds a shapeless recipe to the Mario Maker
      *
      * @param output Result of crafting
-     * @param inputs Ingredients
+     * @param inputs Same as normal {@link net.minecraft.item.crafting.ShapelessRecipes} input
      */
     public void addShapeless(ItemStack output, Object... inputs);
 
@@ -35,7 +35,7 @@ public interface ICraftingHandler
      * Adds a shapeless oredict recipe to the Mario Maker
      *
      * @param output Result of crafting
-     * @param inputs Ingredients
+     * @param inputs Same as normal {@link net.minecraftforge.oredict.ShapelessOreRecipe} input
      */
     public void addShapelessOreRecipe(ItemStack output, Object... inputs);
 }

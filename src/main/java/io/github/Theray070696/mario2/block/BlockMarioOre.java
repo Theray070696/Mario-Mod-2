@@ -70,13 +70,13 @@ public class BlockMarioOre extends BlockMario
 
             if(this == ModBlocks.blockCoalOreSMW)
             {
-                i = MathHelper.getRandomIntegerInRange(rand, 0, 2);
+                i = MathHelper.getInt(rand, 0, 2);
             } else if(this == ModBlocks.blockDiamondOreSMW)
             {
-                i = MathHelper.getRandomIntegerInRange(rand, 3, 7);
+                i = MathHelper.getInt(rand, 3, 7);
             } else if(this == ModBlocks.blockLapisOreSMW)
             {
-                i = MathHelper.getRandomIntegerInRange(rand, 2, 5);
+                i = MathHelper.getInt(rand, 2, 5);
             }
 
             return i;

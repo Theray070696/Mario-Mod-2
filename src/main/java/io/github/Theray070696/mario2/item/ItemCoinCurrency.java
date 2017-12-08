@@ -5,10 +5,9 @@ import io.github.Theray070696.raycore.RayCore;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.List;
 
 /**
  * Created by Theray070696 on 1/7/2017.
@@ -19,17 +18,18 @@ public class ItemCoinCurrency extends ItemMario
     {
         super();
 
+        this.setMaxDamage(0);
         this.setHasSubtypes(true);
         this.setUnlocalizedName("itemCoinCurrency");
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List list)
+    public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> list)
     {
         for(int i = 0; i < 5; i++)
         {
-            list.add(new ItemStack(item, 1, i));
+            list.add(new ItemStack(this, 1, i));
         }
     }
 

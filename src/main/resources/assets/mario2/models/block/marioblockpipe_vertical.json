@@ -1,0 +1,7 @@
+{
+  "parent": "block/orientable_vertical",
+  "textures": {
+    "front": "mario2:blocks/pipeTop1",
+    "side": "mario2:blocks/marioBlockPipe"
+  }
+}

@@ -92,7 +92,7 @@ public class PluginHandler
 
     public void registerBuiltInPlugins()
     {
-        //this.registerPlugin(new CraftTweakerPlugin());
+        //this.registerPlugin(new NotEnoughItems());
     }
 
     private enum Phase

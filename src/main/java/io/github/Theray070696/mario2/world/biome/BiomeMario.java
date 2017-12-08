@@ -92,10 +92,10 @@ public abstract class BiomeMario extends Biome implements IWeightProvider
                             fillerBlockState = ModBlocks.blockGroundUndergroundSMW.getDefaultState();
                             chunkPrimer.setBlockState(localZ, y, localX, GRAVEL); // I'll let gravel generate for now. Would be more useful than
                             // the brick blocks
-                        } else
+                        } /*else
                         {
                             chunkPrimer.setBlockState(localZ, y, localX, fillerBlockState);
-                        }
+                        }*/
                     } else if(fillBlocksToFill > 0)
                     {
                         --fillBlocksToFill;
@@ -137,10 +137,10 @@ public abstract class BiomeMario extends Biome implements IWeightProvider
                             fillerBlockState = ModBlocks.blockGroundUndergroundSMW.getDefaultState();
                             chunkPrimer.setBlockState(localZ, y, localX, GRAVEL); // I'll let gravel generate for now. Would be more useful than
                             // the brick blocks
-                        } else
+                        } /*else
                         {
                             chunkPrimer.setBlockState(localZ, y, localX, fillerBlockState);
-                        }
+                        }*/
                     } else if(fillBlocksToFill > 0)
                     {
                         --fillBlocksToFill;

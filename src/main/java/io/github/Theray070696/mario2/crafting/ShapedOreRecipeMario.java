@@ -22,7 +22,7 @@ public class ShapedOreRecipeMario implements IMarioRecipe
     public static final int MAX_CRAFT_GRID_WIDTH = 3;
     public static final int MAX_CRAFT_GRID_HEIGHT = 3;
 
-    protected ItemStack output = null;
+    protected ItemStack output = ItemStack.EMPTY;
     protected Object[] input = null;
     protected int width = 0;
     protected int height = 0;
@@ -141,7 +141,7 @@ public class ShapedOreRecipeMario implements IMarioRecipe
         {
             ItemStack ingredient = recipe.recipeItems[i];
 
-            if(ingredient == null)
+            if(ingredient.isEmpty())
             {
                 continue;
             }
@@ -252,7 +252,7 @@ public class ShapedOreRecipeMario implements IMarioRecipe
                     {
                         return false;
                     }
-                } else if(target == null && slot != null)
+                } else if(target == null && slot != ItemStack.EMPTY)
                 {
                     return false;
                 }
@@ -282,6 +282,6 @@ public class ShapedOreRecipeMario implements IMarioRecipe
     @Override
     public ItemStack[] getRemainingItems(InventoryCrafting inv) //getRecipeLeftovers
     {
-        return ForgeHooks.defaultRecipeGetRemainingItems(inv);
+        return ForgeHooks.defaultRecipeGetRemainingItems(inv).toArray(new ItemStack[0]);
     }
 }

@@ -22,9 +22,9 @@ public class ShapedRecipesWrapper extends BlankRecipeWrapper implements IShapedC
         this.recipe = recipe;
         for(ItemStack itemStack : this.recipe.recipeItems)
         {
-            if(itemStack != null && itemStack.stackSize != 1)
+            if(itemStack != ItemStack.EMPTY && itemStack.getCount() != 1)
             {
-                itemStack.stackSize = 1;
+                itemStack.setCount(1);
             }
         }
     }
@@ -37,7 +37,7 @@ public class ShapedRecipesWrapper extends BlankRecipeWrapper implements IShapedC
         try
         {
             ingredients.setInputs(ItemStack.class, recipeItems);
-            if(recipeOutput != null)
+            if(recipeOutput != ItemStack.EMPTY)
             {
                 ingredients.setOutput(ItemStack.class, recipeOutput);
             }
@@ -45,18 +45,6 @@ public class ShapedRecipesWrapper extends BlankRecipeWrapper implements IShapedC
         {
             throw new RuntimeException(e);
         }
-    }
-
-    @Override
-    public List getInputs()
-    {
-        return Arrays.asList(this.recipe.recipeItems);
-    }
-
-    @Override
-    public List<ItemStack> getOutputs()
-    {
-        return Collections.singletonList(this.recipe.getRecipeOutput());
     }
 
     @Override

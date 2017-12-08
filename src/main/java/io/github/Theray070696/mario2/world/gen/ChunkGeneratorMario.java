@@ -28,7 +28,6 @@ import net.minecraftforge.event.terraingen.InitNoiseGensEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
@@ -93,7 +92,7 @@ public class ChunkGeneratorMario implements IChunkGenerator
         {
             for(int j = -2; j <= 2; ++j)
             {
-                float f = 10.0F / MathHelper.sqrt_float((float) (i * i + j * j) + 0.2F);
+                float f = 10.0F / MathHelper.sqrt((float) (i * i + j * j) + 0.2F);
                 this.biomeWeights[i + 2 + (j + 2) * 5] = f;
             }
         }
@@ -355,7 +354,7 @@ public class ChunkGeneratorMario implements IChunkGenerator
                     double minDensity = this.minLimitRegion[noiseIndex] / (double) this.settings.lowerLimitScale;
                     double maxDensity = this.maxLimitRegion[noiseIndex] / (double) this.settings.upperLimitScale;
                     double mainDensity = (this.mainNoiseRegion[noiseIndex] / 10.0D + 1.0D) / 2.0D;
-                    double d5 = MathHelper.denormalizeClamp(minDensity, maxDensity, mainDensity) - densityOffset;
+                    double d5 = MathHelper.clampedLerp(minDensity, maxDensity, mainDensity) - densityOffset;
 
                     if(heightMapY > 29)
                     {
@@ -499,10 +498,29 @@ public class ChunkGeneratorMario implements IChunkGenerator
         return biome.getSpawnableList(creatureType);
     }
 
-    @Nullable
-    public BlockPos getStrongholdGen(World world, String structureName, BlockPos pos)
+    public boolean isInsideStructure(World worldIn, String structureName, BlockPos pos)
     {
-        return null;
+        if(!this.mapFeaturesEnabled)
+        {
+            return false;
+        } else
+        {
+            return "Mineshaft".equals(structureName) && this.mineshaftGenerator != null && this.mineshaftGenerator.isInsideStructure(pos);
+        }
+    }
+
+    public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position, boolean findUnexplored)
+    {
+        if(!this.mapFeaturesEnabled)
+        {
+            return null;
+        } else if("Mineshaft".equals(structureName) && this.mineshaftGenerator != null)
+        {
+            return this.mineshaftGenerator.getClosestStrongholdPos(worldIn, position, findUnexplored);
+        } else
+        {
+            return null;
+        }
     }
 
     public void recreateStructures(Chunk chunk, int x, int z)

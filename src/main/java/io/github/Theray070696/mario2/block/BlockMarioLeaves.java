@@ -222,11 +222,6 @@ public class BlockMarioLeaves extends BlockMario implements IShearable
         return Blocks.LEAVES.getBlockLayer();
     }
 
-    public boolean isVisuallyOpaque()
-    {
-        return false;
-    }
-
     @Override
     public boolean isShearable(ItemStack item, IBlockAccess world, BlockPos pos)
     {
@@ -237,6 +232,12 @@ public class BlockMarioLeaves extends BlockMario implements IShearable
     public boolean isLeaves(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         return true;
+    }
+
+    @Override
+    public boolean causesSuffocation(IBlockState state)
+    {
+        return false;
     }
 
     @Override

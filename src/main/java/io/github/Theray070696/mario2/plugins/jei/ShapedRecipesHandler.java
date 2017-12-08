@@ -17,12 +17,6 @@ public class ShapedRecipesHandler implements IRecipeHandler<ShapedRecipeMario>
     }
 
     @Override
-    public String getRecipeCategoryUid()
-    {
-        return "Mario Maker";
-    }
-
-    @Override
     public String getRecipeCategoryUid(ShapedRecipeMario recipe)
     {
         return "Mario Maker";
@@ -37,7 +31,7 @@ public class ShapedRecipesHandler implements IRecipeHandler<ShapedRecipeMario>
     @Override
     public boolean isRecipeValid(ShapedRecipeMario recipe)
     {
-        if(recipe.getRecipeOutput() == null)
+        if(recipe.getRecipeOutput() == ItemStack.EMPTY)
         {
             return false;
         }

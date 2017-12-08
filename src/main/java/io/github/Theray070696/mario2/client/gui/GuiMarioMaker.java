@@ -39,11 +39,12 @@ public class GuiMarioMaker extends GuiContainer
      */
     protected void drawGuiContainerForegroundLayer(int p_146979_1_, int p_146979_2_)
     {
-        this.fontRendererObj.drawString(I18n.format("gui.mario2:marioMaker"), 28, 6, 4210752);
+        this.fontRenderer.drawString(I18n.format("gui.mario2:marioMaker"), 28, 6, 4210752);
     }
 
     protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_)
     {
+        this.drawDefaultBackground();
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(marioMakerGuiTextures);
         int k = (this.width - this.xSize) / 2;
@@ -58,10 +59,10 @@ public class GuiMarioMaker extends GuiContainer
 
         if(this.coinsToGet < 10)
         {
-            this.fontRendererObj.drawString("" + coinsToGet, this.guiLeft + 232, this.guiTop + 13, 14737632);
+            this.fontRenderer.drawString("" + coinsToGet, this.guiLeft + 232, this.guiTop + 13, 14737632);
         } else if(this.coinsToGet >= 10)
         {
-            this.fontRendererObj.drawString("" + coinsToGet, this.guiLeft + 228, this.guiTop + 13, 14737632);
+            this.fontRenderer.drawString("" + coinsToGet, this.guiLeft + 228, this.guiTop + 13, 14737632);
         }
     }
 

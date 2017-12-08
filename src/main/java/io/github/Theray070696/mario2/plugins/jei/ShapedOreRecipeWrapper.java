@@ -32,9 +32,9 @@ public class ShapedOreRecipeWrapper extends BlankRecipeWrapper implements IShape
             if(input instanceof ItemStack)
             {
                 ItemStack itemStack = (ItemStack) input;
-                if(itemStack.stackSize != 1)
+                if(itemStack.getCount() != 1)
                 {
-                    itemStack.stackSize = 1;
+                    itemStack.setCount(1);
                 }
             }
         }
@@ -52,7 +52,7 @@ public class ShapedOreRecipeWrapper extends BlankRecipeWrapper implements IShape
         {
             List<List<ItemStack>> inputs = stackHelper.expandRecipeItemStackInputs(Arrays.asList(this.recipe.getInput()));
             ingredients.setInputLists(ItemStack.class, inputs);
-            if(recipeOutput != null)
+            if(recipeOutput != ItemStack.EMPTY)
             {
                 ingredients.setOutput(ItemStack.class, recipeOutput);
             }
@@ -60,18 +60,6 @@ public class ShapedOreRecipeWrapper extends BlankRecipeWrapper implements IShape
         {
             throw new RuntimeException(e);
         }
-    }
-
-    @Override
-    public List getInputs()
-    {
-        return Arrays.asList(this.recipe.getInput());
-    }
-
-    @Override
-    public List<ItemStack> getOutputs()
-    {
-        return Collections.singletonList(this.recipe.getRecipeOutput());
     }
 
     @Override

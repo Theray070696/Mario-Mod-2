@@ -3,6 +3,7 @@ package io.github.Theray070696.mario2.block;
 import io.github.Theray070696.mario2.world.gen.WorldGenMarioTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -33,8 +34,10 @@ public class BlockMarioSapling extends BlockMario implements IGrowable
     {
         super(Material.PLANTS);
 
+        this.setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
         this.setUnlocalizedName("marioBlockSapling");
         this.setHardness(0.0F);
+        this.setSoundType(SoundType.PLANT);
     }
 
     public boolean canPlaceBlockAt(World world, BlockPos pos)
@@ -48,9 +51,9 @@ public class BlockMarioSapling extends BlockMario implements IGrowable
         return state.getBlock() instanceof BlockMario && ((BlockMario) state.getBlock()).isGround();
     }
 
-    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
     {
-        super.neighborChanged(state, world, pos, block);
+        super.neighborChanged(state, world, pos, block, fromPos);
         this.checkAndDropBlock(world, pos, state);
     }
 
@@ -79,7 +82,7 @@ public class BlockMarioSapling extends BlockMario implements IGrowable
     }
 
     @Nullable
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World world, BlockPos pos)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
     {
         return NULL_AABB;
     }

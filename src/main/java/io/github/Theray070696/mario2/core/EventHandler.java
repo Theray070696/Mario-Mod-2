@@ -15,8 +15,7 @@ import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.entity.monster.SkeletonType;
+import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -80,8 +79,8 @@ public class EventHandler
             {
                 Random rand = new Random();
 
-                SoundHandler.playSoundName("mario2:player.death" + rand.nextInt(4) + 1, event.getEntityLiving().worldObj, SoundCategory.PLAYERS,
-                        event.getEntityLiving().getPosition());
+                SoundHandler.playSoundName("mario2:player.death" + rand.nextInt(4) + 1, event.getEntityLiving().world, SoundCategory.PLAYERS, event
+                        .getEntityLiving().getPosition());
             }
         }
     }
@@ -171,7 +170,7 @@ public class EventHandler
     @SubscribeEvent
     public void onLivingDropsEvent(LivingDropsEvent event)
     {
-        if(!event.getEntity().worldObj.getGameRules().getBoolean("doMobLoot"))
+        if(!event.getEntity().world.getGameRules().getBoolean("doMobLoot"))
         {
             return;
         }
@@ -197,8 +196,7 @@ public class EventHandler
                 {
                     entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, 1, 3), 0.0f); // Dragon Coin
                 }
-            } else if(entity instanceof EntitySkeleton && ((EntitySkeleton) entity).getSkeletonType() == SkeletonType.WITHER) // If the entity was
-            // a Wither Skeleton...
+            } else if(entity instanceof EntityWitherSkeleton) // If the entity was a Wither Skeleton...
             {
                 if(rand.nextInt(500) == 0) // Drop 1 Wither Coin as a very rare drop.
                 {
@@ -231,7 +229,7 @@ public class EventHandler
     {
         EntityLivingBase entity = event.getEntityLiving();
 
-        if(!entity.worldObj.isRemote)
+        if(!entity.world.isRemote)
         {
             if(getSoundCooldown(entity) > 0)
             {
@@ -239,13 +237,13 @@ public class EventHandler
             }
         }
 
-        if(entity.worldObj.isRemote)
+        if(entity.world.isRemote)
         {
             if(entity.isPotionActive(PotionEffectsMario.potionStarman))
             {
                 Random rand = new Random();
-                entity.worldObj.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, entity.posX - 0.1D + rand.nextGaussian() * 0.2D, entity.posY +
-                        0.5D - rand.nextGaussian() * 0.2D, entity.posZ - 0.1D + rand.nextGaussian() * 0.2D, 0.0D, 0.0D, 0.0D);
+                entity.world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, entity.posX - 0.1D + rand.nextGaussian() * 0.2D, entity.posY + 0.5D -
+                        rand.nextGaussian() * 0.2D, entity.posZ - 0.1D + rand.nextGaussian() * 0.2D, 0.0D, 0.0D, 0.0D);
             }
         }
     }

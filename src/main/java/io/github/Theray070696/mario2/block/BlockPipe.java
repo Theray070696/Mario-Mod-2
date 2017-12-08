@@ -30,7 +30,6 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 /**
@@ -74,7 +73,7 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World world, BlockPos blockPos)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess world, BlockPos blockPos)
     {
         EnumFacing side = blockState.getValue(FACING);
         boolean rearBlock = getActualState(blockState, world, blockPos).getValue(REARBLOCK);
@@ -129,8 +128,7 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
             {
                 if(world.getTileEntity(blockPos) instanceof TilePipe)
                 {
-                    if((blockState.getValue(FACING) == EnumFacing.UP && ((entity instanceof EntityPlayer && entity.isSneaking()) || !(entity
-                            instanceof
+                    if((blockState.getValue(FACING) == EnumFacing.UP && ((entity instanceof EntityPlayer && entity.isSneaking()) || !(entity instanceof
 
                             EntityPlayer))) || blockState.getValue(FACING) != EnumFacing.UP)
                     {
@@ -170,11 +168,8 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
                                             EntityItem entityItem = new EntityItem(otherWorld, teleportDestinationPos.getX(), teleportDestinationPos
                                                     .getY(), teleportDestinationPos.getZ(), stack);
 
-                                            otherWorld.spawnEntityInWorld(entityItem);
+                                            otherWorld.spawnEntity(entityItem);
                                             entity.setDead();
-
-                                            //world.getMinecraftServer().getPlayerList().transferEntityToWorld(entity, world.provider.getDimension(),
-                                            //(WorldServer) world, (WorldServer) otherWorld, new MarioTeleporter((WorldServer) otherWorld));
                                         } else
                                         {
                                             // Other Entities
@@ -565,11 +560,12 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem,
-                                    EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX,
+                                    float hitY, float hitZ)
     {
-        if(player.isSneaking() || (!state.getValue(ISMULTIBLOCK) && heldItem != null) || (state.getValue(ISMULTIBLOCK) && heldItem != null &&
-                heldItem.getItem() instanceof ItemPipeLink))
+        if(player.isSneaking() || (!state.getValue(ISMULTIBLOCK) && !player.getHeldItemMainhand().isEmpty() && !player.getHeldItemOffhand().isEmpty
+                ()) || (state.getValue(ISMULTIBLOCK) && (player.getHeldItemMainhand().getItem() instanceof ItemPipeLink || player
+                .getHeldItemOffhand().getItem() instanceof ItemPipeLink)))
         {
             return false;
         } else

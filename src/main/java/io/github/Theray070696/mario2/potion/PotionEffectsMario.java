@@ -2,6 +2,7 @@ package io.github.Theray070696.mario2.potion;
 
 import io.github.Theray070696.mario2.lib.ModInfo;
 import net.minecraft.potion.Potion;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
@@ -15,6 +16,6 @@ public class PotionEffectsMario
     {
         potionStarman.setRegistryName(ModInfo.MOD_ID, "potionStarman");
 
-        GameRegistry.register(potionStarman);
+        ForgeRegistries.POTIONS.register(potionStarman);
     }
 }

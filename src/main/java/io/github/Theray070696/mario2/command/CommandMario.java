@@ -18,13 +18,13 @@ import java.util.List;
 public class CommandMario extends CommandBase
 {
     @Override
-    public String getCommandName()
+    public String getName()
     {
         return "mario";
     }
 
     @Override
-    public String getCommandUsage(ICommandSender sender)
+    public String getUsage(ICommandSender sender)
     {
         return "mario2:command.mario.usage";
     }
@@ -40,22 +40,22 @@ public class CommandMario extends CommandBase
     {
         if(args.length == 0)
         {
-            sender.addChatMessage(new TextComponentString(getCommandUsage(sender)));
+            sender.sendMessage(new TextComponentString(getUsage(sender)));
         } else
         {
             if(args[0].equalsIgnoreCase("worldgen"))
             {
                 if(args[1].equalsIgnoreCase("questionmark"))
                 {
-                    sender.addChatMessage(new TextComponentString("Generated " + MarioDevStats.questionMarksGenerated + " Question Mark Blocks this" +
-                            " session"));
+                    sender.sendMessage(new TextComponentString("Generated " + MarioDevStats.questionMarksGenerated + " Question Mark Blocks this " +
+                            "session"));
                 } else if(args[1].equalsIgnoreCase("invisible"))
                 {
-                    sender.addChatMessage(new TextComponentString("Generated " + MarioDevStats.invisibleBlocksGenerated + " Invisible Blocks this " +
+                    sender.sendMessage(new TextComponentString("Generated " + MarioDevStats.invisibleBlocksGenerated + " Invisible Blocks this " +
                             "session"));
                 } else if(args[1].equalsIgnoreCase("castle"))
                 {
-                    sender.addChatMessage(new TextComponentString("Generated " + MarioDevStats.castlesGenerated + " Castles this session"));
+                    sender.sendMessage(new TextComponentString("Generated " + MarioDevStats.castlesGenerated + " Castles this session"));
                 }
             }
         }
