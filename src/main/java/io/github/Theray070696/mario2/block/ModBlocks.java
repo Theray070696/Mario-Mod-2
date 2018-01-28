@@ -58,11 +58,11 @@ public class ModBlocks
     public static final Block marioBlockBeanstalk = null;
     public static final Block marioBlockGroundSMW = null;
     public static final Block marioBlockGroundUndergroundSMW = null;
-    public static final Block marioBlockCoalOreSMW = null;
-    public static final Block marioBlockIronOreSMW = null;
-    public static final Block marioBlockGoldOreSMW = null;
-    public static final Block marioBlockDiamondOreSMW = null;
-    public static final Block marioBlockLapisOreSMW = null;
+    public static final Block marioBlockCoalSMW = null;
+    public static final Block marioBlockIronSMW = null;
+    public static final Block marioBlockGoldSMW = null;
+    public static final Block marioBlockDiamondSMW = null;
+    public static final Block marioBlockLapisSMW = null;
     public static final Block marioBlockPipeBase = null;
     public static final Block marioBlockPipe = null;
 
@@ -151,11 +151,11 @@ public class ModBlocks
         OreDictionary.registerOre("treeLeaves", marioBlockLeaves);
         OreDictionary.registerOre("treeSapling", marioBlockSapling);
 
-        OreDictionary.registerOre("oreCoal", marioBlockCoalOreSMW);
-        OreDictionary.registerOre("oreIron", marioBlockIronOreSMW);
-        OreDictionary.registerOre("oreGold", marioBlockGoldOreSMW);
-        OreDictionary.registerOre("oreDiamond", marioBlockDiamondOreSMW);
-        OreDictionary.registerOre("oreLapis", marioBlockLapisOreSMW);
+        OreDictionary.registerOre("oreCoal", marioBlockCoalSMW);
+        OreDictionary.registerOre("oreIron", marioBlockIronSMW);
+        OreDictionary.registerOre("oreGold", marioBlockGoldSMW);
+        OreDictionary.registerOre("oreDiamond", marioBlockDiamondSMW);
+        OreDictionary.registerOre("oreLapis", marioBlockLapisSMW);
 
         OreDictionary.registerOre("emptyQuestionMarkBlock", marioBlockEmptyQuestionMark);
         OreDictionary.registerOre("emptyQuestionMarkBlock", marioBlockInvisibleBlockEmpty);

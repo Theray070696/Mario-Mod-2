@@ -57,17 +57,17 @@ public class MarioForestBiomeDecorator extends BiomeDecorator
             if(world.provider instanceof WorldProviderMario)
             {
                 // Mario dimension.
-                this.coalGen = new WorldGenMinable(ModBlocks.marioBlockCoalOreSMW.getDefaultState(), this.chunkProviderSettings.coalSize, BlockMatcher
+                this.coalGen = new WorldGenMinable(ModBlocks.marioBlockCoalSMW.getDefaultState(), this.chunkProviderSettings.coalSize, BlockMatcher
                         .forBlock(ModBlocks.marioBlockGroundUndergroundSMW));
-                this.ironGen = new WorldGenMinable(ModBlocks.marioBlockIronOreSMW.getDefaultState(), this.chunkProviderSettings.ironSize, BlockMatcher
+                this.ironGen = new WorldGenMinable(ModBlocks.marioBlockIronSMW.getDefaultState(), this.chunkProviderSettings.ironSize, BlockMatcher
                         .forBlock(ModBlocks.marioBlockGroundUndergroundSMW));
-                this.goldGen = new WorldGenMinable(ModBlocks.marioBlockGoldOreSMW.getDefaultState(), this.chunkProviderSettings.goldSize, BlockMatcher
+                this.goldGen = new WorldGenMinable(ModBlocks.marioBlockGoldSMW.getDefaultState(), this.chunkProviderSettings.goldSize, BlockMatcher
                         .forBlock(ModBlocks.marioBlockGroundUndergroundSMW));
                 this.redstoneGen = new WorldGenMinable(Blocks.REDSTONE_ORE.getDefaultState(), this.chunkProviderSettings.redstoneSize, BlockMatcher
                         .forBlock(ModBlocks.marioBlockGroundUndergroundSMW));
-                this.diamondGen = new WorldGenMinable(ModBlocks.marioBlockDiamondOreSMW.getDefaultState(), this.chunkProviderSettings.diamondSize,
+                this.diamondGen = new WorldGenMinable(ModBlocks.marioBlockDiamondSMW.getDefaultState(), this.chunkProviderSettings.diamondSize,
                         BlockMatcher.forBlock(ModBlocks.marioBlockGroundUndergroundSMW));
-                this.lapisGen = new WorldGenMinable(ModBlocks.marioBlockLapisOreSMW.getDefaultState(), this.chunkProviderSettings.lapisSize,
+                this.lapisGen = new WorldGenMinable(ModBlocks.marioBlockLapisSMW.getDefaultState(), this.chunkProviderSettings.lapisSize,
                         BlockMatcher.forBlock(ModBlocks.marioBlockGroundUndergroundSMW));
             } else
             {
