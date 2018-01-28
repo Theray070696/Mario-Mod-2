@@ -2,6 +2,7 @@ package io.github.Theray070696.mario2.core;
 
 import io.github.Theray070696.mario2.audio.SoundHandler;
 import io.github.Theray070696.mario2.capability.CoinCountProvider;
+import io.github.Theray070696.mario2.configuration.ConfigHandler;
 import io.github.Theray070696.mario2.entity.EntityGoomba;
 import io.github.Theray070696.mario2.entity.EntityKoopa;
 import io.github.Theray070696.mario2.event.PlayMarioSoundEvent;
@@ -73,7 +74,7 @@ public class EventHandler
         if(event.getEntityLiving() != null && event.getEntityLiving() instanceof EntityPlayer) // If the entity that was killed was a player...
         {
             if(!MinecraftForge.EVENT_BUS.post(new PlayMarioSoundEvent((EntityPlayer) event.getEntityLiving(), PlayMarioSoundEvent.SoundType
-                    .DEATH_SOUND)))
+                    .DEATH_SOUND)) && ConfigHandler.enableDeathSounds)
             {
                 Random rand = new Random();
 
@@ -88,7 +89,7 @@ public class EventHandler
     {
         EntityPlayerMP player = (EntityPlayerMP) event.player;
 
-        if(!MinecraftForge.EVENT_BUS.post(new PlayMarioSoundEvent(player, PlayMarioSoundEvent.SoundType.JOIN_SOUND)))
+        if(!MinecraftForge.EVENT_BUS.post(new PlayMarioSoundEvent(player, PlayMarioSoundEvent.SoundType.JOIN_SOUND)) && ConfigHandler.enableMarioSounds)
         {
             RayCoreAPI.playSoundToAll("mario2:player.join");
         }
@@ -119,7 +120,7 @@ public class EventHandler
     @SubscribeEvent
     public void playerLeaveEvent(PlayerEvent.PlayerLoggedOutEvent event)
     {
-        if(!MinecraftForge.EVENT_BUS.post(new PlayMarioSoundEvent(event.player, PlayMarioSoundEvent.SoundType.LEAVE_SOUND)))
+        if(!MinecraftForge.EVENT_BUS.post(new PlayMarioSoundEvent(event.player, PlayMarioSoundEvent.SoundType.LEAVE_SOUND)) && ConfigHandler.enableMarioSounds)
         {
             RayCoreAPI.playSoundToAll("mario2:player.leave");
         }
