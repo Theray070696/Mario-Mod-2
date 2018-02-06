@@ -75,7 +75,7 @@ public class ModBlocks
 
         blockMarioMaker = RayBlockRegistry.register(new BlockMarioMaker());
 
-        blockGround = RayBlockRegistry.register(new BlockMario(Material.ROCK, true, true).setUnlocalizedName("marioBlockGround").setHardness(4.0F));
+        blockGround = RayBlockRegistry.register(new BlockMario(Material.ROCK, true, true).setUnlocalizedName("marioBlockGround").setHardness(1.5F));
         blockMarioBrick = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockBrick").setHardness(2.0F));
         blockDecoration = RayBlockRegistry.register(new BlockMario(Material.WOOD).setUnlocalizedName("marioBlockDecoration").setHardness(5.0F));
         blockNoteBlock = RayBlockRegistry.register(new BlockNoteBlock());
@@ -87,9 +87,9 @@ public class ModBlocks
         blockMarioSapling = RayBlockRegistry.register(new BlockMarioSapling());
 
         blockGroundSMW = RayBlockRegistry.register(new BlockMario(Material.GROUND, true, true).setUnlocalizedName("marioBlockGroundSMW").setHardness
-                (4.0F));
+                (0.5F));
         blockGroundUndergroundSMW = RayBlockRegistry.register(new BlockMario(Material.ROCK, true, true).setUnlocalizedName
-                ("marioBlockGroundUndergroundSMW").setHardness(4.0F));
+                ("marioBlockGroundUndergroundSMW").setHardness(1.5F));
 
         blockCoalOreSMW = RayBlockRegistry.register(new BlockMarioOre().setUnlocalizedName("marioBlockCoalSMW").setHardness(3.0F).setResistance
                 (5.0F));
@@ -120,25 +120,25 @@ public class ModBlocks
         blockInvisibleBlockSMB3 = RayBlockRegistry.register(new BlockInvisibleBlock("marioBlockInvisibleBlockSMB3", EnumBlockType.SMB3_INVISIBLE));
 
         blockGroundUnderground = RayBlockRegistry.register(new BlockMario(Material.ROCK, true, true).setUnlocalizedName
-                ("marioBlockGroundUnderground").setHardness(4.0F));
+                ("marioBlockGroundUnderground").setHardness(1.5F));
         blockMarioBrickUnderground = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockBrickUnderground").setHardness(2.0F));
         blockUndergroundDecoration = RayBlockRegistry.register(new BlockMario(Material.WOOD).setUnlocalizedName("marioBlockUndergroundDecoration")
-                .setHardness(5.0F));
+                .setHardness(2.0F));
         blockEmptyQuestionMarkUndergroundSMB = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMarkUndergroundSMB",
                 EnumBlockType.SMB_UNDERGROUND));
         blockQuestionMarkUndergroundSMB = RayBlockRegistry.register(new BlockQuestionMark("marioBlockQuestionMarkUndergroundSMB", EnumBlockType
                 .SMB_UNDERGROUND));
 
-        blockCastleWall = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockCastleWall").setHardness(6.0F));
-        blockMarioCastleBrick = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockCastleBrick").setHardness(3.0F));
+        blockCastleWall = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockCastleWall").setHardness(2.0F));
+        blockMarioCastleBrick = RayBlockRegistry.register(new BlockMario().setUnlocalizedName("marioBlockCastleBrick").setHardness(2.0F));
         blockEmptyQuestionMarkCastleSMB = RayBlockRegistry.register(new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMarkCastleSMB",
                 EnumBlockType.SMB_CASTLE));
         blockQuestionMarkCastleSMB = RayBlockRegistry.register(new BlockQuestionMark("marioBlockQuestionMarkCastleSMB", EnumBlockType.SMB_CASTLE));
 
         blockGroundUnderwater = RayBlockRegistry.register(new BlockMario(Material.CORAL).setUnlocalizedName("marioBlockGroundUnderwater")
-                .setHardness(4.0F));
+                .setHardness(1.5F));
 
-        temp = new BlockMario().setUnlocalizedName("marioBlockGroundSnow").setHardness(4.0F);
+        temp = new BlockMario().setUnlocalizedName("marioBlockGroundSnow").setHardness(1.5F);
         temp.slipperiness = 0.9f;
         blockGroundSnow = RayBlockRegistry.register(temp);
 
