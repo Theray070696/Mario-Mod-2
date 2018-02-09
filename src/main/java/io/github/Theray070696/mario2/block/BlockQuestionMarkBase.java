@@ -321,7 +321,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                     entityItem.motionX = rand.nextGaussian() * factor; // X motion.
                     entityItem.motionY = rand.nextGaussian() * factor + 0.2F; // Y motion.
                     entityItem.motionZ = rand.nextGaussian() * factor; // Z motion.
-                    world.spawnEntityInWorld(entityItem); // Spawn the item entity.
+                    world.spawnEntity(entityItem); // Spawn the item entity.
                 }
             }
 
@@ -543,7 +543,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
             entityItem.motionX = rand.nextGaussian() * factor;
             entityItem.motionY = rand.nextGaussian() * factor + 0.2F;
             entityItem.motionZ = rand.nextGaussian() * factor;
-            world.spawnEntityInWorld(entityItem);
+            world.spawnEntity(entityItem);
             questionMark.setItemInBlock(ItemsInQuestionMarks.ITEM_NOTHING);
         }
     }

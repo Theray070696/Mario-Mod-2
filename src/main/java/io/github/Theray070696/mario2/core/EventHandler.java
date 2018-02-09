@@ -76,12 +76,13 @@ public class EventHandler
     {
         if(event.getEntityLiving() != null && event.getEntityLiving() instanceof EntityPlayer) // If the entity that was killed was a player...
         {
-            if(!MinecraftForge.EVENT_BUS.post(new PlayMarioSoundEvent((EntityPlayer) event.getEntityLiving(), PlayMarioSoundEvent.SoundType.DEATH_SOUND)) && ConfigHandler.enableDeathSounds)
+            if(!MinecraftForge.EVENT_BUS.post(new PlayMarioSoundEvent((EntityPlayer) event.getEntityLiving(), PlayMarioSoundEvent.SoundType
+                    .DEATH_SOUND)) && ConfigHandler.enableDeathSounds)
             {
                 Random rand = new Random();
 
-                SoundHandler.playSoundName("mario2:player.death" + rand.nextInt(4) + 1, event.getEntityLiving().worldObj, SoundCategory.PLAYERS,
-                        event.getEntityLiving().getPosition());
+                SoundHandler.playSoundName("mario2:player.death" + rand.nextInt(4) + 1, event.getEntityLiving().world, SoundCategory.PLAYERS, event
+                        .getEntityLiving().getPosition());
             }
         }
     }
@@ -173,7 +174,7 @@ public class EventHandler
     @SubscribeEvent
     public void onLivingDropsEvent(LivingDropsEvent event)
     {
-        if(!event.getEntity().worldObj.getGameRules().getBoolean("doMobLoot"))
+        if(!event.getEntity().world.getGameRules().getBoolean("doMobLoot"))
         {
             return;
         }
@@ -233,7 +234,7 @@ public class EventHandler
     {
         EntityLivingBase entity = event.getEntityLiving();
 
-        if(!entity.worldObj.isRemote)
+        if(!entity.world.isRemote)
         {
             if(getSoundCooldown(entity) > 0)
             {
@@ -241,13 +242,13 @@ public class EventHandler
             }
         }
 
-        if(entity.worldObj.isRemote)
+        if(entity.world.isRemote)
         {
             if(entity.isPotionActive(PotionEffectsMario.potionStarman))
             {
                 Random rand = new Random();
-                entity.worldObj.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, entity.posX - 0.1D + rand.nextGaussian() * 0.2D, entity.posY +
-                        0.5D - rand.nextGaussian() * 0.2D, entity.posZ - 0.1D + rand.nextGaussian() * 0.2D, 0.0D, 0.0D, 0.0D);
+                entity.world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, entity.posX - 0.1D + rand.nextGaussian() * 0.2D, entity.posY + entity
+                        .getEyeHeight() + 0.1D - rand.nextGaussian() * 0.2D, entity.posZ - 0.1D + rand.nextGaussian() * 0.2D, 0.0D, 0.0D, 0.0D);
             }
         }
     }

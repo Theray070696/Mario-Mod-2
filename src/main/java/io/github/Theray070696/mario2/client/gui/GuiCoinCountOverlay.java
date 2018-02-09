@@ -19,14 +19,14 @@ public class GuiCoinCountOverlay extends GuiIngameForge
 
     public void renderCoinCount(int width, int height)
     {
-        if(mc.thePlayer != null)
+        if(mc.player != null)
         {
             mc.mcProfiler.startSection("marioCoinCounter");
 
             int left = 2;
             int top = height - 20;
 
-            ICoinCount coinCountProvider = mc.thePlayer.getCapability(CoinCountProvider.COIN_COUNT, null);
+            ICoinCount coinCountProvider = mc.player.getCapability(CoinCountProvider.COIN_COUNT, null);
             int coinCount = coinCountProvider.getCoinCount();
 
             this.itemRenderer.renderItemIntoGUI(new ItemStack(ModItems.itemMarioCoin, 1, 1), left, top);

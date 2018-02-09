@@ -170,7 +170,7 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
                                             EntityItem entityItem = new EntityItem(otherWorld, teleportDestinationPos.getX(), teleportDestinationPos
                                                     .getY(), teleportDestinationPos.getZ(), stack);
 
-                                            otherWorld.spawnEntityInWorld(entityItem);
+                                            otherWorld.spawnEntity(entityItem);
                                             entity.setDead();
 
                                             //world.getMinecraftServer().getPlayerList().transferEntityToWorld(entity, world.provider.getDimension(),
@@ -768,6 +768,6 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
     {
         super.addInformation(stack, player, tooltip, advanced);
 
-        tooltip.add("Place in a 2x2x2 structure, then right click on the top-right block to form a multiblock.");
+        tooltip.add("Place in a 2x2x2 structure, then right click on the top-left block to form a multiblock.");
     }
 }

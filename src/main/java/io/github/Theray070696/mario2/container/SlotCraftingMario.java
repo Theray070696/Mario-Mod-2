@@ -21,7 +21,7 @@ public class SlotCraftingMario extends Slot
     /**
      * The player that is using the GUI where this slot resides.
      */
-    private final EntityPlayer thePlayer;
+    private final EntityPlayer player;
     /**
      * The number of items that have been crafted so far. Gets passed to ItemStack.onCrafting before being reset.
      */
@@ -31,7 +31,7 @@ public class SlotCraftingMario extends Slot
             yPosition)
     {
         super(inventoryIn, slotIndex, xPosition, yPosition);
-        this.thePlayer = player;
+        this.player = player;
         this.craftMatrix = craftingInventory;
     }
 
@@ -74,7 +74,7 @@ public class SlotCraftingMario extends Slot
     {
         if(this.amountCrafted > 0)
         {
-            stack.onCrafting(this.thePlayer.worldObj, this.thePlayer, this.amountCrafted);
+            stack.onCrafting(this.player.world, this.player, this.amountCrafted);
         }
 
         this.amountCrafted = 0;
@@ -83,14 +83,14 @@ public class SlotCraftingMario extends Slot
 
         /*if(stack.getItem() == Item.getItemFromBlock(Blocks.CRAFTING_TABLE))
         {
-            this.thePlayer.addStat(AchievementList.BUILD_WORK_BENCH);
+            this.player.addStat(AchievementList.BUILD_WORK_BENCH);
         }*/
     }
 
     public void onPickupFromSlot(EntityPlayer playerIn, ItemStack stack)
     {
         this.onCrafting(stack);
-        ItemStack[] aItemStack = MarioMakerCraftingManager.getInstance().getRemainingItems(this.craftMatrix, playerIn.worldObj);
+        ItemStack[] aItemStack = MarioMakerCraftingManager.getInstance().getRemainingItems(this.craftMatrix, playerIn.world);
 
         for(int i = 0; i < aItemStack.length; ++i)
         {
@@ -112,9 +112,9 @@ public class SlotCraftingMario extends Slot
                 {
                     itemStack1.stackSize += itemStack.stackSize;
                     this.craftMatrix.setInventorySlotContents(i, itemStack1);
-                } else if(!this.thePlayer.inventory.addItemStackToInventory(itemStack1))
+                } else if(!this.player.inventory.addItemStackToInventory(itemStack1))
                 {
-                    this.thePlayer.dropItem(itemStack1, false);
+                    this.player.dropItem(itemStack1, false);
                 }
             }
         }

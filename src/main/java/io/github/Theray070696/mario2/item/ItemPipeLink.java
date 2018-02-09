@@ -58,7 +58,7 @@ public class ItemPipeLink extends ItemMario
                 itemStack.getTagCompound().setIntArray("pipePos", new int[]{pos.getX(), pos.getY(), pos.getZ(), world.provider.getDimension()});
 
                 // Inform the Player that linking has started
-                player.addChatComponentMessage(new TextComponentString("Link started."));
+                player.sendMessage(new TextComponentString("Link started."));
             } else // We are linking to a Pipe.
             {
                 // Save the data to this int array for later use
@@ -92,7 +92,7 @@ public class ItemPipeLink extends ItemMario
                     itemStack.getTagCompound().setIntArray("pipePos", new int[]{0, 0, 0, 0});
 
                     // Inform the Player that the linking is complete
-                    player.addChatComponentMessage(new TextComponentString("Pipes linked!"));
+                    player.sendMessage(new TextComponentString("Pipes linked!"));
                 } else // INVALID PIPE
                 {
                     // Clear linking flag
@@ -102,8 +102,8 @@ public class ItemPipeLink extends ItemMario
                     itemStack.getTagCompound().setIntArray("pipePos", new int[]{0, 0, 0, 0});
 
                     // Inform the Player that something went wrong
-                    player.addChatComponentMessage(new TextComponentString("The Pipe at X: " + posDim[0] + " Y: " + posDim[1] + " Z: " + posDim[2]
-                            + ", in dimension " + posDim[3] + " could not be found!"));
+                    player.sendMessage(new TextComponentString("The Pipe at X: " + posDim[0] + " Y: " + posDim[1] + " Z: " + posDim[2] + ", in " +
+                            "dimension " + posDim[3] + " could not be found!"));
                 }
             }
         }

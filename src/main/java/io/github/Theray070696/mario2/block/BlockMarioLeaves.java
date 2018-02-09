@@ -222,7 +222,7 @@ public class BlockMarioLeaves extends BlockMario implements IShearable
         return Blocks.LEAVES.getBlockLayer();
     }
 
-    public boolean isVisuallyOpaque()
+    public boolean causesSuffocation()
     {
         return false;
     }

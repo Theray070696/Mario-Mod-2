@@ -7,8 +7,8 @@ import net.minecraft.potion.Potion;
  */
 public class PotionMario extends Potion
 {
-    public PotionMario(boolean isBadEffectIn, int liquidColorIn)
+    public PotionMario(boolean isBadEffect, int liquidColor)
     {
-        super(isBadEffectIn, liquidColorIn);
+        super(isBadEffect, liquidColor);
     }
 }
