@@ -11,11 +11,16 @@ public class ConfigHandler
     public static final boolean developerModeEnabledDefault = false;
     public static final boolean enableDeathSoundsDefault = true;
     public static final boolean enableMarioSoundsDefault = true;
+    public static final boolean enableCurrencyCoinsDefault = true;
+
     public static boolean developerModeEnabled;
     public static boolean enableDeathSounds;
     public static boolean enableMarioSounds;
+    public static boolean enableCurrencyCoins;
+
     public static int marioDimensionID;
     public static int marioDimensionIDDefault = 75;
+
     private static Configuration config;
 
     public static void loadConfig(FMLPreInitializationEvent event)
@@ -29,6 +34,9 @@ public class ConfigHandler
 
         enableMarioSounds = config.getBoolean("Enable Join/Leave sounds", "Misc", enableMarioSoundsDefault, "Whether or not joining and leaving " +
                 "sounds should be enabled.");
+
+        enableCurrencyCoins = config.getBoolean("Enable Currency Coins", "Misc", enableCurrencyCoinsDefault, "Whether or not currency coins sounds " +
+                "should be enabled.");
 
         enableDeathSounds = config.getBoolean("Enable Join/Leave sounds", "Misc", enableDeathSoundsDefault, "Whether or not death sounds should be " +
                 "" + "" + "enabled.");
