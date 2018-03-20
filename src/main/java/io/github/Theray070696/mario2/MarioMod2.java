@@ -19,7 +19,6 @@ import io.github.Theray070696.mario2.network.PacketSyncCoinCounter;
 import io.github.Theray070696.mario2.plugins.PluginHandler;
 import io.github.Theray070696.mario2.potion.PotionEffectsMario;
 import io.github.Theray070696.mario2.proxy.IProxy;
-import io.github.Theray070696.mario2.util.LogHelper;
 import io.github.Theray070696.mario2.world.ModBiomes;
 import io.github.Theray070696.mario2.world.ModDimension;
 import io.github.Theray070696.mario2.world.WorldGenMario;
@@ -29,7 +28,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -41,8 +39,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.logging.log4j.Logger;
 
-import javax.annotation.Nonnull;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -80,6 +78,7 @@ public class MarioMod2
 
     public static SimpleNetworkWrapper network;
     private Stopwatch stopwatchInitPhases;
+    public Logger logger;
 
     public MarioMod2()
     {
@@ -92,9 +91,11 @@ public class MarioMod2
         proxy.construct(event);
 
         this.stopwatchInitPhases = Stopwatch.createStarted();
-        LogHelper.info("Pre-Init");
+        event.getModLog().info("Pre-Init");
 
         ConfigHandler.loadConfig(event);
+
+        this.logger = event.getModLog();
 
         SoundHandler.init();
 
@@ -109,14 +110,14 @@ public class MarioMod2
         PluginHandler.getInstance().preInit();
 
         long time = this.stopwatchInitPhases.stop().elapsed(TimeUnit.MILLISECONDS);
-        LogHelper.info("Pre-Init Complete in " + time + "ms");
+        this.logger.info("Pre-Init Complete in " + time + "ms");
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
         this.stopwatchInitPhases = Stopwatch.createStarted();
-        LogHelper.info("Init");
+        this.logger.info("Init");
 
         ModBlocks.initBlocks();
         ModItems.initItems();
@@ -129,38 +130,38 @@ public class MarioMod2
 
         MinecraftForge.EVENT_BUS.register(new EventHandler());
 
-        LogHelper.info("Loading Crafting Recipes");
+        this.logger.info("Loading Crafting Recipes");
         CraftingHandler.initCraftingRecipes();
         CraftingHandler.initSmeltingRecipes();
         CraftingHandler.initMarioMakerRecipes();
-        LogHelper.info("Crafting Recipes Loaded");
+        this.logger.info("Crafting Recipes Loaded");
 
-        LogHelper.info("Registering World Generation");
+        this.logger.info("Registering World Generation");
         GameRegistry.registerWorldGenerator(new WorldGenMario(), 0);
 
         ModBiomes.initBiomes();
         ModDimension.initDimension();
 
-        LogHelper.info("World Generation Registered");
+        this.logger.info("World Generation Registered");
 
         proxy.init(event);
 
         PluginHandler.getInstance().init();
 
         long time = this.stopwatchInitPhases.stop().elapsed(TimeUnit.MILLISECONDS);
-        LogHelper.info("Init Complete in " + time + "ms");
+        this.logger.info("Init Complete in " + time + "ms");
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
         this.stopwatchInitPhases = Stopwatch.createStarted();
-        LogHelper.info("Post-Init");
+        this.logger.info("Post-Init");
 
         PluginHandler.getInstance().postInit();
 
         long time = this.stopwatchInitPhases.stop().elapsed(TimeUnit.MILLISECONDS);
-        LogHelper.info("Post-Init Complete in " + time + "ms");
+        this.logger.info("Post-Init Complete in " + time + "ms");
 
         this.stopwatchInitPhases = null;
     }

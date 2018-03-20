@@ -1,6 +1,6 @@
 package io.github.Theray070696.mario2.plugins;
 
-import io.github.Theray070696.mario2.util.LogHelper;
+import io.github.Theray070696.mario2.MarioMod2;
 import net.minecraftforge.fml.common.Loader;
 
 import java.util.LinkedList;
@@ -39,7 +39,7 @@ public class PluginHandler
             return;
         }
 
-        LogHelper.info("Registering plugin for " + plugin.getModID());
+        MarioMod2.INSTANCE.logger.info("Registering plugin for " + plugin.getModID());
         this.plugins.add(plugin);
 
         switch(this.currentPhase)
@@ -92,7 +92,7 @@ public class PluginHandler
 
     public void registerBuiltInPlugins()
     {
-        //this.registerPlugin(new NotEnoughItems());
+
     }
 
     private enum Phase

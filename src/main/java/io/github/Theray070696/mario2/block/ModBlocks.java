@@ -1,9 +1,9 @@
 package io.github.Theray070696.mario2.block;
 
+import io.github.Theray070696.mario2.MarioMod2;
 import io.github.Theray070696.mario2.block.tile.TilePipe;
 import io.github.Theray070696.mario2.block.tile.TileQuestionMark;
 import io.github.Theray070696.mario2.lib.ModInfo;
-import io.github.Theray070696.mario2.util.LogHelper;
 import io.github.Theray070696.raycore.RayCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -116,7 +116,7 @@ public class ModBlocks
     public static void registerBlocks(RegistryEvent.Register<Block> event)
     {
         event.getRegistry().registerAll(BLOCKS);
-        LogHelper.info("Block Registration Complete");
+        MarioMod2.INSTANCE.logger.info("Block Registration Complete");
     }
 
     @SubscribeEvent
@@ -127,7 +127,7 @@ public class ModBlocks
             event.getRegistry().register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
         }
 
-        LogHelper.info("ItemBlock Registration Complete");
+        MarioMod2.INSTANCE.logger.info("ItemBlock Registration Complete");
     }
 
     @SubscribeEvent
@@ -141,7 +141,7 @@ public class ModBlocks
 
     public static void initBlocks()
     {
-        LogHelper.info("Loading Extra Block Data");
+        MarioMod2.INSTANCE.logger.info("Loading Extra Block Data");
 
         GameRegistry.registerTileEntity(TilePipe.class, "tileMarioPipe");
         GameRegistry.registerTileEntity(TileQuestionMark.class, "tileMarioQuestionMark");
@@ -168,6 +168,6 @@ public class ModBlocks
         OreDictionary.registerOre("emptyQuestionMarkBlock", marioBlockEmptyQuestionMarkSMB3);
         OreDictionary.registerOre("emptyQuestionMarkBlock", marioBlockInvisibleBlockEmptySMB3);
 
-        LogHelper.info("Extra Block Data Loading Complete");
+        MarioMod2.INSTANCE.logger.info("Extra Block Data Loading Complete");
     }
 }

@@ -1,13 +1,12 @@
 package io.github.Theray070696.mario2.item;
 
+import io.github.Theray070696.mario2.MarioMod2;
 import io.github.Theray070696.mario2.audio.SoundHandler;
 import io.github.Theray070696.mario2.lib.ModInfo;
-import io.github.Theray070696.mario2.util.LogHelper;
 import io.github.Theray070696.raycore.RayCore;
 import io.github.Theray070696.raycore.item.ItemRay;
 import io.github.Theray070696.raycore.item.ItemRayRecord;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -60,7 +59,7 @@ public class ModItems
             event.getRegistry().register(item);
         }
 
-        LogHelper.info("Item Registration Complete");
+        MarioMod2.INSTANCE.logger.info("Item Registration Complete");
     }
 
     @SubscribeEvent
@@ -83,7 +82,7 @@ public class ModItems
 
     public static void initItems()
     {
-        LogHelper.info("Loading Extra Item Data");
+        MarioMod2.INSTANCE.logger.info("Loading Extra Item Data");
 
         OreDictionary.registerOre("itemMushroom", new ItemStack(itemMushroom, 1, 0));
         OreDictionary.registerOre("itemMushroom", new ItemStack(itemMushroom, 1, 1));
@@ -99,6 +98,6 @@ public class ModItems
 
         OreDictionary.registerOre("record", itemRecordSMBUnderwater);
 
-        LogHelper.info("Extra Item Data Loading Complete");
+        MarioMod2.INSTANCE.logger.info("Extra Item Data Loading Complete");
     }
 }
