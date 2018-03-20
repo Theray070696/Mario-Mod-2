@@ -12,5 +12,5 @@ public class ModInfo
     public static final String MOD_VERSION = "version";
     public static final String CLIENT_PROXY = "io.github.Theray070696.mario2.proxy.ClientProxy";
     public static final String SERVER_PROXY = "io.github.Theray070696.mario2.proxy.ServerProxy";
-    public static final String DEPENDENCIES = "required-after:raycore" + /*"@[2.3.0,)" +*/ ";after:ctm;after:NotEnoughItems;after:baubles";
+    public static final String DEPENDENCIES = "required-after:raycore" + ";after:ctm;after:baubles";
 }
