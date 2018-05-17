@@ -1,6 +1,7 @@
 package io.github.Theray070696.mario2;
 
 import com.google.common.base.Stopwatch;
+import io.github.Theray070696.mario2.api.MarioModAPI;
 import io.github.Theray070696.mario2.audio.SoundHandler;
 import io.github.Theray070696.mario2.block.ModBlocks;
 import io.github.Theray070696.mario2.capability.CapabilityHandler;
@@ -12,6 +13,7 @@ import io.github.Theray070696.mario2.configuration.ConfigHandler;
 import io.github.Theray070696.mario2.core.CraftingHandler;
 import io.github.Theray070696.mario2.core.EventHandler;
 import io.github.Theray070696.mario2.core.GuiHandler;
+import io.github.Theray070696.mario2.core.api.CraftingHandlerAPI;
 import io.github.Theray070696.mario2.item.ModItems;
 import io.github.Theray070696.mario2.lib.ModInfo;
 import io.github.Theray070696.mario2.network.PacketGetCoins;
@@ -30,10 +32,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -83,6 +82,12 @@ public class MarioMod2
     public MarioMod2()
     {
         PluginHandler.getInstance().registerBuiltInPlugins();
+    }
+
+    @Mod.EventHandler
+    public void construct(FMLConstructionEvent event)
+    {
+        MarioModAPI.marioCraftingHandler = new CraftingHandlerAPI();
     }
 
     @Mod.EventHandler
