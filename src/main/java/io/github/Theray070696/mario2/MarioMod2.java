@@ -79,11 +79,6 @@ public class MarioMod2
     private Stopwatch stopwatchInitPhases;
     public Logger logger;
 
-    public MarioMod2()
-    {
-        PluginHandler.getInstance().registerBuiltInPlugins();
-    }
-
     @Mod.EventHandler
     public void construct(FMLConstructionEvent event)
     {
@@ -101,6 +96,8 @@ public class MarioMod2
         ConfigHandler.loadConfig(event);
 
         this.logger = event.getModLog();
+
+        PluginHandler.getInstance().registerBuiltInPlugins();
 
         SoundHandler.init();
 
