@@ -11,31 +11,49 @@ public interface ICraftingHandler
      * Adds a shaped recipe to the Mario Maker
      *
      * @param output Result of crafting
-     * @param inputs Same as normal {@link net.minecraft.item.crafting.ShapedRecipes} input
+     * @param inputs Same as {@link net.minecraft.item.crafting.ShapedRecipes} input
      */
-    public void addShaped(ItemStack output, Object... inputs);
+    void addShaped(ItemStack output, Object... inputs);
 
     /**
      * Adds a shapeless recipe to the Mario Maker
      *
      * @param output Result of crafting
-     * @param inputs Ingredients
+     * @param inputs Same as {@link net.minecraft.item.crafting.ShapelessRecipes}
      */
-    public void addShapeless(ItemStack output, Object... inputs);
+    void addShapeless(ItemStack output, Object... inputs);
 
     /**
      * Adds a shaped oredict recipe to the Mario Maker
      *
      * @param output Result of crafting
-     * @param inputs Same as normal {@link net.minecraftforge.oredict.ShapedOreRecipe} input
+     * @param inputs Same as {@link net.minecraftforge.oredict.ShapedOreRecipe} input
      */
-    public void addShapedOreRecipe(ItemStack output, Object... inputs);
+    void addShapedOreRecipe(ItemStack output, Object... inputs);
 
     /**
      * Adds a shapeless oredict recipe to the Mario Maker
      *
      * @param output Result of crafting
-     * @param inputs Ingredients
+     * @param inputs Same as {@link net.minecraftforge.oredict.ShapelessOreRecipe}
      */
-    public void addShapelessOreRecipe(ItemStack output, Object... inputs);
+    void addShapelessOreRecipe(ItemStack output, Object... inputs);
+
+    /**
+     * Adds a shaped coin recipe to the Mario Maker
+     *
+     * @param output Result of crafting
+     * @param requiredCoins How many coins are required to craft the item
+     * @param inputs Same as {@link net.minecraftforge.oredict.ShapedOreRecipe}
+     */
+    void addShapedCoinRecipe(ItemStack output, int requiredCoins, Object... inputs);
+
+    /**
+     * Adds a shapeless coin recipe to the Mario Maker
+     *
+     * @param output Result of crafting
+     * @param requiredCoins How many coins are required to craft the item
+     * @param inputs Same as {@link net.minecraftforge.oredict.ShapelessOreRecipe}
+     */
+    void addShapelessCoinRecipe(ItemStack output, int requiredCoins, Object... inputs);
 }

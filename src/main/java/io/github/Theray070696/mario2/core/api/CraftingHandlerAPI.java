@@ -1,9 +1,7 @@
 package io.github.Theray070696.mario2.core.api;
 
 import io.github.Theray070696.mario2.api.ICraftingHandler;
-import io.github.Theray070696.mario2.crafting.MarioMakerCraftingManager;
-import io.github.Theray070696.mario2.crafting.ShapedOreRecipeMario;
-import io.github.Theray070696.mario2.crafting.ShapelessOreRecipeMario;
+import io.github.Theray070696.mario2.crafting.*;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -33,5 +31,17 @@ public class CraftingHandlerAPI implements ICraftingHandler
     public void addShapelessOreRecipe(ItemStack output, Object... inputs)
     {
         MarioMakerCraftingManager.getInstance().addRecipe(new ShapelessOreRecipeMario(output, inputs));
+    }
+
+    @Override
+    public void addShapedCoinRecipe(ItemStack output, int requiredCoins, Object... inputs)
+    {
+        MarioMakerCraftingManager.getInstance().addRecipe(new ShapedCoinRecipe(output, requiredCoins, inputs));
+    }
+
+    @Override
+    public void addShapelessCoinRecipe(ItemStack output, int requiredCoins, Object... inputs)
+    {
+        MarioMakerCraftingManager.getInstance().addRecipe(new ShapelessCoinRecipe(output, requiredCoins, inputs));
     }
 }
