@@ -109,8 +109,9 @@ public class SoundHandler
 
     public static SoundEvent register(String name)
     {
-        SoundEvent event = new SoundEvent(new ResourceLocation(ModInfo.MOD_ID, name));
-        event.setRegistryName(new ResourceLocation(ModInfo.MOD_ID, name));
+        ResourceLocation loc = new ResourceLocation(ModInfo.MOD_ID, name);
+        SoundEvent event = new SoundEvent(loc);
+        event.setRegistryName(loc);
         ForgeRegistries.SOUND_EVENTS.register(event);
 
         return event;
