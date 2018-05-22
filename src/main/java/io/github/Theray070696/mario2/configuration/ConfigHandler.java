@@ -14,6 +14,8 @@ public class ConfigHandler
     public static final boolean enableDeathSoundsDefault = true;
     public static boolean enableMarioSounds;
     public static final boolean enableMarioSoundsDefault = true;
+    public static boolean enableCoinDrops;
+    public static final boolean enableCoinDropsDefault = true;
     public static int marioDimensionID;
     public static int marioDimensionIDDefault = 75;
     private static Configuration config;
@@ -32,6 +34,9 @@ public class ConfigHandler
 
         enableDeathSounds = config.getBoolean("Enable Join/Leave sounds", "Misc", enableDeathSoundsDefault, "Whether or not death sounds should be " +
                 "enabled.");
+
+        enableDeathSounds = config.getBoolean("Enable special coin drops", "Misc", enableDeathSoundsDefault, "Whether or not special coins should " +
+                "drop from mobs.");
 
         marioDimensionID = config.getInt("Mario Dimension ID", "Dimension", marioDimensionIDDefault, Integer.MIN_VALUE, Integer.MAX_VALUE,
                 "Dimension ID of the Mario dimension.");

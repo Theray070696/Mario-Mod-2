@@ -170,21 +170,21 @@ public class EventHandler
             World world = entity.getEntityWorld(); // Get the world the entity is in.
             Random rand = new Random(); // Initialize random number generator.
 
-            if(entity instanceof EntityWither) // If the entity was a Wither...
+            if(entity instanceof EntityWither && ConfigHandler.enableCoinDrops) // If the entity was a Wither...
             {
                 // Drop 0-2 Wither Coins.
                 entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, rand.nextInt(3), 4), 0.0f); // Wither Coin
-            } else if(entity instanceof EntityDragon) // If the entity was an Ender Dragon...
+            } else if(entity instanceof EntityDragon && ConfigHandler.enableCoinDrops) // If the entity was an Ender Dragon...
             {
                 // Drop 4+ Dragon Coins.
                 entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, rand.nextInt(3) + 4, 3), 0.0f); // Dragon Coin
-            } else if(entity instanceof EntityEnderman) // If the entity was an Enderman..
+            } else if(entity instanceof EntityEnderman && ConfigHandler.enableCoinDrops) // If the entity was an Enderman..
             {
                 if(rand.nextInt(500) == 0) // Drop 1 Dragon Coin as a very rare drop.
                 {
                     entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, 1, 3), 0.0f); // Dragon Coin
                 }
-            } else if(entity instanceof EntityWitherSkeleton) // If the entity was a Wither Skeleton...
+            } else if(entity instanceof EntityWitherSkeleton && ConfigHandler.enableCoinDrops) // If the entity was a Wither Skeleton...
             {
                 if(rand.nextInt(500) == 0) // Drop 1 Wither Coin as a very rare drop.
                 {
@@ -195,13 +195,13 @@ public class EventHandler
             {
                 int randInt = rand.nextInt(100); // Generate a number from 0 to 99 inclusive to determine what will be dropped.
 
-                if(randInt < 5) // 5% chance.
+                if(randInt < 5 && ConfigHandler.enableCoinDrops) // 5% chance.
                 {
                     entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, rand.nextInt(2)), 0.0f); // Green Coin
-                } else if(randInt >= 5 && randInt < 20) // 15% chance.
+                } else if(randInt >= 5 && randInt < 20 && ConfigHandler.enableCoinDrops) // 15% chance.
                 {
                     entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, rand.nextInt(3), 1), 0.0f); // Blue Coin
-                } else if(randInt >= 20 && randInt < 45) // 25% chance.
+                } else if(randInt >= 20 && randInt < 45 && ConfigHandler.enableCoinDrops) // 25% chance.
                 {
                     entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, rand.nextInt(4), 2), 0.0f); // Red Coin
                 } else if(randInt >= 45 && randInt < 90) // 45% chance.
