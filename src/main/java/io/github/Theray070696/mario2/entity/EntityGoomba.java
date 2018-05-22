@@ -62,23 +62,26 @@ public class EntityGoomba extends EntityMob
         super.onDeath(cause);
         if(!this.world.isRemote)
         {
-            if(!(cause.getTrueSource() instanceof FakePlayer))
+            if(cause.getTrueSource() instanceof EntityPlayer)
             {
-                Random rand = new Random();
-                int amount = rand.nextInt(3);
-                if(amount > 0)
+                if(!(cause.getTrueSource() instanceof FakePlayer))
                 {
-                    this.entityDropItem(new ItemStack(ModItems.itemCoin, rand.nextInt(3), rand.nextInt(3)), 0.0F);
-                }
-            } else
-            {
-                Random rand = new Random();
-                if(rand.nextInt(1000) == 0)
-                {
+                    Random rand = new Random();
                     int amount = rand.nextInt(3);
                     if(amount > 0)
                     {
                         this.entityDropItem(new ItemStack(ModItems.itemCoin, rand.nextInt(3), rand.nextInt(3)), 0.0F);
+                    }
+                } else
+                {
+                    Random rand = new Random();
+                    if(rand.nextInt(1000) == 0)
+                    {
+                        int amount = rand.nextInt(3);
+                        if(amount > 0)
+                        {
+                            this.entityDropItem(new ItemStack(ModItems.itemCoin, rand.nextInt(3), rand.nextInt(3)), 0.0F);
+                        }
                     }
                 }
             }
