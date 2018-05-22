@@ -1,5 +1,9 @@
 package io.github.Theray070696.mario2.container;
 
+import io.github.Theray070696.mario2.capability.CoinCountProvider;
+import io.github.Theray070696.mario2.capability.ICoinCount;
+import io.github.Theray070696.mario2.crafting.ICoinRecipe;
+import io.github.Theray070696.mario2.crafting.IMarioRecipe;
 import io.github.Theray070696.mario2.crafting.MarioMakerCraftingManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -21,17 +25,19 @@ public class SlotCraftingMario extends Slot
     /**
      * The player that is using the GUI where this slot resides.
      */
-    private final EntityPlayer thePlayer;
+    private final EntityPlayer player;
     /**
      * The number of items that have been crafted so far. Gets passed to ItemStack.onCrafting before being reset.
      */
     private int amountCrafted;
 
+    private IMarioRecipe recipe;
+
     public SlotCraftingMario(EntityPlayer player, InventoryCrafting craftingInventory, IInventory inventoryIn, int slotIndex, int xPosition, int
             yPosition)
     {
         super(inventoryIn, slotIndex, xPosition, yPosition);
-        this.thePlayer = player;
+        this.player = player;
         this.craftMatrix = craftingInventory;
     }
 
@@ -74,16 +80,23 @@ public class SlotCraftingMario extends Slot
     {
         if(this.amountCrafted > 0)
         {
-            stack.onCrafting(this.thePlayer.world, this.thePlayer, this.amountCrafted);
+            stack.onCrafting(this.player.world, this.player, this.amountCrafted);
         }
 
         this.amountCrafted = 0;
+
+        if(this.recipe != null && this.recipe instanceof ICoinRecipe && !this.player.world.isRemote)
+        {
+            ICoinCount coinCount = this.player.getCapability(CoinCountProvider.COIN_COUNT, null);
+            coinCount.subtractFromCoinCount(((ICoinRecipe) this.recipe).getRequiredCoins());
+            coinCount.sync(this.player);
+        }
 
         // Can do achievements here. Left an example for crafting a workbench
 
         /*if(stack.getItem() == Item.getItemFromBlock(Blocks.CRAFTING_TABLE))
         {
-            this.thePlayer.addStat(AchievementList.BUILD_WORK_BENCH);
+            this.player.addStat(AchievementList.BUILD_WORK_BENCH);
         }*/
     }
 
@@ -112,13 +125,25 @@ public class SlotCraftingMario extends Slot
                 {
                     itemStack1.setCount(itemStack.getCount() + itemStack1.getCount());
                     this.craftMatrix.setInventorySlotContents(i, itemStack1);
-                } else if(!this.thePlayer.inventory.addItemStackToInventory(itemStack1))
+                } else if(!this.player.inventory.addItemStackToInventory(itemStack1))
                 {
-                    this.thePlayer.dropItem(itemStack1, false);
+                    this.player.dropItem(itemStack1, false);
                 }
             }
         }
 
         return stack;
+    }
+
+    public void setRecipe(IMarioRecipe recipe)
+    {
+        this.recipe = recipe;
+    }
+
+    @Override
+    public boolean canTakeStack(EntityPlayer player)
+    {
+        return this.recipe == null || !(this.recipe instanceof ICoinRecipe) || player.getCapability(CoinCountProvider.COIN_COUNT, null)
+                .getCoinCount() >= ((ICoinRecipe) this.recipe).getRequiredCoins();
     }
 }

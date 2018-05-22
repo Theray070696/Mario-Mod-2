@@ -24,12 +24,13 @@ public class ContainerMarioMaker extends Container
     public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
     public IInventory craftResult = new InventoryCraftResult();
     private World world;
+    private Slot outputSlot;
 
     public ContainerMarioMaker(InventoryPlayer inventoryPlayer, World world, BlockPos pos)
     {
         this.world = world;
         this.pos = pos;
-        this.addSlotToContainer(new SlotCraftingMario(inventoryPlayer.player, this.craftMatrix, this.craftResult, 0, 124, 35));
+        this.outputSlot = this.addSlotToContainer(new SlotCraftingMario(inventoryPlayer.player, this.craftMatrix, this.craftResult, 0, 124, 35));
         int l;
         int i1;
 
@@ -63,6 +64,7 @@ public class ContainerMarioMaker extends Container
     public void onCraftMatrixChanged(IInventory inventory)
     {
         this.craftResult.setInventorySlotContents(0, MarioMakerCraftingManager.getInstance().findMatchingRecipe(this.craftMatrix, this.world));
+        ((SlotCraftingMario) this.outputSlot).setRecipe(MarioMakerCraftingManager.getInstance().findRecipeForMatrix(this.craftMatrix, this.world));
     }
 
     /**

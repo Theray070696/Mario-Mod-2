@@ -170,6 +170,22 @@ public class MarioMakerCraftingManager
         return ItemStack.EMPTY;
     }
 
+    /**
+     * Returns an IMarioRecipe that matches the craft matrix.
+     */
+    public IMarioRecipe findRecipeForMatrix(InventoryCrafting craftMatrix, World world)
+    {
+        for(IMarioRecipe recipe : this.recipes)
+        {
+            if(recipe.matches(craftMatrix, world))
+            {
+                return recipe;
+            }
+        }
+
+        return null;
+    }
+
     public ItemStack[] getRemainingItems(InventoryCrafting craftMatrix, World world)
     {
         for(IMarioRecipe recipe : this.recipes)

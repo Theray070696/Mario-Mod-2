@@ -1,6 +1,7 @@
 package io.github.Theray070696.mario2.core;
 
 import io.github.Theray070696.mario2.block.BlockMarioMaker;
+import io.github.Theray070696.mario2.capability.CoinCountProvider;
 import io.github.Theray070696.mario2.client.gui.GuiMarioMaker;
 import io.github.Theray070696.mario2.container.ContainerMarioMaker;
 import io.github.Theray070696.mario2.lib.GuiIds;
@@ -23,6 +24,7 @@ public class GuiHandler implements IGuiHandler
 
         if(ID == GuiIds.MARIO_MAKER_GUI_ID && blockState.getBlock() instanceof BlockMarioMaker)
         {
+            player.getCapability(CoinCountProvider.COIN_COUNT, null).sync(player);
             return new ContainerMarioMaker(player.inventory, world, pos);
         }
 

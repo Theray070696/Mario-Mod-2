@@ -17,6 +17,7 @@ import io.github.Theray070696.mario2.core.api.CraftingHandlerAPI;
 import io.github.Theray070696.mario2.item.ModItems;
 import io.github.Theray070696.mario2.lib.ModInfo;
 import io.github.Theray070696.mario2.network.PacketGetCoins;
+import io.github.Theray070696.mario2.network.PacketRequestCoinSync;
 import io.github.Theray070696.mario2.network.PacketSyncCoinCounter;
 import io.github.Theray070696.mario2.plugins.PluginHandler;
 import io.github.Theray070696.mario2.potion.PotionEffectsMario;
@@ -108,6 +109,7 @@ public class MarioMod2
         network = NetworkRegistry.INSTANCE.newSimpleChannel(ModInfo.CHANNEL);
         network.registerMessage(PacketSyncCoinCounter.Handler.class, PacketSyncCoinCounter.class, 0, Side.CLIENT);
         network.registerMessage(PacketGetCoins.Handler.class, PacketGetCoins.class, 1, Side.SERVER);
+        network.registerMessage(PacketRequestCoinSync.Handler.class, PacketRequestCoinSync.class, 2, Side.SERVER);
 
         PluginHandler.getInstance().preInit();
 
