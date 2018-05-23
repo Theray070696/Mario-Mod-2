@@ -27,7 +27,7 @@ public class BlockNoteBlock extends BlockMario
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos blockPos, IBlockState blockState, Entity entity)
     {
-        if(entity.motionY < -0.1D)
+        if(entity.motionY < 0 && !entity.isSneaking())
         {
             if(entity instanceof EntityLivingBase)
             {
@@ -41,7 +41,6 @@ public class BlockNoteBlock extends BlockMario
             } else
             {
                 world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.noteBlock, SoundCategory.BLOCKS, 1.0F, 1.0F);
-
             }
 
             entity.motionY *= -2.0D;
@@ -52,7 +51,6 @@ public class BlockNoteBlock extends BlockMario
     @Override
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess world, BlockPos blockPos)
     {
-        return new AxisAlignedBB(blockPos.getX(), blockPos.getY(), blockPos.getZ(), (double) blockPos.getX() + 1.0D, (double) blockPos.getY() +
-                0.625D, (double) blockPos.getZ() + 1.0D);
+        return new AxisAlignedBB(0, 0, 0, 1.0D, 0.625D, 1.0D);
     }
 }
