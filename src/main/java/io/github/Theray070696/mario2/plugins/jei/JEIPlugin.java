@@ -37,7 +37,7 @@ public class JEIPlugin implements IModPlugin
         IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
 
         registry.addRecipeHandlers(new ShapedOreRecipeHandler(jeiHelpers), new ShapedRecipesHandler(), new ShapelessOreRecipeHandler(jeiHelpers),
-                new ShapelessRecipesHandler(guiHelper));
+                new ShapelessRecipesHandler(guiHelper), new ShapelessCoinRecipeHandler(jeiHelpers), new ShapedCoinRecipeHandler(jeiHelpers));
 
         registry.addRecipeClickArea(GuiMarioMaker.class, 88, 32, 28, 23, "Mario Maker");
 
