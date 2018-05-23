@@ -4,11 +4,12 @@ import io.github.Theray070696.mario2.block.ModBlocks;
 import io.github.Theray070696.mario2.client.gui.GuiMarioMaker;
 import io.github.Theray070696.mario2.container.ContainerMarioMaker;
 import io.github.Theray070696.mario2.crafting.MarioMakerCraftingManager;
-import mezz.jei.api.BlankModPlugin;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
+import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
-import mezz.jei.api.gui.BlankAdvancedGuiHandler;
+import mezz.jei.api.gui.IAdvancedGuiHandler;
+import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.transfer.IRecipeTransferRegistry;
 import net.minecraft.item.ItemStack;
 
@@ -21,15 +22,19 @@ import java.util.List;
  * Created by Theray070696 on 4/13/2017.
  */
 @mezz.jei.api.JEIPlugin
-public class JEIPlugin extends BlankModPlugin
+public class JEIPlugin implements IModPlugin
 {
+    @Override
+    public void registerCategories(IRecipeCategoryRegistration registry)
+    {
+        registry.addRecipeCategories(new MarioMakerRecipeCategory(registry.getJeiHelpers().getGuiHelper()));
+    }
+
     @Override
     public void register(IModRegistry registry)
     {
         IJeiHelpers jeiHelpers = registry.getJeiHelpers();
         IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
-
-        registry.addRecipeCategories(new MarioMakerRecipeCategory(guiHelper));
 
         registry.addRecipeHandlers(new ShapedOreRecipeHandler(jeiHelpers), new ShapedRecipesHandler(), new ShapelessOreRecipeHandler(jeiHelpers),
                 new ShapelessRecipesHandler(guiHelper));
@@ -40,9 +45,9 @@ public class JEIPlugin extends BlankModPlugin
 
         recipeTransferRegistry.addRecipeTransferHandler(ContainerMarioMaker.class, "Mario Maker", 1, 9, 10, 36);
 
-        registry.addRecipeCategoryCraftingItem(new ItemStack(ModBlocks.marioBlockMarioMaker), "Mario Maker");
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.marioBlockMarioMaker), "Mario Maker");
 
-        registry.addRecipes(MarioMakerCraftingManager.getInstance().getRecipeList());
+        registry.addRecipes(MarioMakerCraftingManager.getInstance().getRecipeList(), "Mario Maker");
 
         registry.addAdvancedGuiHandlers(new MarioMakerAdvancedGuiHandler());
 
@@ -56,7 +61,7 @@ public class JEIPlugin extends BlankModPlugin
         jeiHelpers.getIngredientBlacklist().addIngredientToBlacklist(new ItemStack(ModBlocks.marioBlockQuestionMarkCastleSMB));
     }
 
-    private static class MarioMakerAdvancedGuiHandler extends BlankAdvancedGuiHandler<GuiMarioMaker>
+    private static class MarioMakerAdvancedGuiHandler implements IAdvancedGuiHandler<GuiMarioMaker>
     {
         @Nonnull
         @Override
