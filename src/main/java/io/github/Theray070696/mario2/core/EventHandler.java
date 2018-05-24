@@ -89,7 +89,7 @@ public class EventHandler
     {
         EntityPlayerMP player = (EntityPlayerMP) event.player;
 
-        if(!MinecraftForge.EVENT_BUS.post(new PlayMarioSoundEvent(player, PlayMarioSoundEvent.SoundType.JOIN_SOUND)) && ConfigHandler.enableMarioSounds)
+        if(!MinecraftForge.EVENT_BUS.post(new PlayMarioSoundEvent(player, PlayMarioSoundEvent.SoundType.JOIN_SOUND)) && ConfigHandler.enableJoinLeaveSounds)
         {
             RayCoreAPI.playSoundToAll("mario2:player.join");
         }
@@ -120,7 +120,7 @@ public class EventHandler
     @SubscribeEvent
     public void playerLeaveEvent(PlayerEvent.PlayerLoggedOutEvent event)
     {
-        if(!MinecraftForge.EVENT_BUS.post(new PlayMarioSoundEvent(event.player, PlayMarioSoundEvent.SoundType.LEAVE_SOUND)) && ConfigHandler.enableMarioSounds)
+        if(!MinecraftForge.EVENT_BUS.post(new PlayMarioSoundEvent(event.player, PlayMarioSoundEvent.SoundType.LEAVE_SOUND)) && ConfigHandler.enableJoinLeaveSounds)
         {
             RayCoreAPI.playSoundToAll("mario2:player.leave");
         }

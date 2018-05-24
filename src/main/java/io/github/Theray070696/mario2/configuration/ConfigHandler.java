@@ -12,8 +12,8 @@ public class ConfigHandler
     public static boolean developerModeEnabled;
     public static boolean enableDeathSounds;
     public static final boolean enableDeathSoundsDefault = true;
-    public static boolean enableMarioSounds;
-    public static final boolean enableMarioSoundsDefault = true;
+    public static boolean enableJoinLeaveSounds;
+    public static final boolean enableJoinLeaveSoundsDefault = true;
     public static boolean enableCoinDrops;
     public static final boolean enableCoinDropsDefault = true;
     public static int marioDimensionID;
@@ -29,14 +29,14 @@ public class ConfigHandler
         developerModeEnabled = config.getBoolean("Developer Mode Enabled", "Misc", developerModeEnabledDefault, "Whether or not to enable " +
                 "developer mode. Use this if you want to test items that are not complete or don't function at all.");
 
-        enableMarioSounds = config.getBoolean("Enable Join/Leave sounds", "Misc", enableMarioSoundsDefault, "Whether or not joining and leaving " +
-                "sounds should be enabled.");
+        enableJoinLeaveSounds = config.getBoolean("Enable Join/Leave sounds", "Misc", enableJoinLeaveSoundsDefault, "Whether or not joining and " +
+                "leaving sounds should be enabled.");
 
-        enableDeathSounds = config.getBoolean("Enable Join/Leave sounds", "Misc", enableDeathSoundsDefault, "Whether or not death sounds should be " +
+        enableDeathSounds = config.getBoolean("Enable Death sounds", "Misc", enableDeathSoundsDefault, "Whether or not death sounds should be " +
                 "enabled.");
 
-        enableDeathSounds = config.getBoolean("Enable special coin drops", "Misc", enableDeathSoundsDefault, "Whether or not special coins should " +
-                "drop from mobs.");
+        enableCoinDrops = config.getBoolean("Enable special coin drops", "Misc", enableCoinDropsDefault, "Whether or not special coins should drop " +
+                "from mobs.");
 
         marioDimensionID = config.getInt("Mario Dimension ID", "Dimension", marioDimensionIDDefault, Integer.MIN_VALUE, Integer.MAX_VALUE,
                 "Dimension ID of the Mario dimension.");
