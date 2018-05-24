@@ -5,6 +5,7 @@ import io.github.Theray070696.mario2.world.biome.BiomeMario;
 import io.github.Theray070696.mario2.world.gen.WorldGenCastle;
 import io.github.Theray070696.mario2.world.gen.WorldGenMinableSingle;
 import io.github.Theray070696.mario2.world.gen.WorldGenQuestionMark;
+import io.github.Theray070696.mario2.world.gen.WorldGenUndergroundHole;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.init.Biomes;
@@ -42,6 +43,7 @@ public class WorldGenMario implements IWorldGenerator
     private WorldGenerator noteBlock;
 
     private WorldGenerator castle;
+    private WorldGenerator undergroundHole;
 
     public WorldGenMario()
     {
@@ -61,6 +63,7 @@ public class WorldGenMario implements IWorldGenerator
         this.noteBlock = new WorldGenMinableSingle(ModBlocks.marioBlockNoteBlock, Blocks.AIR, false);
 
         this.castle = new WorldGenCastle();
+        this.undergroundHole = new WorldGenUndergroundHole();
     }
 
     @Override
@@ -100,21 +103,26 @@ public class WorldGenMario implements IWorldGenerator
 
             this.runGenerator(this.castle, world, random, chunkX, chunkZ, 0, 0, 0);
             this.runGenerator(this.castle, world, random, chunkX, chunkZ, 0, 0, 0);
+            this.runGenerator(this.undergroundHole, world, random, chunkX, chunkZ, 0, 1, 45);
+            this.runGenerator(this.undergroundHole, world, random, chunkX, chunkZ, 0, 1, 45);
         } else if(world.getWorldType().getName().equalsIgnoreCase("atg"))
         {
-            this.runGenerator(this.questionMarkSMB, world, random, chunkX, chunkZ, random.nextInt(2), 50, 128);
+            this.runGenerator(this.questionMarkSMB, world, random, chunkX, chunkZ, random.nextInt(2), 55, 128);
             this.runGenerator(this.questionMarkUndergroundSMB, world, random, chunkX, chunkZ, random.nextInt(2), 3, 50);
             this.runGenerator(this.invisibleBlockSMB, world, random, chunkX, chunkZ, random.nextInt(5), 3, 128);
 
-            this.runGenerator(this.questionMarkSMB3, world, random, chunkX, chunkZ, random.nextInt(2), 50, 128);
+            this.runGenerator(this.questionMarkSMB3, world, random, chunkX, chunkZ, random.nextInt(2), 55, 128);
             this.runGenerator(this.questionMarkNotRareSMB3, world, random, chunkX, chunkZ, random.nextInt(2), 3, 50);
             this.runGenerator(this.invisibleBlockSMB3, world, random, chunkX, chunkZ, random.nextInt(5), 3, 128);
 
-            this.runGenerator(this.questionMark, world, random, chunkX, chunkZ, random.nextInt(2), 50, 128);
+            this.runGenerator(this.questionMark, world, random, chunkX, chunkZ, random.nextInt(2), 55, 128);
             this.runGenerator(this.questionMarkNotRare, world, random, chunkX, chunkZ, random.nextInt(2), 3, 50);
             this.runGenerator(this.invisibleBlock, world, random, chunkX, chunkZ, random.nextInt(5), 3, 128);
 
             this.runGenerator(this.noteBlock, world, random, chunkX, chunkZ, random.nextInt(15), 25, 128);
+
+            this.runGenerator(this.castle, world, random, chunkX, chunkZ, 0, 0, 0);
+            this.runGenerator(this.undergroundHole, world, random, chunkX, chunkZ, 0, 1, 50);
         } else if(!world.provider.getDimensionType().getName().equalsIgnoreCase("CompactMachinesWorld") && !world.provider.getDimensionType()
                 .getName().contains("Tardis") && !world.provider.getDimensionType().getName().contains("etd"))
         {
@@ -134,6 +142,7 @@ public class WorldGenMario implements IWorldGenerator
             this.runGenerator(this.noteBlock, world, random, chunkX, chunkZ, random.nextInt(15), 25, 100);
 
             this.runGenerator(this.castle, world, random, chunkX, chunkZ, 0, 0, 0);
+            this.runGenerator(this.undergroundHole, world, random, chunkX, chunkZ, 0, 1, 45);
         }
     }
 
@@ -154,17 +163,19 @@ public class WorldGenMario implements IWorldGenerator
                 int y = minHeight + rand.nextInt(heightDiff);
                 int z = chunk_Z * 16 + rand.nextInt(16);
 
-                Block block = world.getBlockState(new BlockPos(x, y - 1, z)).getBlock();
+                BlockPos generatePos = new BlockPos(x, y, z);
+
+                Block block = world.getBlockState(generatePos.down()).getBlock();
 
                 if(block == Blocks.GRASS || block == Blocks.DIRT || block == Blocks.STONE || block == Blocks.SAND || block == Blocks.MYCELIUM ||
                         block == ModBlocks.marioBlockGround || block == ModBlocks.marioBlockGroundUnderground || block == ModBlocks.marioBlockGroundUnderwater ||
                         block == ModBlocks.marioBlockGroundSnow || block == ModBlocks.marioBlockCastleWall || block == ModBlocks.marioBlockGroundSMW || block ==
                         ModBlocks.marioBlockGroundUndergroundSMW)
                 {
-                    worldGenerator.generate(world, rand, new BlockPos(x, y, z));
+                    worldGenerator.generate(world, rand, generatePos);
                 }
             }
-        } else if(worldGenerator instanceof WorldGenMinableSingle)
+        } else if(worldGenerator instanceof WorldGenMinableSingle) // Underground and Invisible Question Mark Blocks
         {
             int heightDiff = maxHeight - minHeight + 1;
             for(int i = 0; i < chancesToSpawn; i++)
@@ -172,10 +183,13 @@ public class WorldGenMario implements IWorldGenerator
                 int x = chunk_X * 16 + rand.nextInt(16);
                 int y = minHeight + rand.nextInt(heightDiff);
                 int z = chunk_Z * 16 + rand.nextInt(16);
-                worldGenerator.generate(world, rand, new BlockPos(x, y, z));
-                WorldGenQuestionMark.onQuestionMarkGenerated(world, x, y, z, rand);
+
+                BlockPos generatePos = new BlockPos(x, y, z);
+
+                worldGenerator.generate(world, rand, generatePos);
+                WorldGenQuestionMark.onQuestionMarkGenerated(world, generatePos, rand);
             }
-        } else if(worldGenerator instanceof WorldGenQuestionMark) // Doing this to test out the new spawning code.
+        } else if(worldGenerator instanceof WorldGenQuestionMark) // Above ground Question Mark Blocks
         {
             for(int i = 0; i < chancesToSpawn; i++)
             {
@@ -193,15 +207,26 @@ public class WorldGenMario implements IWorldGenerator
                     (80) == 0)
             {
                 int y = 50;
-                BlockPos position = new BlockPos(x, y, z);
+                BlockPos generatePos = new BlockPos(x, y, z);
 
-                position = world.getTopSolidOrLiquidBlock(position);
+                generatePos = world.getTopSolidOrLiquidBlock(generatePos);
 
-                if(!(world.getBlockState(world.getTopSolidOrLiquidBlock(position)).getBlock() instanceof BlockLiquid) && !(world.getBlockState
-                        (world.getTopSolidOrLiquidBlock(position)).getBlock() instanceof BlockFluidBase))
+                if(!(world.getBlockState(world.getTopSolidOrLiquidBlock(generatePos)).getBlock() instanceof BlockLiquid) && !(world.getBlockState
+                        (world.getTopSolidOrLiquidBlock(generatePos)).getBlock() instanceof BlockFluidBase))
                 {
-                    this.castle.generate(world, rand, position);
+                    worldGenerator.generate(world, rand, generatePos);
                 }
+            }
+        } else if(worldGenerator == this.undergroundHole)
+        {
+            int heightDiff = maxHeight - minHeight + 1;
+            int x = chunk_X * 16 + rand.nextInt(16);
+            int y = minHeight + rand.nextInt(heightDiff);
+            int z = chunk_Z * 16 + rand.nextInt(16);
+
+            if(rand.nextInt(85) == 0)
+            {
+                worldGenerator.generate(world, rand, new BlockPos(x, y, z));
             }
         }
     }

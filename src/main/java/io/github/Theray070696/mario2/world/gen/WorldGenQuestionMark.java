@@ -31,13 +31,13 @@ public class WorldGenQuestionMark extends WorldGenerator
         this.rare = rare;
     }
 
-    public static void onQuestionMarkGenerated(World world, int x, int y, int z, Random rand)
+    public static void onQuestionMarkGenerated(World world, BlockPos blockPos, Random rand)
     {
-        Block block = world.getBlockState(new BlockPos(x, y, z)).getBlock();
+        Block block = world.getBlockState(blockPos).getBlock();
 
         if(block instanceof BlockQuestionMarkBase)
         {
-            TileEntity tileEntity = world.getTileEntity(new BlockPos(x, y, z));
+            TileEntity tileEntity = world.getTileEntity(blockPos);
             if(tileEntity instanceof TileQuestionMark && (((BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType.SMW) || (
                     (BlockQuestionMarkBase) block).getBlockType().equals(EnumBlockType.SMW_INVISIBLE)))
             {
@@ -128,14 +128,14 @@ public class WorldGenQuestionMark extends WorldGenerator
                 y = y + 3 + random.nextInt(3);
 
                 world.setBlockState(new BlockPos(pos.getX(), y, pos.getZ()), block.getDefaultState(), 2);
-                onQuestionMarkGenerated(world, pos.getX(), y, pos.getZ(), random);
+                onQuestionMarkGenerated(world, new BlockPos(pos.getX(), y, pos.getZ()), random);
                 return true;
             } else if(random.nextInt(50) == 0)
             {
                 y = y + 3 + random.nextInt(3);
 
                 world.setBlockState(new BlockPos(pos.getX(), y, pos.getZ()), block.getDefaultState(), 2);
-                onQuestionMarkGenerated(world, pos.getX(), y, pos.getZ(), random);
+                onQuestionMarkGenerated(world, new BlockPos(pos.getX(), y, pos.getZ()), random);
                 return true;
             }
         }

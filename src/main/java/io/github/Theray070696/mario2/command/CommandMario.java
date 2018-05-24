@@ -56,6 +56,10 @@ public class CommandMario extends CommandBase
                 } else if(args[1].equalsIgnoreCase("castle"))
                 {
                     sender.sendMessage(new TextComponentString("Generated " + MarioDevStats.castlesGenerated + " Castles this session"));
+                } else if(args[1].equalsIgnoreCase("undergroundhole"))
+                {
+                    sender.sendMessage(new TextComponentString("Generated " + MarioDevStats.undergroundHolesGenerated + " Underground Holes this " +
+                            "session"));
                 }
             }
         }
@@ -70,7 +74,7 @@ public class CommandMario extends CommandBase
         {
             if(args[0].equalsIgnoreCase("worldgen"))
             {
-                return getListOfStringsMatchingLastWord(args, "questionmark", "invisible", "castle");
+                return getListOfStringsMatchingLastWord(args, "questionmark", "invisible", "castle", "undergroundhole");
             } else
             {
                 return Collections.emptyList();

@@ -9,4 +9,5 @@ public class MarioDevStats
     public static int questionMarksGenerated = 0;
     public static int invisibleBlocksGenerated = 0;
     public static int castlesGenerated = 0;
+    public static int undergroundHolesGenerated = 0;
 }
