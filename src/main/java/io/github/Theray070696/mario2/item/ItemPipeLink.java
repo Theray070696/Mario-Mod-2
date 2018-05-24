@@ -34,7 +34,7 @@ public class ItemPipeLink extends ItemMario
 
     @Override
     public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY,
-                                      float hitZ)
+            float hitZ)
     {
         ItemStack itemStack = player.getHeldItem(hand);
 
@@ -70,23 +70,23 @@ public class ItemPipeLink extends ItemMario
                 // Get the World the other Pipe is in
                 World otherPipeWorld = world.getMinecraftServer().getWorld(posDim[3]);
 
+                // Get the BlockPos the other Pipe is at
+                BlockPos otherPipePos = new BlockPos(posDim[0], posDim[1], posDim[2]);
+
                 // Make sure the original Pipe is still valid
-                if(otherPipeWorld.getTileEntity(new BlockPos(posDim[0], posDim[1], posDim[2])) != null && otherPipeWorld.getTileEntity(new BlockPos
-                        (posDim[0], posDim[1], posDim[2])) instanceof TilePipe)
+                if(otherPipeWorld.getTileEntity(otherPipePos) != null && otherPipeWorld.getTileEntity(otherPipePos) instanceof TilePipe)
                 {
                     // Make sure the Player is not trying to link a Pipe to itself
-                    if(tilePipe.getMasterPos().equals(((TilePipe) otherPipeWorld.getTileEntity(new BlockPos(posDim[0], posDim[1], posDim[2])))
-                            .getMasterPos()))
+                    if(tilePipe.getMasterPos().equals(((TilePipe) otherPipeWorld.getTileEntity(otherPipePos)).getMasterPos()))
                     {
                         return EnumActionResult.PASS;
                     }
 
                     // Set data for the Pipe the Player right clicked on
-                    tilePipe.setOtherPipePos(posDim[0], posDim[1], posDim[2], posDim[3]);
+                    tilePipe.setOtherPipePos(otherPipePos, posDim[3]);
 
                     // Set data for the original Pipe
-                    ((TilePipe) otherPipeWorld.getTileEntity(new BlockPos(posDim[0], posDim[1], posDim[2]))).setOtherPipePos(pos, world.provider
-                            .getDimension());
+                    ((TilePipe) otherPipeWorld.getTileEntity(otherPipePos)).setOtherPipePos(pos, world.provider.getDimension());
 
                     // Clear linking flag
                     itemStack.getTagCompound().setBoolean("linking", false);

@@ -21,20 +21,17 @@ public class TilePipe extends TileEntity
     private boolean connectedRight;
     private boolean connectedDown;
     private boolean rearBlock;
-    private int masterX, masterY, masterZ;
-    private int otherPipeX, otherPipeY, otherPipeZ, otherPipeDim;
+    private BlockPos masterPos;
+    private BlockPos otherPipePos;
+    private int otherPipeDim;
 
     public void reset()
     {
-        masterX = 0;
-        masterY = 0;
-        masterZ = 0;
+        masterPos = BlockPos.ORIGIN;
         hasMaster = false;
         isMaster = false;
 
-        otherPipeX = 0;
-        otherPipeY = 0;
-        otherPipeZ = 0;
+        otherPipePos = BlockPos.ORIGIN;
         otherPipeDim = 0;
 
         this.markDirty();
@@ -45,9 +42,9 @@ public class TilePipe extends TileEntity
     {
         super.writeToNBT(data);
 
-        data.setInteger("masterX", masterX);
-        data.setInteger("masterY", masterY);
-        data.setInteger("masterZ", masterZ);
+        data.setInteger("masterX", masterPos.getX());
+        data.setInteger("masterY", masterPos.getY());
+        data.setInteger("masterZ", masterPos.getZ());
         data.setBoolean("hasMaster", hasMaster);
         data.setBoolean("isMaster", isMaster);
 
@@ -58,9 +55,9 @@ public class TilePipe extends TileEntity
         if(hasMaster() && isMaster())
         {
             // Any other values should ONLY BE SAVED TO THE MASTER
-            data.setInteger("otherPipeX", otherPipeX);
-            data.setInteger("otherPipeY", otherPipeY);
-            data.setInteger("otherPipeZ", otherPipeZ);
+            data.setInteger("otherPipeX", otherPipePos.getX());
+            data.setInteger("otherPipeY", otherPipePos.getY());
+            data.setInteger("otherPipeZ", otherPipePos.getZ());
             data.setInteger("otherPipeDim", otherPipeDim);
         }
 
@@ -71,9 +68,8 @@ public class TilePipe extends TileEntity
     public void readFromNBT(NBTTagCompound data)
     {
         super.readFromNBT(data);
-        masterX = data.getInteger("masterX");
-        masterY = data.getInteger("masterY");
-        masterZ = data.getInteger("masterZ");
+
+        masterPos = new BlockPos(data.getInteger("masterX"), data.getInteger("masterY"), data.getInteger("masterZ"));
         hasMaster = data.getBoolean("hasMaster");
         isMaster = data.getBoolean("isMaster");
 
@@ -84,9 +80,7 @@ public class TilePipe extends TileEntity
         if(hasMaster() && isMaster())
         {
             // Any other values should ONLY BE READ BY THE MASTER
-            otherPipeX = data.getInteger("otherPipeX");
-            otherPipeY = data.getInteger("otherPipeY");
-            otherPipeZ = data.getInteger("otherPipeZ");
+            otherPipePos = new BlockPos(data.getInteger("otherPipeX"), data.getInteger("otherPipeY"), data.getInteger("otherPipeZ"));
             otherPipeDim = data.getInteger("otherPipeDim");
         }
     }
@@ -99,21 +93,6 @@ public class TilePipe extends TileEntity
     public boolean isMaster()
     {
         return isMaster;
-    }
-
-    public int getMasterX()
-    {
-        return masterX;
-    }
-
-    public int getMasterY()
-    {
-        return masterY;
-    }
-
-    public int getMasterZ()
-    {
-        return masterZ;
     }
 
     public boolean isConnectedRight()
@@ -153,7 +132,7 @@ public class TilePipe extends TileEntity
     {
         if(this.hasMaster() && !this.isMaster())
         {
-            TileEntity tile = this.world.getTileEntity(new BlockPos(this.getMasterX(), this.getMasterY(), this.getMasterZ()));
+            TileEntity tile = this.world.getTileEntity(this.masterPos);
             if(tile instanceof TilePipe)
             {
                 TilePipe tilePipe = (TilePipe) tile;
@@ -165,14 +144,14 @@ public class TilePipe extends TileEntity
             }
         }
 
-        return new BlockPos(this.otherPipeX, this.otherPipeY, this.otherPipeZ);
+        return this.otherPipePos;
     }
 
     public int getOtherPipeDimension()
     {
         if(this.hasMaster() && !this.isMaster())
         {
-            TileEntity tile = this.world.getTileEntity(new BlockPos(this.getMasterX(), this.getMasterY(), this.getMasterZ()));
+            TileEntity tile = this.world.getTileEntity(this.masterPos);
             if(tile instanceof TilePipe)
             {
                 TilePipe tilePipe = (TilePipe) tile;
@@ -199,39 +178,30 @@ public class TilePipe extends TileEntity
         this.markDirty();
     }
 
-    public void setMasterCoords(int x, int y, int z)
+    public void setMasterCoords(BlockPos pos)
     {
-        masterX = x;
-        masterY = y;
-        masterZ = z;
+        this.masterPos = pos;
         this.markDirty();
     }
 
-    public void setOtherPipePos(BlockPos blockPos, int dim)
-    {
-        this.setOtherPipePos(blockPos.getX(), blockPos.getY(), blockPos.getZ(), dim);
-    }
-
-    public void setOtherPipePos(int x, int y, int z, int dim)
+    public void setOtherPipePos(BlockPos pos, int dim)
     {
         if(this.hasMaster() && !this.isMaster())
         {
-            TileEntity tile = this.world.getTileEntity(new BlockPos(this.getMasterX(), this.getMasterY(), this.getMasterZ()));
+            TileEntity tile = this.world.getTileEntity(this.masterPos);
             if(tile instanceof TilePipe)
             {
                 TilePipe tilePipe = (TilePipe) tile;
 
                 if(tilePipe.isMaster())
                 {
-                    tilePipe.setOtherPipePos(x, y, z, dim);
+                    tilePipe.setOtherPipePos(pos, dim);
                     tilePipe.markDirty();
                 }
             }
         } else if(this.isMaster())
         {
-            this.otherPipeX = x;
-            this.otherPipeY = y;
-            this.otherPipeZ = z;
+            this.otherPipePos = pos;
             this.otherPipeDim = dim;
             this.markDirty();
         }
@@ -239,7 +209,7 @@ public class TilePipe extends TileEntity
 
     public BlockPos getMasterPos()
     {
-        return new BlockPos(this.masterX, this.masterY, this.masterZ);
+        return this.masterPos;
     }
 
     public TilePipe getMasterTile()
@@ -249,9 +219,9 @@ public class TilePipe extends TileEntity
             return this;
         } else if(this.hasMaster())
         {
-            if(this.world.getTileEntity(new BlockPos(this.masterX, this.masterY, this.masterZ)) instanceof TilePipe)
+            if(this.world.getTileEntity(this.masterPos) instanceof TilePipe)
             {
-                return (TilePipe) this.world.getTileEntity(new BlockPos(this.masterX, this.masterY, this.masterZ));
+                return (TilePipe) this.world.getTileEntity(this.masterPos);
             }
         }
 
@@ -265,9 +235,9 @@ public class TilePipe extends TileEntity
             return (BlockPipe) this.world.getBlockState(pos).getBlock();
         } else if(this.hasMaster())
         {
-            if(this.world.getBlockState(new BlockPos(this.masterX, this.masterY, this.masterZ)).getBlock() instanceof BlockPipe)
+            if(this.world.getBlockState(this.masterPos).getBlock() instanceof BlockPipe)
             {
-                return (BlockPipe) this.world.getBlockState(new BlockPos(this.masterX, this.masterY, this.masterZ)).getBlock();
+                return (BlockPipe) this.world.getBlockState(this.masterPos).getBlock();
             }
         }
 
