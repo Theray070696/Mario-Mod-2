@@ -34,13 +34,21 @@ public class CraftingHandler
         addRecipe(new ShapelessOreRecipeMario(new ItemStack(Items.GOLD_NUGGET), "itemCoin"));
         addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModItems.itemCoin, 2), "ingotGold"));
 
+        boolean foundSeeds = false;
+
         if(OreDictionary.doesOreNameExist("seed"))
         {
+            foundSeeds = true;
             addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockBeanstalk), "r", "r", "s", 'r', "sugarcane", 's', "seed"));
-        } else if(OreDictionary.doesOreNameExist("seeds"))
+        }
+
+        if(OreDictionary.doesOreNameExist("seeds"))
         {
+            foundSeeds = true;
             addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockBeanstalk), "r", "r", "s", 'r', "sugarcane", 's', "seeds"));
-        } else
+        }
+
+        if(!foundSeeds)
         {
             addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockBeanstalk), "r", "r", "s", 'r', "sugarcane", 's', new ItemStack(Items
                     .WHEAT_SEEDS)));
