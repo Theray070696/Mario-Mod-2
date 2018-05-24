@@ -25,8 +25,10 @@ public class BlockNoteBlock extends BlockMario
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos blockPos, IBlockState blockState, Entity entity)
+    public void onLanded(World world, Entity entity)
     {
+        entity.fallDistance = 0;
+
         if(entity.motionY < 0 && !entity.isSneaking())
         {
             if(entity instanceof EntityLivingBase)
@@ -34,18 +36,19 @@ public class BlockNoteBlock extends BlockMario
                 EntityLivingBase entityLiving = (EntityLivingBase) entity;
                 if(EventHandler.getSoundCooldown(entityLiving) == 0)
                 {
-                    world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.noteBlock, SoundCategory.BLOCKS, 1.0F,
-                            1.0F);
+                    world.playSound(null, entity.posX, entity.posY, entity.posZ, SoundHandler.noteBlock, SoundCategory.BLOCKS, 1.0F, 1.0F);
                     EventHandler.setSoundCooldown(entityLiving, 2);
                 }
             } else
             {
-                world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.noteBlock, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                world.playSound(null, entity.posX, entity.posY, entity.posZ, SoundHandler.noteBlock, SoundCategory.BLOCKS, 1.0F, 1.0F);
             }
 
             entity.motionY *= -2.0D;
+        } else if(entity.isSneaking())
+        {
+            super.onLanded(world, entity);
         }
-        entity.fallDistance = 0;
     }
 
     @Override
