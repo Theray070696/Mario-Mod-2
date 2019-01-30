@@ -32,7 +32,7 @@ public class ShapedCoinRecipeHandler implements IRecipeHandler<ShapedCoinRecipe>
     @Override
     public IRecipeWrapper getRecipeWrapper(ShapedCoinRecipe recipe)
     {
-        return new ShapedOreRecipeWrapper(jeiHelpers, recipe);
+        return new ShapedCoinRecipeWrapper(jeiHelpers, recipe);
     }
 
     @Override
