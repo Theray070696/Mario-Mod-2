@@ -3,7 +3,7 @@ package io.github.Theray070696.mario2.plugins.jei;
 import io.github.Theray070696.mario2.block.ModBlocks;
 import io.github.Theray070696.mario2.client.gui.GuiMarioMaker;
 import io.github.Theray070696.mario2.container.ContainerMarioMaker;
-import io.github.Theray070696.mario2.crafting.MarioMakerCraftingManager;
+import io.github.Theray070696.mario2.crafting.*;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModPlugin;
@@ -36,8 +36,12 @@ public class JEIPlugin implements IModPlugin
         IJeiHelpers jeiHelpers = registry.getJeiHelpers();
         IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
 
-        registry.addRecipeHandlers(new ShapedOreRecipeHandler(jeiHelpers), new ShapedRecipesHandler(), new ShapelessOreRecipeHandler(jeiHelpers),
-                new ShapelessRecipesHandler(guiHelper), new ShapelessCoinRecipeHandler(jeiHelpers), new ShapedCoinRecipeHandler(jeiHelpers));
+        registry.handleRecipes(ShapedCoinRecipe.class, recipe -> new ShapedCoinRecipeWrapper(jeiHelpers, recipe), "Mario Maker");
+        registry.handleRecipes(ShapelessCoinRecipe.class, recipe -> new ShapelessCoinRecipeWrapper(jeiHelpers, recipe), "Mario Maker");
+        registry.handleRecipes(ShapedOreRecipeMario.class, recipe -> new ShapedOreRecipeWrapper(jeiHelpers, recipe), "Mario Maker");
+        registry.handleRecipes(ShapelessOreRecipeMario.class, recipe -> new ShapelessOreRecipeWrapper(jeiHelpers, recipe), "Mario Maker");
+        registry.handleRecipes(ShapedRecipeMario.class, recipe -> new ShapedRecipesWrapper(recipe), "Mario Maker");
+        registry.handleRecipes(ShapelessRecipeMario.class, recipe -> new ShapelessRecipesWrapper(jeiHelpers.getGuiHelper(), recipe), "Mario Maker");
 
         registry.addRecipeClickArea(GuiMarioMaker.class, 88, 32, 28, 23, "Mario Maker");
 

@@ -5,9 +5,6 @@ import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.item.ItemStack;
 
-import java.util.Collections;
-import java.util.List;
-
 /**
  * Created by Theray070696 on 4/13/2017.
  */
@@ -19,17 +16,6 @@ public class ShapelessRecipesWrapper extends AbstractShapelessRecipeWrapper
     {
         super(guiHelper);
         this.recipe = recipe;
-        for(Object input : this.recipe.recipeItems)
-        {
-            if(input instanceof ItemStack)
-            {
-                ItemStack itemStack = (ItemStack) input;
-                if(itemStack.getCount() != 1)
-                {
-                    itemStack.setCount(1);
-                }
-            }
-        }
     }
 
     @Override

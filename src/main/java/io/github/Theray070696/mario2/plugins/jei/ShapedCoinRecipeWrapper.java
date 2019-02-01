@@ -8,36 +8,20 @@ import mezz.jei.api.recipe.IStackHelper;
 import mezz.jei.api.recipe.wrapper.IShapedCraftingRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
-public class ShapedCoinRecipeWrapper implements IShapedCraftingRecipeWrapper, IRecipeWrapper
+public class ShapedCoinRecipeWrapper implements IRecipeWrapper, IShapedCraftingRecipeWrapper
 {
     private final IJeiHelpers jeiHelpers;
     private final ShapedCoinRecipe recipe;
-    private final int width;
-    private final int height;
 
     public ShapedCoinRecipeWrapper(IJeiHelpers jeiHelpers, ShapedCoinRecipe recipe)
     {
         this.jeiHelpers = jeiHelpers;
         this.recipe = recipe;
-        for(Object input : this.recipe.getInput())
-        {
-            if(input instanceof ItemStack)
-            {
-                ItemStack itemStack = (ItemStack) input;
-                if(itemStack.getCount() != 1)
-                {
-                    itemStack.setCount(1);
-                }
-            }
-        }
-        this.width = ObfuscationReflectionHelper.getPrivateValue(ShapedCoinRecipe.class, this.recipe, "width");
-        this.height = ObfuscationReflectionHelper.getPrivateValue(ShapedCoinRecipe.class, this.recipe, "height");
     }
 
     @Override
@@ -69,12 +53,12 @@ public class ShapedCoinRecipeWrapper implements IShapedCraftingRecipeWrapper, IR
     @Override
     public int getWidth()
     {
-        return this.width;
+        return recipe.recipeWidth;
     }
 
     @Override
     public int getHeight()
     {
-        return this.height;
+        return recipe.recipeHeight;
     }
 }

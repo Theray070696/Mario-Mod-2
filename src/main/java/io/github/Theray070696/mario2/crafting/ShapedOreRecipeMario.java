@@ -22,10 +22,22 @@ public class ShapedOreRecipeMario implements IMarioRecipe
     public static final int MAX_CRAFT_GRID_WIDTH = 3;
     public static final int MAX_CRAFT_GRID_HEIGHT = 3;
 
+    /**
+     * Is the ItemStack that you get when craft the recipe.
+     */
     protected ItemStack output = ItemStack.EMPTY;
+    /**
+     * Is a array of Objects that composes the recipe.
+     */
     protected Object[] input = null;
-    protected int width = 0;
-    protected int height = 0;
+    /**
+     * How many horizontal slots this recipe is wide.
+     */
+    public int recipeWidth = 0;
+    /**
+     * How many vertical slots this recipe uses.
+     */
+    public int recipeHeight = 0;
     protected boolean mirrored = true;
 
     public ShapedOreRecipeMario(Block result, Object... recipe)
@@ -63,23 +75,23 @@ public class ShapedOreRecipeMario implements IMarioRecipe
 
             for(String s : parts)
             {
-                width = s.length();
+                recipeWidth = s.length();
                 shape += s;
             }
 
-            height = parts.length;
+            recipeHeight = parts.length;
         } else
         {
             while(recipe[idx] instanceof String)
             {
                 String s = (String) recipe[idx++];
                 shape += s;
-                width = s.length();
-                height++;
+                recipeWidth = s.length();
+                recipeHeight++;
             }
         }
 
-        if(width * height != shape.length())
+        if(recipeWidth * recipeHeight != shape.length())
         {
             String ret = "Invalid shaped ore recipe: ";
             for(Object tmp : recipe)
@@ -121,7 +133,7 @@ public class ShapedOreRecipeMario implements IMarioRecipe
             }
         }
 
-        input = new Object[width * height];
+        input = new Object[recipeWidth * recipeHeight];
         int x = 0;
         for(char chr : shape.toCharArray())
         {
@@ -132,8 +144,8 @@ public class ShapedOreRecipeMario implements IMarioRecipe
     ShapedOreRecipeMario(ShapedRecipeMario recipe, Map<ItemStack, String> replacements)
     {
         output = recipe.getRecipeOutput();
-        width = recipe.recipeWidth;
-        height = recipe.recipeHeight;
+        recipeWidth = recipe.recipeWidth;
+        recipeHeight = recipe.recipeHeight;
 
         input = new Object[recipe.recipeItems.length];
 
@@ -189,9 +201,9 @@ public class ShapedOreRecipeMario implements IMarioRecipe
     @Override
     public boolean matches(InventoryCrafting inv, World world)
     {
-        for(int x = 0; x <= MAX_CRAFT_GRID_WIDTH - width; x++)
+        for(int x = 0; x <= MAX_CRAFT_GRID_WIDTH - recipeWidth; x++)
         {
-            for(int y = 0; y <= MAX_CRAFT_GRID_HEIGHT - height; ++y)
+            for(int y = 0; y <= MAX_CRAFT_GRID_HEIGHT - recipeHeight; ++y)
             {
                 if(checkMatch(inv, x, y, false))
                 {
@@ -219,14 +231,14 @@ public class ShapedOreRecipeMario implements IMarioRecipe
                 int subY = y - startY;
                 Object target = null;
 
-                if(subX >= 0 && subY >= 0 && subX < width && subY < height)
+                if(subX >= 0 && subY >= 0 && subX < recipeWidth && subY < recipeHeight)
                 {
                     if(mirror)
                     {
-                        target = input[width - subX - 1 + subY * width];
+                        target = input[recipeWidth - subX - 1 + subY * recipeWidth];
                     } else
                     {
-                        target = input[subX + subY * width];
+                        target = input[subX + subY * recipeWidth];
                     }
                 }
 
