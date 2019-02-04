@@ -111,15 +111,18 @@ public class GuiMarioMaker extends GuiContainer
             {
                 this.coinsToGet += 10;
             }
-        } else if(button.id == 4)
+        } else if(this.coinsToGet > 0)
         {
-            MarioMod2.network.sendToServer(new PacketGetCoins(this.coinsToGet, 0));
-        } else if(button.id == 5)
-        {
-            MarioMod2.network.sendToServer(new PacketGetCoins(this.coinsToGet, 2));
-        } else if(button.id == 6)
-        {
-            MarioMod2.network.sendToServer(new PacketGetCoins(this.coinsToGet, 1));
+            if(button.id == 4)
+            {
+                MarioMod2.network.sendToServer(new PacketGetCoins(this.coinsToGet, 0));
+            } else if(button.id == 5)
+            {
+                MarioMod2.network.sendToServer(new PacketGetCoins(this.coinsToGet, 2));
+            } else if(button.id == 6)
+            {
+                MarioMod2.network.sendToServer(new PacketGetCoins(this.coinsToGet, 1));
+            }
         }
     }
 
