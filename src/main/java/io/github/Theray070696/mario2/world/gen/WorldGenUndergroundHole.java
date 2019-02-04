@@ -6,6 +6,7 @@ import io.github.Theray070696.mario2.configuration.ConfigHandler;
 import io.github.Theray070696.mario2.dev.MarioDevStats;
 import io.github.Theray070696.mario2.lib.ModInfo;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Mirror;
@@ -18,6 +19,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
+import net.minecraftforge.fluids.BlockFluidBase;
 
 import java.util.Random;
 
@@ -37,24 +39,44 @@ public class WorldGenUndergroundHole extends WorldGenerator
             {
                 IBlockState blockState = world.getBlockState(pos);
                 world.notifyBlockUpdate(pos, blockState, blockState, 3);
-                PlacementSettings placementsettings = new PlacementSettings().setMirror(Mirror.NONE).setRotation(Rotation.NONE).setIgnoreEntities
-                        (false).setChunk(null).setReplacedBlock(null).setIgnoreStructureBlock(false);
+                int numFluidBlocks = 0;
 
-                template.addBlocksToWorld(world, pos, placementsettings);
-
-                Block block = world.getBlockState(pos.add(3, 3, 3)).getBlock();
-                if(block instanceof BlockQuestionMarkBase)
+                for(int x = 0; x < template.getSize().getX(); x++)
                 {
-                    world.setBlockState(pos.add(3, 3, 3), ModBlocks.marioBlockQuestionMarkUndergroundSMB.getDefaultState());
-                    WorldGenQuestionMark.onQuestionMarkGenerated(world, pos.add(3, 3, 3), rand);
+                    for(int y = 0; y < template.getSize().getY(); y++)
+                    {
+                        for(int z = 0; z < template.getSize().getZ(); z++)
+                        {
+                            Block b = world.getBlockState(pos.add(x, y, z)).getBlock();
+                            if(b instanceof BlockLiquid || b instanceof BlockFluidBase)
+                            {
+                                numFluidBlocks++;
+                            }
+                        }
+                    }
                 }
 
-                if(ConfigHandler.developerModeEnabled)
+                if(numFluidBlocks <= 4)
                 {
-                    MarioDevStats.undergroundHolesGenerated++;
-                }
+                    PlacementSettings placementsettings = new PlacementSettings().setMirror(Mirror.NONE).setRotation(Rotation.NONE)
+                            .setIgnoreEntities(false).setChunk(null).setReplacedBlock(null).setIgnoreStructureBlock(false);
 
-                return true;
+                    template.addBlocksToWorld(world, pos, placementsettings);
+
+                    Block block = world.getBlockState(pos.add(3, 3, 3)).getBlock();
+                    if(block instanceof BlockQuestionMarkBase)
+                    {
+                        world.setBlockState(pos.add(3, 3, 3), ModBlocks.marioBlockQuestionMarkUndergroundSMB.getDefaultState());
+                        WorldGenQuestionMark.onQuestionMarkGenerated(world, pos.add(3, 3, 3), rand);
+                    }
+
+                    if(ConfigHandler.developerModeEnabled)
+                    {
+                        MarioDevStats.undergroundHolesGenerated++;
+                    }
+
+                    return true;
+                }
             }
         }
 

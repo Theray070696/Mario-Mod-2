@@ -30,8 +30,6 @@ public class WorldGenCastle extends WorldGenerator
     {
         if(!world.isRemote)
         {
-            boolean flag;
-
             WorldServer worldServer = (WorldServer) world;
             MinecraftServer minecraftServer = world.getMinecraftServer();
             TemplateManager templateManager = worldServer.getStructureTemplateManager();
@@ -41,7 +39,7 @@ public class WorldGenCastle extends WorldGenerator
             {
                 IBlockState blockState = world.getBlockState(pos);
                 world.notifyBlockUpdate(pos, blockState, blockState, 3);
-                flag = true;
+                boolean flag = true;
 
                 for(int x = 0; x < template.getSize().getX(); x++)
                 {
@@ -57,8 +55,7 @@ public class WorldGenCastle extends WorldGenerator
                             break;
                         }
 
-                        BlockPos down = pos.add(x, -1, z);
-                        Block b = world.getBlockState(down).getBlock();
+                        Block b = world.getBlockState(pos.add(x, -1, z)).getBlock();
                         if(b instanceof BlockLiquid || b instanceof BlockFluidBase || b instanceof BlockAir || b instanceof BlockSlab || b
                                 instanceof BlockSnow)
                         {

@@ -8,7 +8,6 @@ import io.github.Theray070696.mario2.world.gen.WorldGenQuestionMark;
 import io.github.Theray070696.mario2.world.gen.WorldGenUndergroundHole;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
-import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -17,6 +16,7 @@ import net.minecraft.world.WorldProviderHell;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
@@ -124,7 +124,7 @@ public class WorldGenMario implements IWorldGenerator
             this.runGenerator(this.castle, world, random, chunkX, chunkZ, 0, 0, 0);
             this.runGenerator(this.undergroundHole, world, random, chunkX, chunkZ, 0, 1, 50);
         } else if(!world.provider.getDimensionType().getName().equalsIgnoreCase("CompactMachinesWorld") && !world.provider.getDimensionType()
-                .getName().contains("Tardis") && !world.provider.getDimensionType().getName().contains("etd"))
+                .getName().contains("Tardis"))
         {
             // Overworld or some mod dimension
             this.runGenerator(this.questionMarkSMB, world, random, chunkX, chunkZ, random.nextInt(2), 50, 85);
@@ -147,7 +147,7 @@ public class WorldGenMario implements IWorldGenerator
     }
 
     private void runGenerator(WorldGenerator worldGenerator, World world, Random rand, int chunk_X, int chunk_Z, int chancesToSpawn, int minHeight,
-                              int maxHeight)
+            int maxHeight)
     {
         if(minHeight < 0 || maxHeight > 256 || minHeight > maxHeight)
         {
@@ -168,9 +168,9 @@ public class WorldGenMario implements IWorldGenerator
                 Block block = world.getBlockState(generatePos.down()).getBlock();
 
                 if(block == Blocks.GRASS || block == Blocks.DIRT || block == Blocks.STONE || block == Blocks.SAND || block == Blocks.MYCELIUM ||
-                        block == ModBlocks.marioBlockGround || block == ModBlocks.marioBlockGroundUnderground || block == ModBlocks.marioBlockGroundUnderwater ||
-                        block == ModBlocks.marioBlockGroundSnow || block == ModBlocks.marioBlockCastleWall || block == ModBlocks.marioBlockGroundSMW || block ==
-                        ModBlocks.marioBlockGroundUndergroundSMW)
+                        block == ModBlocks.marioBlockGround || block == ModBlocks.marioBlockGroundUnderground || block == ModBlocks
+                        .marioBlockGroundUnderwater || block == ModBlocks.marioBlockGroundSnow || block == ModBlocks.marioBlockCastleWall || block
+                        == ModBlocks.marioBlockGroundSMW || block == ModBlocks.marioBlockGroundUndergroundSMW)
                 {
                     worldGenerator.generate(world, rand, generatePos);
                 }
@@ -202,9 +202,7 @@ public class WorldGenMario implements IWorldGenerator
             int x = chunk_X * 16 + rand.nextInt(16);
             int z = chunk_Z * 16 + rand.nextInt(16);
 
-            if((!world.getBiomeForCoordsBody(new BlockPos(x, 50, z)).equals(Biomes.OCEAN) && !world.getBiomeForCoordsBody(new BlockPos(x, 50, z))
-                    .equals(Biomes.DEEP_OCEAN)) && !world.getBiomeForCoordsBody(new BlockPos(x, 50, z)).equals(Biomes.FROZEN_OCEAN) && rand.nextInt
-                    (80) == 0)
+            if(!BiomeDictionary.hasType(world.getBiomeForCoordsBody(new BlockPos(x, 50, z)), BiomeDictionary.Type.OCEAN) && rand.nextInt(80) == 0)
             {
                 int y = 50;
                 BlockPos generatePos = new BlockPos(x, y, z);
@@ -219,13 +217,13 @@ public class WorldGenMario implements IWorldGenerator
             }
         } else if(worldGenerator == this.undergroundHole)
         {
-            int heightDiff = maxHeight - minHeight + 1;
-            int x = chunk_X * 16 + rand.nextInt(16);
-            int y = minHeight + rand.nextInt(heightDiff);
-            int z = chunk_Z * 16 + rand.nextInt(16);
-
             if(rand.nextInt(85) == 0)
             {
+                int heightDiff = maxHeight - minHeight + 1;
+                int x = chunk_X * 16 + rand.nextInt(16);
+                int y = minHeight + rand.nextInt(heightDiff);
+                int z = chunk_Z * 16 + rand.nextInt(16);
+
                 worldGenerator.generate(world, rand, new BlockPos(x, y, z));
             }
         }
