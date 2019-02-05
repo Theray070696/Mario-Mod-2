@@ -21,8 +21,8 @@ public class TilePipe extends TileEntity
     private boolean connectedRight;
     private boolean connectedDown;
     private boolean rearBlock;
-    private BlockPos masterPos;
-    private BlockPos otherPipePos;
+    private BlockPos masterPos = BlockPos.ORIGIN;
+    private BlockPos otherPipePos = BlockPos.ORIGIN;
     private int otherPipeDim;
 
     public void reset()
