@@ -19,7 +19,7 @@ public class ItemCoinCurrency extends ItemMario
         super();
 
         this.setHasSubtypes(true);
-        this.setUnlocalizedName("itemCoinCurrency");
+        this.setTranslationKey("itemCoinCurrency");
     }
 
     @Override
@@ -36,7 +36,7 @@ public class ItemCoinCurrency extends ItemMario
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack stack)
+    public String getTranslationKey(ItemStack stack)
     {
         return "item." + ModInfo.MOD_ID.toLowerCase() + ":" + CoinType.getTypeNameByMeta(stack.getMetadata());
     }

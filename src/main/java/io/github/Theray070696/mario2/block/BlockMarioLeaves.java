@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -21,7 +22,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -37,9 +37,9 @@ public class BlockMarioLeaves extends BlockMario implements IShearable
     public BlockMarioLeaves()
     {
         super(Material.LEAVES);
-        this.setUnlocalizedName("marioBlockLeaves");
+        this.setTranslationKey("marioBlockLeaves");
         this.setTickRandomly(true);
-        this.setHardness(0.2F);
+        this.setHardness(0.2f);
         this.setLightOpacity(1);
         this.setSoundType(SoundType.PLANT);
 
@@ -48,11 +48,11 @@ public class BlockMarioLeaves extends BlockMario implements IShearable
 
     public void breakBlock(World world, BlockPos pos, IBlockState state)
     {
-        int k = pos.getX();
-        int l = pos.getY();
-        int i1 = pos.getZ();
+        int x = pos.getX();
+        int y = pos.getY();
+        int z = pos.getZ();
 
-        if(world.isAreaLoaded(new BlockPos(k - 2, l - 2, i1 - 2), new BlockPos(k + 2, l + 2, i1 + 2)))
+        if(world.isAreaLoaded(new BlockPos(x - 2, y - 2, z - 2), new BlockPos(x + 2, y + 2, z + 2)))
         {
             for(int j1 = -1; j1 <= 1; ++j1)
             {
@@ -60,12 +60,12 @@ public class BlockMarioLeaves extends BlockMario implements IShearable
                 {
                     for(int l1 = -1; l1 <= 1; ++l1)
                     {
-                        BlockPos blockpos = pos.add(j1, k1, l1);
-                        IBlockState iblockstate = world.getBlockState(blockpos);
+                        BlockPos blockPos = pos.add(j1, k1, l1);
+                        IBlockState blockState = world.getBlockState(blockPos);
 
-                        if(iblockstate.getBlock().isLeaves(iblockstate, world, blockpos))
+                        if(blockState.getBlock().isLeaves(blockState, world, blockPos))
                         {
-                            iblockstate.getBlock().beginLeavesDecay(iblockstate, world, blockpos);
+                            blockState.getBlock().beginLeavesDecay(blockState, world, blockPos);
                         }
                     }
                 }
@@ -77,7 +77,7 @@ public class BlockMarioLeaves extends BlockMario implements IShearable
     {
         if(!world.isRemote)
         {
-            if(state.getValue(CHECK_DECAY) && state.getValue(DECAYABLE))
+            if(((Boolean) state.getValue(CHECK_DECAY)).booleanValue() && ((Boolean) state.getValue(DECAYABLE)).booleanValue())
             {
                 int x = pos.getX();
                 int y = pos.getY();
@@ -88,7 +88,12 @@ public class BlockMarioLeaves extends BlockMario implements IShearable
                     this.surroundings = new int[32768];
                 }
 
-                if(world.isAreaLoaded(new BlockPos(x - 5, y - 5, z - 5), new BlockPos(x + 5, y + 5, z + 5)))
+                if(!world.isAreaLoaded(pos, 1))
+                {
+                    return;
+                }
+
+                if(world.isAreaLoaded(pos, 6))
                 {
                     BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
 
@@ -98,12 +103,12 @@ public class BlockMarioLeaves extends BlockMario implements IShearable
                         {
                             for(int k2 = -4; k2 <= 4; ++k2)
                             {
-                                IBlockState blockState = world.getBlockState(mutableBlockPos.setPos(x + i2, y + j2, z + k2));
-                                Block block = blockState.getBlock();
+                                IBlockState iblockstate = world.getBlockState(mutableBlockPos.setPos(x + i2, y + j2, z + k2));
+                                Block block = iblockstate.getBlock();
 
-                                if(!block.canSustainLeaves(blockState, world, mutableBlockPos.setPos(x + i2, y + j2, z + k2)))
+                                if(!block.canSustainLeaves(iblockstate, world, mutableBlockPos.setPos(x + i2, y + j2, z + k2)))
                                 {
-                                    if(block.isLeaves(blockState, world, mutableBlockPos.setPos(x + i2, y + j2, z + k2)))
+                                    if(block.isLeaves(iblockstate, world, mutableBlockPos.setPos(x + i2, y + j2, z + k2)))
                                     {
                                         this.surroundings[(i2 + 16) * 1024 + (j2 + 16) * 32 + k2 + 16] = -2;
                                     } else
@@ -190,9 +195,9 @@ public class BlockMarioLeaves extends BlockMario implements IShearable
                 (15) == 1)
         {
             double x = (double) ((float) pos.getX() + rand.nextFloat());
-            double y = (double) pos.getY() - 0.05D;
+            double y = (double) pos.getY() - 0.05d;
             double z = (double) ((float) pos.getZ() + rand.nextFloat());
-            world.spawnParticle(EnumParticleTypes.DRIP_WATER, x, y, z, 0.0D, 0.0D, 0.0D);
+            world.spawnParticle(EnumParticleTypes.DRIP_WATER, x, y, z, 0.0d, 0.0d, 0.0d);
         }
     }
 
@@ -218,12 +223,13 @@ public class BlockMarioLeaves extends BlockMario implements IShearable
     }
 
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
-        return Blocks.LEAVES.getBlockLayer();
+        return Blocks.LEAVES.getRenderLayer();
     }
 
-    public boolean isVisuallyOpaque()
+    @Override
+    public boolean causesSuffocation(IBlockState state)
     {
         return false;
     }
@@ -297,24 +303,24 @@ public class BlockMarioLeaves extends BlockMario implements IShearable
      */
     public int getMetaFromState(IBlockState state)
     {
-        int i = 0;
+        int meta = 0;
 
         if(!state.getValue(DECAYABLE))
         {
-            i |= 4;
+            meta |= 4;
         }
 
         if(state.getValue(CHECK_DECAY))
         {
-            i |= 8;
+            meta |= 8;
         }
 
-        return i;
+        return meta;
     }
 
     @Override
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
-        return Collections.singletonList(new ItemStack(this));
+        return NonNullList.withSize(1, new ItemStack(this, 1));
     }
 }

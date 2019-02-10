@@ -18,7 +18,7 @@ public class BlockMarioMaker extends BlockMario
     {
         super();
 
-        this.setUnlocalizedName("marioBlockMarioMaker");
+        this.setTranslationKey("marioBlockMarioMaker");
     }
 
     @Override

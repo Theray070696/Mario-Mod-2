@@ -21,7 +21,7 @@ public class GuiCoinCountOverlay extends GuiIngameForge
     {
         if(mc.player != null)
         {
-            mc.mcProfiler.startSection("marioCoinCounter");
+            mc.profiler.startSection("marioCoinCounter");
 
             int left = 2;
             int top = height - 20;
@@ -34,7 +34,7 @@ public class GuiCoinCountOverlay extends GuiIngameForge
             top += 4;
             getFontRenderer().drawString("x" + coinCount, left, top, 14737632, true);
 
-            mc.mcProfiler.endSection();
+            mc.profiler.endSection();
         }
     }
 }

@@ -9,6 +9,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -25,8 +26,8 @@ public class BlockMarioLog extends BlockMario
     {
         super(Material.WOOD);
         this.setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, BlockLog.EnumAxis.Y));
-        this.setUnlocalizedName("marioBlockLog");
-        this.setHardness(2.0F);
+        this.setTranslationKey("marioBlockLog");
+        this.setHardness(2.0f);
         this.setSoundType(SoundType.WOOD);
     }
 
@@ -46,8 +47,8 @@ public class BlockMarioLog extends BlockMario
         }
     }
 
-    public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase
-            placer)
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta,
+            EntityLivingBase placer, EnumHand hand)
     {
         return this.getStateFromMeta(meta).withProperty(LOG_AXIS, BlockLog.EnumAxis.fromFacingAxis(facing.getAxis()));
     }

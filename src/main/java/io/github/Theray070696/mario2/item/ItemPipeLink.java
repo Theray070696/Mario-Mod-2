@@ -28,7 +28,7 @@ public class ItemPipeLink extends ItemMario
     {
         super();
 
-        this.setUnlocalizedName("itemPipeLink");
+        this.setTranslationKey("itemPipeLink");
         this.setMaxStackSize(1);
     }
 

@@ -46,7 +46,7 @@ public class ModItems
                     new ItemStarMan(),
                     new ItemPipeLink(),
                     new ItemCoinCurrency(),
-                    new ItemRayRecord(ModInfo.MOD_ID, "smbUnderwater", 513, SoundHandler.recordUnderwaterSMB).setUnlocalizedName("records.smbUnderwater"),
+                    new ItemRayRecord(ModInfo.MOD_ID, "smbUnderwater", 513, SoundHandler.recordUnderwaterSMB).setTranslationKey("records.smbUnderwater"),
                     new ItemSuperLeaf(),
                     new ItemDebug()
             };
@@ -69,12 +69,12 @@ public class ModItems
         {
             if(!item.getHasSubtypes())
             {
-                RayCore.proxy.registerItemRenderer(item, 0, ModInfo.MOD_ID, item.getRegistryName().getResourcePath());
+                RayCore.proxy.registerItemRenderer(item, 0, ModInfo.MOD_ID, item.getRegistryName().getPath());
             } else if(item instanceof ItemRay)
             {
                 for(int i = 0; i < ((ItemRay) item).getMaxMetadata(); i++)
                 {
-                    RayCore.proxy.registerItemRenderer(item, i, ModInfo.MOD_ID, item.getRegistryName().getResourcePath() + "_" + i);
+                    RayCore.proxy.registerItemRenderer(item, i, ModInfo.MOD_ID, item.getRegistryName().getPath() + "_" + i);
                 }
             }
         }

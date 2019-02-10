@@ -72,7 +72,7 @@ public abstract class BiomeMario extends Biome implements IWeightProvider
 
                         if(y < seaLevel && (topBlockState == null || topBlockState.getMaterial() == Material.AIR))
                         {
-                            if(this.getFloatTemperature(mutableBlockPos.setPos(x, y, z)) < 0.15F)
+                            if(this.getTemperature(mutableBlockPos.setPos(x, y, z)) < 0.15F)
                             {
                                 topBlockState = ModBlocks.marioBlockGroundSnow.getDefaultState();
                             } else
@@ -117,7 +117,7 @@ public abstract class BiomeMario extends Biome implements IWeightProvider
 
                         if(y < seaLevel && (topBlockState == null || topBlockState.getMaterial() == Material.AIR))
                         {
-                            if(this.getFloatTemperature(mutableBlockPos.setPos(x, y, z)) < 0.15F)
+                            if(this.getTemperature(mutableBlockPos.setPos(x, y, z)) < 0.15F)
                             {
                                 topBlockState = ModBlocks.marioBlockGroundSnow.getDefaultState();
                             } else

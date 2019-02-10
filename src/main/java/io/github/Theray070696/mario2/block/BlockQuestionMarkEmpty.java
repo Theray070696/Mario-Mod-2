@@ -9,6 +9,6 @@ public class BlockQuestionMarkEmpty extends BlockQuestionMarkBase
     {
         super(blockType);
 
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 }

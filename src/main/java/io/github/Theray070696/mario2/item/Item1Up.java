@@ -26,7 +26,7 @@ public class Item1Up extends ItemMario
         super();
 
         this.setHasSubtypes(true);
-        this.setUnlocalizedName("item1Up");
+        this.setTranslationKey("item1Up");
     }
 
     @Override

@@ -29,7 +29,7 @@ public class ItemStarMan extends ItemMario
     {
         super();
 
-        this.setUnlocalizedName("itemStarMan");
+        this.setTranslationKey("itemStarMan");
     }
 
     @Override

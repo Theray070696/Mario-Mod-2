@@ -20,7 +20,7 @@ public class ItemFireFlower extends ItemMario
     {
         super();
 
-        this.setUnlocalizedName("itemFireFlower");
+        this.setTranslationKey("itemFireFlower");
         this.setMaxDamage(64);
         this.setMaxStackSize(1);
     }

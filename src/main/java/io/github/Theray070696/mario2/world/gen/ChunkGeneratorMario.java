@@ -490,7 +490,7 @@ public class ChunkGeneratorMario implements IChunkGenerator
         {
             if(creatureType == EnumCreatureType.MONSTER && this.scatteredFeatureGenerator.isSwampHut(pos))
             {
-                return this.scatteredFeatureGenerator.getScatteredFeatureSpawnList();
+                return this.scatteredFeatureGenerator.getMonsters();
             }
         }
 

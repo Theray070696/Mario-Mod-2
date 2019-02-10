@@ -60,7 +60,7 @@ public class MarioMod2
     {
         @SideOnly(Side.CLIENT)
         @Override
-        public ItemStack getTabIconItem()
+        public ItemStack createIcon()
         {
             return new ItemStack(ModItems.itemMushroom, 1, 1);
         }
@@ -70,7 +70,7 @@ public class MarioMod2
     {
         @SideOnly(Side.CLIENT)
         @Override
-        public ItemStack getTabIconItem()
+        public ItemStack createIcon()
         {
             return new ItemStack(ModBlocks.marioBlockMarioMaker);
         }

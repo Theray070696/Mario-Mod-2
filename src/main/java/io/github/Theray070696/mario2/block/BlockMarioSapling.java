@@ -26,15 +26,15 @@ import java.util.Random;
 public class BlockMarioSapling extends BlockMario implements IGrowable
 {
     public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
-    protected static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D,
-            0.800000011920929D, 0.8999999761581421D);
+    protected static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552d, 0.0d, 0.09999999403953552d, 0.8999999761581421d,
+            0.800000011920929d, 0.8999999761581421d);
 
     public BlockMarioSapling()
     {
         super(Material.PLANTS);
 
-        this.setUnlocalizedName("marioBlockSapling");
-        this.setHardness(0.0F);
+        this.setTranslationKey("marioBlockSapling");
+        this.setHardness(0.0f);
     }
 
     public boolean canPlaceBlockAt(World world, BlockPos pos)
@@ -79,7 +79,7 @@ public class BlockMarioSapling extends BlockMario implements IGrowable
     }
 
     @Nullable
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World world, BlockPos pos)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess world, BlockPos pos)
     {
         return NULL_AABB;
     }
@@ -95,7 +95,7 @@ public class BlockMarioSapling extends BlockMario implements IGrowable
     }
 
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }

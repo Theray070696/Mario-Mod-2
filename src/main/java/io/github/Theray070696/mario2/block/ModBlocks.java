@@ -69,21 +69,21 @@ public class ModBlocks
     private static final Block[] BLOCKS =
             {
                     new BlockMarioMaker(),
-                    new BlockMario(Material.ROCK, true, true).setUnlocalizedName("marioBlockGround").setHardness(4.0F),
-                    new BlockMario().setUnlocalizedName("marioBlockBrick").setHardness(2.0F),
-                    new BlockMario(Material.WOOD).setUnlocalizedName("marioBlockDecoration").setHardness(5.0F),
+                    new BlockMario(Material.ROCK, true, true).setTranslationKey("marioBlockGround").setHardness(4.0f),
+                    new BlockMario().setTranslationKey("marioBlockBrick").setHardness(2.0f),
+                    new BlockMario(Material.WOOD).setTranslationKey("marioBlockDecoration").setHardness(5.0f),
                     new BlockNoteBlock(),
                     new BlockMarioLeaves(),
                     new BlockMarioLog(),
-                    new BlockMario(Material.WOOD).setHardness(2.0F).setResistance(5.0F).setUnlocalizedName("marioBlockPlanks"),
+                    new BlockMario(Material.WOOD).setHardness(2.0f).setResistance(5.0f).setTranslationKey("marioBlockPlanks"),
                     new BlockMarioSapling(),
-                    new BlockMario(Material.GROUND, true, true).setUnlocalizedName("marioBlockGroundSMW").setHardness(4.0F),
-                    new BlockMario(Material.ROCK, true, true).setUnlocalizedName("marioBlockGroundUndergroundSMW").setHardness(4.0F),
-                    new BlockMarioOre().setUnlocalizedName("marioBlockCoalSMW").setHardness(3.0F).setResistance(5.0F),
-                    new BlockMarioOre().setUnlocalizedName("marioBlockIronSMW").setHardness(3.0F).setResistance(5.0F),
-                    new BlockMarioOre().setUnlocalizedName("marioBlockGoldSMW").setHardness(3.0F).setResistance(5.0F),
-                    new BlockMarioOre().setUnlocalizedName("marioBlockDiamondSMW").setHardness(3.0F).setResistance(5.0F),
-                    new BlockMarioOre().setUnlocalizedName("marioBlockLapisSMW").setHardness(3.0F).setResistance(5.0F),
+                    new BlockMario(Material.GROUND, true, true).setTranslationKey("marioBlockGroundSMW").setHardness(4.0f),
+                    new BlockMario(Material.ROCK, true, true).setTranslationKey("marioBlockGroundUndergroundSMW").setHardness(4.0f),
+                    new BlockMarioOre().setTranslationKey("marioBlockCoalSMW").setHardness(3.0f).setResistance(5.0f),
+                    new BlockMarioOre().setTranslationKey("marioBlockIronSMW").setHardness(3.0f).setResistance(5.0f),
+                    new BlockMarioOre().setTranslationKey("marioBlockGoldSMW").setHardness(3.0f).setResistance(5.0f),
+                    new BlockMarioOre().setTranslationKey("marioBlockDiamondSMW").setHardness(3.0f).setResistance(5.0f),
+                    new BlockMarioOre().setTranslationKey("marioBlockLapisSMW").setHardness(3.0f).setResistance(5.0f),
                     new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMark", EnumBlockType.SMW),
                     new BlockQuestionMark("marioBlockQuestionMark", EnumBlockType.SMW),
                     new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMarkSMB", EnumBlockType.SMB),
@@ -96,16 +96,16 @@ public class ModBlocks
                     new BlockInvisibleBlock("marioBlockInvisibleBlockSMB", EnumBlockType.SMB_INVISIBLE),
                     new BlockQuestionMarkEmpty("marioBlockInvisibleBlockEmptySMB3", EnumBlockType.SMB3_INVISIBLE),
                     new BlockInvisibleBlock("marioBlockInvisibleBlockSMB3", EnumBlockType.SMB3_INVISIBLE),
-                    new BlockMario(Material.ROCK, true, true).setUnlocalizedName("marioBlockGroundUnderground").setHardness(4.0F),
-                    new BlockMario().setUnlocalizedName("marioBlockBrickUnderground").setHardness(2.0F),
-                    new BlockMario(Material.WOOD).setUnlocalizedName("marioBlockUndergroundDecoration").setHardness(5.0F),
+                    new BlockMario(Material.ROCK, true, true).setTranslationKey("marioBlockGroundUnderground").setHardness(4.0f),
+                    new BlockMario().setTranslationKey("marioBlockBrickUnderground").setHardness(2.0f),
+                    new BlockMario(Material.WOOD).setTranslationKey("marioBlockUndergroundDecoration").setHardness(5.0f),
                     new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMarkUndergroundSMB", EnumBlockType.SMB_UNDERGROUND),
                     new BlockQuestionMark("marioBlockQuestionMarkUndergroundSMB", EnumBlockType.SMB_UNDERGROUND),
-                    new BlockMario().setUnlocalizedName("marioBlockCastleWall").setHardness(6.0F),
-                    new BlockMario().setUnlocalizedName("marioBlockCastleBrick").setHardness(3.0F),
+                    new BlockMario().setTranslationKey("marioBlockCastleWall").setHardness(6.0f),
+                    new BlockMario().setTranslationKey("marioBlockCastleBrick").setHardness(3.0f),
                     new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMarkCastleSMB", EnumBlockType.SMB_CASTLE),
                     new BlockQuestionMark("marioBlockQuestionMarkCastleSMB", EnumBlockType.SMB_CASTLE),
-                    new BlockMario(Material.CORAL).setUnlocalizedName("marioBlockGroundUnderwater").setHardness(4.0F),
+                    new BlockMario(Material.CORAL).setTranslationKey("marioBlockGroundUnderwater").setHardness(4.0f),
                     new BlockMarioSnow(),
                     new BlockBeanstalk(),
                     new BlockPipeBase(),
@@ -135,7 +135,7 @@ public class ModBlocks
     {
         for(Block block : BLOCKS)
         {
-            RayCore.proxy.registerItemRenderer(Item.getItemFromBlock(block), 0, ModInfo.MOD_ID, block.getRegistryName().getResourcePath());
+            RayCore.proxy.registerItemRenderer(Item.getItemFromBlock(block), 0, ModInfo.MOD_ID, block.getRegistryName().getPath());
         }
     }
 

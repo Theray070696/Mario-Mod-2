@@ -54,8 +54,8 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ISMULTIBLOCK, false).withProperty
                 (CONNECTEDRIGHT, false).withProperty(CONNECTEDDOWN, false).withProperty(REARBLOCK, false));
 
-        this.setUnlocalizedName("marioBlockPipe");
-        this.setHardness(1.5F);
+        this.setTranslationKey("marioBlockPipe");
+        this.setHardness(1.5f);
     }
 
     public static boolean isMultiBlock(World world, BlockPos basePos, BlockPos modPos)
@@ -84,26 +84,26 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
         {
             if(side == EnumFacing.UP && !rearBlock)
             {
-                return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.625D, 1.0D);
+                return new AxisAlignedBB(0.0d, 0.0d, 0.0d, 1.0d, 0.625d, 1.0d);
             } else if(side == EnumFacing.DOWN && !rearBlock)
             {
-                return new AxisAlignedBB(0.0D, 0.375D, 0.0D, 1.0D, 1.0D, 1.0D);
+                return new AxisAlignedBB(0.0d, 0.375d, 0.0d, 1.0d, 1.0d, 1.0d);
             } else if(side == EnumFacing.EAST && !rearBlock)
             {
-                return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.625D, 1.0D, 1.0D);
+                return new AxisAlignedBB(0.0d, 0.0d, 0.0d, 0.625d, 1.0d, 1.0d);
             } else if(side == EnumFacing.WEST && !rearBlock)
             {
-                return new AxisAlignedBB(0.325D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
+                return new AxisAlignedBB(0.325d, 0.0d, 0.0d, 1.0d, 1.0d, 1.0d);
             } else if(side == EnumFacing.NORTH && !rearBlock)
             {
-                return new AxisAlignedBB(0.0D, 0.0D, 0.375D, 1.0D, 1.0D, 1.0D);
+                return new AxisAlignedBB(0.0d, 0.0d, 0.375d, 1.0d, 1.0d, 1.0d);
             } else if(side == EnumFacing.SOUTH && !rearBlock)
             {
-                return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.625D);
+                return new AxisAlignedBB(0.0d, 0.0d, 0.0d, 1.0d, 1.0d, 0.625d);
             }
         }
 
-        return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
+        return new AxisAlignedBB(0.0d, 0.0d, 0.0d, 1.0d, 1.0d, 1.0d);
     }
 
     @Override
@@ -119,7 +119,7 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos blockPos, IBlockState blockState, Entity entity)
+    public void onEntityCollision(World world, BlockPos blockPos, IBlockState blockState, Entity entity)
     {
         if(!world.isRemote)
         {
@@ -147,8 +147,8 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
                                         (teleportDestinationPos) instanceof TilePipe)
                                 {
                                     // Offset teleport to prevent infinite loop
-                                    teleportDestinationPos = teleportDestinationPos.offset(otherWorld.getBlockState(teleportDestinationPos).getValue
-                                            (FACING), 2);
+                                    teleportDestinationPos = teleportDestinationPos.offset(otherWorld.getBlockState(teleportDestinationPos)
+                                            .getValue(FACING), 2);
 
                                     // Are the Pipes in different Dimensions?
                                     if(teleportDestinationDimension != world.provider.getDimension())
@@ -165,8 +165,8 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
                                             // Items
                                             ItemStack stack = ((EntityItem) entity).getItem().copy();
 
-                                            EntityItem entityItem = new EntityItem(otherWorld, teleportDestinationPos.getX(), teleportDestinationPos
-                                                    .getY(), teleportDestinationPos.getZ(), stack);
+                                            EntityItem entityItem = new EntityItem(otherWorld, teleportDestinationPos.getX(),
+                                                    teleportDestinationPos.getY(), teleportDestinationPos.getZ(), stack);
 
                                             otherWorld.spawnEntity(entityItem);
                                             entity.setDead();
@@ -187,10 +187,10 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
                                     }
 
                                     // Play sound
-                                    world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.pipe, SoundCategory.BLOCKS,
-                                            1.0F, 1.0F);
+                                    world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.pipe, SoundCategory
+                                            .BLOCKS, 1.0f, 1.0f);
                                     otherWorld.playSound(null, teleportDestinationPos.getX(), teleportDestinationPos.getY(), teleportDestinationPos
-                                            .getZ(), SoundHandler.pipe, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                                            .getZ(), SoundHandler.pipe, SoundCategory.BLOCKS, 1.0f, 1.0f);
                                 }
                             }
                         }
@@ -563,8 +563,8 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX,
             float hitY, float hitZ)
     {
-        if(player.isSneaking() || (!state.getValue(ISMULTIBLOCK) && !player.getHeldItemMainhand().isEmpty() && !player.getHeldItemOffhand().isEmpty
-                ()) || (state.getValue(ISMULTIBLOCK) && (player.getHeldItemMainhand().getItem() instanceof ItemPipeLink || player
+        if(player.isSneaking() || (!state.getValue(ISMULTIBLOCK) && (!player.getHeldItemMainhand().isEmpty() || !player.getHeldItemOffhand()
+                .isEmpty())) || (state.getValue(ISMULTIBLOCK) && (player.getHeldItemMainhand().getItem() instanceof ItemPipeLink || player
                 .getHeldItemOffhand().getItem() instanceof ItemPipeLink)))
         {
             return false;
@@ -714,7 +714,7 @@ public class BlockPipe extends BlockMario implements ITileEntityProvider
 
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(FACING, EnumFacing.getFront(meta & 7)).withProperty(ISMULTIBLOCK, (meta & 8) > 0);
+        return this.getDefaultState().withProperty(FACING, EnumFacing.byIndex(meta & 7)).withProperty(ISMULTIBLOCK, (meta & 8) > 0);
     }
 
     public int getMetaFromState(IBlockState state)

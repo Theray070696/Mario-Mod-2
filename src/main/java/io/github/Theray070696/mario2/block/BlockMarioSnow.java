@@ -8,8 +8,8 @@ public class BlockMarioSnow extends BlockMario
     public BlockMarioSnow()
     {
         super();
-        this.setUnlocalizedName("marioBlockGroundSnow");
-        this.setHardness(4.0F);
+        this.setTranslationKey("marioBlockGroundSnow");
+        this.setHardness(4.0f);
         this.setDefaultSlipperiness(0.9f);
     }
 }

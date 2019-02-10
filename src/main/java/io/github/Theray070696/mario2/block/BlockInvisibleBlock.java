@@ -19,7 +19,7 @@ public class BlockInvisibleBlock extends BlockQuestionMark
     {
         super(new MaterialTransparent(MapColor.AIR), name, blockType);
 
-        this.setHardness(4.0F);
+        this.setHardness(4.0f);
     }
 
     @Override

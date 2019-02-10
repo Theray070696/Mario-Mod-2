@@ -26,7 +26,7 @@ public class ItemSuperLeaf extends ItemMario implements IBauble
     {
         super();
 
-        this.setUnlocalizedName("itemSuperLeaf");
+        this.setTranslationKey("itemSuperLeaf");
         this.setMaxStackSize(1);
     }
 

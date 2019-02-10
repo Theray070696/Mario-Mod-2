@@ -119,7 +119,7 @@ public class SoundHandler
 
     public static void playSoundName(String soundName, World world, SoundCategory category, BlockPos pos)
     {
-        playSoundName(soundName, world, category, pos, 1.0F, 1.0F);
+        playSoundName(soundName, world, category, pos, 1.0f, 1.0f);
     }
 
     public static void playSoundName(String soundName, World world, SoundCategory category, BlockPos pos, float volume, float pitch)

@@ -16,7 +16,7 @@ public class BlockQuestionMark extends BlockQuestionMarkBase
     {
         super(material, false, blockType);
 
-        this.setUnlocalizedName(name);
+        this.setTranslationKey(name);
     }
 
     @Override

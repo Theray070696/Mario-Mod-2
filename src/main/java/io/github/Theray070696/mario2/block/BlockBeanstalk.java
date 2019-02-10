@@ -2,7 +2,6 @@ package io.github.Theray070696.mario2.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -34,8 +33,8 @@ public class BlockBeanstalk extends BlockMario
 
         this.setDefaultState(this.blockState.getBaseState().withProperty(ISTOP, false));
 
-        this.setHardness(6.0F);
-        this.setUnlocalizedName("marioBlockBeanstalk");
+        this.setHardness(6.0f);
+        this.setTranslationKey("marioBlockBeanstalk");
     }
 
     @Override
@@ -98,7 +97,7 @@ public class BlockBeanstalk extends BlockMario
     }
 
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }

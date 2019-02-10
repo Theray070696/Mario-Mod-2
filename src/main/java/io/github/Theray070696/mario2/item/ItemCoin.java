@@ -28,7 +28,7 @@ public class ItemCoin extends ItemMario
         super();
 
         this.setHasSubtypes(true);
-        this.setUnlocalizedName("itemCoin");
+        this.setTranslationKey("itemCoin");
     }
 
     @Override

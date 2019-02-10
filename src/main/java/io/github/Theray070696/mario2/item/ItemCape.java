@@ -29,7 +29,7 @@ public class ItemCape extends ItemMario implements IBauble
     {
         super();
 
-        this.setUnlocalizedName("itemCape");
+        this.setTranslationKey("itemCape");
         this.setMaxStackSize(1);
     }
 

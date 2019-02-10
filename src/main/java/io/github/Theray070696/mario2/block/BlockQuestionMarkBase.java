@@ -47,12 +47,12 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
     {
         super(material, addToCreativeTab);
 
-        this.setHardness(1.5F);
+        this.setHardness(1.5f);
         this.blockType = blockType;
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos blockPos, IBlockState blockState, Entity entity)
+    public void onEntityCollision(World world, BlockPos blockPos, IBlockState blockState, Entity entity)
     {
         entity.motionY = -0.25f; // Send the entity back down.
 
@@ -72,13 +72,13 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                             .equals(EnumBlockType.SMB3_INVISIBLE)) // If it is from Mario 1 or Mario 3...
                     {
                         world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.smbEmptyBlockHit, SoundCategory
-                                .BLOCKS, 1.0F, 1.0F); // Play this sound.
+                                .BLOCKS, 1.0f, 1.0f); // Play this sound.
                         EventHandler.setSoundCooldown(player, 1); // Don't spam sounds.
                     } else if(blockType.equals(EnumBlockType.SMW) || blockType.equals(EnumBlockType.SMW_INVISIBLE)) // If it is from Mario
                         // World...
                     {
                         world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundHandler.smwEmptyBlockHit, SoundCategory
-                                .BLOCKS, 1.0F, 1.0F); // Play this sound.
+                                .BLOCKS, 1.0f, 1.0f); // Play this sound.
                         EventHandler.setSoundCooldown(player, 1); // Don't spam sounds.
                     }
                 }
@@ -89,7 +89,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
     @Override
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess world, BlockPos pos)
     {
-        return new AxisAlignedBB(0.0D, 0.25D, 0.0D, 1.0D, 1.0D, 1.0D); // You can jump into the bottom of the block.
+        return new AxisAlignedBB(0.0d, 0.25d, 0.0d, 1.0d, 1.0d, 1.0d); // You can jump into the bottom of the block.
     }
 
     public boolean isFullCube(IBlockState state)
@@ -201,17 +201,17 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                 if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType
                         .SMB_UNDERGROUND) || blockType.equals(EnumBlockType.SMB_CASTLE)) // If it was from Mario 1...
                 {
-                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbCoin, SoundCategory.BLOCKS, 1.0F, 1.0F); // Play this
+                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbCoin, SoundCategory.BLOCKS, 1.0f, 1.0f); // Play this
                     // sound.
                     newItemStack = new ItemStack(ModItems.itemCoin); // Set ItemStack to Mario 1 Coin.
                 } else if(blockType.equals(EnumBlockType.SMW) || blockType.equals(EnumBlockType.SMW_INVISIBLE)) // If it was from Mario World...
                 {
-                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smwCoin, SoundCategory.BLOCKS, 1.0F, 1.0F); // Play this
+                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smwCoin, SoundCategory.BLOCKS, 1.0f, 1.0f); // Play this
                     // sound.
                     newItemStack = new ItemStack(ModItems.itemCoin, 1, 1); // Set ItemStack to Mario World Coin.
                 } else if(blockType.equals(EnumBlockType.SMB3) || blockType.equals(EnumBlockType.SMB3_INVISIBLE)) // If it was from Mario 3...
                 {
-                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbCoin, SoundCategory.BLOCKS, 1.0F, 1.0F); // Play this
+                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbCoin, SoundCategory.BLOCKS, 1.0f, 1.0f); // Play this
                     // sound.
                     newItemStack = new ItemStack(ModItems.itemCoin, 1, 2); // Set ItemStack to Mario 3 Coin.
                 }
@@ -220,17 +220,17 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                 if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType
                         .SMB_UNDERGROUND) || blockType.equals(EnumBlockType.SMB_CASTLE)) // If it was from Mario 1...
                 {
-                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbBlockHitPowerup, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbBlockHitPowerup, SoundCategory.BLOCKS, 1.0f, 1.0f);
                     // Play this sound.
                     newItemStack = new ItemStack(ModItems.itemMushroom); // Set ItemStack to Mario 1 Mushroom.
                 } else if(blockType.equals(EnumBlockType.SMW) || blockType.equals(EnumBlockType.SMW_INVISIBLE)) // If it was from Mario World...
                 {
-                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smwBlockHitPowerup, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smwBlockHitPowerup, SoundCategory.BLOCKS, 1.0f, 1.0f);
                     // Play this sound.
                     newItemStack = new ItemStack(ModItems.itemMushroom, 1, 1); // Set ItemStack to Mario World Mushroom.
                 } else if(blockType.equals(EnumBlockType.SMB3) || blockType.equals(EnumBlockType.SMB3_INVISIBLE)) // If it was from Mario 3...
                 {
-                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbBlockHitPowerup, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbBlockHitPowerup, SoundCategory.BLOCKS, 1.0f, 1.0f);
                     // Play this sound.
                     newItemStack = new ItemStack(ModItems.itemMushroom, 1, 2); // Set ItemStack to Mario 3 Mushroom.
                 }
@@ -239,23 +239,23 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                 if(blockType.equals(EnumBlockType.SMB) || blockType.equals(EnumBlockType.SMB_INVISIBLE) || blockType.equals(EnumBlockType
                         .SMB_UNDERGROUND) || blockType.equals(EnumBlockType.SMB_CASTLE)) // If it was from Mario 1...
                 {
-                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbBlockHitPowerup, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbBlockHitPowerup, SoundCategory.BLOCKS, 1.0f, 1.0f);
                     // Play this sound.
                     newItemStack = new ItemStack(ModItems.item1Up); // Set ItemStack to Mario 1 1Up.
                 } else if(blockType.equals(EnumBlockType.SMW) || blockType.equals(EnumBlockType.SMW_INVISIBLE)) // If it was from Mario World...
                 {
-                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smwBlockHitPowerup, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smwBlockHitPowerup, SoundCategory.BLOCKS, 1.0f, 1.0f);
                     // Play this sound.
                     newItemStack = new ItemStack(ModItems.item1Up, 1, 1); // Set ItemStack to Mario World 1Up.
                 } else if(blockType.equals(EnumBlockType.SMB3) || blockType.equals(EnumBlockType.SMB3_INVISIBLE)) // If it was from Mario 3...
                 {
-                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbBlockHitPowerup, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbBlockHitPowerup, SoundCategory.BLOCKS, 1.0f, 1.0f);
                     // Play this sound.
                     newItemStack = new ItemStack(ModItems.item1Up, 1, 2); // Set ItemStack to Mario 3 1Up.
                 }
             } else if(itemInBlock == ItemsInQuestionMarks.ITEM_CAPE) // If the item was a Cape...
             {
-                world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smwBlockHitPowerup, SoundCategory.BLOCKS, 1.0F, 1.0F); //
+                world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smwBlockHitPowerup, SoundCategory.BLOCKS, 1.0f, 1.0f); //
                 // Play this sound.
                 newItemStack = new ItemStack(ModItems.itemCape); // Set ItemStack to Cape.
             } else if(itemInBlock == ItemsInQuestionMarks.ITEM_FIRE_FLOWER)
@@ -264,11 +264,11 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                         .SMB_UNDERGROUND) || blockType.equals(EnumBlockType.SMB_CASTLE) || blockType.equals(EnumBlockType.SMB3) || blockType.equals
                         (EnumBlockType.SMB3_INVISIBLE)) // If it was from Mario 1 or Mario 3...
                 {
-                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbBlockHitPowerup, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbBlockHitPowerup, SoundCategory.BLOCKS, 1.0f, 1.0f);
                     // Play this sound.
                 } else if(blockType.equals(EnumBlockType.SMW) || blockType.equals(EnumBlockType.SMW_INVISIBLE)) // If it was from Mario World...
                 {
-                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smwBlockHitPowerup, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smwBlockHitPowerup, SoundCategory.BLOCKS, 1.0f, 1.0f);
                     // Play this sound.
                 }
 
@@ -281,16 +281,16 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                         .SMB_UNDERGROUND) || blockType.equals(EnumBlockType.SMB_CASTLE) || blockType.equals(EnumBlockType.SMB3) || blockType.equals
                         (EnumBlockType.SMB3_INVISIBLE)) // If it was from Mario 1 or Mario 3...
                 {
-                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbBlockHitPowerup, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smbBlockHitPowerup, SoundCategory.BLOCKS, 1.0f, 1.0f);
                     // Play this sound.
                 } else if(blockType.equals(EnumBlockType.SMW) || blockType.equals(EnumBlockType.SMW_INVISIBLE)) // If it was from Mario World...
                 {
-                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smwBlockHitPowerup, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.smwBlockHitPowerup, SoundCategory.BLOCKS, 1.0f, 1.0f);
                     // Play this sound.
                 }
             } else if(itemInBlock == ItemsInQuestionMarks.ITEM_BEANSTALK) // If the item was a Beanstalk...
             {
-                world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.beanstalk, SoundCategory.BLOCKS, 1.0F, 1.0F); // Play this
+                world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundHandler.beanstalk, SoundCategory.BLOCKS, 1.0f, 1.0f); // Play this
                 // sound.
 
                 for(int i = 1; i < 10; i++) // Go from 1 to 9.
@@ -313,14 +313,14 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                 {
                     Random rand = new Random(); // Initialize random number generator.
 
-                    float dY = rand.nextFloat() * 0.8F + 0.1F; // Do math to figure out how high the item will go.
+                    float dY = rand.nextFloat() * 0.8f + 0.1f; // Do math to figure out how high the item will go.
 
                     EntityItem entityItem = new EntityItem(world, pos.getX(), pos.getY() + dY, pos.getZ(), newItemStack.copy()); // Create the item
                     // entity.
 
                     float factor = 0.05F; // We don't want it to go FLYING, so we slow it down a bit.
                     entityItem.motionX = rand.nextGaussian() * factor; // X motion.
-                    entityItem.motionY = rand.nextGaussian() * factor + 0.2F; // Y motion.
+                    entityItem.motionY = rand.nextGaussian() * factor + 0.2f; // Y motion.
                     entityItem.motionZ = rand.nextGaussian() * factor; // Z motion.
                     world.spawnEntity(entityItem); // Spawn the item entity.
                 }
@@ -535,15 +535,15 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
         {
             Random rand = new Random();
 
-            float dX = rand.nextFloat() * 0.8F + 0.1F;
-            float dY = rand.nextFloat() * 0.8F + 0.1F;
-            float dZ = rand.nextFloat() * 0.8F + 0.1F;
+            float dX = rand.nextFloat() * 0.8f + 0.1f;
+            float dY = rand.nextFloat() * 0.8f + 0.1f;
+            float dZ = rand.nextFloat() * 0.8f + 0.1f;
 
             EntityItem entityItem = new EntityItem(world, pos.getX() + dX, pos.getY() + dY, pos.getZ() + dZ, itemStack.copy());
 
-            float factor = 0.05F;
+            float factor = 0.05f;
             entityItem.motionX = rand.nextGaussian() * factor;
-            entityItem.motionY = rand.nextGaussian() * factor + 0.2F;
+            entityItem.motionY = rand.nextGaussian() * factor + 0.2f;
             entityItem.motionZ = rand.nextGaussian() * factor;
             world.spawnEntity(entityItem);
             questionMark.setItemInBlock(ItemsInQuestionMarks.ITEM_NOTHING);

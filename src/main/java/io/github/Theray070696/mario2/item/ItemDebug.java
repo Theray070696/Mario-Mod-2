@@ -20,7 +20,7 @@ public class ItemDebug extends ItemMario
     {
         super();
 
-        this.setUnlocalizedName("itemDebug");
+        this.setTranslationKey("itemDebug");
         this.setMaxStackSize(1);
     }
 
@@ -40,11 +40,11 @@ public class ItemDebug extends ItemMario
 
             if(playerMP.dimension != ConfigHandler.marioDimensionID)
             {
-                playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, ConfigHandler.marioDimensionID, new MarioTeleporter(playerMP
-                        .mcServer.getWorld(ConfigHandler.marioDimensionID)));
+                playerMP.server.getPlayerList().transferPlayerToDimension(playerMP, ConfigHandler.marioDimensionID, new MarioTeleporter(playerMP
+                        .server.getWorld(ConfigHandler.marioDimensionID)));
             } else if(playerMP.dimension != 0)
             {
-                playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, 0, new MarioTeleporter(playerMP.mcServer.getWorld(0)));
+                playerMP.server.getPlayerList().transferPlayerToDimension(playerMP, 0, new MarioTeleporter(playerMP.server.getWorld(0)));
             }
         }
 
