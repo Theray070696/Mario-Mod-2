@@ -50,8 +50,8 @@ public class CraftingHandler
 
         if(!foundSeeds)
         {
-            addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockBeanstalk), "r", "r", "s", 'r', "sugarcane", 's', new ItemStack(Items
-                    .WHEAT_SEEDS)));
+            addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockBeanstalk), "r", "r", "s", 'r', "sugarcane", 's', new ItemStack
+                    (Items.WHEAT_SEEDS)));
         }
 
         // Functional items/blocks
@@ -69,19 +69,21 @@ public class CraftingHandler
 
         // Decorative blocks
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockGround, 8), "sss", "sss", "sss", 's', "stone"));
-        addShaped(new ItemStack(ModBlocks.marioBlockBrick, 16), "bb", "bb", 'b', new ItemStack(Blocks.BRICK_BLOCK));
+        addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockBrick, 16), "bb", "bb", 'b', new ItemStack(Blocks.BRICK_BLOCK)));
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockDecoration, 4), "www", "www", "www", 'w', "plankWood"));
-        addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockNoteBlock, 8), " n ", "ncn", " n ", 'n', new ItemStack(Blocks.NOTEBLOCK),
-                'c', "itemCoin"));
-        addShaped(new ItemStack(ModBlocks.marioBlockGroundUnderwater, 8), "ggg", "gwg", "ggg", 'g', new ItemStack(ModBlocks.marioBlockGround), 'w',
-                Items.WATER_BUCKET);
-        addShapeless(new ItemStack(ModBlocks.marioBlockGroundSnow), new ItemStack(ModBlocks.marioBlockGround), new ItemStack(Items.SNOWBALL));
-        addShaped(new ItemStack(ModBlocks.marioBlockCastleWall, 4), "bb", "bb", 'b', new ItemStack(ModBlocks.marioBlockCastleBrick));
+        addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockNoteBlock, 8), " n ", "ncn", " n ", 'n', new ItemStack(Blocks
+                .NOTEBLOCK), 'c', "itemCoin"));
+        addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockGroundUnderwater, 8), "ggg", "gwg", "ggg", 'g', new ItemStack
+                (ModBlocks.marioBlockGround), 'w', Items.WATER_BUCKET));
+        addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModBlocks.marioBlockGroundSnow), new ItemStack(ModBlocks.marioBlockGround), new
+                ItemStack(Items.SNOWBALL)));
+        addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockCastleWall, 4), "bb", "bb", 'b', new ItemStack(ModBlocks
+                .marioBlockCastleBrick)));
 
-        addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkSMB, 4), " g ", "gbg", " g ", 'g', "ingotGold", 'b', new
-                ItemStack(ModBlocks.marioBlockBrick)));
-        addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockInvisibleBlockEmptySMB, 4), "bgb", "gbg", "bgb", 'g', "ingotGold", 'b',
-                "blockGlass"));
+        addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkSMB, 4), " g ", "gbg", " g ", 'g', "ingotGold", 'b',
+                new ItemStack(ModBlocks.marioBlockBrick)));
+        addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockInvisibleBlockEmptySMB, 4), "bgb", "gbg", "bgb", 'g', "ingotGold",
+                'b', "blockGlass"));
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkUndergroundSMB, 4), " g ", "gbg", " g ", 'g',
                 "ingotGold", 'b', new ItemStack(ModBlocks.marioBlockBrickUnderground)));
         addRecipe(new ShapedOreRecipeMario(new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkCastleSMB, 4), " g ", "gbg", " g ", 'g', "ingotGold",
@@ -98,32 +100,32 @@ public class CraftingHandler
         addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModBlocks.marioBlockGroundUnderground), new ItemStack(ModBlocks
                 .marioBlockGroundUndergroundSMW), new ItemStack(ModItems.itemCoin)));
 
-        addShapeless(new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkSMB), new ItemStack(ModBlocks.marioBlockEmptyQuestionMark), new ItemStack
-                (ModItems.itemCoin));
-        addShapeless(new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkSMB), new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkSMB3), new ItemStack
-                (ModItems.itemCoin));
-        addShapeless(new ItemStack(ModBlocks.marioBlockInvisibleBlockEmptySMB), new ItemStack(ModBlocks.marioBlockInvisibleBlockEmpty), new ItemStack
-                (ModItems.itemCoin));
-        addShapeless(new ItemStack(ModBlocks.marioBlockInvisibleBlockEmptySMB), new ItemStack(ModBlocks.marioBlockInvisibleBlockEmptySMB3), new
-                ItemStack(ModItems.itemCoin));
+        addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkSMB), new ItemStack(ModBlocks
+                .marioBlockEmptyQuestionMark), new ItemStack(ModItems.itemCoin)));
+        addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkSMB), new ItemStack(ModBlocks
+                .marioBlockEmptyQuestionMarkSMB3), new ItemStack(ModItems.itemCoin)));
+        addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModBlocks.marioBlockInvisibleBlockEmptySMB), new ItemStack(ModBlocks
+                .marioBlockInvisibleBlockEmpty), new ItemStack(ModItems.itemCoin)));
+        addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModBlocks.marioBlockInvisibleBlockEmptySMB), new ItemStack(ModBlocks
+                .marioBlockInvisibleBlockEmptySMB3), new ItemStack(ModItems.itemCoin)));
 
-        addShapeless(new ItemStack(ModBlocks.marioBlockEmptyQuestionMark), new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkSMB), new ItemStack
-                (ModItems.itemCoin, 1, 1));
-        addShapeless(new ItemStack(ModBlocks.marioBlockEmptyQuestionMark), new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkSMB3), new ItemStack
-                (ModItems.itemCoin, 1, 1));
-        addShapeless(new ItemStack(ModBlocks.marioBlockInvisibleBlockEmpty), new ItemStack(ModBlocks.marioBlockInvisibleBlockEmptySMB), new ItemStack
-                (ModItems.itemCoin, 1, 1));
-        addShapeless(new ItemStack(ModBlocks.marioBlockInvisibleBlockEmpty), new ItemStack(ModBlocks.marioBlockInvisibleBlockEmptySMB3), new ItemStack
-                (ModItems.itemCoin, 1, 1));
+        addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModBlocks.marioBlockEmptyQuestionMark), new ItemStack(ModBlocks
+                .marioBlockEmptyQuestionMarkSMB), new ItemStack(ModItems.itemCoin, 1, 1)));
+        addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModBlocks.marioBlockEmptyQuestionMark), new ItemStack(ModBlocks
+                .marioBlockEmptyQuestionMarkSMB3), new ItemStack(ModItems.itemCoin, 1, 1)));
+        addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModBlocks.marioBlockInvisibleBlockEmpty), new ItemStack(ModBlocks
+                .marioBlockInvisibleBlockEmptySMB), new ItemStack(ModItems.itemCoin, 1, 1)));
+        addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModBlocks.marioBlockInvisibleBlockEmpty), new ItemStack(ModBlocks
+                .marioBlockInvisibleBlockEmptySMB3), new ItemStack(ModItems.itemCoin, 1, 1)));
 
-        addShapeless(new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkSMB3), new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkSMB), new ItemStack
-                (ModItems.itemCoin, 1, 2));
-        addShapeless(new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkSMB3), new ItemStack(ModBlocks.marioBlockEmptyQuestionMark), new ItemStack
-                (ModItems.itemCoin, 1, 2));
-        addShapeless(new ItemStack(ModBlocks.marioBlockInvisibleBlockEmptySMB3), new ItemStack(ModBlocks.marioBlockInvisibleBlockEmpty), new ItemStack
-                (ModItems.itemCoin, 1, 2));
-        addShapeless(new ItemStack(ModBlocks.marioBlockInvisibleBlockEmptySMB3), new ItemStack(ModBlocks.marioBlockInvisibleBlockEmptySMB), new
-                ItemStack(ModItems.itemCoin, 1, 2));
+        addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkSMB3), new ItemStack(ModBlocks
+                .marioBlockEmptyQuestionMarkSMB), new ItemStack(ModItems.itemCoin, 1, 2)));
+        addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModBlocks.marioBlockEmptyQuestionMarkSMB3), new ItemStack(ModBlocks
+                .marioBlockEmptyQuestionMark), new ItemStack(ModItems.itemCoin, 1, 2)));
+        addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModBlocks.marioBlockInvisibleBlockEmptySMB3), new ItemStack(ModBlocks
+                .marioBlockInvisibleBlockEmpty), new ItemStack(ModItems.itemCoin, 1, 2)));
+        addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModBlocks.marioBlockInvisibleBlockEmptySMB3), new ItemStack(ModBlocks
+                .marioBlockInvisibleBlockEmptySMB), new ItemStack(ModItems.itemCoin, 1, 2)));
     }
 
     public static void initSmeltingRecipes()
@@ -136,16 +138,6 @@ public class CraftingHandler
         GameRegistry.addSmelting(new ItemStack(ModBlocks.marioBlockDecoration), new ItemStack(ModBlocks.marioBlockUndergroundDecoration), 0.3f);
 
         GameRegistry.addSmelting(new ItemStack(ModBlocks.marioBlockBrickUnderground), new ItemStack(ModBlocks.marioBlockCastleBrick), 0.3f);
-    }
-
-    private static void addShaped(ItemStack output, Object... inputs)
-    {
-        MarioMakerCraftingManager.getInstance().addRecipe(output, inputs);
-    }
-
-    private static void addShapeless(ItemStack output, Object... inputs)
-    {
-        MarioMakerCraftingManager.getInstance().addShapelessRecipe(output, inputs);
     }
 
     private static void addRecipe(IMarioRecipe recipe)

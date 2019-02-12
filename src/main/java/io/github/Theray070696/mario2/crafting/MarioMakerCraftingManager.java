@@ -46,8 +46,9 @@ public class MarioMakerCraftingManager
     }
 
     /**
-     * Adds a shaped recipe to the recipe list.
+     * Use {@link io.github.Theray070696.mario2.crafting.ShapedOreRecipeMario} instead.
      */
+    @Deprecated
     public ShapedRecipeMario addRecipe(ItemStack stack, Object... recipeComponents)
     {
         String s = "";
@@ -118,8 +119,9 @@ public class MarioMakerCraftingManager
     }
 
     /**
-     * Adds a shapeless crafting recipe to the the game.
+     * Use {@link io.github.Theray070696.mario2.crafting.ShapelessOreRecipeMario} instead.
      */
+    @Deprecated
     public void addShapelessRecipe(ItemStack stack, Object... recipeComponents)
     {
         List<ItemStack> list = Lists.<ItemStack>newArrayList();

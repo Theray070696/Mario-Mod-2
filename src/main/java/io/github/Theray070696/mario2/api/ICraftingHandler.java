@@ -8,19 +8,15 @@ import net.minecraft.item.ItemStack;
 public interface ICraftingHandler
 {
     /**
-     * Adds a shaped recipe to the Mario Maker
-     *
-     * @param output Result of crafting
-     * @param inputs Same as {@link net.minecraft.item.crafting.ShapedRecipes} input
+     * Just use addShapedOreRecipe
      */
+    @Deprecated
     void addShaped(ItemStack output, Object... inputs);
 
     /**
-     * Adds a shapeless recipe to the Mario Maker
-     *
-     * @param output Result of crafting
-     * @param inputs Same as {@link net.minecraft.item.crafting.ShapelessRecipes}
+     * Just use addShapelessOreRecipe
      */
+    @Deprecated
     void addShapeless(ItemStack output, Object... inputs);
 
     /**

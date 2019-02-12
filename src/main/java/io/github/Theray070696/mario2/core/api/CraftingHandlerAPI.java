@@ -12,13 +12,13 @@ public class CraftingHandlerAPI implements ICraftingHandler
     @Override
     public void addShaped(ItemStack output, Object... inputs)
     {
-        MarioMakerCraftingManager.getInstance().addRecipe(output, inputs);
+        MarioMakerCraftingManager.getInstance().addRecipe(new ShapedOreRecipeMario(output, inputs));
     }
 
     @Override
     public void addShapeless(ItemStack output, Object... inputs)
     {
-        MarioMakerCraftingManager.getInstance().addShapelessRecipe(output, inputs);
+        MarioMakerCraftingManager.getInstance().addRecipe(new ShapelessOreRecipeMario(output, inputs));
     }
 
     @Override
