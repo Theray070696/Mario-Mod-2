@@ -2,6 +2,7 @@ package io.github.Theray070696.mario2.crafting;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import io.github.Theray070696.mario2.MarioMod2;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
@@ -51,6 +52,8 @@ public class MarioMakerCraftingManager
     @Deprecated
     public ShapedRecipeMario addRecipe(ItemStack stack, Object... recipeComponents)
     {
+        MarioMod2.INSTANCE.logger.warn("Non-ore recipes are deprecated and will be removed in a future build!");
+
         String s = "";
         int i = 0;
         int j = 0;
@@ -124,6 +127,8 @@ public class MarioMakerCraftingManager
     @Deprecated
     public void addShapelessRecipe(ItemStack stack, Object... recipeComponents)
     {
+        MarioMod2.INSTANCE.logger.warn("Non-ore recipes are deprecated and will be removed in a future build!");
+
         List<ItemStack> list = Lists.<ItemStack>newArrayList();
 
         for(Object object : recipeComponents)

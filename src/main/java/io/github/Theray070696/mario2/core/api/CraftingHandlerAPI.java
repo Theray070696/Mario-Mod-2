@@ -1,5 +1,6 @@
 package io.github.Theray070696.mario2.core.api;
 
+import io.github.Theray070696.mario2.MarioMod2;
 import io.github.Theray070696.mario2.api.ICraftingHandler;
 import io.github.Theray070696.mario2.crafting.*;
 import net.minecraft.item.ItemStack;
@@ -12,12 +13,14 @@ public class CraftingHandlerAPI implements ICraftingHandler
     @Override
     public void addShaped(ItemStack output, Object... inputs)
     {
+        MarioMod2.INSTANCE.logger.warn("Non-ore recipes are deprecated and will be removed in a future build!");
         MarioMakerCraftingManager.getInstance().addRecipe(new ShapedOreRecipeMario(output, inputs));
     }
 
     @Override
     public void addShapeless(ItemStack output, Object... inputs)
     {
+        MarioMod2.INSTANCE.logger.warn("Non-ore recipes are deprecated and will be removed in a future build!");
         MarioMakerCraftingManager.getInstance().addRecipe(new ShapelessOreRecipeMario(output, inputs));
     }
 
