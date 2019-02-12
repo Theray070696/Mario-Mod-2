@@ -15,7 +15,7 @@ import java.util.Map;
 
 /**
  * Created by Theray070696 on 3/31/2016.
- * Code from vanilla.
+ * Code from vanilla 1.10.2
  */
 public class MarioMakerCraftingManager
 {
