@@ -17,17 +17,23 @@ repositories {
   maven { // JEI
     url = "http://dvs1.progwml6.com/files/maven"
   }
+  maven { // CraftTweaker
+    url = "http://maven.blamejared.com/"
+  }
 }
 
 dependencies {
+  // Compile against CTM, the JEI API, CraftTweaker and MTLib
+  deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.14.519"
   deobfCompile "team.chisel.ctm:CTM:MC1.12.2-0.3.3.22"
-  // compile against the JEI API
   deobfCompile "mezz.jei:jei_1.12.2:4.14.4.264:api"
-  // at runtime, use the full JEI jar
+  deobfCompile "com.blamejared:MTLib:3.0.4.8"
+  // At runtime, use the full JEI jar
   runtime "mezz.jei:jei_1.12.2:4.14.4.264"
+  
 }
 
-version = "3.1.0.0"
+version = "3.1.1.0"
 group = "io.github.Theray070696.mario2" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "mario2"
 

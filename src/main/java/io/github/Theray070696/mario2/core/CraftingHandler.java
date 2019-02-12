@@ -19,6 +19,8 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
  */
 public class CraftingHandler
 {
+    public static boolean zsCalledRemoveAll = false;
+
     public static void initCraftingRecipes()
     {
         ForgeRegistries.RECIPES.register(new ShapedOreRecipe(new ResourceLocation("mario_maker"), new ItemStack(ModBlocks.marioBlockMarioMaker),
@@ -31,6 +33,11 @@ public class CraftingHandler
 
     public static void initMarioMakerRecipes()
     {
+        if(zsCalledRemoveAll)
+        {
+            return;
+        }
+
         addRecipe(new ShapelessOreRecipeMario(new ItemStack(Items.GOLD_NUGGET), "itemCoin"));
         addRecipe(new ShapelessOreRecipeMario(new ItemStack(ModItems.itemCoin, 2), "ingotGold"));
 

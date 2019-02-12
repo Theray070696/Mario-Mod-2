@@ -1,6 +1,7 @@
 package io.github.Theray070696.mario2.plugins;
 
 import io.github.Theray070696.mario2.MarioMod2;
+import io.github.Theray070696.mario2.plugins.crafttweaker.CraftTweakerPlugin;
 import net.minecraftforge.fml.common.Loader;
 
 import java.util.LinkedList;
@@ -92,7 +93,7 @@ public class PluginHandler
 
     public void registerBuiltInPlugins()
     {
-
+        registerPlugin(new CraftTweakerPlugin());
     }
 
     private enum Phase
