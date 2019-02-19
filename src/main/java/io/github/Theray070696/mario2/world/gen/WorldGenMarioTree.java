@@ -22,7 +22,6 @@ public class WorldGenMarioTree extends WorldGenerator
     public boolean generate(World world, Random rand, BlockPos pos)
     {
         int height = rand.nextInt(3) + 4;
-        boolean flag = true;
 
         if(pos.getY() >= 1 && pos.getY() + height + 1 <= world.getHeight())
         {
@@ -42,78 +41,72 @@ public class WorldGenMarioTree extends WorldGenerator
 
                 BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
 
-                for(int l = pos.getX() - k; l <= pos.getX() + k && flag; ++l)
+                for(int l = pos.getX() - k; l <= pos.getX() + k; ++l)
                 {
-                    for(int i1 = pos.getZ() - k; i1 <= pos.getZ() + k && flag; ++i1)
+                    for(int i1 = pos.getZ() - k; i1 <= pos.getZ() + k; ++i1)
                     {
                         if(j >= 0 && j < world.getHeight())
                         {
                             if(!isReplaceable(world, mutableBlockPos.setPos(l, j, i1)))
                             {
-                                flag = false;
+                                return false;
                             }
                         } else
                         {
-                            flag = false;
+                            return false;
                         }
                     }
                 }
             }
 
-            if(!flag)
-            {
-                return false;
-            } else
-            {
-                IBlockState state = world.getBlockState(pos.down());
+            IBlockState state = world.getBlockState(pos.down());
 
-                if(state.getBlock() instanceof BlockMario && ((BlockMario) state.getBlock()).isGround())
+            if(state.getBlock() instanceof BlockMario && ((BlockMario) state.getBlock()).isGround())
+            {
+                for(int i3 = pos.getY() - 3 + height; i3 <= pos.getY() + height; ++i3)
                 {
-                    for(int i3 = pos.getY() - 3 + height; i3 <= pos.getY() + height; ++i3)
+                    int i4 = i3 - (pos.getY() + height);
+                    int j1 = 1 - i4 / 2;
+
+                    for(int k1 = pos.getX() - j1; k1 <= pos.getX() + j1; ++k1)
                     {
-                        int i4 = i3 - (pos.getY() + height);
-                        int j1 = 1 - i4 / 2;
+                        int l1 = k1 - pos.getX();
 
-                        for(int k1 = pos.getX() - j1; k1 <= pos.getX() + j1; ++k1)
+                        for(int i2 = pos.getZ() - j1; i2 <= pos.getZ() + j1; ++i2)
                         {
-                            int l1 = k1 - pos.getX();
+                            int j2 = i2 - pos.getZ();
 
-                            for(int i2 = pos.getZ() - j1; i2 <= pos.getZ() + j1; ++i2)
+                            if(Math.abs(l1) != j1 || Math.abs(j2) != j1 || rand.nextInt(2) != 0 && i4 != 0)
                             {
-                                int j2 = i2 - pos.getZ();
+                                BlockPos blockpos = new BlockPos(k1, i3, i2);
+                                state = world.getBlockState(blockpos);
 
-                                if(Math.abs(l1) != j1 || Math.abs(j2) != j1 || rand.nextInt(2) != 0 && i4 != 0)
+                                if(state.getBlock().isAir(state, world, blockpos) || state.getBlock().isLeaves(state, world, blockpos) ||
+                                        state.getMaterial() == Material.VINE)
                                 {
-                                    BlockPos blockpos = new BlockPos(k1, i3, i2);
-                                    state = world.getBlockState(blockpos);
-
-                                    if(state.getBlock().isAir(state, world, blockpos) || state.getBlock().isLeaves(state, world, blockpos) ||
-                                            state.getMaterial() == Material.VINE)
-                                    {
-                                        this.setBlockAndNotifyAdequately(world, blockpos, ModBlocks.marioBlockLeaves.getDefaultState());
-                                    }
+                                    this.setBlockAndNotifyAdequately(world, blockpos, ModBlocks.marioBlockLeaves.getDefaultState());
                                 }
                             }
                         }
                     }
-
-                    for(int j3 = 0; j3 < height; ++j3)
-                    {
-                        BlockPos upN = pos.up(j3);
-                        state = world.getBlockState(upN);
-
-                        if(state.getBlock().isAir(state, world, upN) || state.getBlock().isLeaves(state, world, upN) || state.getMaterial() ==
-                                Material.VINE)
-                        {
-                            this.setBlockAndNotifyAdequately(world, pos.up(j3), ModBlocks.marioBlockLog.getDefaultState());
-                        }
-                    }
-
-                    return true;
-                } else
-                {
-                    return false;
                 }
+
+                for(int j3 = 0; j3 < height; ++j3)
+                {
+                    BlockPos upN = pos.up(j3);
+                    state = world.getBlockState(upN);
+
+                    if(state.getBlock().isAir(state, world, upN) || state.getBlock().isLeaves(state, world, upN) || state.getMaterial() ==
+                            Material.VINE)
+                    {
+                        this.setBlockAndNotifyAdequately(world, pos.up(j3), ModBlocks.marioBlockLog.getDefaultState());
+                    }
+                }
+
+                return true;
+            } else
+            {
+                return false;
             }
         } else
         {
