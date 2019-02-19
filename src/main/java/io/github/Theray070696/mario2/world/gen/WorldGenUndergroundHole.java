@@ -51,32 +51,34 @@ public class WorldGenUndergroundHole extends WorldGenerator
                             if(b instanceof BlockLiquid || b instanceof BlockFluidBase)
                             {
                                 numFluidBlocks++;
+
+                                if(numFluidBlocks > 4)
+                                {
+                                    return false;
+                                }
                             }
                         }
                     }
                 }
 
-                if(numFluidBlocks <= 4)
+                PlacementSettings placementsettings = new PlacementSettings().setMirror(Mirror.NONE).setRotation(Rotation.NONE).setIgnoreEntities
+                        (false).setChunk(null).setReplacedBlock(null).setIgnoreStructureBlock(false);
+
+                template.addBlocksToWorld(world, pos, placementsettings);
+
+                Block block = world.getBlockState(pos.add(3, 3, 3)).getBlock();
+                if(block instanceof BlockQuestionMarkBase)
                 {
-                    PlacementSettings placementsettings = new PlacementSettings().setMirror(Mirror.NONE).setRotation(Rotation.NONE)
-                            .setIgnoreEntities(false).setChunk(null).setReplacedBlock(null).setIgnoreStructureBlock(false);
-
-                    template.addBlocksToWorld(world, pos, placementsettings);
-
-                    Block block = world.getBlockState(pos.add(3, 3, 3)).getBlock();
-                    if(block instanceof BlockQuestionMarkBase)
-                    {
-                        world.setBlockState(pos.add(3, 3, 3), ModBlocks.marioBlockQuestionMarkUndergroundSMB.getDefaultState());
-                        WorldGenQuestionMark.onQuestionMarkGenerated(world, pos.add(3, 3, 3), rand);
-                    }
-
-                    if(ConfigHandler.developerModeEnabled)
-                    {
-                        MarioDevStats.undergroundHolesGenerated++;
-                    }
-
-                    return true;
+                    world.setBlockState(pos.add(3, 3, 3), ModBlocks.marioBlockQuestionMarkUndergroundSMB.getDefaultState());
+                    WorldGenQuestionMark.onQuestionMarkGenerated(world, pos.add(3, 3, 3), rand);
                 }
+
+                if(ConfigHandler.developerModeEnabled)
+                {
+                    MarioDevStats.undergroundHolesGenerated++;
+                }
+
+                return true;
             }
         }
 
