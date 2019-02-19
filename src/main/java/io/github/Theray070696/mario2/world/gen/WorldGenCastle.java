@@ -3,7 +3,6 @@ package io.github.Theray070696.mario2.world.gen;
 import io.github.Theray070696.mario2.configuration.ConfigHandler;
 import io.github.Theray070696.mario2.dev.MarioDevStats;
 import io.github.Theray070696.mario2.lib.ModInfo;
-import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Mirror;
@@ -16,7 +15,6 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import net.minecraftforge.fluids.BlockFluidBase;
 
 import java.util.Random;
 
@@ -55,9 +53,8 @@ public class WorldGenCastle extends WorldGenerator
                             break;
                         }
 
-                        Block b = world.getBlockState(pos.add(x, -1, z)).getBlock();
-                        if(b instanceof BlockLiquid || b instanceof BlockFluidBase || b instanceof BlockAir || b instanceof BlockSlab || b
-                                instanceof BlockSnow)
+                        BlockPos checkPos = pos.add(x, -1, z);
+                        if(world.isAirBlock(checkPos) || world.getBlockState(checkPos).isFullBlock())
                         {
                             flag = false;
                         }
