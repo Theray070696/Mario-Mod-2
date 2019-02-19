@@ -46,6 +46,8 @@ public class BlockMarioLeaves extends BlockMario implements IShearable
         this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, true).withProperty(DECAYABLE, true));
     }
 
+    // TODO: Possibly add a Yoshi fruit that can grow on the trees.
+
     public void breakBlock(World world, BlockPos pos, IBlockState state)
     {
         int x = pos.getX();
