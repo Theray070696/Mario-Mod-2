@@ -31,6 +31,7 @@ public abstract class CommonProxy implements IProxy
     @Override
     public void preInit(FMLPreInitializationEvent event)
     {
+        // TODO: White squid, the Blooper. Idea from Bullseye55
         EntityRegistry.registerModEntity(new ResourceLocation(ModInfo.MOD_ID, "goomba"), EntityGoomba.class, ModInfo.MOD_ID + ":goomba", 0, MarioMod2.INSTANCE, 128, 1, false);
         EntityRegistry.registerModEntity(new ResourceLocation(ModInfo.MOD_ID, "koopa"), EntityKoopa.class, ModInfo.MOD_ID + ":koopa", 1, MarioMod2.INSTANCE, 128, 1, false);
         EntityRegistry.registerModEntity(new ResourceLocation(ModInfo.MOD_ID, "fireball"), EntityFireball.class, ModInfo.MOD_ID + ":fireball", 2, MarioMod2.INSTANCE, 64, 1, true);

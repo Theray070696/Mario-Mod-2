@@ -47,6 +47,7 @@ public class BlockMarioLeaves extends BlockMario implements IShearable
     }
 
     // TODO: Possibly add a Yoshi fruit that can grow on the trees.
+    // TODO: Extending the above idea, maybe make them combinable with wheat to make Yoshi Cookies.
 
     public void breakBlock(World world, BlockPos pos, IBlockState state)
     {

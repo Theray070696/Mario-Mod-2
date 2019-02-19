@@ -21,6 +21,9 @@ public class ModBiomes
 
     public static void initBiomes()
     {
+        // TODO: Really dense forest biome with close fog. The Forest of Illusion. Idea from Bullseye55. Use EntityViewRenderEvent.FogDensity to
+        // control fog.
+
         ForgeRegistries.BIOMES.register(biomeMarioPlains);
         BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(biomeMarioPlains, 2));
         BiomeManager.addSpawnBiome(biomeMarioPlains);
