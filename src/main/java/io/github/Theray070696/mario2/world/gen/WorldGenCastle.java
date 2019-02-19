@@ -37,44 +37,30 @@ public class WorldGenCastle extends WorldGenerator
             {
                 IBlockState blockState = world.getBlockState(pos);
                 world.notifyBlockUpdate(pos, blockState, blockState, 3);
-                boolean flag = true;
 
                 for(int x = 0; x < template.getSize().getX(); x++)
                 {
-                    if(!flag)
-                    {
-                        break;
-                    }
-
                     for(int z = 0; z < template.getSize().getZ(); z++)
                     {
-                        if(!flag)
-                        {
-                            break;
-                        }
-
                         BlockPos checkPos = pos.add(x, -1, z);
                         if(world.isAirBlock(checkPos) || world.getBlockState(checkPos).isFullBlock())
                         {
-                            flag = false;
+                            return false;
                         }
                     }
                 }
 
-                if(flag)
+                PlacementSettings placementsettings = new PlacementSettings().setMirror(Mirror.NONE).setRotation(Rotation.values()[rand.nextInt(4)
+                        ]).setIgnoreEntities(false).setChunk(null).setReplacedBlock(null).setIgnoreStructureBlock(false);
+
+                template.addBlocksToWorld(world, pos.down(), placementsettings);
+
+                if(ConfigHandler.developerModeEnabled)
                 {
-                    PlacementSettings placementsettings = new PlacementSettings().setMirror(Mirror.NONE).setRotation(Rotation.values()[rand.nextInt
-                            (4)]).setIgnoreEntities(false).setChunk(null).setReplacedBlock(null).setIgnoreStructureBlock(false);
-
-                    template.addBlocksToWorld(world, pos.down(), placementsettings);
-
-                    if(ConfigHandler.developerModeEnabled)
-                    {
-                        MarioDevStats.castlesGenerated++;
-                    }
-
-                    return true;
+                    MarioDevStats.castlesGenerated++;
                 }
+
+                return true;
             }
         }
 
