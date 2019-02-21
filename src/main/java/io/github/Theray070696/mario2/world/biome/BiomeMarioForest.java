@@ -1,7 +1,6 @@
 package io.github.Theray070696.mario2.world.biome;
 
-import io.github.Theray070696.mario2.block.ModBlocks;
-import io.github.Theray070696.mario2.world.decorator.MarioForestBiomeDecorator;
+import io.github.Theray070696.mario2.world.decorator.BiomeDecoratorMarioForest;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
@@ -14,15 +13,19 @@ public class BiomeMarioForest extends BiomeMario
     public BiomeMarioForest(String registryName, BiomeProperties properties)
     {
         super(registryName, properties);
-        this.topBlock = ModBlocks.marioBlockGroundSMW.getDefaultState();
-        this.fillerBlock = ModBlocks.marioBlockGroundSMW.getDefaultState();
+
+        this.decorator.treesPerChunk = 10;
+        this.decorator.sandPatchesPerChunk = 0;
+        this.decorator.gravelPatchesPerChunk = 0;
+        this.decorator.clayPerChunk = 0;
+
         this.spawnableCreatureList.add(new Biome.SpawnListEntry(EntityWolf.class, 5, 4, 4));
     }
 
     @Override
     public BiomeDecorator createBiomeDecorator()
     {
-        return getModdedBiomeDecorator(new MarioForestBiomeDecorator());
+        return getModdedBiomeDecorator(new BiomeDecoratorMarioForest());
     }
 
     @Override

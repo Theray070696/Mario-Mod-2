@@ -21,7 +21,7 @@ public class WorldGenMarioTree extends WorldGenerator
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
-        int height = rand.nextInt(3) + 4;
+        int height = rand.nextInt(4) + 4;
 
         if(pos.getY() >= 1 && pos.getY() + height + 1 <= world.getHeight())
         {

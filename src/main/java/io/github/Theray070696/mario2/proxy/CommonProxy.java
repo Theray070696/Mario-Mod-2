@@ -55,6 +55,7 @@ public abstract class CommonProxy implements IProxy
         biomes.remove(ModBiomes.biomeMarioPlains);
         biomes.remove(ModBiomes.biomeMarioForest);
         biomes.remove(ModBiomes.biomeMarioForestHills);
+        biomes.remove(ModBiomes.biomeForestOfIllusion);
 
         EntityRegistry.addSpawn(EntityGoomba.class, 100, 2, 5, EnumCreatureType.MONSTER, biomes.toArray(new Biome[biomes.size()]));
         EntityRegistry.addSpawn(EntityKoopa.class, 100, 2, 5, EnumCreatureType.MONSTER, biomes.toArray(new Biome[biomes.size()]));

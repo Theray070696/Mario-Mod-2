@@ -22,6 +22,7 @@ public class GenLayerMarioBiome extends GenLayerMario
         this.biomesToGenerate.add(ModBiomes.biomeMarioPlains);
         this.biomesToGenerate.add(ModBiomes.biomeMarioForest);
         this.biomesToGenerate.add(ModBiomes.biomeMarioForestHills);
+        this.biomesToGenerate.add(ModBiomes.biomeForestOfIllusion);
 
         this.totalWeight = this.biomesToGenerate.getTotalWeight();
         this.parent = parentGenLayer;

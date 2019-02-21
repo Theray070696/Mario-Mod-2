@@ -17,7 +17,7 @@ import java.util.List;
 public class BiomeProviderMario extends BiomeProvider
 {
     private static final List<Biome> allowedBiomes = Arrays.asList(ModBiomes.biomeMarioPlains, ModBiomes.biomeMarioForest, ModBiomes
-            .biomeMarioForestHills);
+            .biomeMarioForestHills, ModBiomes.biomeForestOfIllusion);
 
     public BiomeProviderMario(WorldInfo info)
     {

@@ -1,13 +1,13 @@
 package io.github.Theray070696.mario2.world.decorator;
 
 /**
- * Created by Theray070696 on 8/25/2017
+ * Created by Theray070696 on 8/22/2017
  */
-public class MarioForestBiomeDecorator extends BiomeDecoratorMario
+public class BiomeDecoratorMarioPlains extends BiomeDecoratorMario
 {
-    public MarioForestBiomeDecorator()
+    public BiomeDecoratorMarioPlains()
     {
-        this.treesPerChunk = 10;
+        this.treesPerChunk = 0;
         this.flowersPerChunk = 0;
         this.grassPerChunk = 0;
         this.deadBushPerChunk = 0;

@@ -1,7 +1,6 @@
 package io.github.Theray070696.mario2.world.biome;
 
-import io.github.Theray070696.mario2.block.ModBlocks;
-import io.github.Theray070696.mario2.world.decorator.MarioPlainsBiomeDecorator;
+import io.github.Theray070696.mario2.world.decorator.BiomeDecoratorMarioPlains;
 import net.minecraft.world.biome.BiomeDecorator;
 
 /**
@@ -13,14 +12,17 @@ public class BiomeMarioPlains extends BiomeMario
     {
         super("biomemarioplains", new BiomeProperties("Mario Plains").setBaseBiome("Plains").setBaseHeight(0.125F).setHeightVariation(0.05F)
                 .setTemperature(0.8F).setRainfall(0.4F));
-        this.topBlock = ModBlocks.marioBlockGroundSMW.getDefaultState();
-        this.fillerBlock = ModBlocks.marioBlockGroundSMW.getDefaultState();
+
+        this.decorator.treesPerChunk = 0;
+        this.decorator.sandPatchesPerChunk = 0;
+        this.decorator.gravelPatchesPerChunk = 0;
+        this.decorator.clayPerChunk = 0;
     }
 
     @Override
     public BiomeDecorator createBiomeDecorator()
     {
-        return getModdedBiomeDecorator(new MarioPlainsBiomeDecorator());
+        return getModdedBiomeDecorator(new BiomeDecoratorMarioPlains());
     }
 
     @Override
