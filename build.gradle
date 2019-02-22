@@ -33,7 +33,7 @@ dependencies {
   
 }
 
-version = "3.1.1.0"
+version = "3.1.2.0"
 group = "io.github.Theray070696.mario2" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "mario2"
 
