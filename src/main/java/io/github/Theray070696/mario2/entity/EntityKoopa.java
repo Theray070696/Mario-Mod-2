@@ -6,6 +6,7 @@ import io.github.Theray070696.mario2.world.provider.WorldProviderMario;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -83,6 +84,14 @@ public class EntityKoopa extends EntityMob
                             this.entityDropItem(new ItemStack(ModItems.itemCoin, rand.nextInt(3), rand.nextInt(3)), 0.0F);
                         }
                     }
+                }
+            } else if((cause.getTrueSource() instanceof EntityTameable && ((EntityTameable) cause.getTrueSource()).isTamed()))
+            {
+                Random rand = new Random();
+                int amount = rand.nextInt(3);
+                if(amount > 0)
+                {
+                    this.entityDropItem(new ItemStack(ModItems.itemCoin, rand.nextInt(3), rand.nextInt(3)), 0.0F);
                 }
             }
         }

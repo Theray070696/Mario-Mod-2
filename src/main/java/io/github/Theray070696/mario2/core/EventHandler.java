@@ -17,6 +17,7 @@ import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntityWitherSkeleton;
+import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -89,7 +90,8 @@ public class EventHandler
     {
         EntityPlayerMP player = (EntityPlayerMP) event.player;
 
-        if(!MinecraftForge.EVENT_BUS.post(new PlayMarioSoundEvent(player, PlayMarioSoundEvent.SoundType.JOIN_SOUND)) && ConfigHandler.enableJoinLeaveSounds)
+        if(!MinecraftForge.EVENT_BUS.post(new PlayMarioSoundEvent(player, PlayMarioSoundEvent.SoundType.JOIN_SOUND)) && ConfigHandler
+                .enableJoinLeaveSounds)
         {
             RayCoreAPI.playSoundToAll("mario2:player.join");
         }
@@ -120,7 +122,8 @@ public class EventHandler
     @SubscribeEvent
     public void playerLeaveEvent(PlayerEvent.PlayerLoggedOutEvent event)
     {
-        if(!MinecraftForge.EVENT_BUS.post(new PlayMarioSoundEvent(event.player, PlayMarioSoundEvent.SoundType.LEAVE_SOUND)) && ConfigHandler.enableJoinLeaveSounds)
+        if(!MinecraftForge.EVENT_BUS.post(new PlayMarioSoundEvent(event.player, PlayMarioSoundEvent.SoundType.LEAVE_SOUND)) && ConfigHandler
+                .enableJoinLeaveSounds)
         {
             RayCoreAPI.playSoundToAll("mario2:player.leave");
         }
@@ -163,8 +166,9 @@ public class EventHandler
             return;
         }
 
-        if(event.getSource().getTrueSource() instanceof EntityPlayer && !(event.getSource().getTrueSource() instanceof FakePlayer)) // If
-        // the cause of damage was a player, but NOT a fake player...
+        if((event.getSource().getTrueSource() instanceof EntityPlayer && !(event.getSource().getTrueSource() instanceof FakePlayer)) || (event
+                .getSource().getTrueSource() instanceof EntityTameable && ((EntityTameable) event.getSource().getTrueSource()).isTamed())) // If
+            // the cause of damage was a player, but NOT a fake player, OR the cause was a tameable entity AND that entity was tamed...
         {
             Entity entity = event.getEntity(); // Get entity that is dropping item(s).
             World world = entity.getEntityWorld(); // Get the world the entity is in.
