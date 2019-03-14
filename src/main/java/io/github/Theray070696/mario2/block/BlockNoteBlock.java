@@ -2,6 +2,7 @@ package io.github.Theray070696.mario2.block;
 
 import io.github.Theray070696.mario2.audio.SoundHandler;
 import io.github.Theray070696.mario2.core.EventHandler;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -21,6 +22,8 @@ public class BlockNoteBlock extends BlockMario
     public BlockNoteBlock()
     {
         super(Material.WOOD);
+
+        this.setSoundType(SoundType.WOOD);
 
         this.setTranslationKey("marioBlockNoteBlock");
     }
