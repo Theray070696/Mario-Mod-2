@@ -53,6 +53,11 @@ public class EntityGoomba extends EntityMob
         return SoundHandler.goombaDeath;
     }
 
+    protected SoundEvent getStepSound()
+    {
+        return SoundHandler.goombaStep;
+    }
+
     protected float getSoundVolume()
     {
         return 0.4F;

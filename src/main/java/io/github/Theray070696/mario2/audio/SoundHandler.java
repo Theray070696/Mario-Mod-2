@@ -42,8 +42,6 @@ public class SoundHandler
     public static SoundEvent smwEmptyBlockHit;
     public static SoundEvent smwBlockHitPowerup;
 
-    public static SoundEvent diamonds;
-
     // Join sound
     public static SoundEvent join;
 
@@ -58,6 +56,7 @@ public class SoundHandler
 
     // Entities
     public static SoundEvent goombaDeath;
+    public static SoundEvent goombaStep;
 
     public static void init()
     {
@@ -89,8 +88,6 @@ public class SoundHandler
         smwEmptyBlockHit = register("block.smwEmptyBlockHit");
         smwBlockHitPowerup = register("block.smwBlockHitPowerup");
 
-        diamonds = register("player.diamonds");
-
         // Join Sound
         join = register("player.join");
 
@@ -105,6 +102,7 @@ public class SoundHandler
 
         // Entities
         goombaDeath = register("entity.goomba.death");
+        goombaStep = register("entity.goomba.step");
     }
 
     public static SoundEvent register(String name)

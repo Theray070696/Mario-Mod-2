@@ -23,15 +23,6 @@
       "mario2:player/death4"
     ]
   },
-  "player.diamonds": {
-    "category": "neutral",
-    "sounds": [
-      {
-        "name": "mario2:player/diamonds",
-        "stream": true
-      }
-    ]
-  },
   "item.starman": {
     "category": "neutral",
     "sounds": [
@@ -162,6 +153,12 @@
     "category": "hostile",
     "sounds": [
       "mario2:entity/goomba/death"
+    ]
+  },
+  "entity.goomba.step": {
+    "category": "hostile",
+    "sounds": [
+      "mario2:entity/goomba/step"
     ]
   },
   "records.smbUnderwater": {
