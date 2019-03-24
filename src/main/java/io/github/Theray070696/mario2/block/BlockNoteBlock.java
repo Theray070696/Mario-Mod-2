@@ -7,6 +7,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -31,13 +32,13 @@ public class BlockNoteBlock extends BlockMario
     @Override
     public void onLanded(World world, Entity entity)
     {
-        entity.fallDistance = 0f;
-
-        if(entity instanceof EntityXPOrb)
+        if(entity instanceof EntityXPOrb || entity instanceof EntityItem)
         {
             super.onLanded(world, entity);
             return;
         }
+
+        entity.fallDistance = 0f;
 
         if(entity.motionY < 0f && !entity.isSneaking())
         {
