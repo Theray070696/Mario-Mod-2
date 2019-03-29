@@ -112,14 +112,17 @@ public class ContainerMarioMaker extends Container
 
             if(slotID == 0)
             {
-                itemStack1.getItem().onCreated(itemStack1, this.world, entityPlayer);
-
-                if(!this.mergeItemStack(itemStack1, 10, 46, true))
+                if(slot.canTakeStack(entityPlayer))
                 {
-                    return ItemStack.EMPTY;
-                }
+                    itemStack1.getItem().onCreated(itemStack1, this.world, entityPlayer);
 
-                slot.onSlotChange(itemStack1, itemStack);
+                    if(!this.mergeItemStack(itemStack1, 10, 46, true))
+                    {
+                        return ItemStack.EMPTY;
+                    }
+
+                    slot.onSlotChange(itemStack1, itemStack);
+                }
             } else if(slotID >= 10 && slotID < 37)
             {
                 if(!this.mergeItemStack(itemStack1, 37, 46, false))
@@ -152,7 +155,7 @@ public class ContainerMarioMaker extends Container
 
             ItemStack itemStack2 = slot.onTake(entityPlayer, itemStack1);
 
-            if(slotID == 0)
+            if(slotID == 0 && slot.canTakeStack(entityPlayer))
             {
                 entityPlayer.dropItem(itemStack2, false);
             }
