@@ -11,7 +11,6 @@ import net.minecraftforge.oredict.OreDictionary;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Theray070696 on 4/13/2017.
@@ -138,36 +137,6 @@ public class ShapedOreRecipeMario implements IMarioRecipe
         for(char chr : shape.toCharArray())
         {
             input[x++] = itemMap.get(chr);
-        }
-    }
-
-    ShapedOreRecipeMario(ShapedRecipeMario recipe, Map<ItemStack, String> replacements)
-    {
-        output = recipe.getRecipeOutput();
-        recipeWidth = recipe.recipeWidth;
-        recipeHeight = recipe.recipeHeight;
-
-        input = new Object[recipe.recipeItems.length];
-
-        for(int i = 0; i < input.length; i++)
-        {
-            ItemStack ingredient = recipe.recipeItems[i];
-
-            if(ingredient.isEmpty())
-            {
-                continue;
-            }
-
-            input[i] = recipe.recipeItems[i];
-
-            for(Map.Entry<ItemStack, String> replace : replacements.entrySet())
-            {
-                if(OreDictionary.itemMatches(replace.getKey(), ingredient, true))
-                {
-                    input[i] = OreDictionary.getOres(replace.getValue());
-                    break;
-                }
-            }
         }
     }
 

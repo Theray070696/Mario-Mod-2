@@ -11,7 +11,6 @@ import net.minecraftforge.oredict.OreDictionary;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Theray070696 on 4/13/2017.
@@ -59,25 +58,6 @@ public class ShapelessOreRecipeMario implements IMarioRecipe
                 ret += output;
                 throw new RuntimeException(ret);
             }
-        }
-    }
-
-    ShapelessOreRecipeMario(ShapelessRecipeMario recipe, Map<ItemStack, String> replacements)
-    {
-        output = recipe.getRecipeOutput();
-
-        for(ItemStack ingredient : recipe.recipeItems)
-        {
-            Object finalObj = ingredient;
-            for(Map.Entry<ItemStack, String> replace : replacements.entrySet())
-            {
-                if(OreDictionary.itemMatches(replace.getKey(), ingredient, false))
-                {
-                    finalObj = OreDictionary.getOres(replace.getValue());
-                    break;
-                }
-            }
-            input.add(finalObj);
         }
     }
 

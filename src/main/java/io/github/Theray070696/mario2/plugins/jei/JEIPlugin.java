@@ -40,8 +40,6 @@ public class JEIPlugin implements IModPlugin
         registry.handleRecipes(ShapelessCoinRecipe.class, recipe -> new ShapelessCoinRecipeWrapper(jeiHelpers, recipe), "Mario Maker");
         registry.handleRecipes(ShapedOreRecipeMario.class, recipe -> new ShapedOreRecipeWrapper(jeiHelpers, recipe), "Mario Maker");
         registry.handleRecipes(ShapelessOreRecipeMario.class, recipe -> new ShapelessOreRecipeWrapper(jeiHelpers, recipe), "Mario Maker");
-        registry.handleRecipes(ShapedRecipeMario.class, recipe -> new ShapedRecipesWrapper(recipe), "Mario Maker");
-        registry.handleRecipes(ShapelessRecipeMario.class, recipe -> new ShapelessRecipesWrapper(jeiHelpers.getGuiHelper(), recipe), "Mario Maker");
 
         registry.addRecipeClickArea(GuiMarioMaker.class, 88, 32, 28, 23, "Mario Maker");
 

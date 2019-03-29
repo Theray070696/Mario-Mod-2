@@ -98,8 +98,8 @@ public class MarioMakerCT2Handler
             {
                 for(IItemStack output : shapedRecipesToRemove)
                 {
-                    if((recipeList.get(i) instanceof ShapedRecipeMario || (recipeList.get(i) instanceof ShapedOreRecipeMario && !(recipeList.get(i)
-                            instanceof ICoinRecipe))) && recipeList.get(i).getRecipeOutput().isItemEqual(CraftTweakerMC.getItemStack(output)))
+                    if((recipeList.get(i) instanceof ShapedOreRecipeMario && !(recipeList.get(i) instanceof ICoinRecipe)) && recipeList.get(i)
+                            .getRecipeOutput().isItemEqual(CraftTweakerMC.getItemStack(output)))
                     {
                         recipeList.remove(i);
                     } else
@@ -142,8 +142,8 @@ public class MarioMakerCT2Handler
             {
                 for(IItemStack output : shapelessRecipesToRemove)
                 {
-                    if((recipeList.get(i) instanceof ShapelessRecipeMario || (recipeList.get(i) instanceof ShapelessOreRecipeMario && !(recipeList
-                            .get(i) instanceof ICoinRecipe))) && recipeList.get(i).getRecipeOutput().isItemEqual(CraftTweakerMC.getItemStack(output)))
+                    if((recipeList.get(i) instanceof ShapelessOreRecipeMario && !(recipeList.get(i) instanceof ICoinRecipe)) && recipeList.get(i)
+                            .getRecipeOutput().isItemEqual(CraftTweakerMC.getItemStack(output)))
                     {
                         recipeList.remove(i);
                     } else

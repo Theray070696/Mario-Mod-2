@@ -8,18 +8,6 @@ import net.minecraft.item.ItemStack;
 public interface ICraftingHandler
 {
     /**
-     * Just use addShapedOreRecipe
-     */
-    @Deprecated
-    void addShaped(ItemStack output, Object... inputs);
-
-    /**
-     * Just use addShapelessOreRecipe
-     */
-    @Deprecated
-    void addShapeless(ItemStack output, Object... inputs);
-
-    /**
      * Adds a shaped oredict recipe to the Mario Maker
      *
      * @param output Result of crafting

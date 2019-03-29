@@ -1,17 +1,12 @@
 package io.github.Theray070696.mario2.crafting;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import io.github.Theray070696.mario2.MarioMod2;
-import net.minecraft.block.Block;
 import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Theray070696 on 3/31/2016.
@@ -31,9 +26,9 @@ public class MarioMakerCraftingManager
         {
             public int compare(IMarioRecipe recipe1, IMarioRecipe recipe2)
             {
-                return recipe1 instanceof ShapelessRecipeMario && recipe2 instanceof ShapedRecipeMario ? 1 : (recipe2 instanceof
-                        ShapelessRecipeMario && recipe1 instanceof ShapedRecipeMario ? -1 : (recipe2.getRecipeSize() < recipe1.getRecipeSize() ? -1
-                        : (recipe2.getRecipeSize() > recipe1.getRecipeSize() ? 1 : 0)));
+                return recipe1 instanceof ShapelessOreRecipeMario && recipe2 instanceof ShapedOreRecipeMario ? 1 : (recipe2 instanceof
+                        ShapelessOreRecipeMario && recipe1 instanceof ShapedOreRecipeMario ? -1 : (recipe2.getRecipeSize() < recipe1.getRecipeSize
+                        () ? -1 : (recipe2.getRecipeSize() > recipe1.getRecipeSize() ? 1 : 0)));
             }
         });
     }
@@ -47,114 +42,7 @@ public class MarioMakerCraftingManager
     }
 
     /**
-     * Use {@link io.github.Theray070696.mario2.crafting.ShapedOreRecipeMario} instead.
-     */
-    @Deprecated
-    public ShapedRecipeMario addRecipe(ItemStack stack, Object... recipeComponents)
-    {
-        MarioMod2.INSTANCE.logger.warn("Non-ore recipes are deprecated and will be removed in a future build!");
-
-        String s = "";
-        int i = 0;
-        int j = 0;
-        int k = 0;
-
-        if(recipeComponents[i] instanceof String[])
-        {
-            String[] aString = (String[]) recipeComponents[i++];
-
-            for(String s2 : aString)
-            {
-                ++k;
-                j = s2.length();
-                s = s + s2;
-            }
-        } else
-        {
-            while(recipeComponents[i] instanceof String)
-            {
-                String s1 = (String) recipeComponents[i++];
-                ++k;
-                j = s1.length();
-                s = s + s1;
-            }
-        }
-
-        Map<Character, ItemStack> map;
-
-        for(map = Maps.<Character, ItemStack>newHashMap(); i < recipeComponents.length; i += 2)
-        {
-            Character character = (Character) recipeComponents[i];
-            ItemStack itemStack = ItemStack.EMPTY;
-
-            if(recipeComponents[i + 1] instanceof Item)
-            {
-                itemStack = new ItemStack((Item) recipeComponents[i + 1]);
-            } else if(recipeComponents[i + 1] instanceof Block)
-            {
-                itemStack = new ItemStack((Block) recipeComponents[i + 1], 1, 32767);
-            } else if(recipeComponents[i + 1] instanceof ItemStack)
-            {
-                itemStack = (ItemStack) recipeComponents[i + 1];
-            }
-
-            map.put(character, itemStack);
-        }
-
-        ItemStack[] aItemStack = new ItemStack[j * k];
-
-        for(int l = 0; l < j * k; ++l)
-        {
-            char c0 = s.charAt(l);
-
-            if(map.containsKey(c0))
-            {
-                aItemStack[l] = map.get(c0).copy();
-            } else
-            {
-                aItemStack[l] = ItemStack.EMPTY;
-            }
-        }
-
-        ShapedRecipeMario shapedRecipe = new ShapedRecipeMario(j, k, aItemStack, stack);
-        this.recipes.add(shapedRecipe);
-        return shapedRecipe;
-    }
-
-    /**
-     * Use {@link io.github.Theray070696.mario2.crafting.ShapelessOreRecipeMario} instead.
-     */
-    @Deprecated
-    public void addShapelessRecipe(ItemStack stack, Object... recipeComponents)
-    {
-        MarioMod2.INSTANCE.logger.warn("Non-ore recipes are deprecated and will be removed in a future build!");
-
-        List<ItemStack> list = Lists.<ItemStack>newArrayList();
-
-        for(Object object : recipeComponents)
-        {
-            if(object instanceof ItemStack)
-            {
-                list.add(((ItemStack) object).copy());
-            } else if(object instanceof Item)
-            {
-                list.add(new ItemStack((Item) object));
-            } else
-            {
-                if(!(object instanceof Block))
-                {
-                    throw new IllegalArgumentException("Invalid shapeless recipe: unknown type " + object.getClass().getName() + "!");
-                }
-
-                list.add(new ItemStack((Block) object));
-            }
-        }
-
-        this.recipes.add(new ShapelessRecipeMario(stack, list));
-    }
-
-    /**
-     * Adds an IRecipe to the list of crafting recipes.
+     * Adds an IMarioRecipe to the list of crafting recipes.
      */
     public void addRecipe(IMarioRecipe recipe)
     {
