@@ -54,15 +54,9 @@ public class MarioMakerCraftingManager
      */
     public ItemStack findMatchingRecipe(InventoryCrafting craftMatrix, World world)
     {
-        for(IMarioRecipe recipe : this.recipes)
-        {
-            if(recipe.matches(craftMatrix, world))
-            {
-                return recipe.getCraftingResult(craftMatrix);
-            }
-        }
+        IMarioRecipe recipe = findRecipeForMatrix(craftMatrix, world);
 
-        return ItemStack.EMPTY;
+        return recipe != null ? recipe.getCraftingResult(craftMatrix) : ItemStack.EMPTY;
     }
 
     /**
