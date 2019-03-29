@@ -81,16 +81,16 @@ public class SlotCraftingMario extends Slot
         if(this.amountCrafted > 0)
         {
             stack.onCrafting(this.player.world, this.player, this.amountCrafted);
+
+            if(this.recipe != null && this.recipe instanceof ICoinRecipe && !this.player.world.isRemote)
+            {
+                ICoinCount coinCount = this.player.getCapability(CoinCountProvider.COIN_COUNT, null);
+                coinCount.subtractFromCoinCount(((ICoinRecipe) this.recipe).getRequiredCoins());
+                coinCount.sync(this.player);
+            }
         }
 
         this.amountCrafted = 0;
-
-        if(this.recipe != null && this.recipe instanceof ICoinRecipe && !this.player.world.isRemote)
-        {
-            ICoinCount coinCount = this.player.getCapability(CoinCountProvider.COIN_COUNT, null);
-            coinCount.subtractFromCoinCount(((ICoinRecipe) this.recipe).getRequiredCoins());
-            coinCount.sync(this.player);
-        }
 
         // Can do achievements here. Left an example for crafting a workbench
 
