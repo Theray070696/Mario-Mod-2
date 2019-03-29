@@ -50,7 +50,7 @@ public class ItemStarMan extends ItemMario
 
             RayCoreAPI.playMovingSound(ModInfo.MOD_ID, "item.starman", SoundCategory.PLAYERS, world, player);
 
-            itemStack.setCount(itemStack.getCount() - 1);
+            itemStack.shrink(1);
         }
 
         return new ActionResult<>(EnumActionResult.PASS, itemStack);

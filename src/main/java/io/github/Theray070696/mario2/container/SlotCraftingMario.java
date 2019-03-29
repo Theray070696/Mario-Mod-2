@@ -123,7 +123,7 @@ public class SlotCraftingMario extends Slot
                     this.craftMatrix.setInventorySlotContents(i, itemStack1);
                 } else if(ItemStack.areItemsEqual(itemStack, itemStack1) && ItemStack.areItemStackTagsEqual(itemStack, itemStack1))
                 {
-                    itemStack1.setCount(itemStack.getCount() + itemStack1.getCount());
+                    itemStack1.grow(itemStack.getCount());
                     this.craftMatrix.setInventorySlotContents(i, itemStack1);
                 } else if(!this.player.inventory.addItemStackToInventory(itemStack1))
                 {

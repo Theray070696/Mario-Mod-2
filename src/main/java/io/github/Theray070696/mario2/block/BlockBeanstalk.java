@@ -55,7 +55,7 @@ public class BlockBeanstalk extends BlockMario
     {
         if(placer instanceof EntityPlayer)
         {
-            stack.setCount(stack.getCount() + 1);
+            stack.grow(1);
             world.destroyBlock(pos, false);
         }
     }

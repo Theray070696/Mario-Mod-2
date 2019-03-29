@@ -83,7 +83,7 @@ public class ItemMushroom extends ItemMario
                             .mushroom, SoundCategory.PLAYERS, 1.0F, 1.0F); // Play this sound.
                 }
 
-                itemStack.setCount(itemStack.getCount() - 1); // Decrease amount of items in stack by one.
+                itemStack.shrink(1); // Decrease amount of items in stack by one.
             }
         }
 

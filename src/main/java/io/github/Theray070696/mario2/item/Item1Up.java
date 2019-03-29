@@ -82,7 +82,7 @@ public class Item1Up extends ItemMario
                             .oneUp, SoundCategory.PLAYERS, 1.0F, 1.0F);
                 }
 
-                itemStack.setCount(itemStack.getCount() - 1);
+                itemStack.shrink(1);
             }
         }
 

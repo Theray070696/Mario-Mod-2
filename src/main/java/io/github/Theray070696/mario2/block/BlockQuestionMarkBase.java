@@ -366,7 +366,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                         {
                             if(heldItem.getItemDamage() == blockType) // If it matches the block type...
                             {
-                                heldItem.setCount(heldItem.getCount() - 1); // Decrease amount of items in stack by one.
+                                heldItem.shrink(1); // Decrease amount of items in stack by one.
                                 this.updateQuestionMarkState(ItemsInQuestionMarks.ITEM_COIN, world, pos, tileQuestionMark); // Update the state of
                                 // the block.
                             }
@@ -374,7 +374,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                         {
                             if(heldItem.getItemDamage() == blockType) // If it matches the block type...
                             {
-                                heldItem.setCount(heldItem.getCount() - 1); // Decrease amount of items in stack by one.
+                                heldItem.shrink(1); // Decrease amount of items in stack by one.
                                 this.updateQuestionMarkState(ItemsInQuestionMarks.ITEM_MUSHROOM, world, pos, tileQuestionMark); // Update the state
                                 // of the block.
                             }
@@ -382,7 +382,7 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                         {
                             if(heldItem.getItemDamage() == blockType) // If it matches the block type...
                             {
-                                heldItem.setCount(heldItem.getCount() - 1); // Decrease amount of items in stack by one.
+                                heldItem.shrink(1); // Decrease amount of items in stack by one.
                                 this.updateQuestionMarkState(ItemsInQuestionMarks.ITEM_1UP, world, pos, tileQuestionMark); // Update the state of
                                 // the block.
                             }
@@ -390,23 +390,23 @@ public abstract class BlockQuestionMarkBase extends BlockMario implements ITileE
                         {
                             if(blockType == 1) // If the block is a Mario World block...
                             {
-                                heldItem.setCount(heldItem.getCount() - 1); // Decrease amount of items in stack by one.
+                                heldItem.shrink(1); // Decrease amount of items in stack by one.
                                 this.updateQuestionMarkState(ItemsInQuestionMarks.ITEM_CAPE, world, pos, tileQuestionMark); // Update the state of
                                 // the block.
                             }
                         } else if(item instanceof ItemFireFlower) // If the item is a Fire Flower...
                         {
-                            heldItem.setCount(heldItem.getCount() - 1); // Decrease amount of items in stack by one.
+                            heldItem.shrink(1); // Decrease amount of items in stack by one.
                             this.updateQuestionMarkState(ItemsInQuestionMarks.ITEM_FIRE_FLOWER, world, pos, tileQuestionMark); // Update the state
                             // of the block.
                         } else if(item instanceof ItemStarMan) // If the item is a Starman...
                         {
-                            heldItem.setCount(heldItem.getCount() - 1); // Decrease amount of items in stack by one.
+                            heldItem.shrink(1); // Decrease amount of items in stack by one.
                             this.updateQuestionMarkState(ItemsInQuestionMarks.ITEM_STAR_MAN, world, pos, tileQuestionMark); // Update the state of
                             // the block.
                         } else if(item == Item.getItemFromBlock(ModBlocks.marioBlockBeanstalk)) // If the item is a beanstalk...
                         {
-                            heldItem.setCount(heldItem.getCount() - 1); // Decrease amount of items in stack by one.
+                            heldItem.shrink(1); // Decrease amount of items in stack by one.
                             this.updateQuestionMarkState(ItemsInQuestionMarks.ITEM_BEANSTALK, world, pos, tileQuestionMark); // Update the state of
                             // the block.
                         }

@@ -67,7 +67,7 @@ public class ItemCoin extends ItemMario
             provider.addToCoinCount(1);
             provider.sync(player);
 
-            itemStack.setCount(itemStack.getCount() - 1);
+            itemStack.shrink(1);
         }
 
         return new ActionResult<>(EnumActionResult.PASS, itemStack);
