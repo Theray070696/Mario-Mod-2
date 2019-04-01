@@ -88,10 +88,13 @@ public class EntityKoopa extends EntityMob
             } else if((cause.getTrueSource() instanceof EntityTameable && ((EntityTameable) cause.getTrueSource()).isTamed()))
             {
                 Random rand = new Random();
-                int amount = rand.nextInt(3);
-                if(amount > 0)
+                if(rand.nextInt(100) == 0)
                 {
-                    this.entityDropItem(new ItemStack(ModItems.itemCoin, amount, rand.nextInt(3)), 0.0F);
+                    int amount = rand.nextInt(3);
+                    if(amount > 0)
+                    {
+                        this.entityDropItem(new ItemStack(ModItems.itemCoin, amount, rand.nextInt(3)), 0.0F);
+                    }
                 }
             }
         }

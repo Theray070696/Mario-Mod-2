@@ -166,13 +166,15 @@ public class EventHandler
             return;
         }
 
+        Random rand = new Random(); // Initialize random number generator.
+
         if((event.getSource().getTrueSource() instanceof EntityPlayer && !(event.getSource().getTrueSource() instanceof FakePlayer)) || (event
-                .getSource().getTrueSource() instanceof EntityTameable && ((EntityTameable) event.getSource().getTrueSource()).isTamed())) // If
-            // the cause of damage was a player, but NOT a fake player, OR the cause was a tameable entity AND that entity was tamed...
+                .getSource().getTrueSource() instanceof EntityTameable && ((EntityTameable) event.getSource().getTrueSource()).isTamed() && rand
+                .nextInt(100) == 0)) // If the cause of damage was a player, but NOT a fake player, OR the cause was a tameable entity AND that
+            // entity was tamed...
         {
             Entity entity = event.getEntity(); // Get entity that is dropping item(s).
             World world = entity.getEntityWorld(); // Get the world the entity is in.
-            Random rand = new Random(); // Initialize random number generator.
 
             if(entity instanceof EntityWither && ConfigHandler.enableCoinDrops) // If the entity was a Wither...
             {
