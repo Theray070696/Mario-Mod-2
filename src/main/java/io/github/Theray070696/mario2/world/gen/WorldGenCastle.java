@@ -43,7 +43,7 @@ public class WorldGenCastle extends WorldGenerator
                     for(int z = 0; z < template.getSize().getZ(); z++)
                     {
                         BlockPos checkPos = pos.add(x, -1, z);
-                        if(world.isAirBlock(checkPos) || world.getBlockState(checkPos).isFullBlock())
+                        if(world.isAirBlock(checkPos) || !world.getBlockState(checkPos).isFullBlock())
                         {
                             return false;
                         }
