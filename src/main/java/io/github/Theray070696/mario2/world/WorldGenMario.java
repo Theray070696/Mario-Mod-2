@@ -210,8 +210,7 @@ public class WorldGenMario implements IWorldGenerator
 
             if(!BiomeDictionary.hasType(world.getBiomeForCoordsBody(new BlockPos(x, 50, z)), BiomeDictionary.Type.OCEAN) && rand.nextInt(80) == 0)
             {
-                int y = 50;
-                BlockPos generatePos = new BlockPos(x, y, z);
+                BlockPos generatePos = new BlockPos(x, 50, z);
 
                 generatePos = world.getTopSolidOrLiquidBlock(generatePos);
 
