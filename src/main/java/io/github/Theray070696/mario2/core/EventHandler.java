@@ -166,13 +166,14 @@ public class EventHandler
             return;
         }
 
-        Random rand = new Random(); // Initialize random number generator.
-
         if((event.getSource().getTrueSource() instanceof EntityPlayer && !(event.getSource().getTrueSource() instanceof FakePlayer)) || (event
-                .getSource().getTrueSource() instanceof EntityTameable && ((EntityTameable) event.getSource().getTrueSource()).isTamed() && rand
-                .nextInt(100) == 0)) // If the cause of damage was a player, but NOT a fake player, OR the cause was a tameable entity AND that
-            // entity was tamed...
+                .getSource().getTrueSource() instanceof EntityTameable && ((EntityTameable) event.getSource().getTrueSource()).isTamed())) // If
+            // the cause of damage was a player, but NOT a fake player, OR the cause was a tameable entity AND that entity was tamed...
         {
+            boolean wasTamedKill = event.getSource().getTrueSource() instanceof EntityTameable && ((EntityTameable) event.getSource().getTrueSource
+                    ()).isTamed();
+
+            Random rand = new Random(); // Initialize random number generator.
             Entity entity = event.getEntity(); // Get entity that is dropping item(s).
             World world = entity.getEntityWorld(); // Get the world the entity is in.
 
@@ -184,35 +185,38 @@ public class EventHandler
             {
                 // Drop 4+ Dragon Coins.
                 entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, rand.nextInt(3) + 4, 3), 0.0f); // Dragon Coin
-            } else if(entity instanceof EntityEnderman && ConfigHandler.enableCoinDrops) // If the entity was an Enderman..
+            } else if(!wasTamedKill || rand.nextInt(100) == 0)
             {
-                if(rand.nextInt(500) == 0) // Drop 1 Dragon Coin as a very rare drop.
+                if(entity instanceof EntityEnderman && ConfigHandler.enableCoinDrops) // If the entity was an Enderman..
                 {
-                    entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, 1, 3), 0.0f); // Dragon Coin
-                }
-            } else if(entity instanceof EntityWitherSkeleton && ConfigHandler.enableCoinDrops) // If the entity was a Wither Skeleton...
-            {
-                if(rand.nextInt(500) == 0) // Drop 1 Wither Coin as a very rare drop.
+                    if(rand.nextInt(500) == 0) // Drop 1 Dragon Coin as a very rare drop.
+                    {
+                        entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, 1, 3), 0.0f); // Dragon Coin
+                    }
+                } else if(entity instanceof EntityWitherSkeleton && ConfigHandler.enableCoinDrops) // If the entity was a Wither Skeleton...
                 {
-                    entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, 1, 4), 0.0f); // Wither Coin
-                }
-            } else if(entity instanceof EntityMob && !(entity instanceof EntityGoomba || entity instanceof EntityKoopa)) // If the entity is any
-            // other mob besides a Goomba...
-            {
-                int randInt = rand.nextInt(100); // Generate a number from 0 to 99 inclusive to determine what will be dropped.
+                    if(rand.nextInt(500) == 0) // Drop 1 Wither Coin as a very rare drop.
+                    {
+                        entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, 1, 4), 0.0f); // Wither Coin
+                    }
+                } else if(entity instanceof EntityMob && !(entity instanceof EntityGoomba || entity instanceof EntityKoopa)) // If the entity is any
+                // other mob besides a Goomba...
+                {
+                    int randInt = rand.nextInt(100); // Generate a number from 0 to 99 inclusive to determine what will be dropped.
 
-                if(randInt < 5 && ConfigHandler.enableCoinDrops) // 5% chance.
-                {
-                    entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, rand.nextInt(2)), 0.0f); // Green Coin
-                } else if(randInt >= 5 && randInt < 20 && ConfigHandler.enableCoinDrops) // 15% chance.
-                {
-                    entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, rand.nextInt(3), 1), 0.0f); // Blue Coin
-                } else if(randInt >= 20 && randInt < 45 && ConfigHandler.enableCoinDrops) // 25% chance.
-                {
-                    entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, rand.nextInt(4), 2), 0.0f); // Red Coin
-                } else if(randInt >= 45 && randInt < 90) // 45% chance.
-                {
-                    entity.entityDropItem(new ItemStack(ModItems.itemCoin, rand.nextInt(4) + 1, rand.nextInt(3)), 0.0f); // Normal Coin
+                    if(randInt < 5 && ConfigHandler.enableCoinDrops) // 5% chance.
+                    {
+                        entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, rand.nextInt(2)), 0.0f); // Green Coin
+                    } else if(randInt >= 5 && randInt < 20 && ConfigHandler.enableCoinDrops) // 15% chance.
+                    {
+                        entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, rand.nextInt(3), 1), 0.0f); // Blue Coin
+                    } else if(randInt >= 20 && randInt < 45 && ConfigHandler.enableCoinDrops) // 25% chance.
+                    {
+                        entity.entityDropItem(new ItemStack(ModItems.itemCoinCurrency, rand.nextInt(4), 2), 0.0f); // Red Coin
+                    } else if(randInt >= 45 && randInt < 90) // 45% chance.
+                    {
+                        entity.entityDropItem(new ItemStack(ModItems.itemCoin, rand.nextInt(4) + 1, rand.nextInt(3)), 0.0f); // Normal Coin
+                    }
                 }
             }
         }
