@@ -15,6 +15,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -23,6 +24,10 @@ import java.util.List;
 /**
  * Created by Theray070696 on 9/15/2015.
  */
+@Optional.InterfaceList(value =
+        {
+                @Optional.Interface(iface = "baubles.api.IBauble", modid = "baubles")
+        })
 public class ItemCape extends ItemMario implements IBauble
 {
     public ItemCape()
@@ -88,40 +93,20 @@ public class ItemCape extends ItemMario implements IBauble
     }
 
     @Override
+    @Optional.Method(modid = "baubles")
     public BaubleType getBaubleType(ItemStack itemStack)
     {
         return BaubleType.BELT;
     }
 
     @Override
+    @Optional.Method(modid = "baubles")
     public void onWornTick(ItemStack itemStack, EntityLivingBase player)
     {
-        if(itemStack != ItemStack.EMPTY && player != null && !(player instanceof FakePlayer) && player.motionY < 0.0f) // If the ItemStack is not
+        if(!itemStack.isEmpty() && player != null && !(player instanceof FakePlayer) && player.motionY < 0.0f) // If the ItemStack is not
             // empty, the player is not null, and the player is not a fake player...
         {
             player.fallDistance = 0.0F; // Cancel fall damage.
         }
-    }
-
-    @Override
-    public void onEquipped(ItemStack itemStack, EntityLivingBase player)
-    {
-    }
-
-    @Override
-    public void onUnequipped(ItemStack itemStack, EntityLivingBase player)
-    {
-    }
-
-    @Override
-    public boolean canEquip(ItemStack itemStack, EntityLivingBase player)
-    {
-        return true;
-    }
-
-    @Override
-    public boolean canUnequip(ItemStack itemStack, EntityLivingBase player)
-    {
-        return true;
     }
 }
