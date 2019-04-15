@@ -94,9 +94,9 @@ public class MarioMod2
         this.stopwatchInitPhases = Stopwatch.createStarted();
         event.getModLog().info("Pre-Init");
 
-        ConfigHandler.loadConfig(event);
-
         this.logger = event.getModLog();
+
+        ConfigHandler.loadConfig(event);
 
         PluginHandler.getInstance().registerBuiltInPlugins();
 
