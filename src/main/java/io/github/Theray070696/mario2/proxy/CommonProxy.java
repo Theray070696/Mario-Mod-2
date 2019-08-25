@@ -1,6 +1,7 @@
 package io.github.Theray070696.mario2.proxy;
 
 import io.github.Theray070696.mario2.MarioMod2;
+import io.github.Theray070696.mario2.configuration.ConfigHandler;
 import io.github.Theray070696.mario2.entity.EntityFireball;
 import io.github.Theray070696.mario2.entity.EntityGoomba;
 import io.github.Theray070696.mario2.entity.EntityKoopa;
@@ -52,10 +53,13 @@ public abstract class CommonProxy implements IProxy
         }
         biomes.addAll(BiomeManager.oceanBiomes);
 
-        biomes.remove(ModBiomes.biomeMarioPlains);
-        biomes.remove(ModBiomes.biomeMarioForest);
-        biomes.remove(ModBiomes.biomeMarioForestHills);
-        biomes.remove(ModBiomes.biomeForestOfIllusion);
+        if(ConfigHandler.enableBiomes)
+        {
+            biomes.remove(ModBiomes.biomeMarioPlains);
+            biomes.remove(ModBiomes.biomeMarioForest);
+            biomes.remove(ModBiomes.biomeMarioForestHills);
+            biomes.remove(ModBiomes.biomeForestOfIllusion);
+        }
 
         EntityRegistry.addSpawn(EntityGoomba.class, 100, 2, 5, EnumCreatureType.MONSTER, biomes.toArray(new Biome[biomes.size()]));
         EntityRegistry.addSpawn(EntityKoopa.class, 100, 2, 5, EnumCreatureType.MONSTER, biomes.toArray(new Biome[biomes.size()]));

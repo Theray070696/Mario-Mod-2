@@ -143,8 +143,11 @@ public class MarioMod2
         this.logger.info("Registering World Generation");
         GameRegistry.registerWorldGenerator(new WorldGenMario(), 0);
 
-        ModBiomes.initBiomes();
-        ModDimension.initDimension();
+        if(ConfigHandler.enableBiomes)
+        {
+            ModBiomes.initBiomes();
+            ModDimension.initDimension();
+        }
 
         this.logger.info("World Generation Registered");
 

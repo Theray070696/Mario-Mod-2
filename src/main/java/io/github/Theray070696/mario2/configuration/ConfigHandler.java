@@ -18,6 +18,8 @@ public class ConfigHandler
     public static final boolean enableCoinDropsDefault = true;
     public static int marioDimensionID;
     public static int marioDimensionIDDefault = 75;
+    public static boolean enableBiomes;
+    public static final boolean enableBiomesDefault = true;
     private static Configuration config;
 
     public static void loadConfig(FMLPreInitializationEvent event)
@@ -36,10 +38,16 @@ public class ConfigHandler
                 "enabled.");
 
         enableCoinDrops = config.getBoolean("Enable special coin drops", "Misc", enableCoinDropsDefault, "Whether or not special coins should drop " +
-                "from mobs.");
+                "" + "from mobs.");
 
-        marioDimensionID = config.getInt("Mario Dimension ID", "Dimension", marioDimensionIDDefault, Integer.MIN_VALUE, Integer.MAX_VALUE,
-                "Dimension ID of the Mario dimension.");
+        enableBiomes = config.getBoolean("Enable Mario biomes", "World Generation", enableCoinDropsDefault, "Whether or not to enable Mario themed " +
+                "biomes");
+
+        if(enableBiomes)
+        {
+            marioDimensionID = config.getInt("Mario Dimension ID", "Dimension", marioDimensionIDDefault, Integer.MIN_VALUE, Integer.MAX_VALUE,
+                    "Dimension ID of the Mario dimension.");
+        }
 
         saveConfig();
     }

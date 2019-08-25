@@ -1,6 +1,7 @@
 package io.github.Theray070696.mario2.core;
 
 import io.github.Theray070696.mario2.client.gui.GuiCoinCountOverlay;
+import io.github.Theray070696.mario2.configuration.ConfigHandler;
 import io.github.Theray070696.mario2.world.biome.BiomeForestOfIllusion;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
@@ -35,6 +36,11 @@ public class ClientEventHandler
     @SubscribeEvent
     public void onFogRender(EntityViewRenderEvent.RenderFogEvent event)
     {
+        if(!ConfigHandler.enableBiomes)
+        {
+            return;
+        }
+
         float fogDensityTarget;
 
         if(event.getEntity().world.getBiomeForCoordsBody(event.getEntity().getPosition()) instanceof BiomeForestOfIllusion)

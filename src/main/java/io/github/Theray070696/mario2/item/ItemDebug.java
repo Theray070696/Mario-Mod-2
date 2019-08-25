@@ -29,7 +29,7 @@ public class ItemDebug extends ItemMario
     {
         ItemStack itemStack = player.getHeldItem(hand);
 
-        if(!ConfigHandler.developerModeEnabled)
+        if(!ConfigHandler.developerModeEnabled || !ConfigHandler.enableBiomes)
         {
             return new ActionResult<>(EnumActionResult.PASS, itemStack);
         }

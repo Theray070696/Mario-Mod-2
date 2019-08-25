@@ -163,6 +163,9 @@ public class WorldGenMario implements IWorldGenerator
         if(worldGenerator == this.noteBlock)
         {
             int heightDiff = maxHeight - minHeight + 1;
+
+            Block topBlock = world.provider.getBiomeForCoords(new BlockPos(chunk_X, 0, chunk_Z)).topBlock.getBlock();
+
             for(int i = 0; i < chancesToSpawn; i++)
             {
                 int x = chunk_X * 16 + rand.nextInt(16);
@@ -173,10 +176,8 @@ public class WorldGenMario implements IWorldGenerator
 
                 Block block = world.getBlockState(generatePos.down()).getBlock();
 
-                if(block == Blocks.GRASS || block == Blocks.DIRT || block == Blocks.STONE || block == Blocks.SAND || block == Blocks.MYCELIUM ||
-                        block == ModBlocks.marioBlockGround || block == ModBlocks.marioBlockGroundUnderground || block == ModBlocks
-                        .marioBlockGroundUnderwater || block == ModBlocks.marioBlockGroundSnow || block == ModBlocks.marioBlockCastleWall || block
-                        == ModBlocks.marioBlockGroundSMW || block == ModBlocks.marioBlockGroundUndergroundSMW)
+                if(block == topBlock || block == Blocks.DIRT || block == Blocks.STONE || block == Blocks.SAND || block == ModBlocks
+                        .marioBlockGroundUnderground || block == ModBlocks.marioBlockGroundUndergroundSMW)
                 {
                     worldGenerator.generate(world, rand, generatePos);
                 }
@@ -214,8 +215,9 @@ public class WorldGenMario implements IWorldGenerator
 
                 generatePos = world.getTopSolidOrLiquidBlock(generatePos);
 
-                if(!(world.getBlockState(world.getTopSolidOrLiquidBlock(generatePos)).getBlock() instanceof BlockLiquid) && !(world.getBlockState
-                        (world.getTopSolidOrLiquidBlock(generatePos)).getBlock() instanceof BlockFluidBase))
+                Block topBlock = world.getBlockState(world.getTopSolidOrLiquidBlock(generatePos)).getBlock();
+
+                if(!(topBlock instanceof BlockLiquid) && !(topBlock instanceof BlockFluidBase))
                 {
                     worldGenerator.generate(world, rand, generatePos);
                 }
