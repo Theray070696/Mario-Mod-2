@@ -6,6 +6,7 @@ import io.github.Theray070696.mario2.block.tile.TileQuestionMark;
 import io.github.Theray070696.mario2.lib.ModInfo;
 import io.github.Theray070696.raycore.RayCore;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -71,14 +72,14 @@ public class ModBlocks
                     new BlockMarioMaker(),
                     new BlockMario(Material.ROCK, true, true).setTranslationKey("marioBlockGround").setHardness(4.0f),
                     new BlockMario().setTranslationKey("marioBlockBrick").setHardness(2.0f),
-                    new BlockMario(Material.WOOD).setTranslationKey("marioBlockDecoration").setHardness(5.0f),
+                    new BlockMario(Material.WOOD).setSoundType(SoundType.WOOD).setTranslationKey("marioBlockDecoration").setHardness(5.0f),
                     new BlockNoteBlock(),
                     new BlockMarioLeaves(),
                     new BlockMarioLog(),
-                    new BlockMario(Material.WOOD).setHardness(2.0f).setResistance(5.0f).setTranslationKey("marioBlockPlanks"),
+                    new BlockMario(Material.WOOD).setSoundType(SoundType.WOOD).setHardness(2.0f).setResistance(5.0f).setTranslationKey("marioBlockPlanks"),
                     new BlockMarioSapling(),
-                    new BlockMario(Material.GROUND, true, true).setTranslationKey("marioBlockGroundSMW").setHardness(4.0f),
-                    new BlockMario(Material.ROCK, true, true).setTranslationKey("marioBlockGroundUndergroundSMW").setHardness(4.0f),
+                    new BlockMario(Material.GRASS, true, true).setSoundType(SoundType.GROUND).setTranslationKey("marioBlockGroundSMW").setHardness(0.5f),
+                    new BlockMario(Material.ROCK, true, true).setTranslationKey("marioBlockGroundUndergroundSMW").setHardness(1.5f).setResistance(10.0f),
                     new BlockMarioOre().setTranslationKey("marioBlockCoalSMW").setHardness(3.0f).setResistance(5.0f),
                     new BlockMarioOre().setTranslationKey("marioBlockIronSMW").setHardness(3.0f).setResistance(5.0f),
                     new BlockMarioOre().setTranslationKey("marioBlockGoldSMW").setHardness(3.0f).setResistance(5.0f),
@@ -96,9 +97,9 @@ public class ModBlocks
                     new BlockInvisibleBlock("marioBlockInvisibleBlockSMB", EnumBlockType.SMB_INVISIBLE),
                     new BlockQuestionMarkEmpty("marioBlockInvisibleBlockEmptySMB3", EnumBlockType.SMB3_INVISIBLE),
                     new BlockInvisibleBlock("marioBlockInvisibleBlockSMB3", EnumBlockType.SMB3_INVISIBLE),
-                    new BlockMario(Material.ROCK, true, true).setTranslationKey("marioBlockGroundUnderground").setHardness(4.0f),
+                    new BlockMario(Material.ROCK, true, true).setTranslationKey("marioBlockGroundUnderground").setHardness(1.5f).setResistance(10.0f),
                     new BlockMario().setTranslationKey("marioBlockBrickUnderground").setHardness(2.0f),
-                    new BlockMario(Material.WOOD).setTranslationKey("marioBlockUndergroundDecoration").setHardness(5.0f),
+                    new BlockMario(Material.WOOD).setSoundType(SoundType.WOOD).setTranslationKey("marioBlockUndergroundDecoration").setHardness(5.0f),
                     new BlockQuestionMarkEmpty("marioBlockEmptyQuestionMarkUndergroundSMB", EnumBlockType.SMB_UNDERGROUND),
                     new BlockQuestionMark("marioBlockQuestionMarkUndergroundSMB", EnumBlockType.SMB_UNDERGROUND),
                     new BlockMario().setTranslationKey("marioBlockCastleWall").setHardness(6.0f),
